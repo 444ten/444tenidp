@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D0F52C7F-AD97-490F-A625-48356B9F5A4B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MacrosTest</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>92AFA7AD58E47E2A4D1E6C83EBC44C80D3305EAC</key>
+		<string>https://github.com/444ten/Task01-Macros.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MacrosTest/MacrosTest.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>92AFA7AD58E47E2A4D1E6C83EBC44C80D3305EAC</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/444ten/Task01-Macros.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>92AFA7AD58E47E2A4D1E6C83EBC44C80D3305EAC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>92AFA7AD58E47E2A4D1E6C83EBC44C80D3305EAC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>lesson2</string>
+		</dict>
+	</array>
+</dict>
+</plist>
