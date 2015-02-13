@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		76F255AD1A8E2B9200135F2A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255AC1A8E2B9200135F2A /* main.c */; };
 		76F255BD1A8E2C3800135F2A /* TENStruct.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255B91A8E2C3800135F2A /* TENStruct.c */; };
 		76F255BE1A8E2C3800135F2A /* TENStructTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255BB1A8E2C3800135F2A /* TENStructTest.c */; };
-		76F255C41A8E319E00135F2A /* output.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255C01A8E319E00135F2A /* output.c */; };
-		76F255C51A8E319E00135F2A /* testOutput.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255C21A8E319E00135F2A /* testOutput.c */; };
+		76F255C41A8E319E00135F2A /* TENOutputParent.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255C01A8E319E00135F2A /* TENOutputParent.c */; };
+		76F255C51A8E319E00135F2A /* TENOutputParentTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255C21A8E319E00135F2A /* TENOutputParentTest.c */; };
 		76F255CD1A8E335A00135F2A /* TENOutputMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255CB1A8E335A00135F2A /* TENOutputMacros.c */; };
 		76F255D01A8E393A00135F2A /* TENCharToBin.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255CE1A8E393A00135F2A /* TENCharToBin.c */; };
+		76F255D31A8E40A500135F2A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255D21A8E40A500135F2A /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,19 +30,19 @@
 
 /* Begin PBXFileReference section */
 		76F255A91A8E2B9200135F2A /* HomeworkC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HomeworkC; sourceTree = BUILT_PRODUCTS_DIR; };
-		76F255AC1A8E2B9200135F2A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		76F255B91A8E2C3800135F2A /* TENStruct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENStruct.c; sourceTree = "<group>"; };
 		76F255BA1A8E2C3800135F2A /* TENStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENStruct.h; sourceTree = "<group>"; };
 		76F255BB1A8E2C3800135F2A /* TENStructTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENStructTest.c; sourceTree = "<group>"; };
 		76F255BC1A8E2C3800135F2A /* TENStructTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENStructTest.h; sourceTree = "<group>"; };
-		76F255C01A8E319E00135F2A /* output.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = output.c; sourceTree = "<group>"; };
-		76F255C11A8E319E00135F2A /* output.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = output.h; sourceTree = "<group>"; };
-		76F255C21A8E319E00135F2A /* testOutput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testOutput.c; sourceTree = "<group>"; };
-		76F255C31A8E319E00135F2A /* testOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testOutput.h; sourceTree = "<group>"; };
+		76F255C01A8E319E00135F2A /* TENOutputParent.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENOutputParent.c; sourceTree = "<group>"; };
+		76F255C11A8E319E00135F2A /* TENOutputParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENOutputParent.h; sourceTree = "<group>"; };
+		76F255C21A8E319E00135F2A /* TENOutputParentTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENOutputParentTest.c; sourceTree = "<group>"; };
+		76F255C31A8E319E00135F2A /* TENOutputParentTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENOutputParentTest.h; sourceTree = "<group>"; };
 		76F255CB1A8E335A00135F2A /* TENOutputMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENOutputMacros.c; sourceTree = "<group>"; };
 		76F255CC1A8E335A00135F2A /* TENOutputMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENOutputMacros.h; sourceTree = "<group>"; };
 		76F255CE1A8E393A00135F2A /* TENCharToBin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENCharToBin.c; sourceTree = "<group>"; };
 		76F255CF1A8E393A00135F2A /* TENCharToBin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENCharToBin.h; sourceTree = "<group>"; };
+		76F255D21A8E40A500135F2A /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 		76F255AB1A8E2B9200135F2A /* HomeworkC */ = {
 			isa = PBXGroup;
 			children = (
-				76F255AC1A8E2B9200135F2A /* main.c */,
+				76F255D21A8E40A500135F2A /* main.c */,
 				76F255C61A8E31A500135F2A /* 0209 mamapapa */,
 				76F255C71A8E329F00135F2A /* 0210 macros */,
 				76F255D11A8E394400135F2A /* 0211 charToBin */,
@@ -98,10 +98,10 @@
 		76F255C61A8E31A500135F2A /* 0209 mamapapa */ = {
 			isa = PBXGroup;
 			children = (
-				76F255C01A8E319E00135F2A /* output.c */,
-				76F255C11A8E319E00135F2A /* output.h */,
-				76F255C21A8E319E00135F2A /* testOutput.c */,
-				76F255C31A8E319E00135F2A /* testOutput.h */,
+				76F255C11A8E319E00135F2A /* TENOutputParent.h */,
+				76F255C01A8E319E00135F2A /* TENOutputParent.c */,
+				76F255C31A8E319E00135F2A /* TENOutputParentTest.h */,
+				76F255C21A8E319E00135F2A /* TENOutputParentTest.c */,
 			);
 			name = "0209 mamapapa";
 			sourceTree = "<group>";
@@ -180,13 +180,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76F255C51A8E319E00135F2A /* testOutput.c in Sources */,
+				76F255C51A8E319E00135F2A /* TENOutputParentTest.c in Sources */,
 				76F255BE1A8E2C3800135F2A /* TENStructTest.c in Sources */,
 				76F255BD1A8E2C3800135F2A /* TENStruct.c in Sources */,
-				76F255C41A8E319E00135F2A /* output.c in Sources */,
+				76F255C41A8E319E00135F2A /* TENOutputParent.c in Sources */,
 				76F255D01A8E393A00135F2A /* TENCharToBin.c in Sources */,
-				76F255AD1A8E2B9200135F2A /* main.c in Sources */,
 				76F255CD1A8E335A00135F2A /* TENOutputMacros.c in Sources */,
+				76F255D31A8E40A500135F2A /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

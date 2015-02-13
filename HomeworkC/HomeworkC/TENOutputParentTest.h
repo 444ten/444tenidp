@@ -9,9 +9,7 @@
 #ifndef __lesson1__testOutput__
 #define __lesson1__testOutput__
 
-void testDivisorMama();
-void testDivisorPapa();
-void testDivisorMamapapa();
-void testDivisorZero();
+extern
+void TENOutputParentPerformTest();
 
 #endif /* defined(__lesson1__testOutput__) */
