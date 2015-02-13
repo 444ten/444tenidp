@@ -12,6 +12,7 @@
 		76F255BE1A8E2C3800135F2A /* TENStructTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255BB1A8E2C3800135F2A /* TENStructTest.c */; };
 		76F255C41A8E319E00135F2A /* output.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255C01A8E319E00135F2A /* output.c */; };
 		76F255C51A8E319E00135F2A /* testOutput.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255C21A8E319E00135F2A /* testOutput.c */; };
+		76F255CD1A8E335A00135F2A /* TENOutputMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255CB1A8E335A00135F2A /* TENOutputMacros.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,8 @@
 		76F255C11A8E319E00135F2A /* output.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = output.h; sourceTree = "<group>"; };
 		76F255C21A8E319E00135F2A /* testOutput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testOutput.c; sourceTree = "<group>"; };
 		76F255C31A8E319E00135F2A /* testOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testOutput.h; sourceTree = "<group>"; };
+		76F255CB1A8E335A00135F2A /* TENOutputMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENOutputMacros.c; sourceTree = "<group>"; };
+		76F255CC1A8E335A00135F2A /* TENOutputMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENOutputMacros.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,7 @@
 			children = (
 				76F255AC1A8E2B9200135F2A /* main.c */,
 				76F255C61A8E31A500135F2A /* 0209 mamapapa */,
+				76F255C71A8E329F00135F2A /* 0210 macros */,
 				76F255BF1A8E2C9C00135F2A /* 0211 struct */,
 			);
 			path = HomeworkC;
@@ -79,10 +83,10 @@
 		76F255BF1A8E2C9C00135F2A /* 0211 struct */ = {
 			isa = PBXGroup;
 			children = (
-				76F255B91A8E2C3800135F2A /* TENStruct.c */,
 				76F255BA1A8E2C3800135F2A /* TENStruct.h */,
-				76F255BB1A8E2C3800135F2A /* TENStructTest.c */,
+				76F255B91A8E2C3800135F2A /* TENStruct.c */,
 				76F255BC1A8E2C3800135F2A /* TENStructTest.h */,
+				76F255BB1A8E2C3800135F2A /* TENStructTest.c */,
 			);
 			name = "0211 struct";
 			sourceTree = "<group>";
@@ -96,6 +100,15 @@
 				76F255C31A8E319E00135F2A /* testOutput.h */,
 			);
 			name = "0209 mamapapa";
+			sourceTree = "<group>";
+		};
+		76F255C71A8E329F00135F2A /* 0210 macros */ = {
+			isa = PBXGroup;
+			children = (
+				76F255CC1A8E335A00135F2A /* TENOutputMacros.h */,
+				76F255CB1A8E335A00135F2A /* TENOutputMacros.c */,
+			);
+			name = "0210 macros";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +172,7 @@
 				76F255BD1A8E2C3800135F2A /* TENStruct.c in Sources */,
 				76F255C41A8E319E00135F2A /* output.c in Sources */,
 				76F255AD1A8E2B9200135F2A /* main.c in Sources */,
+				76F255CD1A8E335A00135F2A /* TENOutputMacros.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
