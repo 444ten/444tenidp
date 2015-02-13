@@ -9,6 +9,7 @@
 #include "output.h"
 #include "testOutput.h"
 
+#include "TENCharToBin.h"
 #include "TENOutputMacros.h"
 #include "TENStructTest.h"
 
@@ -24,8 +25,9 @@ int main(int argc, const char * argv[]) {
 //    for ( int i = value_start; i <= value_end; i++ ) {
 //        sayParent(i);
 //    }
-
-    TENOutputMacrosPerformTest();
+    
+    TENCharToBinOutPerformTest();
+//    TENOutputMacrosPerformTest();
 //    TENStructPerformTest();
 
     return 0;

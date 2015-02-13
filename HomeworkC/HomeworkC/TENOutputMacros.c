@@ -7,7 +7,6 @@
 //
 
 #include <stdio.h>
-#include <assert.h>
 
 #include "TENOutputMacros.h"
 
@@ -27,6 +26,4 @@ void TENOutputMacrosPerformTest() {
     TENOutputValue(int, 65)
     TENOutputValue(float, 65)
     TENOutputValue(char, 65)
-    
-    assert(65 == TENOutputValue(int, 65));
 }
