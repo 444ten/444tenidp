@@ -9,6 +9,13 @@
 #ifndef __HomeworkC__TENValueBitOutput__
 #define __HomeworkC__TENValueBitOutput__
 
+#include <stdbool.h>
 #include <stdio.h>
+
+extern
+void TENValueBitOutput(void *valueRef, long size);
+
+extern
+bool TENLittleEndianOrder();
 
 #endif /* defined(__HomeworkC__TENValueBitOutput__) */

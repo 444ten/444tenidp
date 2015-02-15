@@ -9,6 +9,7 @@
 #ifndef __HomeworkC__TENValueBitOutputTest__
 #define __HomeworkC__TENValueBitOutputTest__
 
-#include <stdio.h>
+extern
+void TENValueBitOutputPerformTest();
 
 #endif /* defined(__HomeworkC__TENValueBitOutputTest__) */

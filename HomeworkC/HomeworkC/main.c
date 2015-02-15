@@ -11,16 +11,19 @@
 #include "TENOutputParent.h"
 #include "TENOutputParentTest.h"
 #include "TENStructTest.h"
+#include "TENValueBitOutputTest.h"
 
 int main(int argc, const char * argv[]) {
-    TENOutputParentPerformTest();
-    TENOutputParentFromStartToEnd(0, 1000);
+//    TENOutputParentPerformTest();
+//    TENOutputParentFromStartToEnd(0, 1000);
     
-    TENOutputMacrosPerformTest();
+//    TENOutputMacrosPerformTest();
 
-    TENStructPerformTest();
+//    TENStructPerformTest();
 
-    TENCharToBinOutPerformTest();
+//    TENCharToBinOutPerformTest();
+    
+    TENValueBitOutputPerformTest();
 
     return 0;
 }
