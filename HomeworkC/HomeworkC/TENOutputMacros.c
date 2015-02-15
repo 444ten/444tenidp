@@ -10,9 +10,9 @@
 
 #include "TENOutputMacros.h"
 
-#define TENOutputValueGenerate(type, specifier) \
-    void TENOutput_##type(type value) {         \
-        printf("("#type") %"#specifier"\n", value);       \
+#define TENOutputValueGenerate(type, specifier)     \
+    void TENOutput_##type(type value) {             \
+        printf("("#type") %"#specifier"\n", value); \
     }
 
 #define TENOutputValue(type, value) \

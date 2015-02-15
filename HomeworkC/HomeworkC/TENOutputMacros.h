@@ -12,5 +12,4 @@
 extern
 void TENOutputMacrosPerformTest();
 
-
 #endif /* defined(__HomeworkC__TENOutputMacrosTest__) */

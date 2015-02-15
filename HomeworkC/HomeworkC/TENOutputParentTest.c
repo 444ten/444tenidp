@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#include <stdio.h>
 #include <assert.h>
-#include "TENOutputParentTest.h"
+#include <stdio.h>
 #include "TENOutputParent.h"
+#include "TENOutputParentTest.h"
 
 #pragma mark -
 #pragma mark Private Definitions

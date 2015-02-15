@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-// Создать метод для вывода битов числа в консоль и протестировать его.
-
 #include <stdio.h>
 #include "TENCharToBin.h"
 
