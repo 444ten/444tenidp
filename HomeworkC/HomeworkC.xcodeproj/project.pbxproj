@@ -159,8 +159,8 @@
 				76F255DB1A937B4D00135F2A /* TENHuman.c */,
 				76F255E01A937B9400135F2A /* TENHumanTests.h */,
 				76F255DF1A937B9400135F2A /* TENHumanTests.c */,
-				76F255E21A948DBF00135F2A /* TENString.c */,
 				76F255E31A948DBF00135F2A /* TENString.h */,
+				76F255E21A948DBF00135F2A /* TENString.c */,
 			);
 			name = "0216 human";
 			sourceTree = "<group>";

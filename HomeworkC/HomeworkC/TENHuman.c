@@ -10,9 +10,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "TENHuman.h"
+#include "TENString.h"
 
 struct TENHuman {
-    char *_name;
+    TENString *_name;
     uint8_t _age;
     TENGender _gender;
     uint8_t _numberOfChildren;
@@ -28,6 +29,9 @@ struct TENHuman {
 #pragma mark Private Declarations
 
 static
+void TENHumanAddChild(TENHuman *parent, TENHuman *child);
+
+static
 void TENHumanDealloc(TENHuman *human);
 
 #pragma mark -
@@ -38,7 +42,7 @@ TENHuman *TENHumanCreate(char *name, TENGender gender, TENHuman *fatherRef, TENH
     
     human->_referenceCount = 1;
 
-    human->_name = name;
+    human->_name = TENStringCreate(name);
     human->_age = 0;
     human->_gender = gender;
     human->_numberOfChildren = 0;
@@ -47,14 +51,12 @@ TENHuman *TENHumanCreate(char *name, TENGender gender, TENHuman *fatherRef, TENH
     
     human->_fatherRef = fatherRef;
     if (fatherRef) {
-        TENHumanRetain(human->_fatherRef);
-        TENHumanRetain(human);
+        TENHumanAddChild(fatherRef, human);
     }
     
     human->_motherRef = motherRef;
     if (motherRef) {
-        TENHumanRetain(human->_motherRef);
-        TENHumanRetain(human);
+        TENHumanAddChild(motherRef, human);
     }
     
     return human;
@@ -73,22 +75,31 @@ void TENHumanRelease(TENHuman *human) {
 }
 
 void TENHumanPrint(TENHuman *human) {
-    printf("profile human  %s\n", human->_name);
-    printf("               age %d\n", human->_age);
-    printf("            gender %s\n", TENGenderMale == human->_gender ? "male" : "female");
-    printf("number of children %d\n", human->_numberOfChildren);
-    printf("        is married %s\n", human->_isMarried ? "Yes" : "No");
-    printf("      partner name %s\n", NULL != human->_partnerRef ? human->_partnerRef->_name : "none");
+    printf("(%3llu) ", human->_referenceCount);
+    printf("%s: ", TENStringGetData(human->_name));
+    printf("%d year /", human->_age);
+    printf(" %s /", TENGenderMale == human->_gender ? "male" : "female");
+    printf(" %s", human->_isMarried ? "married to" : "single");
+    printf(" %s\n", NULL != human->_partnerRef ?
+           TENStringGetData(human->_partnerRef->_name): "");
     
-    printf("reference count %llu\n", human->_referenceCount);
-    printf("\n");
+    printf("children(%d): ", human->_numberOfChildren);
+    
+    for (int i = 0 ; i < human->_numberOfChildren; i++) {
+        printf("%s ", TENStringGetData(human->_childRefArray[i]->_name));
+    }
+    
+    printf("\n\n");
+}
+
+void TENHumanRename(TENHuman *human, char *newName) {
+    TENStringSetData(human->_name, newName);
 }
 
 void TENHumanMarry(TENHuman *husband, TENHuman *wife) {
     husband->_isMarried = true;
     husband->_partnerRef = wife;
     TENHumanRetain(husband);
-    
     
     wife->_isMarried = true;
     wife->_partnerRef = husband;
@@ -105,10 +116,25 @@ void TENHumanDivorce(TENHuman *human) {
     TENHumanRelease(human);
 }
 
+void TENHumanClear(TENHuman *human) {
+    if (NULL != human->_partnerRef) {
+        human->_partnerRef->_partnerRef = NULL;
+        TENHumanRelease(human->_partnerRef);
+        TENHumanRelease(human);
+    }
+}
 
 #pragma mark -
 #pragma mark Private Implementations
 
+void TENHumanAddChild(TENHuman *parent, TENHuman *child) {
+    TENHumanRetain(parent);
+    TENHumanRetain(child);
+    parent->_childRefArray[parent->_numberOfChildren] = child;
+    parent->_numberOfChildren += 1;
+}
+
 void TENHumanDealloc(TENHuman *human) {
+    TENStringRelease(human->_name);
     free(human);
 }

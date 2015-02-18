@@ -29,6 +29,9 @@ extern
 void TENHumanPrint(TENHuman *human);
 
 extern
+void TENHumanRename(TENHuman *human, char *newName);
+
+extern
 void TENHumanMarry(TENHuman *husband, TENHuman *wife);
 
 extern
