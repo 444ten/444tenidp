@@ -15,11 +15,23 @@
 
 void TENHumanPerformTests() {
 
-    TENPersonStruct *adam = TENPersonWasBorn("Adam", TENPersonGenderMale, NULL, NULL);
-    TENPersonStruct *eva = TENPersonWasBorn("Eva", TENPersonGenderFemale, NULL, NULL);
+    TENHuman *adam = TENHumanCreate("Adam", TENGenderMale, NULL, NULL);
+    TENHuman *eva = TENHumanCreate("Eva", TENGenderFemale, NULL, NULL);
+    TENHuman *cain = TENHumanCreate("Cain", TENGenderMale, adam, eva);
+
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    TENHumanPrint(cain);
     
-    TENWeddingSangAndDanced(adam, eva);
+
+    TENHumanMarry(adam, eva);
     
-    TENPersonProfileOutput(adam);
-    TENPersonProfileOutput(eva);
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    
+    TENHumanDivorce(adam);
+
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    
 }

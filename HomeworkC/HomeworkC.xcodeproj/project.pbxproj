@@ -18,6 +18,7 @@
 		76F255DA1A911A6000135F2A /* TENValueBitOutputTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255D81A911A6000135F2A /* TENValueBitOutputTest.c */; };
 		76F255DD1A937B4D00135F2A /* TENHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255DB1A937B4D00135F2A /* TENHuman.c */; };
 		76F255E11A937B9400135F2A /* TENHumanTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255DF1A937B9400135F2A /* TENHumanTests.c */; };
+		76F255E41A948DBF00135F2A /* TENString.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255E21A948DBF00135F2A /* TENString.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +56,8 @@
 		76F255DC1A937B4D00135F2A /* TENHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENHuman.h; sourceTree = "<group>"; };
 		76F255DF1A937B9400135F2A /* TENHumanTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENHumanTests.c; sourceTree = "<group>"; };
 		76F255E01A937B9400135F2A /* TENHumanTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENHumanTests.h; sourceTree = "<group>"; };
+		76F255E21A948DBF00135F2A /* TENString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENString.c; sourceTree = "<group>"; };
+		76F255E31A948DBF00135F2A /* TENString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENString.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +159,8 @@
 				76F255DB1A937B4D00135F2A /* TENHuman.c */,
 				76F255E01A937B9400135F2A /* TENHumanTests.h */,
 				76F255DF1A937B9400135F2A /* TENHumanTests.c */,
+				76F255E21A948DBF00135F2A /* TENString.c */,
+				76F255E31A948DBF00135F2A /* TENString.h */,
 			);
 			name = "0216 human";
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 			files = (
 				76F255DA1A911A6000135F2A /* TENValueBitOutputTest.c in Sources */,
 				76F255D71A911A4000135F2A /* TENValueBitOutput.c in Sources */,
+				76F255E41A948DBF00135F2A /* TENString.c in Sources */,
 				76F255C51A8E319E00135F2A /* TENOutputParentTest.c in Sources */,
 				76F255DD1A937B4D00135F2A /* TENHuman.c in Sources */,
 				76F255BE1A8E2C3800135F2A /* TENStructTest.c in Sources */,

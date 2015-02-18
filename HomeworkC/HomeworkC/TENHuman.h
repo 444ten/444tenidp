@@ -10,22 +10,28 @@
 #define __HomeworkC__TENHuman__
 
 typedef enum {
-    TENPersonGenderMale,
-    TENPersonGenderFemale
-} TENPersonGender;
+    TENGenderMale,
+    TENGenderFemale
+} TENGender;
 
-typedef struct TENPersonStruct TENPersonStruct;
-
-extern
-TENPersonStruct *TENPersonWasBorn(char *name,
-                                  TENPersonGender gender,
-                                  TENPersonStruct *fatherRef,
-                                  TENPersonStruct *motherRef);
+typedef struct TENHuman TENHuman;
 
 extern
-void TENPersonProfileOutput(TENPersonStruct *person);
+TENHuman *TENHumanCreate(char *name, TENGender gender, TENHuman *fatherRef, TENHuman *motherRef);
 
 extern
-void TENWeddingSangAndDanced(TENPersonStruct *husband, TENPersonStruct *wife);
+void TENHumanRetain(TENHuman *human);
+
+extern
+void TENHumanRelease(TENHuman *human);
+
+extern
+void TENHumanPrint(TENHuman *human);
+
+extern
+void TENHumanMarry(TENHuman *husband, TENHuman *wife);
+
+extern
+void TENHumanDivorce(TENHuman *human);
 
 #endif /* defined(__HomeworkC__TENHuman__) */
