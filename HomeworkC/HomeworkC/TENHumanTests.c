@@ -13,7 +13,7 @@
 
 void TENHumanPerformTests() {
 
-    TENHuman *adam = TENHumanCreate("Adam", TENGenderMale, NULL, NULL);
+    TENHuman *adam = TENHumanCreate("AdamKozlevich", TENGenderMale, NULL, NULL);
     TENHuman *eva = TENHumanCreate("Eva", TENGenderFemale, NULL, NULL);
     TENHuman *cain = TENHumanCreate("Cain", TENGenderMale, adam, eva);
     TENHuman *abel = TENHumanCreate("Abel", TENGenderMale, adam, eva);
@@ -25,7 +25,7 @@ void TENHumanPerformTests() {
     
     TENHumanMarry(adam, eva);
     
-    TENHumanRename(adam, "AdamKozlevich");
+    TENHumanRename(adam, "Adam");
     
     TENHumanPrint(adam);
     TENHumanPrint(eva);

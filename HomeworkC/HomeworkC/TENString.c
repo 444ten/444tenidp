@@ -51,7 +51,10 @@ void TENStringRelease(TENString *string) {
 void TENStringSetLength(TENString *string, uint64_t length) {
     if (string->_length != length) {
         string->_data = realloc(string->_data, length * sizeof(*string->_data));
-        memset(string->_data + string->_length, 0, length - string->_length);
+        
+        if (string->_length < length) {
+            memset(string->_data + string->_length, 0, length - string->_length);
+        }
         
         string->_length = length;
     }
