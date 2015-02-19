@@ -37,4 +37,10 @@ void TENHumanPerformTests() {
     
     TENHumanRename(adam, "AdamKozlevich");
     TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    TENHumanPrint(cain);
+    TENHumanPrint(petr);
+    TENHumanPrint(pavl);
+    TENHumanPrint(ivan);
+    
 }

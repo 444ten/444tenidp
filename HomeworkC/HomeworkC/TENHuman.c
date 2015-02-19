@@ -150,19 +150,18 @@ void TENHumanAddReferenceParentChild(TENHuman *parent, TENHuman *child) {
 }
 
 void TENHumanRemoveReferenceParentChild(TENHuman *parent, TENHuman *child) {
-    int indexChild = 0;
 
     if (NULL != parent) {
+        int indexChild = 0;
+        
         TENHumanRelease(parent);
         
-        while (parent->_childArray[indexChild] != child) {
-            indexChild += 1;
-        }
+        for (; parent->_childArray[indexChild] != child; indexChild++);
         
         parent->_numberOfChildren -= 1;
         
-        for (int i = indexChild; i < parent->_numberOfChildren; i++) {
-            parent->_childArray[i] = parent->_childArray[i+1];
+        for (; indexChild < parent->_numberOfChildren; indexChild++ ) {
+            parent->_childArray[indexChild] = parent->_childArray[indexChild+1];
         }
         
         parent->_childArray[parent->_numberOfChildren] = NULL;
