@@ -17,7 +17,7 @@ typedef enum {
 typedef struct TENHuman TENHuman;
 
 extern
-TENHuman *TENHumanCreate(char *name, TENGender gender, TENHuman *fatherRef, TENHuman *motherRef);
+TENHuman *TENHumanCreate(char *name, TENGender gender, TENHuman *father, TENHuman *mother);
 
 extern
 void TENHumanRetain(TENHuman *human);
@@ -36,5 +36,8 @@ void TENHumanMarry(TENHuman *husband, TENHuman *wife);
 
 extern
 void TENHumanDivorce(TENHuman *human);
+
+extern
+void TENHumanClear(TENHuman *human);
 
 #endif /* defined(__HomeworkC__TENHuman__) */

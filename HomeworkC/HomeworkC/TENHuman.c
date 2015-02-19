@@ -18,10 +18,10 @@ struct TENHuman {
     TENGender _gender;
     uint8_t _numberOfChildren;
     bool _isMarried;
-    TENHuman *_partnerRef;
-    TENHuman *_fatherRef;
-    TENHuman *_motherRef;
-    TENHuman *_childRefArray[20];
+    TENHuman *_partner;
+    TENHuman *_father;
+    TENHuman *_mother;
+    TENHuman *_childArray[20];
     uint64_t _referenceCount;
 };
 
@@ -29,7 +29,10 @@ struct TENHuman {
 #pragma mark Private Declarations
 
 static
-void TENHumanAddChild(TENHuman *parent, TENHuman *child);
+void TENHumanAddReferenceParentChild(TENHuman *parent, TENHuman *child);
+
+static
+void TENHumanRemoveReferenceParentChild(TENHuman *parent, TENHuman *child);
 
 static
 void TENHumanDealloc(TENHuman *human);
@@ -37,7 +40,7 @@ void TENHumanDealloc(TENHuman *human);
 #pragma mark -
 #pragma mark Public Implementations
 
-TENHuman *TENHumanCreate(char *name, TENGender gender, TENHuman *fatherRef, TENHuman *motherRef) {
+TENHuman *TENHumanCreate(char *name, TENGender gender, TENHuman *father, TENHuman *mother) {
     TENHuman *human = malloc(sizeof(*human));
     
     human->_referenceCount = 1;
@@ -47,17 +50,12 @@ TENHuman *TENHumanCreate(char *name, TENGender gender, TENHuman *fatherRef, TENH
     human->_gender = gender;
     human->_numberOfChildren = 0;
     human->_isMarried = false;
-    human->_partnerRef = NULL;
+    human->_partner = NULL;
+    human->_mother = NULL;
+    human->_father = NULL;
     
-    human->_fatherRef = fatherRef;
-    if (fatherRef) {
-        TENHumanAddChild(fatherRef, human);
-    }
-    
-    human->_motherRef = motherRef;
-    if (motherRef) {
-        TENHumanAddChild(motherRef, human);
-    }
+    TENHumanAddReferenceParentChild(father, human);
+    TENHumanAddReferenceParentChild(mother, human);
     
     return human;
 }
@@ -75,18 +73,23 @@ void TENHumanRelease(TENHuman *human) {
 }
 
 void TENHumanPrint(TENHuman *human) {
-    printf("(%3llu) ", human->_referenceCount);
-    printf("%s: ", TENStringGetData(human->_name));
-    printf("%d year /", human->_age);
-    printf(" %s /", TENGenderMale == human->_gender ? "male" : "female");
-    printf(" %s", human->_isMarried ? "married to" : "single");
-    printf(" %s\n", NULL != human->_partnerRef ?
-           TENStringGetData(human->_partnerRef->_name): "");
+    printf("(%2llu) ", human->_referenceCount);
+    printf("%s ", TENStringGetData(human->_name));
+    
+    char *nameFather = NULL != human->_father ? TENStringGetData(human->_father->_name) : "...";
+    char *nameMother = NULL != human->_mother ? TENStringGetData(human->_mother->_name) : "...";
+    
+    printf("<%s+%s>: ", nameFather, nameMother);
+//    printf("%d year /", human->_age);
+    printf("%s/", TENGenderMale == human->_gender ? "male" : "female");
+    printf("%s", human->_isMarried ? "married to" : "single");
+    printf(" %s\n", NULL != human->_partner ?
+           TENStringGetData(human->_partner->_name): "");
     
     printf("children(%d): ", human->_numberOfChildren);
     
     for (int i = 0 ; i < human->_numberOfChildren; i++) {
-        printf("%s ", TENStringGetData(human->_childRefArray[i]->_name));
+        printf("%s ", TENStringGetData(human->_childArray[i]->_name));
     }
     
     printf("\n\n");
@@ -98,40 +101,80 @@ void TENHumanRename(TENHuman *human, char *newName) {
 
 void TENHumanMarry(TENHuman *husband, TENHuman *wife) {
     husband->_isMarried = true;
-    husband->_partnerRef = wife;
+    husband->_partner = wife;
     TENHumanRetain(husband);
     
     wife->_isMarried = true;
-    wife->_partnerRef = husband;
+    wife->_partner = husband;
     TENHumanRetain(wife);
 }
 
 void TENHumanDivorce(TENHuman *human) {
-    human->_partnerRef->_isMarried = false;
-    human->_partnerRef->_partnerRef = NULL;
-    TENHumanRelease(human->_partnerRef);
+    human->_partner->_isMarried = false;
+    human->_partner->_partner = NULL;
+    TENHumanRelease(human->_partner);
     
     human->_isMarried = false;
-    human->_partnerRef = NULL;
+    human->_partner = NULL;
     TENHumanRelease(human);
 }
 
 void TENHumanClear(TENHuman *human) {
-    if (NULL != human->_partnerRef) {
-        human->_partnerRef->_partnerRef = NULL;
-        TENHumanRelease(human->_partnerRef);
-        TENHumanRelease(human);
+    TENHumanDivorce(human);
+    TENHumanRemoveReferenceParentChild(human->_father, human);
+    TENHumanRemoveReferenceParentChild(human->_mother, human);
+    
+    while (human->_numberOfChildren > 0) {
+        TENHumanRemoveReferenceParentChild(human, human->_childArray[0]);
     }
+    
+    TENHumanRelease(human);
 }
 
 #pragma mark -
 #pragma mark Private Implementations
 
-void TENHumanAddChild(TENHuman *parent, TENHuman *child) {
-    TENHumanRetain(parent);
-    TENHumanRetain(child);
-    parent->_childRefArray[parent->_numberOfChildren] = child;
-    parent->_numberOfChildren += 1;
+void TENHumanAddReferenceParentChild(TENHuman *parent, TENHuman *child) {
+    if (NULL != parent) {
+        TENHumanRetain(parent);
+        parent->_childArray[parent->_numberOfChildren] = child;
+        parent->_numberOfChildren += 1;
+        
+        TENHumanRetain(child);
+        if (TENGenderMale == parent->_gender) {
+            child->_father = parent;
+        } else {
+            child->_mother = parent;
+        }
+    }
+}
+
+void TENHumanRemoveReferenceParentChild(TENHuman *parent, TENHuman *child) {
+    int indexChild = 0;
+
+    if (NULL != parent) {
+        TENHumanRelease(parent);
+        
+        while (parent->_childArray[indexChild] != child) {
+            indexChild += 1;
+        }
+        
+        parent->_numberOfChildren -= 1;
+        
+        for (int i = indexChild; i < parent->_numberOfChildren; i++) {
+            parent->_childArray[i] = parent->_childArray[i+1];
+        }
+        
+        parent->_childArray[parent->_numberOfChildren] = NULL;
+        
+        TENHumanRelease(child);
+        if (child->_mother == parent) {
+            child->_mother = NULL;
+        }
+        if (child->_father == parent) {
+            child->_father = NULL;
+        }
+    }
 }
 
 void TENHumanDealloc(TENHuman *human) {

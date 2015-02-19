@@ -13,26 +13,28 @@
 
 void TENHumanPerformTests() {
 
-    TENHuman *adam = TENHumanCreate("AdamKozlevich", TENGenderMale, NULL, NULL);
+    TENHuman *adam = TENHumanCreate("Adam", TENGenderMale, NULL, NULL);
     TENHuman *eva = TENHumanCreate("Eva", TENGenderFemale, NULL, NULL);
     TENHuman *cain = TENHumanCreate("Cain", TENGenderMale, adam, eva);
-    TENHuman *abel = TENHumanCreate("Abel", TENGenderMale, adam, eva);
-
+    TENHuman *mary = TENHumanCreate("Mary", TENGenderFemale, adam, eva);
+    TENHuman *alcmene = TENHumanCreate("Alcmene", TENGenderFemale, adam, eva);
+    TENHuman *heracles =TENHumanCreate("Heracles", TENGenderMale, NULL, alcmene);
+    TENHuman *petr = TENHumanCreate("Petr", TENGenderMale, cain, mary);
+    TENHuman *pavl = TENHumanCreate("Pavl", TENGenderMale, cain, mary);
+    TENHuman *ivan = TENHumanCreate("Ivan", TENGenderMale, cain, mary);
+    
+    TENHumanMarry(cain, mary);
+    
     TENHumanPrint(adam);
     TENHumanPrint(eva);
     TENHumanPrint(cain);
-    TENHumanPrint(abel);
+    TENHumanPrint(mary);
+    TENHumanPrint(alcmene);
+    TENHumanPrint(heracles);
     
-    TENHumanMarry(adam, eva);
+    TENHumanClear(mary);
+    TENHumanPrint(mary);
     
-    TENHumanRename(adam, "Adam");
-    
+    TENHumanRename(adam, "AdamKozlevich");
     TENHumanPrint(adam);
-    TENHumanPrint(eva);
-    
-    TENHumanDivorce(adam);
-
-    TENHumanPrint(adam);
-    TENHumanPrint(eva);
-    
 }
