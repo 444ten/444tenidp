@@ -8,15 +8,15 @@
 
 #include "TENCharToBin.h"
 #include "TENHumanTests.h"
-#include "TENOutputMacros.h"
+#include "TENOutputMacrosTests.h"
 #include "TENOutputParentTest.h"
 #include "TENStructTest.h"
 #include "TENValueBitOutputTest.h"
 
 int main(int argc, const char * argv[]) {
-    TENOutputParentPerformTest();
+//    TENOutputParentPerformTest();
     
-//    TENOutputMacrosPerformTest();
+    TENOutputMacrosPerformTests();
 //
 //    TENStructPerformTest();
 //

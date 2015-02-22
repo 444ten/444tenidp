@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76F0A54D1A9A39D900F8412B /* TENOutputMacrosTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A54B1A9A39D900F8412B /* TENOutputMacrosTests.c */; };
 		76F255BD1A8E2C3800135F2A /* TENStruct.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255B91A8E2C3800135F2A /* TENStruct.c */; };
 		76F255BE1A8E2C3800135F2A /* TENStructTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255BB1A8E2C3800135F2A /* TENStructTest.c */; };
 		76F255C41A8E319E00135F2A /* TENOutputParent.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255C01A8E319E00135F2A /* TENOutputParent.c */; };
@@ -34,6 +35,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		76F0A54B1A9A39D900F8412B /* TENOutputMacrosTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENOutputMacrosTests.c; sourceTree = "<group>"; };
+		76F0A54C1A9A39D900F8412B /* TENOutputMacrosTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENOutputMacrosTests.h; sourceTree = "<group>"; };
 		76F255A91A8E2B9200135F2A /* HomeworkC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HomeworkC; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F255B91A8E2C3800135F2A /* TENStruct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENStruct.c; sourceTree = "<group>"; };
 		76F255BA1A8E2C3800135F2A /* TENStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENStruct.h; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 			children = (
 				76F255CC1A8E335A00135F2A /* TENOutputMacros.h */,
 				76F255CB1A8E335A00135F2A /* TENOutputMacros.c */,
+				76F0A54C1A9A39D900F8412B /* TENOutputMacrosTests.h */,
+				76F0A54B1A9A39D900F8412B /* TENOutputMacrosTests.c */,
 			);
 			name = "0210 macros";
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 				76F255C41A8E319E00135F2A /* TENOutputParent.c in Sources */,
 				76F255E11A937B9400135F2A /* TENHumanTests.c in Sources */,
 				76F255D01A8E393A00135F2A /* TENCharToBin.c in Sources */,
+				76F0A54D1A9A39D900F8412B /* TENOutputMacrosTests.c in Sources */,
 				76F255CD1A8E335A00135F2A /* TENOutputMacros.c in Sources */,
 				76F255D31A8E40A500135F2A /* main.c in Sources */,
 			);
@@ -346,6 +352,7 @@
 				76F255B21A8E2B9300135F2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

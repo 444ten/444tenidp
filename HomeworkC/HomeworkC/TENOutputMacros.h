@@ -9,7 +9,12 @@
 #ifndef __HomeworkC__TENOutputMacrosTest__
 #define __HomeworkC__TENOutputMacrosTest__
 
-extern
-void TENOutputMacrosPerformTest();
+#define TENOutputValueGenerate(type, specifier)     \
+    void TENOutput_##type(type value) {             \
+        printf("("#type") %"#specifier"\n", value); \
+    }
+
+#define TENOutputValue(type, value) \
+    TENOutput_##type(value);
 
 #endif /* defined(__HomeworkC__TENOutputMacrosTest__) */
