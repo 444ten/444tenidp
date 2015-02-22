@@ -1,5 +1,5 @@
 //
-//  TENCharToBin.h
+//  TENCharBit.h
 //  charToBin
 //
 //  Created by 444ten on 2/12/15.
@@ -10,6 +10,6 @@
 #define __charToBin__TENCharToBin__
 
 extern
-void TENCharToBinOutPerformTest();
+void TENCharBitOutput(char charValue);
 
 #endif /* defined(__charToBin__TENCharToBin__) */

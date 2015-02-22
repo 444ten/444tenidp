@@ -18,6 +18,5 @@ void TENOutputMacrosPerformTests() {
     TENOutputValue(int, 65)
     TENOutputValue(float, 65)
     TENOutputValue(char, 65)
-
     
 }

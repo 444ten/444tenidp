@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#include "TENCharToBin.h"
+#include "TENCharBitTests.h"
 #include "TENHumanTests.h"
 #include "TENOutputMacrosTests.h"
 #include "TENOutputParentTest.h"
@@ -16,12 +16,12 @@
 int main(int argc, const char * argv[]) {
 //    TENOutputParentPerformTest();
     
-    TENOutputMacrosPerformTests();
+//    TENOutputMacrosPerformTests();
 //
 //    TENStructPerformTest();
 //
-//    TENCharToBinOutPerformTest();
-//    
+    TENCharBitPerformTests();
+//
 //    TENValueBitOutputPerformTest();
     
 //    TENHumanPerformTests();
