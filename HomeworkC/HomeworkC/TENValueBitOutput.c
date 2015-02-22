@@ -6,34 +6,41 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
+#include <stdio.h>
+
+#include "TENCharBit.h"
 #include "TENValueBitOutput.h"
 
-void TENValueBitOutput(void *valueRef, long size) {
-    char *charValueRef = (char *)valueRef;
-    long upperByte = size - 1;
+void TENValueBitOutput(void *valueRef, uint64_t size) {
+    char *charValue = (char *)valueRef;
+    uint64_t upperByte = size - 1;
     
-    for (long currentByte = upperByte; currentByte >= 0; currentByte--) {
-        long index = TENLittleEndianOrder() ? currentByte : upperByte - currentByte;
-        char charValue = charValueRef[index];
+    for (uint64_t currentByte = 0; currentByte <= upperByte; currentByte++) {
+        uint64_t index = TENBigEndian == TENEndianDetect() ? currentByte : upperByte - currentByte;
+
+        TENCharBitOutput(charValue[index]);
         
-        for (int currentBit = 7; currentBit >= 0; currentBit--) {
-            if (3 == currentBit) {
-                printf("'");
-            }
-            printf("%d", (charValue >> currentBit) & 1);
-        }
-        
-        if (0 == currentByte) {
-            printf("\n");
-        } else {
-            printf(" ");
-        }
+        printf("%s", currentByte < upperByte ? " " : "\n");
     }
 }
 
-bool TENLittleEndianOrder() {
+TENEndian TENEndianDetect() {
     unsigned short shortValue = 1;
-    char *charValueRef = (char *)&shortValue;
     
-    return charValueRef[0];
+    return *(char *)&shortValue;
+}
+
+void TENEndianConvert(void *valueRef, uint64_t size, TENEndian endian) {
+    if (endian != TENEndianDetect()) {
+        char *charValue = (char *)valueRef;
+        char charTemp;
+        uint64_t upperByte = size - 1;
+        uint64_t midpoint = size / 2;
+        
+        for (int i = 0; i < midpoint; i++) {
+            charTemp = charValue[i];
+            charValue[i] = charValue[upperByte-i];
+            charValue[upperByte-i] = charTemp;
+        }
+    }
 }

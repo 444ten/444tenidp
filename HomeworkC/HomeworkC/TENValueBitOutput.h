@@ -9,13 +9,18 @@
 #ifndef __HomeworkC__TENValueBitOutput__
 #define __HomeworkC__TENValueBitOutput__
 
-#include <stdbool.h>
-#include <stdio.h>
+typedef enum {
+    TENBigEndian,
+    TENLittleEndian
+} TENEndian;
 
 extern
-void TENValueBitOutput(void *valueRef, long size);
+void TENValueBitOutput(void *valueRef, uint64_t size);
 
 extern
-bool TENLittleEndianOrder();
+TENEndian TENEndianDetect();
+
+extern
+void TENEndianConvert(void *valueRef, uint64_t size, TENEndian endian);
 
 #endif /* defined(__HomeworkC__TENValueBitOutput__) */

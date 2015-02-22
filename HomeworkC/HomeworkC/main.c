@@ -17,12 +17,12 @@ int main(int argc, const char * argv[]) {
 //    TENOutputParentPerformTest();
     
 //    TENOutputMacrosPerformTests();
-//
+
+//    TENCharBitPerformTests();
+
 //    TENStructPerformTest();
-//
-    TENCharBitPerformTests();
-//
-//    TENValueBitOutputPerformTest();
+    
+    TENValueBitOutputPerformTest();
     
 //    TENHumanPerformTests();
 

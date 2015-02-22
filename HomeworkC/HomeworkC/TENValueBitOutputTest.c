@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
+#include <assert.h>
 #include "TENValueBitOutputTest.h"
 #include "TENValueBitOutput.h"
 
@@ -20,9 +21,23 @@ void TENValueBitOutputPerformTest() {
     TENValueBitOutput(&value3, sizeof(value3));
     TENValueBitOutput(&value4, sizeof(value4));
     
-    if (TENLittleEndianOrder()) {
-        printf("Yes\n");
-    } else {
-        printf("No\n");
-    }
+    printf("is LittleEndianOrder? - %s\n", TENLittleEndian == TENEndianDetect() ? "Yes" : "No");
+    
+    const int resultFourBytes = 1 + (3 << 8) + (7 << 16);
+    const int resultFourBytesConvert = (1 << 24) + (3 << 16) + (7 << 8);
+    const int resultThreeBytesConvert = (1 << 16) + (3 << 8) + 7;
+    int value;
+    
+    value = resultFourBytes;
+    TENEndianConvert(&value, 4, TENEndianDetect());
+    assert(value == resultFourBytes);
+    
+    value = resultFourBytes;
+    TENEndianConvert(&value, 4, !TENEndianDetect());
+    assert(value == resultFourBytesConvert);
+    
+    value = resultFourBytes;
+    TENEndianConvert(&value, 3, !TENEndianDetect());
+    assert(value == resultThreeBytesConvert);
+
 }
