@@ -9,24 +9,22 @@
 #include "TENCharToBin.h"
 #include "TENHumanTests.h"
 #include "TENOutputMacros.h"
-#include "TENOutputParent.h"
 #include "TENOutputParentTest.h"
 #include "TENStructTest.h"
 #include "TENValueBitOutputTest.h"
 
 int main(int argc, const char * argv[]) {
-//    TENOutputParentPerformTest();
-//    TENOutputParentFromStartToEnd(0, 1000);
+    TENOutputParentPerformTest();
     
 //    TENOutputMacrosPerformTest();
-
+//
 //    TENStructPerformTest();
-
+//
 //    TENCharToBinOutPerformTest();
-    
+//    
 //    TENValueBitOutputPerformTest();
     
-    TENHumanPerformTests();
+//    TENHumanPerformTests();
 
     return 0;
 }

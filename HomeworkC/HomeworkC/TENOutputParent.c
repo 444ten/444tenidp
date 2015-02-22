@@ -9,10 +9,13 @@
 #include <stdio.h>
 #include "TENOutputParent.h"
 
-int TENSayParent(int value) {
-    int result = TENResultNone;
-    static int divisorMama = 3;
-    static int divisorPapa = 5;
+#pragma mark -
+#pragma mark Public Implementations
+
+TENResult TENSayParent(int value) {
+    TENResult result = TENResultNone;
+    const int divisorMama = 3;
+    const int divisorPapa = 5;
 
     printf("%4d ", value);
     

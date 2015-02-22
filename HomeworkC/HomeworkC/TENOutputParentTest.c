@@ -27,6 +27,8 @@ void TENOutputParentPerformTest() {
     TENDivisorPapaTest();
     TENDivisorMamaPapaTest();
     TENDivisorNoneTest();
+    
+    TENOutputParentFromStartToEnd(1, 1000);
 }
 
 #pragma mark -

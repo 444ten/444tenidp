@@ -14,12 +14,12 @@ typedef enum {
     TENResultMama,
     TENResultPapa,
     TENResultMamaPapa
-} TENOutputResult;
+} TENResult;
 
 extern
-int TENSayParent(int value);
+TENResult TENSayParent(int value);
 
 extern
-void TENOutputParentFromStartToEnd(int startValue, int EndValue);
+void TENOutputParentFromStartToEnd(int startValue, int endValue);
 
 #endif /* defined(__lesson1__output__) */
