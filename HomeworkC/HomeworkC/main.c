@@ -21,9 +21,9 @@ int main(int argc, const char * argv[]) {
 //    TENCharBitPerformTests();
 
 //    TENStructPerformTest();
-    
+
 //    TENValueBitOutputPerformTest();
-    
+
     TENHumanPerformTests();
 
     return 0;
