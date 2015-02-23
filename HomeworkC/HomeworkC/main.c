@@ -22,9 +22,9 @@ int main(int argc, const char * argv[]) {
 
 //    TENStructPerformTest();
     
-    TENValueBitOutputPerformTest();
+//    TENValueBitOutputPerformTest();
     
-//    TENHumanPerformTests();
+    TENHumanPerformTests();
 
     return 0;
 }
