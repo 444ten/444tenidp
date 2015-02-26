@@ -51,7 +51,68 @@ void TENHumanRemoveElementFromChildArray(TENHuman *parent, int index);
 #pragma mark -
 #pragma mark Public Implementations
 
-TENHuman *TENHumanCreate(char *name, TENGender gender, TENHuman *father, TENHuman *mother) {
+TENHuman *TENHumanCreate() {
+    TENHuman *human = calloc(1, sizeof(*human));
+    
+    human->_referenceCount = 1;
+    
+    return human;
+}
+
+void TENHumanRetain(TENHuman *human) {
+    human->_referenceCount += 1;
+}
+
+void TENHumanRelease(TENHuman *human) {
+    human->_referenceCount -= 1;
+    if (0 == human->_referenceCount) {
+        TENHumanDealloc(human);
+    }
+}
+
+void TENHumanSetPartner(TENHuman *human, TENHuman *partner) {
+    if (NULL != human && human != partner) {
+        if (NULL != human->_partner) {
+            TENHumanRelease(human->_partner);
+        }
+        
+        human->_partner = partner;
+        
+        if (NULL != human->_partner) {
+            TENHumanRetain(human->_partner);
+        }
+    }
+}
+
+TENHuman *TENHumanGetPartner(TENHuman *human) {
+    return (NULL != human) ? human->_partner : NULL;
+}
+
+
+void TENHumanSetFather(TENHuman *human, TENHuman *father) {
+    if (NULL != human && human != father) {
+        if (NULL != human->_father) {
+            TENHumanRelease(human->_father);
+        }
+        
+        human->_father = father;
+        
+        if (NULL != human->_father) {
+            TENHumanRetain(human->_father);
+        }
+    }
+}
+
+void TENHumanSetChildrenCount(TENHuman *human, uint8_t childrenCount) {
+    human->_childrenCount = childrenCount;
+}
+
+uint8_t TENHumanGetChildrenCount(TENHuman *human, uint8_t childrenCount) {
+    return human->_childrenCount;
+}
+
+
+TENHuman *TENHumanCreateWithParam(char *name, TENGender gender, TENHuman *father, TENHuman *mother) {
     TENHuman *human = malloc(sizeof(*human));
     
     human->_referenceCount = 1;
@@ -70,22 +131,12 @@ TENHuman *TENHumanCreate(char *name, TENGender gender, TENHuman *father, TENHuma
     return human;
 }
 
-void TENHumanRetain(TENHuman *human) {
-    human->_referenceCount += 1;
-}
 
 void TENHumanHold(TENHuman **holder, TENHuman *target) {
     *holder = target;
     TENHumanRetain(target);
 }
 
-extern
-void TENHumanRelease(TENHuman *human) {
-    human->_referenceCount -= 1;
-    if (0 == human->_referenceCount) {
-        TENHumanDealloc(human);
-    }
-}
 
 void TENHumanDrop(TENHuman **holder, TENHuman *target) {
     *holder = NULL;
@@ -102,9 +153,12 @@ void TENHumanPrint(TENHuman *human) {
     printf("<%s+%s>: ", nameFather, nameMother);
 //    printf("%d year /", human->_age);
     printf("%s/", TENGenderMale == human->_gender ? "male" : "female");
-    printf("%s", NULL == human->_partner ? "single" :"married to");
-    printf(" %s\n", NULL != human->_partner ?
-           TENStringGetData(human->_partner->_name): "");
+    
+    if (NULL == TENHumanGetPartner(human)) {
+        printf("single\n");
+    } else {
+        printf("married to %s\n", TENStringGetData(TENHumanGetPartner(human)->_name));
+    }
     
     printf("children(%d): ", human->_childrenCount);
     
@@ -120,13 +174,18 @@ void TENHumanRename(TENHuman *human, char *newName) {
 }
 
 void TENHumanMarry(TENHuman *husband, TENHuman *wife) {
-    TENHumanHold(&husband->_partner, wife);
-    TENHumanHold(&wife->_partner, husband);
+    TENHumanDivorce(husband);
+    TENHumanDivorce(wife);
+    TENHumanSetPartner(husband, wife);
+    TENHumanSetPartner(wife, husband);
+    
 }
 
 void TENHumanDivorce(TENHuman *human) {
-    TENHumanDrop(&human->_partner->_partner, human);
-    TENHumanDrop(&human->_partner, human->_partner);
+    if (NULL != human) {
+        TENHumanSetPartner(human->_partner, NULL);
+        TENHumanSetPartner(human, NULL);
+    }
 }
 
 void TENHumanClear(TENHuman *human) {
@@ -149,6 +208,7 @@ void TENHumanDealloc(TENHuman *human) {
     TENStringRelease(human->_name);
     free(human);
 }
+
 
 void TENHumanAddChild(TENHuman *parent, TENHuman *child) {
     if (NULL != parent) {

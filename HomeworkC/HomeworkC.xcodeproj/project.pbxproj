@@ -17,9 +17,9 @@
 		76F0A5681A9B96F300F8412B /* TENStructTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5651A9B96F300F8412B /* TENStructTest.c */; };
 		76F0A56D1A9B973100F8412B /* TENValueBitOutput.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5691A9B973100F8412B /* TENValueBitOutput.c */; };
 		76F0A56E1A9B973100F8412B /* TENValueBitOutputTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A56B1A9B973100F8412B /* TENValueBitOutputTest.c */; };
-		76F0A5751A9B97F900F8412B /* TENHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A56F1A9B97F900F8412B /* TENHuman.c */; };
 		76F0A5761A9B97F900F8412B /* TENHumanTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5711A9B97F900F8412B /* TENHumanTests.c */; };
 		76F0A5771A9B97F900F8412B /* TENString.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5731A9B97F900F8412B /* TENString.c */; };
+		76F0A57A1A9E482E00F8412B /* TENHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A56F1A9B97F900F8412B /* TENHuman.c */; };
 		76F255D31A8E40A500135F2A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255D21A8E40A500135F2A /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -242,9 +242,9 @@
 				76F0A5771A9B97F900F8412B /* TENString.c in Sources */,
 				76F0A5671A9B96F300F8412B /* TENStruct.c in Sources */,
 				76F0A56D1A9B973100F8412B /* TENValueBitOutput.c in Sources */,
+				76F0A57A1A9E482E00F8412B /* TENHuman.c in Sources */,
 				76F255D31A8E40A500135F2A /* main.c in Sources */,
 				76F0A5551A9B959400F8412B /* TENOutputParent.c in Sources */,
-				76F0A5751A9B97F900F8412B /* TENHuman.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

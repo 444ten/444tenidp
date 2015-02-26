@@ -11,17 +11,16 @@
 #include "TENHuman.h"
 #include "TENHumanTests.h"
 
-void TENHumanPerformTests() {
-
-    TENHuman *adam = TENHumanCreate("Adam", TENGenderMale, NULL, NULL);
-    TENHuman *eva = TENHumanCreate("Eva", TENGenderFemale, NULL, NULL);
-    TENHuman *cain = TENHumanCreate("Cain", TENGenderMale, adam, eva);
-    TENHuman *mary = TENHumanCreate("Mary", TENGenderFemale, adam, eva);
-    TENHuman *alcmene = TENHumanCreate("Alcmene", TENGenderFemale, adam, eva);
-    TENHuman *heracles =TENHumanCreate("Heracles", TENGenderMale, NULL, alcmene);
-    TENHuman *petr = TENHumanCreate("Petr", TENGenderMale, cain, mary);
-    TENHuman *pavl = TENHumanCreate("Pavl", TENGenderMale, cain, mary);
-    TENHuman *ivan = TENHumanCreate("Ivan", TENGenderMale, cain, mary);
+void TENHumanOld () {
+    TENHuman *adam = TENHumanCreateWithParam("Adam", TENGenderMale, NULL, NULL);
+    TENHuman *eva = TENHumanCreateWithParam("Eva", TENGenderFemale, NULL, NULL);
+    TENHuman *cain = TENHumanCreateWithParam("Cain", TENGenderMale, adam, eva);
+    TENHuman *mary = TENHumanCreateWithParam("Mary", TENGenderFemale, adam, eva);
+    TENHuman *alcmene = TENHumanCreateWithParam("Alcmene", TENGenderFemale, adam, eva);
+    TENHuman *heracles =TENHumanCreateWithParam("Heracles", TENGenderMale, NULL, alcmene);
+    TENHuman *petr = TENHumanCreateWithParam("Petr", TENGenderMale, cain, mary);
+    TENHuman *pavl = TENHumanCreateWithParam("Pavl", TENGenderMale, cain, mary);
+    TENHuman *ivan = TENHumanCreateWithParam("Ivan", TENGenderMale, cain, mary);
     
     TENHumanMarry(cain, mary);
     TENHumanMarry(adam, eva);
@@ -35,13 +34,42 @@ void TENHumanPerformTests() {
     
     TENHumanClear(mary);
     TENHumanPrint(mary);
-//
+    
     TENHumanRename(adam, "AdamKozlevich");
     TENHumanPrint(adam);
-//    TENHumanPrint(eva);
+    TENHumanPrint(eva);
     TENHumanPrint(cain);
-//    TENHumanPrint(petr);
-//    TENHumanPrint(pavl);
-//    TENHumanPrint(ivan);
+    TENHumanPrint(petr);
+    TENHumanPrint(pavl);
+    TENHumanPrint(ivan);
     
 }
+
+
+void TENHumanPerformTests() {
+//    TENHumanOld();
+    TENHuman *adam = TENHumanCreateWithParam("Adam", TENGenderMale, NULL, NULL);
+    TENHuman *eva = TENHumanCreateWithParam("Eva", TENGenderFemale, NULL, NULL);
+    TENHuman *alcmene = TENHumanCreateWithParam("Alcmene", TENGenderFemale, NULL, NULL);
+
+
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    TENHumanPrint(alcmene);
+
+
+    TENHumanMarry(NULL, adam);
+    
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    TENHumanPrint(alcmene);
+    
+    TENHumanMarry(adam, alcmene);
+
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    TENHumanPrint(alcmene);
+
+
+}
+

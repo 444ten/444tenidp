@@ -10,14 +10,17 @@
 #define __HomeworkC__TENHuman__
 
 typedef enum {
-    TENGenderMale,
-    TENGenderFemale
+    TENGenderFemale,
+    TENGenderMale
 } TENGender;
 
 typedef struct TENHuman TENHuman;
 
 extern
-TENHuman *TENHumanCreate(char *name, TENGender gender, TENHuman *father, TENHuman *mother);
+TENHuman *TENHumanCreate();
+
+extern
+TENHuman *TENHumanCreateWithParam(char *name, TENGender gender, TENHuman *father, TENHuman *mother);
 
 extern
 void TENHumanRetain(TENHuman *human);

@@ -7,6 +7,7 @@
 //
 
 #include <assert.h>
+#include <stdio.h>
 #include "TENValueBitOutputTest.h"
 #include "TENValueBitOutput.h"
 
@@ -21,7 +22,7 @@ void TENValueBitOutputPerformTest() {
     TENValueBitOutput(&value3, sizeof(value3));
     TENValueBitOutput(&value4, sizeof(value4));
     
-    printf("is LittleEndianOrder? - %s\n", TENLittleEndian == TENEndianDetect() ? "Yes" : "No");
+    printf("is LittleEndianOrder? - %s\n", (TENLittleEndian == TENEndianDetect()) ? "Yes" : "No");
     
     const int resultFourBytes = 1 + (3 << 8) + (7 << 16);
     const int resultFourBytesConvert = (1 << 24) + (3 << 16) + (7 << 8);
