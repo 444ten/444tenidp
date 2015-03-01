@@ -11,23 +11,7 @@
 #include "TENString.h"
 
 #pragma mark -
-#pragma mark Private Declarations
-
-static
-void TENStringDealloc(TENString *string);
-
-#pragma mark -
 #pragma mark Public Implementations
-
-TENString *TENStringCreate(char *source) {
-    TENString *string = malloc(sizeof(*string));
-    
-    TENStringSetData(string, source);
-
-    string->_referenceCount = 1;
-    
-    return string;
-}
 
 void __TENStringDeallocate(TENString *string) {
     if (NULL != string->_data) {
@@ -38,16 +22,13 @@ void __TENStringDeallocate(TENString *string) {
     __TENObjectDeallocate(string);
 }
 
-void TENStringRetain(TENString *string) {
-    string->_referenceCount += 1;
+void TENStringSetData(TENString *string, char *newString) {
+    TENStringSetLength(string, strlen(newString));
+    strcpy(string->_data, newString);
 }
 
-void TENStringRelease(TENString *string) {
-    string->_referenceCount -= 1;
-    
-    if (0 == string->_referenceCount) {
-        TENStringDealloc(string);
-    }
+char *TENStringGetData(TENString *string) {
+    return (NULL != string) ? string->_data : NULL;
 }
 
 void TENStringSetLength(TENString *string, uint64_t length) {
@@ -60,23 +41,4 @@ void TENStringSetLength(TENString *string, uint64_t length) {
         
         string->_length = length;
     }
-}
-
-char *TENStringGetData(TENString *string) {
-    return string->_data;
-}
-
-void TENStringSetData(TENString *string, char *newString) {
-    TENStringSetLength(string, strlen(newString));
-    strcpy(string->_data, newString);
-}
-
-#pragma mark -
-#pragma mark Private Implementations
-
-void TENStringDealloc(TENString *string) {
-    if (NULL != string->_data) {
-        free(string->_data);
-    }
-    free(string);
 }

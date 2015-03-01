@@ -9,30 +9,38 @@
 #ifndef __HomeworkC__TENHuman__
 #define __HomeworkC__TENHuman__
 
+#include "TENObject.h"
+#include "TENString.h"
+
 typedef enum {
     TENGenderFemale,
     TENGenderMale
 } TENGender;
 
 typedef struct TENHuman TENHuman;
+struct TENHuman {
+    TENObject _object;
+    TENString *_name;
+    uint8_t _age;
+    TENGender _gender;
+    uint8_t _childrenCount;
+    TENHuman *_partner;
+    TENHuman *_father;
+    TENHuman *_mother;
+    TENHuman *_childArray[20];
+};
 
 extern
-TENHuman *TENHumanCreate();
+void __TENHumanDeallocate(TENHuman *human);
+
+extern
+void TENHumanSetName(TENHuman *human, TENString *name);
 
 extern
 TENHuman *TENHumanCreateWithParam(char *name, TENGender gender, TENHuman *father, TENHuman *mother);
 
 extern
-void TENHumanRetain(TENHuman *human);
-
-extern
-void TENHumanRelease(TENHuman *human);
-
-extern
 void TENHumanPrint(TENHuman *human);
-
-extern
-void TENHumanRename(TENHuman *human, char *newName);
 
 extern
 void TENHumanMarry(TENHuman *husband, TENHuman *wife);

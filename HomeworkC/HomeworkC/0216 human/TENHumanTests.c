@@ -34,10 +34,9 @@ void TENHumanDoubleRefTest() {
     TENHumanPrint(alcmene);
     TENHumanPrint(heracles);
     
-    TENHumanClear(mary);
-    TENHumanPrint(mary);
+//    TENHumanClear(mary);
+//    TENHumanPrint(mary);
     
-    TENHumanRename(adam, "AdamKozlevich");
     TENHumanPrint(adam);
     TENHumanPrint(eva);
     TENHumanPrint(cain);
@@ -69,21 +68,28 @@ void TENHumanPartnerSetterTest() {
 }
 
 void TENObjectTest() {
-//    TENString *string = __TENObjectCreate(sizeof(TENString), (TENDeallocateCallBack)&__TENStringDeallocate);
+    TENHuman *adam = TenObjectCreate(TENHuman);
+    TENHuman *eva = TenObjectCreate(TENHuman);
     
     TENString *string = TenObjectCreate(TENString);
-
-
-    TENStringSetData(string, "Hello");
-    TENObjectRelease(TENObjectRetain(string));
-    TENObjectRelease(string);
+    TENStringSetData(string, "adam");
     
+    TENHumanSetName(adam, string);
+    TENHumanPrint(adam);
+    
+    TENStringSetData(string, "Eva");
+    
+    TENHumanSetName(eva, string);
+    TENHumanPrint(adam);    
+    TENHumanPrint(eva);
 }
 
 void TENHumanPerformTests() {
 //    TENHumanDoubleRefTest();
 //    TENHumanPartnerSetterTest();
     TENObjectTest();
+    
+    
 
 }
 

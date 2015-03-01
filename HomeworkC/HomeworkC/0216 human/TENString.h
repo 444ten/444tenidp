@@ -17,7 +17,6 @@ struct TENString {
     TENObject _object;
     char *_data;
     uint64_t _length;
-    uint64_t _referenceCount;
 };
 typedef struct TENString TENString;
 
@@ -25,21 +24,12 @@ extern
 void __TENStringDeallocate(TENString *string);
 
 extern
-TENString *TENStringCreate(char *source);
-
-extern
-void TENStringRetain(TENString *string);
-
-extern
-void TENStringRelease(TENString *string);
-
-extern
-void TENStringSetLength(TENString *string, uint64_t length);
+void TENStringSetData(TENString *string, char *newString);
 
 extern
 char *TENStringGetData(TENString *string);
 
 extern
-void TENStringSetData(TENString *string, char *newString);
+void TENStringSetLength(TENString *string, uint64_t length);
 
 #endif /* defined(__HomeworkC__TENString__) */
