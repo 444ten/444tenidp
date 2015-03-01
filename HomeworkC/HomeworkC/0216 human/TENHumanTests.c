@@ -10,8 +10,10 @@
 
 #include "TENHuman.h"
 #include "TENHumanTests.h"
+#include "TENObject.h"
+#include "TENString.h"
 
-void TENHumanOld () {
+void TENHumanDoubleRefTest() {
     TENHuman *adam = TENHumanCreateWithParam("Adam", TENGenderMale, NULL, NULL);
     TENHuman *eva = TENHumanCreateWithParam("Eva", TENGenderFemale, NULL, NULL);
     TENHuman *cain = TENHumanCreateWithParam("Cain", TENGenderMale, adam, eva);
@@ -42,22 +44,17 @@ void TENHumanOld () {
     TENHumanPrint(petr);
     TENHumanPrint(pavl);
     TENHumanPrint(ivan);
-    
 }
 
-
-void TENHumanPerformTests() {
-//    TENHumanOld();
+void TENHumanPartnerSetterTest() {
     TENHuman *adam = TENHumanCreateWithParam("Adam", TENGenderMale, NULL, NULL);
     TENHuman *eva = TENHumanCreateWithParam("Eva", TENGenderFemale, NULL, NULL);
     TENHuman *alcmene = TENHumanCreateWithParam("Alcmene", TENGenderFemale, NULL, NULL);
-
-
+    
     TENHumanPrint(adam);
     TENHumanPrint(eva);
     TENHumanPrint(alcmene);
-
-
+    
     TENHumanMarry(NULL, adam);
     
     TENHumanPrint(adam);
@@ -65,11 +62,28 @@ void TENHumanPerformTests() {
     TENHumanPrint(alcmene);
     
     TENHumanMarry(adam, alcmene);
-
+    
     TENHumanPrint(adam);
     TENHumanPrint(eva);
     TENHumanPrint(alcmene);
+}
 
+void TENObjectTest() {
+//    TENString *string = __TENObjectCreate(sizeof(TENString), (TENDeallocateCallBack)&__TENStringDeallocate);
+    
+    TENString *string = TenObjectCreate(TENString);
+
+
+    TENStringSetData(string, "Hello");
+    TENObjectRelease(TENObjectRetain(string));
+    TENObjectRelease(string);
+    
+}
+
+void TENHumanPerformTests() {
+//    TENHumanDoubleRefTest();
+//    TENHumanPartnerSetterTest();
+    TENObjectTest();
 
 }
 

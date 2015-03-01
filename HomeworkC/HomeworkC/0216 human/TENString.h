@@ -11,7 +11,18 @@
 
 #include <stdlib.h>
 
+#include "TENObject.h"
+
+struct TENString {
+    TENObject _object;
+    char *_data;
+    uint64_t _length;
+    uint64_t _referenceCount;
+};
 typedef struct TENString TENString;
+
+extern
+void __TENStringDeallocate(TENString *string);
 
 extern
 TENString *TENStringCreate(char *source);

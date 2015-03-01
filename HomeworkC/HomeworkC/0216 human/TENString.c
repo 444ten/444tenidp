@@ -10,13 +10,6 @@
 
 #include "TENString.h"
 
-struct TENString {
-    char *_data;
-    uint64_t _length;
-    
-    uint64_t _referenceCount;
-};
-
 #pragma mark -
 #pragma mark Private Declarations
 
@@ -34,6 +27,15 @@ TENString *TENStringCreate(char *source) {
     string->_referenceCount = 1;
     
     return string;
+}
+
+void __TENStringDeallocate(TENString *string) {
+    if (NULL != string->_data) {
+        free(string->_data);
+        string->_data = NULL;
+    }
+    
+    __TENObjectDeallocate(string);
 }
 
 void TENStringRetain(TENString *string) {

@@ -20,6 +20,7 @@
 		76F0A5761A9B97F900F8412B /* TENHumanTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5711A9B97F900F8412B /* TENHumanTests.c */; };
 		76F0A5771A9B97F900F8412B /* TENString.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5731A9B97F900F8412B /* TENString.c */; };
 		76F0A57A1A9E482E00F8412B /* TENHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A56F1A9B97F900F8412B /* TENHuman.c */; };
+		76F0A5801AA0C47100F8412B /* TENObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A57E1AA0C47100F8412B /* TENObject.c */; };
 		76F255D31A8E40A500135F2A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255D21A8E40A500135F2A /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		76F0A5721A9B97F900F8412B /* TENHumanTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENHumanTests.h; path = "0216 human/TENHumanTests.h"; sourceTree = "<group>"; };
 		76F0A5731A9B97F900F8412B /* TENString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENString.c; path = "0216 human/TENString.c"; sourceTree = "<group>"; };
 		76F0A5741A9B97F900F8412B /* TENString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENString.h; path = "0216 human/TENString.h"; sourceTree = "<group>"; };
+		76F0A57E1AA0C47100F8412B /* TENObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENObject.c; path = "0216 human/TENObject.c"; sourceTree = "<group>"; };
+		76F0A57F1AA0C47100F8412B /* TENObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENObject.h; path = "0216 human/TENObject.h"; sourceTree = "<group>"; };
 		76F255A91A8E2B9200135F2A /* HomeworkC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HomeworkC; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F255D21A8E40A500135F2A /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,6 +174,8 @@
 				76F0A5711A9B97F900F8412B /* TENHumanTests.c */,
 				76F0A5741A9B97F900F8412B /* TENString.h */,
 				76F0A5731A9B97F900F8412B /* TENString.c */,
+				76F0A57F1AA0C47100F8412B /* TENObject.h */,
+				76F0A57E1AA0C47100F8412B /* TENObject.c */,
 			);
 			name = "0216 human";
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 				76F0A5761A9B97F900F8412B /* TENHumanTests.c in Sources */,
 				76F0A5771A9B97F900F8412B /* TENString.c in Sources */,
 				76F0A5671A9B96F300F8412B /* TENStruct.c in Sources */,
+				76F0A5801AA0C47100F8412B /* TENObject.c in Sources */,
 				76F0A56D1A9B973100F8412B /* TENValueBitOutput.c in Sources */,
 				76F0A57A1A9E482E00F8412B /* TENHuman.c in Sources */,
 				76F255D31A8E40A500135F2A /* main.c in Sources */,

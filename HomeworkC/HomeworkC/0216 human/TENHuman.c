@@ -71,7 +71,7 @@ void TENHumanRelease(TENHuman *human) {
 }
 
 void TENHumanSetPartner(TENHuman *human, TENHuman *partner) {
-    if (NULL != human && human != partner) {
+    if (NULL != human && human != partner && human->_partner != partner) {
         if (NULL != human->_partner) {
             TENHumanRelease(human->_partner);
         }
@@ -88,7 +88,6 @@ TENHuman *TENHumanGetPartner(TENHuman *human) {
     return (NULL != human) ? human->_partner : NULL;
 }
 
-
 void TENHumanSetFather(TENHuman *human, TENHuman *father) {
     if (NULL != human && human != father) {
         if (NULL != human->_father) {
@@ -103,14 +102,44 @@ void TENHumanSetFather(TENHuman *human, TENHuman *father) {
     }
 }
 
+void TENHumanSetMother(TENHuman *human, TENHuman *mother) {
+    if (NULL != human && human != mother) {
+        if (NULL != human->_mother) {
+            TENHumanRelease(human->_mother);
+        }
+        
+        human->_mother = mother;
+        
+        if (NULL != human->_mother) {
+            TENHumanRetain(human->_mother);
+        }
+    }
+}
+
+
 void TENHumanSetChildrenCount(TENHuman *human, uint8_t childrenCount) {
     human->_childrenCount = childrenCount;
 }
 
-uint8_t TENHumanGetChildrenCount(TENHuman *human, uint8_t childrenCount) {
+uint8_t TENHumanGetChildrenCount(TENHuman *human) {
     return human->_childrenCount;
 }
 
+
+void TENHumanSetChildAtIndex(TENHuman *human, TENHuman *child, int index) {
+    if (NULL != human && human != child) {
+        if (NULL != human->_childArray[index]) {
+            TENHumanRelease(human->_childArray[index]);
+        }
+        
+        human->_childArray[index] = child;
+        
+        if (NULL != human->_childArray[index]) {
+            TENHumanRetain(human->_childArray[index]);
+        }
+    }
+    
+}
 
 TENHuman *TENHumanCreateWithParam(char *name, TENGender gender, TENHuman *father, TENHuman *mother) {
     TENHuman *human = malloc(sizeof(*human));
@@ -211,33 +240,45 @@ void TENHumanDealloc(TENHuman *human) {
 
 
 void TENHumanAddChild(TENHuman *parent, TENHuman *child) {
-    if (NULL != parent) {
-        
-        TENHumanHold(&parent->_childArray[parent->_childrenCount], child);
-        parent->_childrenCount += 1;
+    if (NULL != parent && NULL != child) {
 
+        //        if (TENGenderMale == parent->_gender) {
+        //            TENHumanHold(&child->_father, parent);
+        //        } else {
+        //            TENHumanHold(&child->_mother, parent);
+        //        }
         
-//        TENHuman *holdParent = (TENGenderMale == parent->_gender) ? child->_father : child->_mother;
-//        TENHumanHold(&holdParent, parent);
-
-        if (TENGenderMale == parent->_gender) {
-            TENHumanHold(&child->_father, parent);
-        } else {
-            TENHumanHold(&child->_mother, parent);
-        }
+        
+        TENHumanRemoveChild(child->_father, child);
+        TENHumanRemoveChild(child->_mother, child);
+        
+        TENHumanSetChildAtIndex(parent, child, TENHumanGetChildrenCount(parent));
+        
+        
+//        TENHumanHold(&parent->_childArray[parent->_childrenCount], child);
+//        parent->_childrenCount += 1;
+//
+//        if (TENGenderMale == parent->_gender) {
+//            TENHumanHold(&child->_father, parent);
+//        } else {
+//            TENHumanHold(&child->_mother, parent);
+//        }
     }
 }
 
 void TENHumanRemoveChild(TENHuman *parent, TENHuman *child) {
-    
     if (NULL != parent) {
-        TENHumanRemoveElementFromChildArray(parent, TENHumanIndexChild(parent, child));
+        if (parent->_father == child) {
+            TENHumanSetFather(child, NULL);
+        } else {
+            TENHumanSetMother(child, NULL);
+        }
         
-        TENHumanDrop(&parent->_childArray[parent->_childrenCount], child);
         
-        TENHuman *dropParent = (parent == child->_father) ? child->_father : child->_mother;
+        int indexChild = TENHumanIndexChild(parent, child);
         
-        TENHumanDrop(&dropParent, parent);
+        TENHumanSetChildAtIndex(parent, NULL, indexChild);
+        TENHumanRemoveElementFromChildArray(parent, indexChild);
     }
 }
 
