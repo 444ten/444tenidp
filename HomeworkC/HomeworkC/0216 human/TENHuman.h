@@ -9,6 +9,7 @@
 #ifndef __HomeworkC__TENHuman__
 #define __HomeworkC__TENHuman__
 
+#include "TENChildArray.h"
 #include "TENObject.h"
 #include "TENString.h"
 
@@ -17,17 +18,18 @@ typedef enum {
     TENGenderMale
 } TENGender;
 
+typedef struct TENChildArray TENChildArray;
+
 typedef struct TENHuman TENHuman;
 struct TENHuman {
     TENObject _object;
     TENString *_name;
     uint8_t _age;
     TENGender _gender;
-    uint8_t _childrenCount;
     TENHuman *_partner;
     TENHuman *_father;
     TENHuman *_mother;
-    TENHuman *_childArray[20];
+    TENChildArray *_childArray;
 };
 
 extern
@@ -37,7 +39,10 @@ extern
 void TENHumanSetName(TENHuman *human, TENString *name);
 
 extern
-TENHuman *TENHumanCreateWithParam(char *name, TENGender gender, TENHuman *father, TENHuman *mother);
+void TENHumanSetGender(TENHuman *human, TENGender gender);
+
+extern
+void TENHumanChildArrayPrint(TENChildArray *childArray);
 
 extern
 void TENHumanPrint(TENHuman *human);
@@ -49,6 +54,9 @@ extern
 void TENHumanDivorce(TENHuman *human);
 
 extern
-void TENHumanClear(TENHuman *human);
+void TENHumanAddChild(TENHuman *parent, TENHuman *child);
+
+extern
+void TENHumanRemoveChild(TENHuman *parent, TENHuman *child);
 
 #endif /* defined(__HomeworkC__TENHuman__) */

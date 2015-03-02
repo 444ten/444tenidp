@@ -6,66 +6,14 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
+#include <stdio.h>
 #include <stdlib.h>
 
+#include "TENChildArray.h"
 #include "TENHuman.h"
 #include "TENHumanTests.h"
 #include "TENObject.h"
 #include "TENString.h"
-
-void TENHumanDoubleRefTest() {
-    TENHuman *adam = TENHumanCreateWithParam("Adam", TENGenderMale, NULL, NULL);
-    TENHuman *eva = TENHumanCreateWithParam("Eva", TENGenderFemale, NULL, NULL);
-    TENHuman *cain = TENHumanCreateWithParam("Cain", TENGenderMale, adam, eva);
-    TENHuman *mary = TENHumanCreateWithParam("Mary", TENGenderFemale, adam, eva);
-    TENHuman *alcmene = TENHumanCreateWithParam("Alcmene", TENGenderFemale, adam, eva);
-    TENHuman *heracles =TENHumanCreateWithParam("Heracles", TENGenderMale, NULL, alcmene);
-    TENHuman *petr = TENHumanCreateWithParam("Petr", TENGenderMale, cain, mary);
-    TENHuman *pavl = TENHumanCreateWithParam("Pavl", TENGenderMale, cain, mary);
-    TENHuman *ivan = TENHumanCreateWithParam("Ivan", TENGenderMale, cain, mary);
-    
-    TENHumanMarry(cain, mary);
-    TENHumanMarry(adam, eva);
-    
-    TENHumanPrint(adam);
-    TENHumanPrint(eva);
-    TENHumanPrint(cain);
-    TENHumanPrint(mary);
-    TENHumanPrint(alcmene);
-    TENHumanPrint(heracles);
-    
-//    TENHumanClear(mary);
-//    TENHumanPrint(mary);
-    
-    TENHumanPrint(adam);
-    TENHumanPrint(eva);
-    TENHumanPrint(cain);
-    TENHumanPrint(petr);
-    TENHumanPrint(pavl);
-    TENHumanPrint(ivan);
-}
-
-void TENHumanPartnerSetterTest() {
-    TENHuman *adam = TENHumanCreateWithParam("Adam", TENGenderMale, NULL, NULL);
-    TENHuman *eva = TENHumanCreateWithParam("Eva", TENGenderFemale, NULL, NULL);
-    TENHuman *alcmene = TENHumanCreateWithParam("Alcmene", TENGenderFemale, NULL, NULL);
-    
-    TENHumanPrint(adam);
-    TENHumanPrint(eva);
-    TENHumanPrint(alcmene);
-    
-    TENHumanMarry(NULL, adam);
-    
-    TENHumanPrint(adam);
-    TENHumanPrint(eva);
-    TENHumanPrint(alcmene);
-    
-    TENHumanMarry(adam, alcmene);
-    
-    TENHumanPrint(adam);
-    TENHumanPrint(eva);
-    TENHumanPrint(alcmene);
-}
 
 void TENObjectTest() {
     TENHuman *adam = TenObjectCreate(TENHuman);
@@ -80,16 +28,91 @@ void TENObjectTest() {
     TENStringSetData(string, "Eva");
     
     TENHumanSetName(eva, string);
-    TENHumanPrint(adam);    
+    TENHumanPrint(adam);
     TENHumanPrint(eva);
 }
 
-void TENHumanPerformTests() {
-//    TENHumanDoubleRefTest();
-//    TENHumanPartnerSetterTest();
-    TENObjectTest();
+void TENChildArrayTest() {
+    TENHuman *adam = TenObjectCreate(TENHuman);
+    TENHuman *eva = TenObjectCreate(TENHuman);
+    TENHuman *kain = TenObjectCreate(TENHuman);
     
-    
+    TENString *string = TenObjectCreate(TENString);
 
+    TENStringSetData(string, "adam");
+    TENHumanSetName(adam, string);
+    
+    TENStringSetData(string, "Eva");
+    TENHumanSetName(eva, string);
+
+    TENStringSetData(string, "Kain");
+    TENHumanSetName(kain, string);
+    
+    TENChildArray *godArray = TenObjectCreate(TENChildArray);
+    
+    TENChildArrayAddObject(godArray, adam);
+//    TENChildArrayAddObject(godArray, eva);
+    TENChildArrayAddObject(godArray, kain);
+    
+    TENHumanChildArrayPrint(godArray);
+    printf("\n");
+    
+    
+    uint8_t index = TENChildArrayIndexOfObject(godArray, eva);
+    TENChildArrayRemoveObjectAtIndex(godArray, index);
+    
+    TENObjectRelease(godArray);
 }
 
+void TENHumanChildTest() {
+    TENHuman *adam = TenObjectCreate(TENHuman);
+    TENHuman *eva = TenObjectCreate(TENHuman);
+    TENHuman *kain = TenObjectCreate(TENHuman);
+    TENHuman *avel = TenObjectCreate(TENHuman);
+    
+    TENString *string = TenObjectCreate(TENString);
+    
+    TENStringSetData(string, "adam");
+    TENHumanSetName(adam, string);
+    TENHumanSetGender(adam, TENGenderMale);
+    
+    TENStringSetData(string, "Eva");
+    TENHumanSetName(eva, string);
+    
+    TENStringSetData(string, "Kain");
+    TENHumanSetName(kain, string);
+    TENHumanSetGender(kain, TENGenderMale);
+
+    TENStringSetData(string, "Avel");
+    TENHumanSetName(avel, string);
+    TENHumanSetGender(avel, TENGenderMale);
+    
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    TENHumanPrint(kain);
+    TENHumanPrint(avel);
+    
+    TENHumanAddChild(adam, kain);
+    TENHumanAddChild(eva, kain);
+    TENHumanAddChild(adam, avel);
+    TENHumanAddChild(eva, avel);
+    
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    TENHumanPrint(kain);
+    TENHumanPrint(avel);
+    
+    TENHumanRemoveChild(adam, kain);
+    TENHumanRemoveChild(eva, avel);
+    
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    TENHumanPrint(kain);
+    TENHumanPrint(avel);
+}
+
+void TENHumanPerformTests() {
+//    TENObjectTest();
+//    TENChildArrayTest();
+    TENHumanChildTest();
+}

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76D77F5F1AA479830051EA25 /* TENChildArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 76D77F5D1AA479830051EA25 /* TENChildArray.c */; };
 		76F0A5551A9B959400F8412B /* TENOutputParent.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5511A9B959400F8412B /* TENOutputParent.c */; };
 		76F0A5561A9B959400F8412B /* TENOutputParentTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5531A9B959400F8412B /* TENOutputParentTest.c */; };
 		76F0A55B1A9B963B00F8412B /* TENOutputMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5571A9B963B00F8412B /* TENOutputMacros.c */; };
@@ -37,6 +38,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		76D77F5D1AA479830051EA25 /* TENChildArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENChildArray.c; path = "0216 human/TENChildArray.c"; sourceTree = "<group>"; };
+		76D77F5E1AA479830051EA25 /* TENChildArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENChildArray.h; path = "0216 human/TENChildArray.h"; sourceTree = "<group>"; };
 		76F0A5511A9B959400F8412B /* TENOutputParent.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENOutputParent.c; path = "0209 mamapapa/TENOutputParent.c"; sourceTree = "<group>"; };
 		76F0A5521A9B959400F8412B /* TENOutputParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENOutputParent.h; path = "0209 mamapapa/TENOutputParent.h"; sourceTree = "<group>"; };
 		76F0A5531A9B959400F8412B /* TENOutputParentTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENOutputParentTest.c; path = "0209 mamapapa/TENOutputParentTest.c"; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 				76F0A5731A9B97F900F8412B /* TENString.c */,
 				76F0A57F1AA0C47100F8412B /* TENObject.h */,
 				76F0A57E1AA0C47100F8412B /* TENObject.c */,
+				76D77F5E1AA479830051EA25 /* TENChildArray.h */,
+				76D77F5D1AA479830051EA25 /* TENChildArray.c */,
 			);
 			name = "0216 human";
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				76F0A5761A9B97F900F8412B /* TENHumanTests.c in Sources */,
 				76F0A5771A9B97F900F8412B /* TENString.c in Sources */,
 				76F0A5671A9B96F300F8412B /* TENStruct.c in Sources */,
+				76D77F5F1AA479830051EA25 /* TENChildArray.c in Sources */,
 				76F0A5801AA0C47100F8412B /* TENObject.c in Sources */,
 				76F0A56D1A9B973100F8412B /* TENValueBitOutput.c in Sources */,
 				76F0A57A1A9E482E00F8412B /* TENHuman.c in Sources */,
