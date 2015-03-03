@@ -16,10 +16,10 @@
 #include "TENString.h"
 
 void TENObjectTest() {
-    TENHuman *adam = TenObjectCreate(TENHuman);
-    TENHuman *eva = TenObjectCreate(TENHuman);
+    TENHuman *adam = TENObjectCreate(TENHuman);
+    TENHuman *eva = TENObjectCreate(TENHuman);
     
-    TENString *string = TenObjectCreate(TENString);
+    TENString *string = TENObjectCreate(TENString);
     TENStringSetData(string, "adam");
     
     TENHumanSetName(adam, string);
@@ -33,11 +33,11 @@ void TENObjectTest() {
 }
 
 void TENChildArrayTest() {
-    TENHuman *adam = TenObjectCreate(TENHuman);
-    TENHuman *eva = TenObjectCreate(TENHuman);
-    TENHuman *kain = TenObjectCreate(TENHuman);
+    TENHuman *adam = TENObjectCreate(TENHuman);
+    TENHuman *eva = TENObjectCreate(TENHuman);
+    TENHuman *kain = TENObjectCreate(TENHuman);
     
-    TENString *string = TenObjectCreate(TENString);
+    TENString *string = TENObjectCreate(TENString);
 
     TENStringSetData(string, "adam");
     TENHumanSetName(adam, string);
@@ -48,7 +48,7 @@ void TENChildArrayTest() {
     TENStringSetData(string, "Kain");
     TENHumanSetName(kain, string);
     
-    TENChildArray *godArray = TenObjectCreate(TENChildArray);
+    TENChildArray *godArray = TENObjectCreate(TENChildArray);
     
     TENChildArrayAddObject(godArray, adam);
 //    TENChildArrayAddObject(godArray, eva);
@@ -65,12 +65,12 @@ void TENChildArrayTest() {
 }
 
 void TENHumanChildTest() {
-    TENHuman *adam = TenObjectCreate(TENHuman);
-    TENHuman *eva = TenObjectCreate(TENHuman);
-    TENHuman *kain = TenObjectCreate(TENHuman);
-    TENHuman *avel = TenObjectCreate(TENHuman);
+    TENHuman *adam = TENObjectCreate(TENHuman);
+    TENHuman *eva = TENObjectCreate(TENHuman);
+    TENHuman *kain = TENObjectCreate(TENHuman);
+    TENHuman *avel = TENObjectCreate(TENHuman);
     
-    TENString *string = TenObjectCreate(TENString);
+    TENString *string = TENObjectCreate(TENString);
     
     TENStringSetData(string, "adam");
     TENHumanSetName(adam, string);
@@ -113,6 +113,6 @@ void TENHumanChildTest() {
 
 void TENHumanPerformTests() {
 //    TENObjectTest();
-//    TENChildArrayTest();
-    TENHumanChildTest();
+    TENChildArrayTest();
+//    TENHumanChildTest();
 }

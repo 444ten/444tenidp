@@ -8,8 +8,8 @@
 
 #include "TENChildArray.h"
 
-const int8_t invalidIndex = 255;
-const int8_t defaultSize = 5;
+static const uint8_t TENIndexNotFound = -1;
+static const uint8_t TENDefaultSize = 5;
 
 #pragma mark -
 #pragma mark Public Implementations
@@ -24,8 +24,8 @@ void __TENChildArrayDeallocate(TENChildArray *childArray) {
 }
 
 void TENChildArrayAlloc(TENChildArray *childArray) {
-    if (defaultSize != childArray->_size) {
-        childArray->_size = defaultSize;
+    if (TENDefaultSize != childArray->_size) {
+        childArray->_size = TENDefaultSize;
         childArray->_array = calloc(childArray->_size, sizeof(*childArray->_array));        
     }
 }
@@ -42,7 +42,7 @@ uint8_t TENChildArrayIndexOfObject(TENChildArray *childArray, TENHuman *object) 
     
     for (; childArray->_array[indexObject] != object; indexObject++) {
         if (indexObject >= childArray->_childrenCount) {
-            return invalidIndex;
+            return TENIndexNotFound;
         }
     }
     
@@ -50,8 +50,7 @@ uint8_t TENChildArrayIndexOfObject(TENChildArray *childArray, TENHuman *object) 
 }
 
 void TENChildArrayRemoveObjectAtIndex(TENChildArray *childArray, uint8_t index) {
-#warning why not work with invalidIndex
-    if (255 != index) {
+    if (TENIndexNotFound != index) {
         childArray->_childrenCount -= 1;
         TENObjectRelease(childArray->_array[index]);
         

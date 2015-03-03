@@ -23,13 +23,15 @@ typedef struct TENChildArray TENChildArray;
 typedef struct TENHuman TENHuman;
 struct TENHuman {
     TENObject _object;
+    
     TENString *_name;
-    uint8_t _age;
-    TENGender _gender;
     TENHuman *_partner;
     TENHuman *_father;
     TENHuman *_mother;
     TENChildArray *_childArray;
+    
+    uint8_t _age;
+    TENGender _gender;
 };
 
 extern

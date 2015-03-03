@@ -11,18 +11,18 @@
 
 #include <stdio.h>
 
-typedef void(*TENDeallocateCallBack)(void *);
+typedef void(*TENDeallocateCallback)(void *);
 
 struct TENObject {
     uint64_t _refernceCount;
-    TENDeallocateCallBack _deallocateCallBack;
+    TENDeallocateCallback _deallocateCallback;
 };
 typedef struct TENObject TENObject;
 
 extern
-void *__TENObjectCreate(size_t objectSize, TENDeallocateCallBack deallocateCallback);
-#define TenObjectCreate(type) \
-    __TENObjectCreate(sizeof(type), (TENDeallocateCallBack)__##type##Deallocate)
+void *__TENObjectCreate(size_t objectSize, TENDeallocateCallback deallocateCallback);
+#define TENObjectCreate(type) \
+    __TENObjectCreate(sizeof(type), (TENDeallocateCallback)__##type##Deallocate)
 
 extern
 void *TENObjectRetain(void *object);

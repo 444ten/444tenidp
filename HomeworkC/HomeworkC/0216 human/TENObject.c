@@ -9,11 +9,11 @@
 #include <stdlib.h>
 #include "TENObject.h"
 
-void *__TENObjectCreate(size_t objectSize, TENDeallocateCallBack deallocateCallback) {
+void *__TENObjectCreate(size_t objectSize, TENDeallocateCallback deallocateCallback) {
     TENObject *object = calloc(1, objectSize);
     
     object->_refernceCount = 1;
-    object->_deallocateCallBack = deallocateCallback;
+    object->_deallocateCallback = deallocateCallback;
     
     return object;
 }
@@ -32,7 +32,7 @@ void TENObjectRelease(void *voidObject) {
         
         object->_refernceCount -= 1;
         if (0 == object->_refernceCount) {
-            object->_deallocateCallBack(object);
+            object->_deallocateCallback(object);
         }
     }
 }

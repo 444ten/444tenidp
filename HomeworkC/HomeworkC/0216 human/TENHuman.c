@@ -22,7 +22,7 @@ void __TENHumanDeallocate(TENHuman *human) {
 }
 
 void TENHumanSetName(TENHuman *human, TENString *name) {
-    human->_name = TenObjectCreate(TENString);
+    human->_name = TENObjectCreate(TENString);
     TENStringSetData(human->_name, name->_data);
 }
 
@@ -128,7 +128,7 @@ void TENHumanPrint(TENHuman *human) {
 
 void TENHumanAddChild(TENHuman *parent, TENHuman *child) {
     if (NULL == parent->_childArray) {
-        parent->_childArray = TenObjectCreate(TENChildArray);
+        parent->_childArray = TENObjectCreate(TENChildArray);
     }
     
     if (TENGenderMale == parent->_gender) {
