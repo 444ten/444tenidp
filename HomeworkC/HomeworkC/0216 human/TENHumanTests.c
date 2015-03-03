@@ -111,8 +111,51 @@ void TENHumanChildTest() {
     TENHumanPrint(avel);
 }
 
+void TENHumanPartnerTest() {
+    TENHuman *adam = TENObjectCreate(TENHuman);
+    TENHuman *eva = TENObjectCreate(TENHuman);
+    TENHuman *kain = TENObjectCreate(TENHuman);
+    TENHuman *avel = TENObjectCreate(TENHuman);
+    
+    TENString *string = TENObjectCreate(TENString);
+    
+    TENStringSetData(string, "adam");
+    TENHumanSetName(adam, string);
+    TENHumanSetGender(adam, TENGenderMale);
+    
+    TENStringSetData(string, "Eva");
+    TENHumanSetName(eva, string);
+    
+    TENStringSetData(string, "Kain");
+    TENHumanSetName(kain, string);
+    TENHumanSetGender(kain, TENGenderMale);
+    
+    TENStringSetData(string, "Avel");
+    TENHumanSetName(avel, string);
+    TENHumanSetGender(avel, TENGenderMale);
+    
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    TENHumanPrint(kain);
+    TENHumanPrint(avel);
+    
+    TENHumanMarry(adam, eva);
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    TENHumanPrint(kain);
+    TENHumanPrint(avel);
+
+    TENHumanMarry(avel, eva);
+    TENHumanPrint(adam);
+    TENHumanPrint(eva);
+    TENHumanPrint(kain);
+    TENHumanPrint(avel);
+    
+}
+
 void TENHumanPerformTests() {
 //    TENObjectTest();
-    TENChildArrayTest();
-//    TENHumanChildTest();
+//    TENChildArrayTest();
+    TENHumanChildTest();
+//    TENHumanPartnerTest();
 }

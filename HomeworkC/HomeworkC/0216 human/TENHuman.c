@@ -12,6 +12,12 @@
 #include "TENHuman.h"
 
 #pragma mark -
+#pragma mark Private Declarations
+
+static
+void TENHumanHolderSetTarget(TENHuman **holder, TENHuman **target);
+
+#pragma mark -
 #pragma mark Public Implementations
 
 void __TENHumanDeallocate(TENHuman *human) {
@@ -30,21 +36,9 @@ TENString *TENHumanGetName(TENHuman *human) {
     return human->_name;
 }
 
-void TENHumanSetGender(TENHuman *human, TENGender gender) {
-    human->_gender = gender;
-}
-
 void TENHumanSetPartner(TENHuman *human, TENHuman *partner) {
-    if (NULL != human && human != partner && human->_partner != partner) {
-        if (NULL != human->_partner) {
-            TENObjectRelease(human->_partner);
-        }
-        
-        human->_partner = partner;
-        
-        if (NULL != human->_partner) {
-            TENObjectRetain(human->_partner);
-        }
+    if (NULL != human && human != partner) {
+        TENHumanHolderSetTarget(&human->_partner, &partner);
     }
 }
 
@@ -54,30 +48,18 @@ TENHuman *TENHumanGetPartner(TENHuman *human) {
 
 void TENHumanSetFather(TENHuman *human, TENHuman *father) {
     if (NULL != human && human != father) {
-        if (NULL != human->_father) {
-            TENObjectRelease(human->_father);
-        }
-        
-        human->_father = father;
-        
-        if (NULL != human->_father) {
-            TENObjectRetain(human->_father);
-        }
+        TENHumanHolderSetTarget(&human->_father, &father);
     }
 }
 
 void TENHumanSetMother(TENHuman *human, TENHuman *mother) {
     if (NULL != human && human != mother) {
-        if (NULL != human->_mother) {
-            TENObjectRelease(human->_mother);
-        }
-        
-        human->_mother = mother;
-        
-        if (NULL != human->_mother) {
-            TENObjectRetain(human->_mother);
-        }
+        TENHumanHolderSetTarget(&human->_mother, &mother);
     }
+}
+
+void TENHumanSetGender(TENHuman *human, TENGender gender) {
+    human->_gender = gender;
 }
 
 void TENHumanMarry(TENHuman *husband, TENHuman *wife) {
@@ -150,5 +132,22 @@ void TENHumanRemoveChild(TENHuman *parent, TENHuman *child) {
         
         uint8_t index = TENChildArrayIndexOfObject(parent->_childArray, child);
         TENChildArrayRemoveObjectAtIndex(parent->_childArray, index);
+    }
+}
+
+#pragma mark -
+#pragma mark Private Implementations
+
+void TENHumanHolderSetTarget(TENHuman **holder, TENHuman **target) {
+    if (*holder != *target) {
+        if (NULL != *holder) {
+            TENObjectRelease(*holder);
+        }
+        
+        *holder = *target;
+        
+        if (NULL != *holder) {
+            TENObjectRetain(*holder);
+        }
     }
 }
