@@ -35,6 +35,9 @@ struct TENHuman {
 };
 
 extern
+TENHuman *TENHumanCreateWithNameGender(char *name, TENGender gender);
+
+extern
 void __TENHumanDeallocate(TENHuman *human);
 
 extern
