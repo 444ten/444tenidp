@@ -84,10 +84,10 @@ void TENHumanChildTest() {
 }
 
 void TENHumanPartnerTest() {
-    TENHuman *adam = TENHumanCreateWithNameGender("Adam", TENGenderMale);
-    TENHuman *eva = TENHumanCreateWithNameGender("Eva", TENGenderMale);
-    TENHuman *kain = TENHumanCreateWithNameGender("Kain", TENGenderMale);
-    TENHuman *avel = TENHumanCreateWithNameGender("Avel", TENGenderMale);
+    TENHuman *adam = TENHumanMaleCreateWithName("adam");
+    TENHuman *eva = TENHumanFemaleCreateWithName("Eva");
+    TENHuman *kain = TENHumanMaleCreateWithName("Kain");
+    TENHuman *avel = TENHumanMaleCreateWithName("Avel");
     
     TENHumanPrint(adam);
     TENHumanPrint(eva);
@@ -138,8 +138,8 @@ void TENHumanSetNameTest() {
 void TENHumanPerformTests() {
 //    TENObjectTest();
 //    TENChildArrayTest();
-    TENHumanChildTest();
-//    TENHumanPartnerTest();
+//    TENHumanChildTest();
+    TENHumanPartnerTest();
 //    TENHumanSetNameTest();
     
     

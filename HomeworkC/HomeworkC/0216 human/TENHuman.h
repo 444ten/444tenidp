@@ -25,9 +25,10 @@ struct TENHuman {
     TENObject _object;
     
     TENString *_name;
-    TENHuman *_partner;
+    
     TENHuman *_father;
     TENHuman *_mother;
+    TENHuman *_partner;
     TENChildArray *_childArray;
     
     uint8_t _age;
@@ -36,6 +37,12 @@ struct TENHuman {
 
 extern
 TENHuman *TENHumanCreateWithNameGender(char *name, TENGender gender);
+
+extern
+TENHuman *TENHumanMaleCreateWithName(char *name);
+
+extern
+TENHuman *TENHumanFemaleCreateWithName(char *name);
 
 extern
 void __TENHumanDeallocate(TENHuman *human);

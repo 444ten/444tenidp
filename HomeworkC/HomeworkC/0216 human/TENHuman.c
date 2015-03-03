@@ -26,12 +26,21 @@ TENHuman *TENHumanCreateWithNameGender(char *name, TENGender gender) {
     TENString *stringName = TENObjectCreate(TENString);
     TENStringSetData(stringName, name);
     TENHumanSetName(human, stringName);
+    TENObjectRelease(stringName);
     
     TENHumanSetGender(human, gender);
     
     human->_childArray = TENObjectCreate(TENChildArray);
     
     return human;
+}
+
+TENHuman *TENHumanMaleCreateWithName(char *name) {
+    return TENHumanCreateWithNameGender(name, TENGenderMale);
+}
+
+TENHuman *TENHumanFemaleCreateWithName(char *name) {
+    return TENHumanCreateWithNameGender(name, TENGenderFemale);
 }
 
 void __TENHumanDeallocate(TENHuman *human) {
