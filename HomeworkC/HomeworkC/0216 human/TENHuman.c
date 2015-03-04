@@ -158,7 +158,7 @@ void TENHumanChildArrayPrint(TENChildArray *childArray) {
     if (NULL != childArray && childrenCount > 0) {
         printf(" total %d: ", childrenCount);
         for (int i = 0; i < childrenCount; i++) {
-            printf("%s ", TENStringGetData(TENHumanGetName(childArray->_array[i])));
+            printf("%s ", TENStringGetData(TENHumanGetName(TENChildArrayGetArray(childArray)[i])));
         }
         
         printf("\n");

@@ -28,6 +28,9 @@ extern
 void __TENChildArrayDeallocate(TENChildArray *childArray);
 
 extern
+TENHuman **TENChildArrayGetArray(TENChildArray *childArray);
+
+extern
 uint8_t TENChildArrayGetChildrenCount(TENChildArray *childArray);
 
 extern

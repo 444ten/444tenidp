@@ -31,6 +31,10 @@ void TENChildArrayAlloc(TENChildArray *childArray) {
     }
 }
 
+TENHuman **TENChildArrayGetArray(TENChildArray *childArray) {
+    return (NULL != childArray) ? childArray->_array : NULL;
+}
+
 uint8_t TENChildArrayGetChildrenCount(TENChildArray *childArray) {
     return (NULL != childArray) ? childArray->_childrenCount : 0;
 }
