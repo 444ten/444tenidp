@@ -9,7 +9,6 @@
 #ifndef __HomeworkC__TENHuman__
 #define __HomeworkC__TENHuman__
 
-#include "TENChildArray.h"
 #include "TENObject.h"
 #include "TENString.h"
 
@@ -46,12 +45,6 @@ TENHuman *TENHumanFemaleCreateWithName(char *name);
 
 extern
 void __TENHumanDeallocate(TENHuman *human);
-
-extern
-void TENHumanSetName(TENHuman *human, TENString *name);
-
-extern
-void TENHumanSetGender(TENHuman *human, TENGender gender);
 
 extern
 void TENHumanChildArrayPrint(TENChildArray *childArray);

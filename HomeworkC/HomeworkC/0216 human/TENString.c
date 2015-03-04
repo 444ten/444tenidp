@@ -23,8 +23,17 @@ void __TENStringDeallocate(TENString *string) {
 }
 
 void TENStringSetData(TENString *string, char *newString) {
-    TENStringSetLength(string, strlen(newString));
-    strcpy(string->_data, newString);
+    if (NULL != string) {
+        if (NULL != string->_data) {
+            free(string->_data);
+            string->_data = NULL;
+        }
+        
+        if (NULL != newString) {
+            TENStringSetLength(string, strlen(newString));
+            strcpy(string->_data, newString);
+        }
+    }
 }
 
 char *TENStringGetData(TENString *string) {

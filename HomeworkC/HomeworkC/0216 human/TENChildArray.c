@@ -7,6 +7,7 @@
 //
 
 #include "TENChildArray.h"
+#include "TENHuman.h"
 
 static const uint8_t TENIndexNotFound = -1;
 static const uint8_t TENDefaultSize = 5;
@@ -28,6 +29,10 @@ void TENChildArrayAlloc(TENChildArray *childArray) {
         childArray->_size = TENDefaultSize;
         childArray->_array = calloc(childArray->_size, sizeof(*childArray->_array));        
     }
+}
+
+uint8_t TENChildArrayGetChildrenCount(TENChildArray *childArray) {
+    return (NULL != childArray) ? childArray->_childrenCount : 0;
 }
 
 void TENChildArrayAddObject(TENChildArray *childArray, TENHuman *object) {

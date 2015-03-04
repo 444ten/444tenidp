@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "TENHuman.h"
 #include "TENObject.h"
 
 typedef struct TENHuman TENHuman;
@@ -27,6 +26,9 @@ struct TENChildArray {
 
 extern
 void __TENChildArrayDeallocate(TENChildArray *childArray);
+
+extern
+uint8_t TENChildArrayGetChildrenCount(TENChildArray *childArray);
 
 extern
 void TENChildArrayAddObject(TENChildArray *childArray, TENHuman *object);
