@@ -37,7 +37,7 @@ void TENChildArrayTest() {
     TENChildArrayAddObject(godArray, eva);
     TENChildArrayAddObject(godArray, kain);
     
-    TENHumanChildArrayPrint(godArray);
+    TENChildArrayPrint(godArray);
     printf("\n");
     
     

@@ -71,3 +71,17 @@ void TENChildArrayRemoveObjectAtIndex(TENChildArray *childArray, uint8_t index) 
         TENChildArrayAlloc(childArray);
     }
 }
+
+void TENChildArrayPrint(TENChildArray *childArray) {
+    uint8_t childrenCount = TENChildArrayGetChildrenCount(childArray);
+    
+    if (NULL != childArray && childrenCount > 0) {
+        printf(" total %d: ", childrenCount);
+        for (int i = 0; i < childrenCount; i++) {
+            printf("%s ", TENStringGetData(TENHumanGetName(TENChildArrayGetArray(childArray)[i])));
+        }
+        
+        printf("\n");
+    }
+}
+

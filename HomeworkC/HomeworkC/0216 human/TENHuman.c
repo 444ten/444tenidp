@@ -149,19 +149,6 @@ void TENHumanRemoveChild(TENHuman *parent, TENHuman *child) {
     }
 }
 
-void TENHumanChildArrayPrint(TENChildArray *childArray) {
-    uint8_t childrenCount = TENChildArrayGetChildrenCount(childArray);
-    
-    if (NULL != childArray && childrenCount > 0) {
-        printf(" total %d: ", childrenCount);
-        for (int i = 0; i < childrenCount; i++) {
-            printf("%s ", TENStringGetData(TENHumanGetName(TENChildArrayGetArray(childArray)[i])));
-        }
-        
-        printf("\n");
-    }
-}
-
 void TENHumanPrint(TENHuman *human) {
     printf("(%2llu) ", TENObjectGetReferenceCount(human));
     printf("%s ", TENStringGetData(TENHumanGetName(human)));
@@ -180,7 +167,7 @@ void TENHumanPrint(TENHuman *human) {
         printf("married to %s\n", TENStringGetData(TENHumanGetName(TENHumanGetPartner(human))));
     }
     
-    TENHumanChildArrayPrint(TENHumanGetChildArray(human));
+    TENChildArrayPrint(TENHumanGetChildArray(human));
     
     printf("\n");
 }

@@ -42,4 +42,7 @@ uint8_t TENChildArrayIndexOfObject(TENChildArray *childArray, TENHuman *object);
 extern
 void TENChildArrayRemoveObjectAtIndex(TENChildArray *childArray, uint8_t index);
 
+extern
+void TENChildArrayPrint(TENChildArray *childArray);
+
 #endif /* defined(__HomeworkC__TENChildArray__) */

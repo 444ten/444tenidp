@@ -46,8 +46,25 @@ TENHuman *TENHumanFemaleCreateWithName(TENString *name);
 extern
 void __TENHumanDeallocate(TENHuman *human);
 
+TENString *TENHumanGetName(TENHuman *human);
+
 extern
-void TENHumanChildArrayPrint(TENChildArray *childArray);
+TENHuman *TENHumanGetFather(TENHuman *human);
+
+extern
+TENHuman *TENHumanGetMother(TENHuman *human);
+
+extern
+TENHuman *TENHumanGetPartner(TENHuman *human);
+
+extern
+TENChildArray *TENHumanGetChildArray(TENHuman *human);
+
+extern
+uint8_t TENHumanGetAge(TENHuman *human);
+
+extern
+TENGender TENHumanGetGender(TENHuman *human);
 
 extern
 void TENHumanPrint(TENHuman *human);
