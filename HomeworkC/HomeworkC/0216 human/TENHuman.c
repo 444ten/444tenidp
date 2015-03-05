@@ -40,13 +40,10 @@ void TENHumanHolderSetTarget(void **holder, void *target);
 #pragma mark -
 #pragma mark Public Implementations
 
-TENHuman *TENHumanCreateWithNameGender(char *name, TENGender gender) {
+TENHuman *TENHumanCreateWithNameGender(TENString *name, TENGender gender) {
     TENHuman *human =TENObjectCreate(TENHuman);
 
-    TENString *stringName = TENObjectCreate(TENString);
-    TENStringSetData(stringName, name);
-    TENHumanSetName(human, stringName);
-    TENObjectRelease(stringName);
+    TENHumanSetName(human, name);
     
     TENHumanSetGender(human, gender);
     
@@ -57,11 +54,11 @@ TENHuman *TENHumanCreateWithNameGender(char *name, TENGender gender) {
     return human;
 }
 
-TENHuman *TENHumanMaleCreateWithName(char *name) {
+TENHuman *TENHumanMaleCreateWithName(TENString *name) {
     return TENHumanCreateWithNameGender(name, TENGenderMale);
 }
 
-TENHuman *TENHumanFemaleCreateWithName(char *name) {
+TENHuman *TENHumanFemaleCreateWithName(TENString *name) {
     return TENHumanCreateWithNameGender(name, TENGenderFemale);
 }
 

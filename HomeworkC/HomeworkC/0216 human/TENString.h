@@ -21,6 +21,9 @@ struct TENString {
 typedef struct TENString TENString;
 
 extern
+TENString *TENStringCreateWithData(char *data);
+
+extern
 void __TENStringDeallocate(TENString *string);
 
 extern

@@ -13,6 +13,14 @@
 #pragma mark -
 #pragma mark Public Implementations
 
+TENString *TENStringCreateWithData(char *data) {
+    TENString *string = TENObjectCreate(TENString);
+    
+    TENStringSetData(string, data);
+    
+    return string;
+}
+
 void __TENStringDeallocate(TENString *string) {
     if (NULL != string->_data) {
         free(string->_data);

@@ -16,9 +16,20 @@
 #include "TENString.h"
 
 void TENChildArrayTest() {
-    TENHuman *adam = TENHumanCreateWithNameGender("Adam", TENGenderMale);
-    TENHuman *eva = TENHumanCreateWithNameGender("Eva", TENGenderMale);
-    TENHuman *kain = TENHumanCreateWithNameGender("Kain", TENGenderMale);
+    TENString *adamName = TENStringCreateWithData("Adam");
+    TENString *evaName = TENStringCreateWithData("Eva");
+    TENString *kainName = TENStringCreateWithData("Kain");
+    TENString *avelName = TENStringCreateWithData("Avel");
+    
+    TENHuman *adam = TENHumanMaleCreateWithName(adamName);
+    TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
+    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
+    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
+    
+    TENObjectRelease(adamName);
+    TENObjectRelease(evaName);
+    TENObjectRelease(kainName);
+    TENObjectRelease(avelName);
     
     TENChildArray *godArray = TENObjectCreate(TENChildArray);
     
@@ -37,10 +48,20 @@ void TENChildArrayTest() {
 }
 
 void TENHumanChildTest() {
-    TENHuman *adam = TENHumanMaleCreateWithName("adam");
-    TENHuman *eva = TENHumanFemaleCreateWithName("Eva");
-    TENHuman *kain = TENHumanMaleCreateWithName("Kain");
-    TENHuman *avel = TENHumanMaleCreateWithName("Avel");
+    TENString *adamName = TENStringCreateWithData("Adam");
+    TENString *evaName = TENStringCreateWithData("Eva");
+    TENString *kainName = TENStringCreateWithData("Kain");
+    TENString *avelName = TENStringCreateWithData("Avel");
+    
+    TENHuman *adam = TENHumanMaleCreateWithName(adamName);
+    TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
+    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
+    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
+    
+    TENObjectRelease(adamName);
+    TENObjectRelease(evaName);
+    TENObjectRelease(kainName);
+    TENObjectRelease(avelName);
     
     TENHumanPrint(adam);
     TENHumanPrint(eva);
@@ -67,10 +88,20 @@ void TENHumanChildTest() {
 }
 
 void TENHumanPartnerTest() {
-    TENHuman *adam = TENHumanMaleCreateWithName("adam");
-    TENHuman *eva = TENHumanFemaleCreateWithName("Eva");
-    TENHuman *kain = TENHumanMaleCreateWithName("Kain");
-    TENHuman *avel = TENHumanMaleCreateWithName("Avel");
+    TENString *adamName = TENStringCreateWithData("Adam");
+    TENString *evaName = TENStringCreateWithData("Eva");
+    TENString *kainName = TENStringCreateWithData("Kain");
+    TENString *avelName = TENStringCreateWithData("Avel");
+    
+    TENHuman *adam = TENHumanMaleCreateWithName(adamName);
+    TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
+    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
+    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
+    
+    TENObjectRelease(adamName);
+    TENObjectRelease(evaName);
+    TENObjectRelease(kainName);
+    TENObjectRelease(avelName);
     
     TENHumanPrint(adam);
     TENHumanPrint(eva);
