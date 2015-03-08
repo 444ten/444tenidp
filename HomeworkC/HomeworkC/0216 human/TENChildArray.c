@@ -84,4 +84,3 @@ void TENChildArrayPrint(TENChildArray *childArray) {
         printf("\n");
     }
 }
-

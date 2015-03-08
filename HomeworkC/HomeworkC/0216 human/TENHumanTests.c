@@ -24,7 +24,6 @@ void TENChildArrayTest() {
     TENHuman *adam = TENHumanMaleCreateWithName(adamName);
     TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
     TENHuman *kain = TENHumanMaleCreateWithName(kainName);
-    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
     
     TENObjectRelease(adamName);
     TENObjectRelease(evaName);
@@ -119,6 +118,8 @@ void TENHumanPartnerTest() {
     TENHumanPrint(eva);
     TENHumanPrint(kain);
     TENHumanPrint(avel);
+    
+    TENHumanMarry(kain, kain);
     
 }
 

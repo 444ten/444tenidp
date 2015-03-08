@@ -22,30 +22,22 @@ TENString *TENStringCreateWithData(char *data) {
 }
 
 void __TENStringDeallocate(TENString *string) {
-    if (NULL != string->_data) {
-        free(string->_data);
-        string->_data = NULL;
-    }
-    
+    TENStringSetData(string, NULL);
     __TENObjectDeallocate(string);
 }
 
-void TENStringSetData(TENString *string, char *newString) {
-    if (NULL != string) {
+void TENStringSetData(TENString *string, char *data) {
+    if (NULL != string && string->_data != data) {
         if (NULL != string->_data) {
             free(string->_data);
             string->_data = NULL;
         }
         
-        if (NULL != newString) {
-            TENStringSetLength(string, strlen(newString));
-            strcpy(string->_data, newString);
+        if (NULL != data) {
+            TENStringSetLength(string, strlen(data));
+            strcpy(string->_data, data);
         }
     }
-}
-
-char *TENStringGetData(TENString *string) {
-    return (NULL != string) ? string->_data : NULL;
 }
 
 void TENStringSetLength(TENString *string, uint64_t length) {
@@ -58,4 +50,8 @@ void TENStringSetLength(TENString *string, uint64_t length) {
         
         string->_length = length;
     }
+}
+
+char *TENStringGetData(TENString *string) {
+    return (NULL != string) ? string->_data : NULL;
 }
