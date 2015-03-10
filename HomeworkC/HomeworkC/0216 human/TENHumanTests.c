@@ -104,30 +104,41 @@ void TENHumanPartnerTest() {
     
     TENHumanPrint(adam);
     TENHumanPrint(eva);
-    TENHumanPrint(kain);
-    TENHumanPrint(avel);
+//    TENHumanPrint(kain);
+//    TENHumanPrint(avel);
     
     TENHumanMarry(adam, eva);
     TENHumanPrint(adam);
     TENHumanPrint(eva);
-    TENHumanPrint(kain);
-    TENHumanPrint(avel);
-
-    TENHumanMarry(avel, eva);
-    TENHumanPrint(adam);
-    TENHumanPrint(eva);
-    TENHumanPrint(kain);
-    TENHumanPrint(avel);
     
-    TENHumanMarry(kain, kain);
+//    TENObjectRelease(eva);
+//    TENHumanPrint(adam);
+//    TENHumanPrint(eva);
+    
+//    TENObjectRelease(adam);
+//    TENObjectRelease(adam);
+
+//    TENHumanPrint(adam);
+//    TENHumanPrint(eva);
+
+//    TENHumanPrint(kain);
+//    TENHumanPrint(avel);
+
+//    TENHumanMarry(avel, eva);
+//    TENHumanPrint(adam);
+//    TENHumanPrint(eva);
+//    TENHumanPrint(kain);
+//    TENHumanPrint(avel);
+//    
+//    TENHumanMarry(kain, kain);
     
 }
 
 
 void TENHumanPerformTests() {
 //    TENChildArrayTest();
-    TENHumanChildTest();
-//    TENHumanPartnerTest();
+//    TENHumanChildTest();
+    TENHumanPartnerTest();
     
     
 }
