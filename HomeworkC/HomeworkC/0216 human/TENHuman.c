@@ -12,6 +12,7 @@
 
 #include "TENChildArray.h"
 #include "TENHuman.h"
+#include "TENProperty.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -36,15 +37,6 @@ void TENHumanSetAge(TENHuman *human, uint8_t age);
 
 static
 void TENHumanSetGender(TENHuman *human, TENGender gender);
-
-static
-void TENHumanHolderSetTargetRetain(void **holder, void *target);
-
-static
-void TENHumanHolderSetTargetAssign(void **holder, void *target);
-
-static
-bool TENHumanNullOrEqualTarget(TENHuman *human, TENHuman *target);
 
 #pragma mark -
 #pragma mark Public Implementations
@@ -82,31 +74,31 @@ void __TENHumanDeallocate(TENHuman *human) {
 }
 
 TENString *TENHumanGetName(TENHuman *human) {
-    return TENHumanNullOrEqualTarget(human, NULL) ? NULL : human->_name;
+    return TENPropertyNullOrEqualTarget(human, NULL) ? NULL : human->_name;
 }
 
 TENHuman *TENHumanGetFather(TENHuman *human) {
-    return TENHumanNullOrEqualTarget(human, NULL) ? NULL : human->_father;
+    return TENPropertyNullOrEqualTarget(human, NULL) ? NULL : human->_father;
 }
 
 TENHuman *TENHumanGetMother(TENHuman *human) {
-    return TENHumanNullOrEqualTarget(human, NULL) ? NULL : human->_mother;
+    return TENPropertyNullOrEqualTarget(human, NULL) ? NULL : human->_mother;
 }
 
 TENHuman *TENHumanGetPartner(TENHuman *human) {
-    return TENHumanNullOrEqualTarget(human, NULL) ? NULL : human->_partner;
+    return TENPropertyNullOrEqualTarget(human, NULL) ? NULL : human->_partner;
 }
 
 TENChildArray *TENHumanGetChildArray(TENHuman *human) {
-    return TENHumanNullOrEqualTarget(human, NULL) ? NULL : human->_childArray;
+    return TENPropertyNullOrEqualTarget(human, NULL) ? NULL : human->_childArray;
 }
 
 uint8_t TENHumanGetAge(TENHuman *human) {
-    return TENHumanNullOrEqualTarget(human, NULL) ? 0 : human->_age;
+    return TENPropertyNullOrEqualTarget(human, NULL) ? 0 : human->_age;
 }
 
 TENGender TENHumanGetGender(TENHuman *human) {
-    return TENHumanNullOrEqualTarget(human, NULL) ? 0 : human->_gender;
+    return TENPropertyNullOrEqualTarget(human, NULL) ? 0 : human->_gender;
 }
 
 #pragma mark - Behavior
@@ -119,7 +111,7 @@ void TENHumanMarry(TENHuman *husband, TENHuman *wife) {
 }
 
 void TENHumanDivorce(TENHuman *human) {
-    if (TENHumanNullOrEqualTarget(human, NULL)) {
+    if (TENPropertyNullOrEqualTarget(human, NULL)) {
         return;
     }
 
@@ -128,11 +120,11 @@ void TENHumanDivorce(TENHuman *human) {
 }
 
 void TENHumanAddChild(TENHuman *parent, TENHuman *child) {
-    if (TENHumanNullOrEqualTarget(parent, child)) {
+    if (TENPropertyNullOrEqualTarget(parent, child)) {
         return;
     }
     
-    if (TENHumanNullOrEqualTarget(child, NULL)) {
+    if (TENPropertyNullOrEqualTarget(child, NULL)) {
         return;
     }
     
@@ -149,11 +141,11 @@ void TENHumanAddChild(TENHuman *parent, TENHuman *child) {
 }
 
 void TENHumanRemoveChild(TENHuman *parent, TENHuman *child) {
-    if (TENHumanNullOrEqualTarget(parent, child)) {
+    if (TENPropertyNullOrEqualTarget(parent, child)) {
         return;
     }
 
-    if (TENHumanNullOrEqualTarget(child, NULL)) {
+    if (TENPropertyNullOrEqualTarget(child, NULL)) {
         return;
     }
     
@@ -196,52 +188,52 @@ void TENHumanPrint(TENHuman *human) {
 #pragma mark Private Implementations
 
 void TENHumanSetName(TENHuman *human, TENString *name) {
-    if (TENHumanNullOrEqualTarget(human, NULL)) {
+    if (TENPropertyNullOrEqualTarget(human, NULL)) {
         return;
     }
 
-    TENHumanHolderSetTargetRetain((void **)&human->_name, name);
+    TENPropertyHolderSetTargetRetain((void **)&human->_name, name);
 }
 
 void TENHumanSetFather(TENHuman *human, TENHuman *father) {
-    if (TENHumanNullOrEqualTarget(human, father)) {
+    if (TENPropertyNullOrEqualTarget(human, father)) {
         return;
     }
 
-    TENHumanHolderSetTargetRetain((void **)&human->_father, father);
+    TENPropertyHolderSetTargetRetain((void **)&human->_father, father);
 }
 
 void TENHumanSetMother(TENHuman *human, TENHuman *mother) {
-    if (TENHumanNullOrEqualTarget(human, mother)) {
+    if (TENPropertyNullOrEqualTarget(human, mother)) {
         return;
     }
 
-    TENHumanHolderSetTargetRetain((void **)&human->_mother, mother);
+    TENPropertyHolderSetTargetRetain((void **)&human->_mother, mother);
 }
 
 void TENHumanSetPartner(TENHuman *human, TENHuman *partner) {
-    if (TENHumanNullOrEqualTarget(human, partner)) {
+    if (TENPropertyNullOrEqualTarget(human, partner)) {
         return;
     }
 
     TENGender humanGender = TENHumanGetGender(human);
     if (humanGender == TENGenderMale) {
-        TENHumanHolderSetTargetRetain((void **)&human->_partner, partner);
+        TENPropertyHolderSetTargetRetain((void **)&human->_partner, partner);
     } else {
-        TENHumanHolderSetTargetAssign((void **)&human->_partner, partner);
+        TENPropertyHolderSetTargetAssign((void **)&human->_partner, partner);
     }
 }
 
 void TENHumanSetChildArray(TENHuman *human, TENChildArray *childArray) {
-    if (TENHumanNullOrEqualTarget(human, NULL)) {
+    if (TENPropertyNullOrEqualTarget(human, NULL)) {
         return;
     }
 
-    TENHumanHolderSetTargetRetain((void **)&human->_childArray, childArray);
+    TENPropertyHolderSetTargetRetain((void **)&human->_childArray, childArray);
 }
 
 void TENHumanSetAge(TENHuman *human, uint8_t age) {
-    if (TENHumanNullOrEqualTarget(human, NULL)) {
+    if (TENPropertyNullOrEqualTarget(human, NULL)) {
         return;
     }
     
@@ -249,31 +241,9 @@ void TENHumanSetAge(TENHuman *human, uint8_t age) {
 }
 
 void TENHumanSetGender(TENHuman *human, TENGender gender) {
-    if (TENHumanNullOrEqualTarget(human, NULL)) {
+    if (TENPropertyNullOrEqualTarget(human, NULL)) {
         return;
     }
     
     human->_gender = gender;
-}
-
-void TENHumanHolderSetTargetRetain(void **holder, void *target) {
-    if (*holder != target) {
-        if (NULL != *holder) {
-            TENObjectRelease(*holder);
-        }
-        
-        *holder = target;
-        
-        if (NULL != *holder) {
-            TENObjectRetain(*holder);
-        }
-    }
-}
-
-void TENHumanHolderSetTargetAssign(void **holder, void *target) {
-    *holder = target;
-}
-
-bool TENHumanNullOrEqualTarget(TENHuman *human, TENHuman *target) {
-    return (NULL == human || human == target);
 }
