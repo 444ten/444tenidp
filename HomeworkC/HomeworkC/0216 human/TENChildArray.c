@@ -88,7 +88,7 @@ void TENChildArrayPrint(TENChildArray *childArray) {
 }
 
 #pragma mark -
-#pragma mark Public Implementations
+#pragma mark Private Implementations
 
 TENHuman **TENChildArrayGetArray(TENChildArray *childArray) {
     return (NULL != childArray) ? childArray->_array : NULL;

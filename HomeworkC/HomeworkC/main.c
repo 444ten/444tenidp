@@ -8,6 +8,7 @@
 
 #include "TENCharBitTests.h"
 #include "TENHumanTests.h"
+#include "TENObjectTests.h"
 #include "TENOutputMacrosTests.h"
 #include "TENOutputParentTest.h"
 #include "TENStructTest.h"
@@ -24,7 +25,8 @@ int main(int argc, const char * argv[]) {
 
 //    TENValueBitOutputPerformTest();
 
-    TENHumanPerformTests();
+//    TENHumanPerformTests();
+    TENObjectPerformTest();
     
     return 0;
 }
