@@ -8,6 +8,7 @@
 
 #include <string.h>
 
+#include "TENProperty.h"
 #include "TENString.h"
 
 #pragma mark -

@@ -19,6 +19,6 @@ extern
 void TENPropertyHolderSetTargetAssign(void **holder, void *target);
 
 extern
-bool TENPropertyNullOrEqualTarget(void *human, void *target);
+bool TENPropertyIsNullOrIsTarget(void *property, void *target);
 
 #endif /* defined(__HomeworkC__TENProperty__) */

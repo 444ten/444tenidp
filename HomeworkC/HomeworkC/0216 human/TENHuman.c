@@ -74,31 +74,31 @@ void __TENHumanDeallocate(TENHuman *human) {
 }
 
 TENString *TENHumanGetName(TENHuman *human) {
-    return TENPropertyNullOrEqualTarget(human, NULL) ? NULL : human->_name;
+    return TENPropertyIsNullOrIsTarget(human, NULL) ? NULL : human->_name;
 }
 
 TENHuman *TENHumanGetFather(TENHuman *human) {
-    return TENPropertyNullOrEqualTarget(human, NULL) ? NULL : human->_father;
+    return TENPropertyIsNullOrIsTarget(human, NULL) ? NULL : human->_father;
 }
 
 TENHuman *TENHumanGetMother(TENHuman *human) {
-    return TENPropertyNullOrEqualTarget(human, NULL) ? NULL : human->_mother;
+    return TENPropertyIsNullOrIsTarget(human, NULL) ? NULL : human->_mother;
 }
 
 TENHuman *TENHumanGetPartner(TENHuman *human) {
-    return TENPropertyNullOrEqualTarget(human, NULL) ? NULL : human->_partner;
+    return TENPropertyIsNullOrIsTarget(human, NULL) ? NULL : human->_partner;
 }
 
 TENChildArray *TENHumanGetChildArray(TENHuman *human) {
-    return TENPropertyNullOrEqualTarget(human, NULL) ? NULL : human->_childArray;
+    return TENPropertyIsNullOrIsTarget(human, NULL) ? NULL : human->_childArray;
 }
 
 uint8_t TENHumanGetAge(TENHuman *human) {
-    return TENPropertyNullOrEqualTarget(human, NULL) ? 0 : human->_age;
+    return TENPropertyIsNullOrIsTarget(human, NULL) ? 0 : human->_age;
 }
 
 TENGender TENHumanGetGender(TENHuman *human) {
-    return TENPropertyNullOrEqualTarget(human, NULL) ? 0 : human->_gender;
+    return TENPropertyIsNullOrIsTarget(human, NULL) ? 0 : human->_gender;
 }
 
 #pragma mark - Behavior
@@ -111,7 +111,7 @@ void TENHumanMarry(TENHuman *husband, TENHuman *wife) {
 }
 
 void TENHumanDivorce(TENHuman *human) {
-    if (TENPropertyNullOrEqualTarget(human, NULL)) {
+    if (TENPropertyIsNullOrIsTarget(human, NULL)) {
         return;
     }
 
@@ -120,11 +120,9 @@ void TENHumanDivorce(TENHuman *human) {
 }
 
 void TENHumanAddChild(TENHuman *parent, TENHuman *child) {
-    if (TENPropertyNullOrEqualTarget(parent, child)) {
-        return;
-    }
-    
-    if (TENPropertyNullOrEqualTarget(child, NULL)) {
+    if (TENPropertyIsNullOrIsTarget(parent, child) ||
+        TENPropertyIsNullOrIsTarget(child, NULL))
+    {
         return;
     }
     
@@ -141,14 +139,12 @@ void TENHumanAddChild(TENHuman *parent, TENHuman *child) {
 }
 
 void TENHumanRemoveChild(TENHuman *parent, TENHuman *child) {
-    if (TENPropertyNullOrEqualTarget(parent, child)) {
+    if (TENPropertyIsNullOrIsTarget(parent, child) ||
+        TENPropertyIsNullOrIsTarget(child, NULL))
+    {
         return;
     }
 
-    if (TENPropertyNullOrEqualTarget(child, NULL)) {
-        return;
-    }
-    
     TENChildArray *childArray = TENHumanGetChildArray(parent);
     if (NULL != childArray) {
         if (TENHumanGetFather(child) == parent) {
@@ -188,7 +184,7 @@ void TENHumanPrint(TENHuman *human) {
 #pragma mark Private Implementations
 
 void TENHumanSetName(TENHuman *human, TENString *name) {
-    if (TENPropertyNullOrEqualTarget(human, NULL)) {
+    if (TENPropertyIsNullOrIsTarget(human, NULL)) {
         return;
     }
 
@@ -196,7 +192,7 @@ void TENHumanSetName(TENHuman *human, TENString *name) {
 }
 
 void TENHumanSetFather(TENHuman *human, TENHuman *father) {
-    if (TENPropertyNullOrEqualTarget(human, father)) {
+    if (TENPropertyIsNullOrIsTarget(human, father)) {
         return;
     }
 
@@ -204,7 +200,7 @@ void TENHumanSetFather(TENHuman *human, TENHuman *father) {
 }
 
 void TENHumanSetMother(TENHuman *human, TENHuman *mother) {
-    if (TENPropertyNullOrEqualTarget(human, mother)) {
+    if (TENPropertyIsNullOrIsTarget(human, mother)) {
         return;
     }
 
@@ -212,7 +208,7 @@ void TENHumanSetMother(TENHuman *human, TENHuman *mother) {
 }
 
 void TENHumanSetPartner(TENHuman *human, TENHuman *partner) {
-    if (TENPropertyNullOrEqualTarget(human, partner)) {
+    if (TENPropertyIsNullOrIsTarget(human, partner)) {
         return;
     }
 
@@ -225,7 +221,7 @@ void TENHumanSetPartner(TENHuman *human, TENHuman *partner) {
 }
 
 void TENHumanSetChildArray(TENHuman *human, TENChildArray *childArray) {
-    if (TENPropertyNullOrEqualTarget(human, NULL)) {
+    if (TENPropertyIsNullOrIsTarget(human, NULL)) {
         return;
     }
 
@@ -233,7 +229,7 @@ void TENHumanSetChildArray(TENHuman *human, TENChildArray *childArray) {
 }
 
 void TENHumanSetAge(TENHuman *human, uint8_t age) {
-    if (TENPropertyNullOrEqualTarget(human, NULL)) {
+    if (TENPropertyIsNullOrIsTarget(human, NULL)) {
         return;
     }
     
@@ -241,7 +237,7 @@ void TENHumanSetAge(TENHuman *human, uint8_t age) {
 }
 
 void TENHumanSetGender(TENHuman *human, TENGender gender) {
-    if (TENPropertyNullOrEqualTarget(human, NULL)) {
+    if (TENPropertyIsNullOrIsTarget(human, NULL)) {
         return;
     }
     

@@ -13,6 +13,12 @@ static const uint8_t TENIndexNotFound = -1;
 static const uint8_t TENDefaultSize = 5;
 
 #pragma mark -
+#pragma mark Private Declarations
+
+static
+TENHuman **TENChildArrayGetArray(TENChildArray *childArray);
+
+#pragma mark -
 #pragma mark Public Implementations
 
 void __TENChildArrayDeallocate(TENChildArray *childArray) {
@@ -29,10 +35,6 @@ void TENChildArrayAlloc(TENChildArray *childArray) {
         childArray->_size = TENDefaultSize;
         childArray->_array = calloc(childArray->_size, sizeof(*childArray->_array));        
     }
-}
-
-TENHuman **TENChildArrayGetArray(TENChildArray *childArray) {
-    return (NULL != childArray) ? childArray->_array : NULL;
 }
 
 uint8_t TENChildArrayGetChildrenCount(TENChildArray *childArray) {
@@ -83,4 +85,11 @@ void TENChildArrayPrint(TENChildArray *childArray) {
         
         printf("\n");
     }
+}
+
+#pragma mark -
+#pragma mark Public Implementations
+
+TENHuman **TENChildArrayGetArray(TENChildArray *childArray) {
+    return (NULL != childArray) ? childArray->_array : NULL;
 }

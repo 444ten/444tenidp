@@ -9,6 +9,9 @@
 #include "TENProperty.h"
 #include "TENObject.h"
 
+#pragma mark -
+#pragma mark Public Implementations
+
 void TENPropertyHolderSetTargetRetain(void **holder, void *target) {
     if (*holder != target) {
         if (NULL != *holder) {
@@ -27,6 +30,6 @@ void TENPropertyHolderSetTargetAssign(void **holder, void *target) {
     *holder = target;
 }
 
-bool TENPropertyNullOrEqualTarget(void *human, void *target) {
-    return (NULL == human || human == target);
+bool TENPropertyIsNullOrIsTarget(void *property, void *target) {
+    return (NULL == property || property == target);
 }
