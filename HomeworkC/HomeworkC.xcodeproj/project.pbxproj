@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		76D77F5F1AA479830051EA25 /* TENChildArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 76D77F5D1AA479830051EA25 /* TENChildArray.c */; };
-		76DB85F41AAF59D30081B192 /* TENProperty.c in Sources */ = {isa = PBXBuildFile; fileRef = 76DB85F21AAF59D30081B192 /* TENProperty.c */; };
 		76DB85F81AB083EA0081B192 /* TENObjectTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 76DB85F61AB083EA0081B192 /* TENObjectTests.c */; };
+		76DB85FC1AB332840081B192 /* TENProperty.c in Sources */ = {isa = PBXBuildFile; fileRef = 76DB85FA1AB332840081B192 /* TENProperty.c */; };
+		76DB86001AB333400081B192 /* TENStringTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 76DB85FE1AB333400081B192 /* TENStringTests.c */; };
 		76F0A5551A9B959400F8412B /* TENOutputParent.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5511A9B959400F8412B /* TENOutputParent.c */; };
 		76F0A5561A9B959400F8412B /* TENOutputParentTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5531A9B959400F8412B /* TENOutputParentTest.c */; };
 		76F0A55B1A9B963B00F8412B /* TENOutputMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5571A9B963B00F8412B /* TENOutputMacros.c */; };
@@ -42,10 +43,12 @@
 /* Begin PBXFileReference section */
 		76D77F5D1AA479830051EA25 /* TENChildArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENChildArray.c; path = "0216 human/TENChildArray.c"; sourceTree = "<group>"; };
 		76D77F5E1AA479830051EA25 /* TENChildArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENChildArray.h; path = "0216 human/TENChildArray.h"; sourceTree = "<group>"; };
-		76DB85F21AAF59D30081B192 /* TENProperty.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENProperty.c; sourceTree = "<group>"; };
-		76DB85F31AAF59D30081B192 /* TENProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENProperty.h; sourceTree = "<group>"; };
 		76DB85F61AB083EA0081B192 /* TENObjectTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENObjectTests.c; path = "0216 human/Tests/TENObjectTests/TENObjectTests.c"; sourceTree = "<group>"; };
 		76DB85F71AB083EA0081B192 /* TENObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENObjectTests.h; path = "0216 human/Tests/TENObjectTests/TENObjectTests.h"; sourceTree = "<group>"; };
+		76DB85FA1AB332840081B192 /* TENProperty.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENProperty.c; path = "0216 human/TENProperty.c"; sourceTree = "<group>"; };
+		76DB85FB1AB332840081B192 /* TENProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENProperty.h; path = "0216 human/TENProperty.h"; sourceTree = "<group>"; };
+		76DB85FE1AB333400081B192 /* TENStringTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENStringTests.c; path = "0216 human/Tests/TENStringTests/TENStringTests.c"; sourceTree = "<group>"; };
+		76DB85FF1AB333400081B192 /* TENStringTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENStringTests.h; path = "0216 human/Tests/TENStringTests/TENStringTests.h"; sourceTree = "<group>"; };
 		76F0A5511A9B959400F8412B /* TENOutputParent.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENOutputParent.c; path = "0209 mamapapa/TENOutputParent.c"; sourceTree = "<group>"; };
 		76F0A5521A9B959400F8412B /* TENOutputParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENOutputParent.h; path = "0209 mamapapa/TENOutputParent.h"; sourceTree = "<group>"; };
 		76F0A5531A9B959400F8412B /* TENOutputParentTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENOutputParentTest.c; path = "0209 mamapapa/TENOutputParentTest.c"; sourceTree = "<group>"; };
@@ -92,10 +95,28 @@
 		76DB85F51AB0834F0081B192 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				76DB85F91AB332490081B192 /* TENObjectTests */,
+				76DB86011AB3334B0081B192 /* TENStringTests */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		76DB85F91AB332490081B192 /* TENObjectTests */ = {
+			isa = PBXGroup;
+			children = (
 				76DB85F71AB083EA0081B192 /* TENObjectTests.h */,
 				76DB85F61AB083EA0081B192 /* TENObjectTests.c */,
 			);
-			name = Tests;
+			name = TENObjectTests;
+			sourceTree = "<group>";
+		};
+		76DB86011AB3334B0081B192 /* TENStringTests */ = {
+			isa = PBXGroup;
+			children = (
+				76DB85FF1AB333400081B192 /* TENStringTests.h */,
+				76DB85FE1AB333400081B192 /* TENStringTests.c */,
+			);
+			name = TENStringTests;
 			sourceTree = "<group>";
 		};
 		76F255A01A8E2B9200135F2A = {
@@ -196,8 +217,8 @@
 				76F0A57E1AA0C47100F8412B /* TENObject.c */,
 				76D77F5E1AA479830051EA25 /* TENChildArray.h */,
 				76D77F5D1AA479830051EA25 /* TENChildArray.c */,
-				76DB85F31AAF59D30081B192 /* TENProperty.h */,
-				76DB85F21AAF59D30081B192 /* TENProperty.c */,
+				76DB85FA1AB332840081B192 /* TENProperty.c */,
+				76DB85FB1AB332840081B192 /* TENProperty.h */,
 				76DB85F51AB0834F0081B192 /* Tests */,
 			);
 			name = "0216 human";
@@ -259,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76DB85FC1AB332840081B192 /* TENProperty.c in Sources */,
 				76DB85F81AB083EA0081B192 /* TENObjectTests.c in Sources */,
 				76F0A5611A9B969100F8412B /* TENCharBit.c in Sources */,
 				76F0A55B1A9B963B00F8412B /* TENOutputMacros.c in Sources */,
@@ -272,11 +294,11 @@
 				76F0A5671A9B96F300F8412B /* TENStruct.c in Sources */,
 				76D77F5F1AA479830051EA25 /* TENChildArray.c in Sources */,
 				76F0A5801AA0C47100F8412B /* TENObject.c in Sources */,
-				76DB85F41AAF59D30081B192 /* TENProperty.c in Sources */,
 				76F0A56D1A9B973100F8412B /* TENValueBitOutput.c in Sources */,
 				76F0A57A1A9E482E00F8412B /* TENHuman.c in Sources */,
 				76F255D31A8E40A500135F2A /* main.c in Sources */,
 				76F0A5551A9B959400F8412B /* TENOutputParent.c in Sources */,
+				76DB86001AB333400081B192 /* TENStringTests.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

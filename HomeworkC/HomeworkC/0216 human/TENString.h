@@ -27,12 +27,9 @@ extern
 void __TENStringDeallocate(TENString *string);
 
 extern
-void TENStringSetData(TENString *string, char *newString);
+void TENStringSetData(TENString *string, char *data);
 
 extern
 char *TENStringGetData(TENString *string);
-
-extern
-void TENStringSetLength(TENString *string, uint64_t length);
 
 #endif /* defined(__HomeworkC__TENString__) */

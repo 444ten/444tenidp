@@ -40,20 +40,22 @@ void TENObjectCreateTest() {
 }
 
 void TENObjectBehaviorTest() {
-    //after retain NULL object, method should return NULL
+    //TENObject
+    //  after retaining NULL object
+    //      method should return NULL
     assert(NULL == TENObjectRetain(NULL));
     
     //TENObject
     //  after being created
     TENObject *object = TENObjectCreate(TENObject);
     
-    //      after retain object two times
+    //      after retaining object two times
     TENObjectRetain(TENObjectRetain(object));
     
-    //          objects reference count should be equal 3
+    //          objects reference count should equal 3
     assert(3 == TENObjectGetReferenceCount(object));
     
-    //              after release object
+    //              after releasing object
     TENObjectRelease(object);
     
     //                  objects reference count should equal 2

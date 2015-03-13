@@ -12,6 +12,12 @@
 #include "TENString.h"
 
 #pragma mark -
+#pragma mark Private Declarations
+
+static
+void TENStringSetLength(TENString *string, uint64_t length);
+
+#pragma mark -
 #pragma mark Public Implementations
 
 TENString *TENStringCreateWithData(char *data) {
@@ -28,18 +34,26 @@ void __TENStringDeallocate(TENString *string) {
 }
 
 void TENStringSetData(TENString *string, char *data) {
-    if (NULL != string && string->_data != data) {
+    if (NULL != string) {
         if (NULL != string->_data) {
             free(string->_data);
             string->_data = NULL;
+            string->_length = 0;
         }
         
         if (NULL != data) {
-            TENStringSetLength(string, strlen(data));
+            TENStringSetLength(string, strlen(data) + 1);
             strcpy(string->_data, data);
         }
     }
 }
+
+char *TENStringGetData(TENString *string) {
+    return (NULL != string) ? string->_data : NULL;
+}
+
+#pragma mark -
+#pragma mark Private Implementations
 
 void TENStringSetLength(TENString *string, uint64_t length) {
     if (string->_length != length) {
@@ -51,8 +65,4 @@ void TENStringSetLength(TENString *string, uint64_t length) {
         
         string->_length = length;
     }
-}
-
-char *TENStringGetData(TENString *string) {
-    return (NULL != string) ? string->_data : NULL;
 }
