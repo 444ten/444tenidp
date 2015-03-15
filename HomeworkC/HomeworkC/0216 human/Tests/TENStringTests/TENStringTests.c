@@ -25,7 +25,7 @@ void TENStringPerformTest() {
     //TENString
     //  after being created with name
     TENString *string = TENStringCreateWithData(name);
-    
+
     //      string length should equal 5;
     assert(5 == string->_length);
     

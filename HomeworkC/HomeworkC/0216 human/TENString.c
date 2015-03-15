@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
+#include <assert.h>
 #include <string.h>
 
 #include "TENProperty.h"
@@ -34,17 +35,17 @@ void __TENStringDeallocate(TENString *string) {
 }
 
 void TENStringSetData(TENString *string, char *data) {
-    if (NULL != string) {
-        if (NULL != string->_data) {
-            free(string->_data);
-            string->_data = NULL;
-            string->_length = 0;
-        }
+    assert(NULL != string);
+    
+    if (NULL == data) {
         
-        if (NULL != data) {
-            TENStringSetLength(string, strlen(data) + 1);
-            strcpy(string->_data, data);
-        }
+        TENStringSetLength(string, 0);
+    
+    } else {
+
+        TENStringSetLength(string, strlen(data) + 1);
+        strcpy(string->_data, data);
+        
     }
 }
 
@@ -56,13 +57,25 @@ char *TENStringGetData(TENString *string) {
 #pragma mark Private Implementations
 
 void TENStringSetLength(TENString *string, uint64_t length) {
-    if (string->_length != length) {
-        string->_data = realloc(string->_data, length * sizeof(*string->_data));
-        
-        if (string->_length < length) {
-            memset(string->_data + string->_length, 0, length - string->_length);
+    assert(NULL != string);
+
+    if (length == string->_length) {
+        return;
+    }
+    
+    string->_length = length;
+
+    if (0 == string->_length) {
+
+        if (NULL != string->_data) {
+            free(string->_data);
+            string->_data = NULL;
         }
         
-        string->_length = length;
+    } else {
+        
+        string->_data = realloc(string->_data, string->_length * sizeof(*string->_data));
+        assert(NULL != string->_data);
+        
     }
 }
