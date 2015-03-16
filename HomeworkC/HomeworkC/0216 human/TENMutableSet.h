@@ -30,7 +30,7 @@ extern
 void TENMutableSetAddObject(TENMutableSet *set, void *object);
 
 extern
-uint64_t TENMutableSetIndexOfObject(TENMutableSet *set, TENObject *object);
+uint64_t TENMutableSetIndexOfObject(TENMutableSet *set, void *object);
 
 extern
 uint64_t TENMutableSetGetSize(TENMutableSet *set);

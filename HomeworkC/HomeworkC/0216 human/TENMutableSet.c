@@ -53,7 +53,7 @@ void TENMutableSetAddObject(TENMutableSet *set, void *object) {
 }
 
 extern
-uint64_t TENMutableSetIndexOfObject(TENMutableSet *set, TENObject *object) {
+uint64_t TENMutableSetIndexOfObject(TENMutableSet *set, void *object) {
     if (NULL != set) {
         uint64_t index = 0;
         
@@ -139,21 +139,22 @@ void TENMutableSetAllocate(TENMutableSet *set) {
         TENMutableSetSetCapacity(set, 1);
         set->_array = calloc(TENMutableSetGetCapacity(set), sizeof(*set->_array));
         
-    } else {
+        return;
+    }
     
-        if (set->_size > set->_capacity) {
-            
-            set->_capacity *= 2;
-            set->_array = realloc(set->_array, set->_capacity * sizeof(*set->_array));
-            
-        }
+    if (set->_size > set->_capacity) {
+        
+        set->_capacity *= 2;
+        set->_array = realloc(set->_array, set->_capacity * sizeof(*set->_array));
+        
+        return;
+    }
+    
+    uint64_t tempCapacity = set->_capacity / 2;
+    
+    if (set->_size < tempCapacity) {
+        set->_capacity = tempCapacity;
+        
+        set->_array = realloc(set->_array, set->_capacity * sizeof(*set->_array));
     }
 }
-
-
-
-
-
-
-
-
