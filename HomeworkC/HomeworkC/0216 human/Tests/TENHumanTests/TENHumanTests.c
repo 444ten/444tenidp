@@ -94,8 +94,8 @@ void TENHumanPartnerTest() {
     
     TENHuman *adam = TENHumanMaleCreateWithName(adamName);
     TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
-    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
-    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
+//    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
+//    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
     
     TENObjectRelease(adamName);
     TENObjectRelease(evaName);

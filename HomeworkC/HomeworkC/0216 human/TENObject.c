@@ -12,7 +12,7 @@
 void *__TENObjectCreate(size_t objectSize, TENDeallocateCallback deallocateCallback) {
     TENObject *object = calloc(1, objectSize);
     
-    object->_refernceCount = 1;
+    object->_referenceCount = 1;
     object->_deallocateCallback = deallocateCallback;
     
     return object;
@@ -20,7 +20,7 @@ void *__TENObjectCreate(size_t objectSize, TENDeallocateCallback deallocateCallb
 
 void *TENObjectRetain(void *object) {
     if (NULL != object) {
-        ((TENObject *)object)->_refernceCount += 1;
+        ((TENObject *)object)->_referenceCount += 1;
     }
     
     return object;
@@ -30,15 +30,15 @@ void TENObjectRelease(void *voidObject) {
     if (NULL != voidObject) {
         TENObject *object = (TENObject *)voidObject;
         
-        object->_refernceCount -= 1;
-        if (0 == object->_refernceCount) {
+        object->_referenceCount -= 1;
+        if (0 == object->_referenceCount) {
             object->_deallocateCallback(object);
         }
     }
 }
 
 uint64_t TENObjectGetReferenceCount(void *object) {
-    return (NULL == object) ? 0 : ((TENObject *)object)->_refernceCount;
+    return (NULL == object) ? 0 : ((TENObject *)object)->_referenceCount;
 }
 
 void __TENObjectDeallocate(void *object) {

@@ -14,7 +14,7 @@
 typedef void(*TENDeallocateCallback)(void *);
 
 struct TENObject {
-    uint64_t _refernceCount;
+    uint64_t _referenceCount;
     TENDeallocateCallback _deallocateCallback;
 };
 typedef struct TENObject TENObject;

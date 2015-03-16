@@ -1,0 +1,164 @@
+//
+//  TENMutableSetTests.c
+//  HomeworkC
+//
+//  Created by 444ten on 3/15/15.
+//  Copyright (c) 2015 444ten. All rights reserved.
+//
+
+#include <assert.h>
+
+#include "TENMutableSet.h"
+#include "TENMutableSetTests.h"
+#include "TENObject.h"
+
+#pragma mark -
+#pragma mark Private Declarations
+
+static
+void TENMutableSetAllocateTest();
+
+static
+void TENMutableSetBehaviorTest();
+
+#pragma mark -
+#pragma mark Public Implementations
+
+void TENMutableSetPerformTests() {
+ 
+//    TENMutableSetAllocateTest();
+//    TENMutableSetBehaviorTest();
+
+}
+
+
+#pragma mark -
+#pragma mark Private Implementations
+
+void TENMutableSetAllocateTest() {
+    TENObject *obj1 = TENObjectCreate(TENObject);
+    TENObject *obj2 = TENObjectCreate(TENObject);
+    TENObject *obj3 = TENObjectCreate(TENObject);
+    TENObject *obj4 = TENObjectCreate(TENObject);
+    TENObject *obj5 = TENObjectCreate(TENObject);
+    
+    TENMutableSet *set = TENObjectCreate(TENMutableSet);
+    assert(0 == set->_capacity);
+    assert(0 == set->_size);
+    
+    TENMutableSetAddObject(set, obj1);
+    assert(1 == set->_capacity);
+    assert(1 == set->_size);
+    
+    TENMutableSetAddObject(set, obj2);
+    assert(2 == set->_capacity);
+    assert(2 == set->_size);
+    
+    TENMutableSetAddObject(set, obj3);
+    assert(4 == set->_capacity);
+    assert(3 == set->_size);
+    
+    TENMutableSetAddObject(set, obj4);
+    assert(4 == set->_capacity);
+    assert(4 == set->_size);
+
+    TENMutableSetAddObject(set, obj5);
+    assert(8 == set->_capacity);
+    assert(5 == set->_size);
+    
+    
+    
+    TENObjectRelease(obj1);
+    TENObjectRelease(obj2);
+    TENObjectRelease(obj3);
+    TENObjectRelease(obj4);
+    TENObjectRelease(obj5);
+
+    TENObjectRelease(set);
+
+}
+
+void TENMutableSetBehaviorTest() {
+    TENObject *obj1 = TENObjectCreate(TENObject);
+    TENObject *obj2 = TENObjectCreate(TENObject);
+    TENObject *obj3 = TENObjectCreate(TENObject);
+
+    
+    //TENMutableSet
+    //  after being created
+    TENMutableSet *set = TENObjectCreate(TENMutableSet);
+    assert(TENIndexNotFound == TENMutableSetIndexOfObject(set, NULL));
+    TENMutableSetRemoveAllObjects(set);
+    
+    //      size should equal 0
+    assert(0 == set->_size);
+    
+    //      capacity should equal 0
+    assert(0 == set->_capacity);
+    
+    //          after adding object
+    TENMutableSetAddObject(set, obj1);
+    TENMutableSetAddObject(set, obj1);
+    
+    //              size should equal 1
+    assert(1 == set->_size);
+    
+    //              capacity should equal 5
+    assert(1 == set->_capacity);
+    
+    //              object reference count equal 2
+    assert(2 == obj1->_referenceCount);
+    
+    //              set->_array[0] = object
+    assert(set->_array[0] == obj1);
+    
+    TENMutableSetAddObject(set, obj2);
+    assert(set->_array[1] == obj2);
+    
+    assert(0 == TENMutableSetIndexOfObject(set, obj1));
+    assert(1 == TENMutableSetIndexOfObject(set, obj2));
+    
+    assert(TENIndexNotFound == TENMutableSetIndexOfObject(set, obj3));
+    
+    assert(TENIndexNotFound == TENMutableSetIndexOfObject(set, NULL));
+    
+    
+    TENMutableSetAddObject(set, obj3);
+    TENMutableSetRemoveObject(set, obj2);
+    
+    assert(set->_array[0] == obj1);
+    assert(set->_array[1] == obj3);
+    assert(2 == set->_size);
+    assert(1 == obj2->_referenceCount);
+    
+    
+    
+    TENMutableSetRemoveAllObjects(set);
+    assert(0 == set->_size);
+    assert(4 == set->_capacity);
+    assert(set->_array[0] == NULL);
+    assert(set->_array[1] == NULL);
+    
+    assert(TENIndexNotFound == TENMutableSetIndexOfObject(set, NULL));
+    
+    assert(1 == obj1->_referenceCount);
+    assert(1 == obj3->_referenceCount);
+    
+    TENObjectRelease(obj1);
+    TENObjectRelease(obj2);
+    TENObjectRelease(obj3);
+    
+    TENObjectRelease(set);
+    
+}
+    
+    //add object
+    //add same object
+    //add NULL object
+    //remove included object
+    //remove not-included object
+    //remove all objects
+    //index of object
+    //get size
+    
+
