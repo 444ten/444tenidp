@@ -22,6 +22,9 @@ static
 void TENMutableSetAllocateObjectTest();
 
 static
+void TENMutableSetStringTest();
+
+static
 void TENMutableSetBehaviorTest();
 
 static
@@ -49,6 +52,8 @@ void TENMutableSetAllocateObjectTest() {
     TENObject *obj7 = TENObjectCreate(TENObject);
     TENObject *obj8 = TENObjectCreate(TENObject);
     TENObject *obj9 = TENObjectCreate(TENObject);
+    TENObject *obj10 = TENObjectCreate(TENObject);
+    TENObject *obj11 = TENObjectCreate(TENObject);
     
     TENMutableSet *set = TENObjectCreate(TENMutableSet);
     TENMutableSetAddObject(set, obj1);
@@ -57,71 +62,68 @@ void TENMutableSetAllocateObjectTest() {
     TENMutableSetAddObject(set, obj4);
     TENMutableSetAddObject(set, obj5);
     TENMutableSetAddObject(set, obj6);
-//    TENMutableSetAddObject(set, obj7);
-//    TENMutableSetAddObject(set, obj8);
-//    TENMutableSetAddObject(set, obj9);
+    TENMutableSetAddObject(set, obj7);
+    TENMutableSetAddObject(set, obj8);
+    TENMutableSetAddObject(set, obj9);
+    TENMutableSetAddObject(set, obj10);
+    TENMutableSetAddObject(set, obj11);
     
-    TENObjectRelease(obj1);
-    TENObjectRelease(obj2);
-    TENObjectRelease(obj3);
-    TENObjectRelease(obj4);
-    TENObjectRelease(obj5);
-    TENObjectRelease(obj6);
-    TENObjectRelease(obj7);
-    TENObjectRelease(obj8);
-    TENObjectRelease(obj9);
-    
-    TENObjectRelease(set);
+//    TENObjectRelease(obj1);
+//    TENObjectRelease(obj2);
+//    TENObjectRelease(obj3);
+//    
+//    TENObjectRelease(set);
 }
 
-#define TENMutableSetObjectCreateAndAdd(value, capacity)\
-    TENString *obj##value = TENObjectCreate(TENString);\
-    TENMutableSetAddObject(set, obj##value); \
-    assert(capacity == set->_capacity);\
-    assert(value + 1 == set->_size);
+#define TENMutableSetObjectCreateAndAdd(value)\
+    objArray[value] = TENObjectCreate(TENString); \
+    TENMutableSetAddObject(set, objArray[value]);
+//    assert(capacityArray[value] == set->_capacity);\
+//    assert(value + 1 == set->_size);
 
 void TENMutableSetAllocateTest() {
+    int size = 9;
+    TENString *objArray[size];
+    
     TENMutableSet *set = TENObjectCreate(TENMutableSet);
     assert(0 == set->_capacity);
     assert(0 == set->_size);
 
-    uint64_t capacityArray[9] = {1, 2, 4, 4, 8, 8, 8, 8, 16};
+//    uint64_t capacityArray[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+//    uint64_t capacityArray[9] = {20, 20, 20, 20, 20, 20, 20, 20, 20};
     
-//    for (uint64_t i = 0; i < 9; i++) {
-//        TENMutableSetObjectCreateAndAdd(i, capacityArray[i]);
-//    }
+    for (uint64_t i = 0; i < size; i++) {
+        TENMutableSetObjectCreateAndAdd(i);
+    }
     
-    int i = 0;
-    TENMutableSetObjectCreateAndAdd(0, capacityArray[i])
-    
-    TENMutableSetRemoveLastObject(set); // size 8
-    assert(16 == set->_capacity);
-    
-    TENMutableSetRemoveLastObject(set); // size 7
-    assert(8 == set->_capacity);
-    
-    TENMutableSetRemoveLastObject(set); // size 6
-    assert(8 == set->_capacity);
-
-    TENMutableSetRemoveLastObject(set); // size 5
-    assert(8 == set->_capacity);
-    
-    TENMutableSetRemoveLastObject(set); // size 4
-    assert(8 == set->_capacity);
-    
-    TENMutableSetRemoveLastObject(set); // size 3
-    assert(4 == set->_capacity);
-    
-    TENMutableSetRemoveLastObject(set); // size 2
-    assert(4 == set->_capacity);
-    
-    TENMutableSetRemoveLastObject(set); // size 1
-    assert(2 == set->_capacity);
-    
-    TENMutableSetRemoveLastObject(set); // size 0
-    assert(1 == set->_capacity);
-    
-    TENObjectRelease(obj0);
+//    TENMutableSetRemoveLastObject(set); // size 8
+//    assert(16 == set->_capacity);
+//
+//    TENMutableSetRemoveLastObject(set); // size 7
+//    assert(8 == set->_capacity);
+//    
+//    TENMutableSetRemoveLastObject(set); // size 6
+//    assert(8 == set->_capacity);
+//
+//    TENMutableSetRemoveLastObject(set); // size 5
+//    assert(8 == set->_capacity);
+//    
+//    TENMutableSetRemoveLastObject(set); // size 4
+//    assert(8 == set->_capacity);
+//    
+//    TENMutableSetRemoveLastObject(set); // size 3
+//    assert(4 == set->_capacity);
+//    
+//    TENMutableSetRemoveLastObject(set); // size 2
+//    assert(4 == set->_capacity);
+//    
+//    TENMutableSetRemoveLastObject(set); // size 1
+//    assert(2 == set->_capacity);
+//    
+//    TENMutableSetRemoveLastObject(set); // size 0
+//    assert(1 == set->_capacity);
+//    
+//    TENObjectRelease(objArray[0]);
 //    TENObjectRelease(obj1);
 //    TENObjectRelease(obj2);
 //    TENObjectRelease(obj3);
@@ -131,7 +133,7 @@ void TENMutableSetAllocateTest() {
 //    TENObjectRelease(obj7);
 //    TENObjectRelease(obj8);
 
-    TENObjectRelease(set);
+//    TENObjectRelease(set);
 
 }
 

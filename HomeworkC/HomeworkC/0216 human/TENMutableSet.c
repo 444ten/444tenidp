@@ -15,8 +15,6 @@
 #pragma mark -
 #pragma mark Private Declarations
 
-static
-void TENMutableSetAllocate(TENMutableSet *set);
 
 static
 void TENMutableSetSetObjectAtIndex(TENMutableSet *set, TENObject *object, uint64_t index);
@@ -30,6 +28,11 @@ void TENMutableSetSetCapacity(TENMutableSet *set, uint64_t capacity);
 static
 uint64_t TENMutableSetGetCapacity(TENMutableSet *set);
 
+static
+void TENMutableSetChangeCapacityIfNeeded(TENMutableSet *set);
+
+static
+uint64_t TENMutableSetRequiredCapacity(TENMutableSet *set);
 
 #pragma mark -
 #pragma mark Public Implementations
@@ -46,6 +49,7 @@ void TENMutableSetAddObject(TENMutableSet *set, void *object) {
     {
         uint64_t index = TENMutableSetGetSize(set);
         
+        TENMutableSetChangeCapacityIfNeeded(set);
         TENMutableSetSetSize(set, index + 1);
         TENMutableSetSetObjectAtIndex(set, object, index);
     }
@@ -78,6 +82,7 @@ void TENMutableSetRemoveLastObject(TENMutableSet *set) {
         if (size > 0) {
             TENMutableSetSetSize(set, size - 1);
             TENMutableSetSetObjectAtIndex(set, NULL, size - 1);
+            TENMutableSetChangeCapacityIfNeeded(set);
         }
     }
 }
@@ -111,9 +116,6 @@ void TENMutableSetRemoveAllObjects(TENMutableSet *set) {
 
 void TENMutableSetSetObjectAtIndex(TENMutableSet *set, TENObject *object, uint64_t index) {
     assert(NULL != set);
-    TENMutableSetAllocate(set);
-    
-    assert(index < TENMutableSetGetCapacity(set));
     TENPropertyHolderSetTargetRetain(&set->_array[index], object);
 }
 
@@ -124,37 +126,37 @@ void TENMutableSetSetSize(TENMutableSet *set, uint64_t size) {
 
 void TENMutableSetSetCapacity(TENMutableSet *set, uint64_t capacity) {
     assert(NULL != set);
-    set->_capacity = capacity;
+    
+    if (set->_capacity != capacity) {
+        set->_capacity = capacity;
+//        set->_array = calloc(set->_capacity, sizeof(*set->_array));
+        
+        set->_array = realloc(set->_array, set->_capacity * sizeof(*set->_array));
+    }
 }
 
 uint64_t TENMutableSetGetCapacity(TENMutableSet *set) {
     return (NULL == set) ? 0 : set->_capacity;
 }
 
-void TENMutableSetAllocate(TENMutableSet *set) {
-    assert(NULL != set);
-    
-    if (NULL == set->_array) {
-        
-        TENMutableSetSetCapacity(set, 1);
-        set->_array = calloc(TENMutableSetGetCapacity(set), sizeof(*set->_array));
-        
-        return;
-    }
-    
-    if (set->_size > set->_capacity) {
-        
-        set->_capacity *= 2;
-        set->_array = realloc(set->_array, set->_capacity * sizeof(*set->_array));
-        
-        return;
-    }
-    
-    uint64_t tempCapacity = set->_capacity / 2;
-    
-    if (set->_size < tempCapacity) {
-        set->_capacity = tempCapacity;
-        
-        set->_array = realloc(set->_array, set->_capacity * sizeof(*set->_array));
-    }
+static
+void TENMutableSetChangeCapacityIfNeeded(TENMutableSet *set) {
+    TENMutableSetSetCapacity(set, TENMutableSetRequiredCapacity(set));
+}
+
+static
+uint64_t TENMutableSetRequiredCapacity(TENMutableSet *set) {
+//    assert(NULL != set);
+//    
+//    uint64_t capacity = set->_capacity;
+//    
+//    if (set->_size == set->_capacity) {
+//        capacity += 1;
+//    } else {
+//        capacity -= 1;
+//    }
+//    
+//    return capacity;
+    return 20;
+
 }
