@@ -19,10 +19,8 @@
 #pragma mark Private Declarations
 
 static
-void TENMutableSetAllocateObjectTest();
+void TENMutableSetAllocateTest();
 
-static
-void TENMutableSetStringTest();
 
 static
 void TENMutableSetBehaviorTest();
@@ -30,11 +28,14 @@ void TENMutableSetBehaviorTest();
 static
 void TENMutableSetAllocateTest();
 
+static
+void TENObjectArrayItemCreateAndAddToSet(TENObject **objectArray, int index,  TENMutableSet *set);
+
+
 #pragma mark -
 #pragma mark Public Implementations
 
 void TENMutableSetPerformTests() {
-//    TENMutableSetAllocateObjectTest();
     TENMutableSetAllocateTest();
 //    TENMutableSetBehaviorTest();
 }
@@ -42,48 +43,16 @@ void TENMutableSetPerformTests() {
 #pragma mark -
 #pragma mark Private Implementations
 
-void TENMutableSetAllocateObjectTest() {
-    TENObject *obj1 = TENObjectCreate(TENObject);
-    TENObject *obj2 = TENObjectCreate(TENObject);
-    TENObject *obj3 = TENObjectCreate(TENObject);
-    TENObject *obj4 = TENObjectCreate(TENObject);
-    TENObject *obj5 = TENObjectCreate(TENObject);
-    TENObject *obj6 = TENObjectCreate(TENObject);
-    TENObject *obj7 = TENObjectCreate(TENObject);
-    TENObject *obj8 = TENObjectCreate(TENObject);
-    TENObject *obj9 = TENObjectCreate(TENObject);
-    TENObject *obj10 = TENObjectCreate(TENObject);
-    TENObject *obj11 = TENObjectCreate(TENObject);
+void TENObjectArrayItemCreateAndAddToSet(TENObject **objectArray, int index,  TENMutableSet *set) {
+    objectArray[index] = TENObjectCreate(TENObject);
+    TENMutableSetAddObject(set, objectArray[index]);
     
-    TENMutableSet *set = TENObjectCreate(TENMutableSet);
-    TENMutableSetAddObject(set, obj1);
-    TENMutableSetAddObject(set, obj2);
-    TENMutableSetAddObject(set, obj3);
-    TENMutableSetAddObject(set, obj4);
-    TENMutableSetAddObject(set, obj5);
-    TENMutableSetAddObject(set, obj6);
-    TENMutableSetAddObject(set, obj7);
-    TENMutableSetAddObject(set, obj8);
-    TENMutableSetAddObject(set, obj9);
-    TENMutableSetAddObject(set, obj10);
-    TENMutableSetAddObject(set, obj11);
-    
-//    TENObjectRelease(obj1);
-//    TENObjectRelease(obj2);
-//    TENObjectRelease(obj3);
-//    
-//    TENObjectRelease(set);
+    assert((index + 1) == TENMutableSetGetSize(set));
 }
 
-#define TENMutableSetObjectCreateAndAdd(value)\
-    objArray[value] = TENObjectCreate(TENString); \
-    TENMutableSetAddObject(set, objArray[value]);
-//    assert(capacityArray[value] == set->_capacity);\
-//    assert(value + 1 == set->_size);
-
 void TENMutableSetAllocateTest() {
-    int size = 9;
-    TENString *objArray[size];
+    const int size = 9;
+    TENObject *objectArray[size];
     
     TENMutableSet *set = TENObjectCreate(TENMutableSet);
     assert(0 == set->_capacity);
@@ -92,8 +61,9 @@ void TENMutableSetAllocateTest() {
 //    uint64_t capacityArray[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 //    uint64_t capacityArray[9] = {20, 20, 20, 20, 20, 20, 20, 20, 20};
     
-    for (uint64_t i = 0; i < size; i++) {
-        TENMutableSetObjectCreateAndAdd(i);
+    for (int i = 0; i < size; i++) {
+        TENObjectArrayItemCreateAndAddToSet(objectArray, i, set);
+//        TENMutableSetObjectCreateAndAdd(i);
     }
     
 //    TENMutableSetRemoveLastObject(set); // size 8
@@ -133,7 +103,7 @@ void TENMutableSetAllocateTest() {
 //    TENObjectRelease(obj7);
 //    TENObjectRelease(obj8);
 
-//    TENObjectRelease(set);
+    TENObjectRelease(set);
 
 }
 
