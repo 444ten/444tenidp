@@ -7,6 +7,7 @@
 //
 
 #include <assert.h>
+#include <math.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -132,20 +133,14 @@ void TENMutableSetSetCapacity(TENMutableSet *set, uint64_t capacity) {
     }
 }
 
-static
 void TENMutableSetChangeCapacityIfNeeded(TENMutableSet *set) {
     TENMutableSetSetCapacity(set, TENMutableSetRequiredCapacity(set));
 }
 
-static
 uint64_t TENMutableSetRequiredCapacity(TENMutableSet *set) {
     assert(NULL != set);
     
     uint64_t capacity =  set->_capacity;
-    
-    if (0 == capacity) {
-        return 1;
-    }
     
     if (set->_count == capacity) {
         capacity *= 2;
@@ -155,5 +150,5 @@ uint64_t TENMutableSetRequiredCapacity(TENMutableSet *set) {
         capacity /= 2;
     }
     
-    return capacity;
+    return fmax(capacity, 1);
 }
