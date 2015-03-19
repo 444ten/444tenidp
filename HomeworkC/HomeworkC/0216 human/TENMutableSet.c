@@ -45,6 +45,10 @@ void __TENMutableSetDeallocate(TENMutableSet *set) {
     __TENObjectDeallocate(set);
 }
 
+TENObject *TENMutableSetGetObjectAtIndex(TENMutableSet *set, uint64_t index) {
+    return (NULL != set && index < set->_count) ? set->_array[index] : NULL;
+}
+
 void TENMutableSetAddObject(TENMutableSet *set, TENObject *object) {
     if (NULL != set &&
         TENIndexNotFound == TENMutableSetIndexOfObject(set, object))

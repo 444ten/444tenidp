@@ -110,7 +110,7 @@ void TENMutableSetRemoveObjectTest() {
     assert(0 == set->_count);
     
     //                  set->-array[0] should equal NULL
-    assert(NULL == set->_array[0]);
+    assert(NULL == TENMutableSetGetObjectAtIndex(set, 0));
     
     //      after adding four object
     TENMutableSetAddObject(set, object0);
@@ -138,10 +138,10 @@ void TENMutableSetRemoveObjectTest() {
     assert(2 == set->_count);
     
     //                  set->-array[1] should equal object3
-    assert(object3 == set->_array[1]);
+    assert(object3 == TENMutableSetGetObjectAtIndex(set, 1));
     
     //                  set->-array[2] should equal NULL
-    assert(NULL == set->_array[2]);
+    assert(NULL == TENMutableSetGetObjectAtIndex(set, 2));
     
     //                      after removing all object
     TENMutableSetRemoveAllObjects(set);
@@ -150,7 +150,7 @@ void TENMutableSetRemoveObjectTest() {
     assert(0 == set->_count);
     
     //                          set->-array[0] should equal NULL
-    assert(NULL == set->_array[0]);
+    assert(NULL == TENMutableSetGetObjectAtIndex(set, 0));
     
     //releasing objects
     TENObjectRelease(object0);

@@ -28,6 +28,9 @@ extern
 void __TENMutableSetDeallocate(TENMutableSet *set);
 
 extern
+TENObject *TENMutableSetGetObjectAtIndex(TENMutableSet *set, uint64_t index);
+
+extern
 void TENMutableSetAddObject(TENMutableSet *set, TENObject *object);
 
 extern
