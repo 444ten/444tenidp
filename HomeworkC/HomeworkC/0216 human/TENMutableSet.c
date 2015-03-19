@@ -8,6 +8,7 @@
 
 #include <assert.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "TENMutableSet.h"
 #include "TENProperty.h"
@@ -128,10 +129,16 @@ void TENMutableSetSetCapacity(TENMutableSet *set, uint64_t capacity) {
     assert(NULL != set);
     
     if (set->_capacity != capacity) {
-        set->_capacity = capacity;
-//        set->_array = calloc(set->_capacity, sizeof(*set->_array));
+        set->_array = realloc(set->_array, capacity * sizeof(*set->_array));
         
-        set->_array = realloc(set->_array, set->_capacity * sizeof(*set->_array));
+        if (capacity > set->_capacity) {
+            void *startPointer = set->_array + set->_capacity;
+            size_t numberOfBytes = (capacity - set->_capacity) * sizeof(*set->_array);
+            
+            memset(startPointer, 0, numberOfBytes);
+        }
+        
+        set->_capacity = capacity;
     }
 }
 
