@@ -22,13 +22,7 @@ static
 void TENMutableSetSetObjectAtIndex(TENMutableSet *set, TENObject *object, uint64_t index);
 
 static
-void TENMutableSetSetCount(TENMutableSet *set, uint64_t count);
-
-static
 void TENMutableSetSetCapacity(TENMutableSet *set, uint64_t capacity);
-
-static
-uint64_t TENMutableSetGetCapacity(TENMutableSet *set);
 
 static
 void TENMutableSetChangeCapacityIfNeeded(TENMutableSet *set);
@@ -51,23 +45,19 @@ TENObject *TENMutableSetGetObjectAtIndex(TENMutableSet *set, uint64_t index) {
 
 void TENMutableSetAddObject(TENMutableSet *set, TENObject *object) {
     if (NULL != set &&
+        NULL != object &&
         TENIndexNotFound == TENMutableSetIndexOfObject(set, object))
     {
-        uint64_t index = TENMutableSetGetCount(set);
-        
         TENMutableSetChangeCapacityIfNeeded(set);
-        TENMutableSetSetCount(set, index + 1);
-        TENMutableSetSetObjectAtIndex(set, object, index);
+        TENMutableSetSetObjectAtIndex(set, object, set->_count);
+        set->_count += 1;
     }
-    
 }
 
 extern
 uint64_t TENMutableSetIndexOfObject(TENMutableSet *set, TENObject *object) {
     if (NULL != set) {
-        uint64_t index = 0;
-        
-        for (; index < TENMutableSetGetCount(set); index++) {
+        for (uint64_t index = 0; index < set->_count; index++) {
             if (set->_array[index] == object) {
                 return index;
             }
@@ -125,11 +115,6 @@ void TENMutableSetSetObjectAtIndex(TENMutableSet *set, TENObject *object, uint64
     TENPropertyHolderSetTargetRetain((void **)&set->_array[index], object);
 }
 
-void TENMutableSetSetCount(TENMutableSet *set, uint64_t count) {
-    assert(NULL != set);
-    set->_count = count;
-}
-
 void TENMutableSetSetCapacity(TENMutableSet *set, uint64_t capacity) {
     assert(NULL != set);
     
@@ -147,10 +132,6 @@ void TENMutableSetSetCapacity(TENMutableSet *set, uint64_t capacity) {
     }
 }
 
-uint64_t TENMutableSetGetCapacity(TENMutableSet *set) {
-    return (NULL == set) ? 0 : set->_capacity;
-}
-
 static
 void TENMutableSetChangeCapacityIfNeeded(TENMutableSet *set) {
     TENMutableSetSetCapacity(set, TENMutableSetRequiredCapacity(set));
@@ -160,7 +141,7 @@ static
 uint64_t TENMutableSetRequiredCapacity(TENMutableSet *set) {
     assert(NULL != set);
     
-    uint64_t capacity =  TENMutableSetGetCapacity(set);
+    uint64_t capacity =  set->_capacity;
     
     if (0 == capacity) {
         return 1;
@@ -170,7 +151,7 @@ uint64_t TENMutableSetRequiredCapacity(TENMutableSet *set) {
         capacity *= 2;
     }
     
-    if (set->_count < (capacity / 2)) {
+    if (set->_count < capacity / 2) {
         capacity /= 2;
     }
     
