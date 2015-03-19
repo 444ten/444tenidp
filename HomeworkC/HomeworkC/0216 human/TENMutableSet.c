@@ -77,31 +77,31 @@ uint64_t TENMutableSetGetCount(TENMutableSet *set) {
     return (NULL == set) ? 0 : set->_count;
 }
 
+void TENMutableSetRemoveObjectAtIndex(TENMutableSet *set, uint64_t index) {
+    if (NULL != set && index < set->_count) {
+        TENMutableSetSetObjectAtIndex(set, NULL, index);
+
+        set->_count -= 1;
+        
+        for (; index < set->_count; index++) {
+            set->_array[index] = set->_array[index + 1];
+        }
+        
+        set->_array[set->_count] = NULL;
+        
+        TENMutableSetChangeCapacityIfNeeded(set);
+    }
+}
+
 void TENMutableSetRemoveLastObject(TENMutableSet *set) {
     if (NULL != set) {
-        uint64_t count = TENMutableSetGetCount(set);
-        
-        if (count > 0) {
-            TENMutableSetSetCount(set, count - 1);
-            TENMutableSetSetObjectAtIndex(set, NULL, count - 1);
-            TENMutableSetChangeCapacityIfNeeded(set);
-        }
+        TENMutableSetRemoveObjectAtIndex(set, set->_count - 1);
     }
 }
 
 void TENMutableSetRemoveObject(TENMutableSet *set, TENObject *object) {
     if (NULL != set) {
-        uint64_t index = TENMutableSetIndexOfObject(set, object);
-        
-        if (TENIndexNotFound != index) {
-            TENMutableSetSetObjectAtIndex(set, NULL, index);
-            
-            for (; index < TENMutableSetGetCount(set); index++) {
-                set->_array[index] = set->_array[index + 1];
-            }
-            
-            TENMutableSetRemoveLastObject(set);
-        }
+        TENMutableSetRemoveObjectAtIndex(set, TENMutableSetIndexOfObject(set, object));
     }
 }
 
@@ -156,12 +156,18 @@ static
 uint64_t TENMutableSetRequiredCapacity(TENMutableSet *set) {
     assert(NULL != set);
     
-    uint64_t capacity = set->_capacity;
+    uint64_t capacity =  TENMutableSetGetCapacity(set);
     
-    if (set->_count == set->_capacity) {
-        capacity += 1;
-    } else {
-        capacity -= 1;
+    if (0 == capacity) {
+        return 1;
+    }
+    
+    if (set->_count == capacity) {
+        capacity *= 2;
+    }
+    
+    if (set->_count < (capacity / 2)) {
+        capacity /= 2;
     }
     
     return capacity;

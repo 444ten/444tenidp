@@ -37,6 +37,9 @@ extern
 uint64_t TENMutableSetGetCount(TENMutableSet *set);
 
 extern
+void TENMutableSetRemoveObjectAtIndex(TENMutableSet *set, uint64_t index);
+
+extern
 void TENMutableSetRemoveLastObject(TENMutableSet *set);
 
 extern

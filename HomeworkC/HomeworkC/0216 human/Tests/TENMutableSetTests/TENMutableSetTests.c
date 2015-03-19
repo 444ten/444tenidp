@@ -19,16 +19,20 @@
 #pragma mark Private Declarations
 
 static
-void TENMutableSetBehaviorTest();
+void TENMutableSetAllocateTest();
 
 static
-void TENMutableSetAllocateTest();
+void TENMutableSetRemoveObjectTest();
+
+static
+void TENMutableSetBehaviorTest();
 
 #pragma mark -
 #pragma mark Public Implementations
 
 void TENMutableSetPerformTests() {
-    TENMutableSetAllocateTest();
+//    TENMutableSetAllocateTest();
+    TENMutableSetRemoveObjectTest();
 //    TENMutableSetBehaviorTest();
 }
 
@@ -38,10 +42,8 @@ void TENMutableSetPerformTests() {
 void TENMutableSetAllocateTest() {
     const int size = 9;
     TENObject *objectArray[size];
-    uint64_t capacityAddArray[size] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-//    uint64_t capacityAddArray[size] = {20, 20, 20, 20, 20, 20, 20, 20, 20};
-    uint64_t capacityRemoveArray[size] = {8, 7, 6, 5, 4, 3, 2, 1, 0};
-//    uint64_t capacityRemoveArray[size] = {20, 20, 20, 20, 20, 20, 20, 20, 20};
+    uint64_t capacityAddArray[size] = {1, 2, 4, 4, 8, 8, 8, 8, 16};
+    uint64_t capacityRemoveArray[size] = {16, 8, 8, 8, 8, 4, 4, 2, 1};
 
     //TENMutableSet
     //  after being created
@@ -74,7 +76,7 @@ void TENMutableSetAllocateTest() {
         assert((size - 1 - i) == set->_count);
     }
     
-    // release objects
+    //releasing objects
     for (int i = 0; i < size; i++) {
         TENObjectRelease(objectArray[i]);
     }
@@ -82,12 +84,86 @@ void TENMutableSetAllocateTest() {
     TENObjectRelease(set);
 }
 
+void TENMutableSetRemoveObjectTest() {
+    TENObject *object0 = TENObjectCreate(TENObject);
+    TENObject *object1 = TENObjectCreate(TENObject);
+    TENObject *object2 = TENObjectCreate(TENObject);
+    TENObject *object3 = TENObjectCreate(TENObject);
+    
+    //TENMutableSet
+    //  after being created
+    TENMutableSet *set = TENObjectCreate(TENMutableSet);
+    
+    //      after adding object0
+    TENMutableSetAddObject(set, object0);
+    
+    //          count should equal 1
+    assert(1 == set->_count);
+    
+    //          set->-array[0] should equal object0
+    assert(object0 == set->_array[0]);
+    
+    //              after removing last object
+    TENMutableSetRemoveLastObject(set);
+    
+    //                  count should equal 0
+    assert(0 == set->_count);
+    
+    //                  set->-array[0] should equal NULL
+    assert(NULL == set->_array[0]);
+    
+    //      after adding four object
+    TENMutableSetAddObject(set, object0);
+    TENMutableSetAddObject(set, object1);
+    TENMutableSetAddObject(set, object2);
+    TENMutableSetAddObject(set, object3);
+    
+    //          count should equal 4
+    assert(4 == set->_count);
+    
+    //              after removing object2 twice
+    TENMutableSetRemoveObject(set, object2);
+    TENMutableSetRemoveObject(set, object2);
+    
+    //              after removing object at index 5
+    TENMutableSetRemoveObjectAtIndex(set, 5);
+    
+    //                  count should equal 3
+    assert(3 == set->_count);
+    
+    //              after removing object at index 1
+    TENMutableSetRemoveObjectAtIndex(set, 1);
+    
+    //                  count should equal 2
+    assert(2 == set->_count);
+    
+    //                  set->-array[1] should equal object3
+    assert(object3 == set->_array[1]);
+    
+    //                  set->-array[2] should equal NULL
+    assert(NULL == set->_array[2]);
+    
+    //                      after removing all object
+    TENMutableSetRemoveAllObjects(set);
+    
+    //                          count should equal 0
+    assert(0 == set->_count);
+    
+    //                          set->-array[0] should equal NULL
+    assert(NULL == set->_array[0]);
+    
+    //releasing objects
+    TENObjectRelease(object0);
+    TENObjectRelease(object1);
+    TENObjectRelease(object2);
+    TENObjectRelease(object3);
+    
+    TENObjectRelease(set);
+ }
+
 //add object
 //add same object
 //add NULL object
-//remove included object
-//remove not-included object
-//remove all objects
 //index of object
 //get size
 
