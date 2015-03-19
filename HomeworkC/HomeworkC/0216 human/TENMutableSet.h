@@ -13,12 +13,13 @@
 
 #include "TENObject.h"
 
-static const uint64_t TENIndexNotFound = UINT64_MAX;
+extern
+const uint64_t TENIndexNotFound;
 
 struct TENMutableSet {
     TENObject _object;
-    void **_array;
-    uint64_t _size;
+    TENObject **_array;
+    uint64_t _count;
     uint64_t _capacity;
 };
 typedef struct TENMutableSet TENMutableSet;
@@ -27,19 +28,19 @@ extern
 void __TENMutableSetDeallocate(TENMutableSet *set);
 
 extern
-void TENMutableSetAddObject(TENMutableSet *set, void *object);
+void TENMutableSetAddObject(TENMutableSet *set, TENObject *object);
 
 extern
-uint64_t TENMutableSetIndexOfObject(TENMutableSet *set, void *object);
+uint64_t TENMutableSetIndexOfObject(TENMutableSet *set, TENObject *object);
 
 extern
-uint64_t TENMutableSetGetSize(TENMutableSet *set);
+uint64_t TENMutableSetGetCount(TENMutableSet *set);
 
 extern
 void TENMutableSetRemoveLastObject(TENMutableSet *set);
 
 extern
-void TENMutableSetRemoveObject(TENMutableSet *set, void *object);
+void TENMutableSetRemoveObject(TENMutableSet *set, TENObject *object);
 
 extern
 void TENMutableSetRemoveAllObjects(TENMutableSet *set);
