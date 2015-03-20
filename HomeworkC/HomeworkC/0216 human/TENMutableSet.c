@@ -45,17 +45,13 @@ TENObject *TENMutableSetGetObjectAtIndex(TENMutableSet *set, uint64_t index) {
 }
 
 void TENMutableSetAddObject(TENMutableSet *set, TENObject *object) {
-    if (NULL != set &&
-        NULL != object &&
-        TENIndexNotFound == TENMutableSetIndexOfObject(set, object))
-    {
+    if (NULL != set && NULL != object && !TENMutableSetContainObject(set, object)) {
         TENMutableSetChangeCapacityIfNeeded(set);
         TENMutableSetSetObjectAtIndex(set, object, set->_count);
         set->_count += 1;
     }
 }
 
-extern
 uint64_t TENMutableSetIndexOfObject(TENMutableSet *set, TENObject *object) {
     if (NULL != set) {
         for (uint64_t index = 0; index < set->_count; index++) {
@@ -66,6 +62,10 @@ uint64_t TENMutableSetIndexOfObject(TENMutableSet *set, TENObject *object) {
     }
     
     return TENIndexNotFound;
+}
+
+bool TENMutableSetContainObject(TENMutableSet *set, TENObject *object) {
+    return TENIndexNotFound != TENMutableSetIndexOfObject(set, object);
 }
 
 uint64_t TENMutableSetGetCount(TENMutableSet *set) {

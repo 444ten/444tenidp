@@ -9,6 +9,7 @@
 #ifndef __HomeworkC__TENMutableSet__
 #define __HomeworkC__TENMutableSet__
 
+#include <stdbool.h>
 #include <stdio.h>
 
 #include "TENObject.h"
@@ -35,6 +36,9 @@ void TENMutableSetAddObject(TENMutableSet *set, TENObject *object);
 
 extern
 uint64_t TENMutableSetIndexOfObject(TENMutableSet *set, TENObject *object);
+
+extern
+bool TENMutableSetContainObject(TENMutableSet *set, TENObject *object);
 
 extern
 uint64_t TENMutableSetGetCount(TENMutableSet *set);
