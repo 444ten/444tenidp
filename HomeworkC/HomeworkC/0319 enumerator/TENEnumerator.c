@@ -8,24 +8,13 @@
 
 #include "TENEnumerator.h"
 
-//have: set with countOfNotNullObject and mutationCount
-//task: output nonNULLObject of set
+//Set
+//  after being created
+//      when needed - create Enumerator
+//          retaining Set
 //
+//      after calling Enumerator
+//          check mutation
+//          return next element or end of Set
 //
-//after call outputMethodSet
-//  create TENEnumerator *enumarator with set, countOfNotNullObject, mutationCount
-//      retaining set
-//
-//      call enumerator
-//          enumerator->_mutationCount should equal set->_mutationCount
-//
-//          if currentCount == countOfNULLObject
-//              releasing set
-//              return NULL
-//          esle
-//              return nextObject
-//
-//          currentCount increment
-//
-//      if returning object == NULL
-//          releasing enumerator
+//      releasing Enumerator (with releasing Set)
