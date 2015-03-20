@@ -100,7 +100,7 @@ void TENMutableSetAddObjectTest() {
     assert(1 == TENMutableSetIndexOfObject(set, object1));
     
     //          index of object2 should equal TENIndexNotFound
-    assert(!TENMutableSetContainObject(set, object2));
+    assert(!TENMutableSetContainsObject(set, object2));
     
     //              after adding NULL-object and object2
     TENMutableSetAddObject(set, NULL);

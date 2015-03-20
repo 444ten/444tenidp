@@ -38,7 +38,7 @@ extern
 uint64_t TENMutableSetIndexOfObject(TENMutableSet *set, TENObject *object);
 
 extern
-bool TENMutableSetContainObject(TENMutableSet *set, TENObject *object);
+bool TENMutableSetContainsObject(TENMutableSet *set, TENObject *object);
 
 extern
 uint64_t TENMutableSetGetCount(TENMutableSet *set);
