@@ -12,6 +12,7 @@
 #include "TENObjectTests.h"
 #include "TENOutputMacrosTests.h"
 #include "TENOutputParentTest.h"
+#include "TENStackTests.h"
 #include "TENStringTests.h"
 #include "TENStructTest.h"
 #include "TENValueBitOutputTest.h"
@@ -32,7 +33,9 @@ int main(int argc, const char * argv[]) {
     
 //    TENStringPerformTest();
     
-    TENMutableSetPerformTests();
+//    TENMutableSetPerformTests();
+    
+    TENStackPerformTest();
     
     return 0;
 }
