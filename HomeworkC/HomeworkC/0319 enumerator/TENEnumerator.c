@@ -11,10 +11,10 @@
 //Set
 //  after being created
 //      when needed - create Enumerator
-//          it should retaining Set
+//          it should retain Set
 //
 //      after calling next element of Set
 //          Enumerator should check mutation
 //          Enumerator should return next element or end of Set
 //
-//  releasing Enumerator (with releasing Set)
+//  release Enumerator (with releasing Set)
