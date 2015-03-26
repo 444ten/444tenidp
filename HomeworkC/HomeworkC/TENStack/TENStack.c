@@ -39,6 +39,10 @@ TENStack *TENStackCreateWithCapacity(uint64_t capacity) {
 }
 
 void __TENStackDeallocate(TENStack *stack) {
+    while (!TENStackIsEmpty(stack)) {
+        TENStackPopObjects(stack);
+    }
+
     TENStackSetCapacity(stack, 0);
     
     __TENObjectDeallocate(stack);
@@ -80,7 +84,7 @@ TENStackPopType TENStackPopObject(TENStack *stack) {
 }
 
 TENStackPopType TENStackPopObjects(TENStack *stack) {
-    while (TENStackPopTypeNull == TENStackPopObject(stack)) {
+    while (TENStackPopTypeObject == TENStackPopObject(stack)) {
         if (TENStackIsEmpty(stack)) {
             return TENStackPopTypeObject;
         }
