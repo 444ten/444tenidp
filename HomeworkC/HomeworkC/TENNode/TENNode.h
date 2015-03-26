@@ -9,6 +9,29 @@
 #ifndef __HomeworkC__TENNode__
 #define __HomeworkC__TENNode__
 
-#include <stdio.h>
+#include "TENObject.h"
+
+typedef struct TENNode TENNode;
+struct TENNode {
+    TENObject _super;
+    
+    TENNode *_nextNode;
+    void *_stack;
+};
+
+extern
+void __TENNodeDeallocate(TENNode *node);
+
+extern
+void TENNodeSetNextNode(TENNode *node, TENNode* nextNode);
+
+extern
+TENNode *TENNodeGetNextNode(TENNode *node);
+
+extern
+void TENNodeSetStack(TENNode *node, TENObject *stack);
+
+extern
+void *TENNodeGetStack(TENNode *node);
 
 #endif /* defined(__HomeworkC__TENNode__) */

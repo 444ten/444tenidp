@@ -18,22 +18,22 @@
 #include "TENValueBitOutputTest.h"
 
 int main(int argc, const char * argv[]) {
-//    TENOutputParentPerformTest();
+    TENOutputParentPerformTest();
     
-//    TENOutputMacrosPerformTests();
+    TENOutputMacrosPerformTests();
 
-//    TENCharBitPerformTests();
+    TENCharBitPerformTests();
 
-//    TENStructPerformTest();
+    TENStructPerformTest();
 
-//    TENValueBitOutputPerformTest();
+    TENValueBitOutputPerformTest();
 
-//    TENHumanPerformTests();
-//    TENObjectPerformTest();
+    TENHumanPerformTests();
+    TENObjectPerformTest();
     
-//    TENStringPerformTest();
+    TENStringPerformTest();
     
-//    TENMutableSetPerformTests();
+    TENMutableSetPerformTests();
     
     TENStackPerformTest();
     
