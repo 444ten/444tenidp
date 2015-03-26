@@ -9,6 +9,7 @@
 #ifndef __HomeworkC__TENNodeTests__
 #define __HomeworkC__TENNodeTests__
 
-#include <stdio.h>
+extern
+void TENNodePerformTests();
 
 #endif /* defined(__HomeworkC__TENNodeTests__) */
