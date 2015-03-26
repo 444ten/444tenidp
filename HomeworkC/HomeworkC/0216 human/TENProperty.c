@@ -14,15 +14,15 @@
 
 void TENPropertyHolderSetTargetRetain(void **holder, void *target) {
     if (*holder != target) {
+        if (NULL != target) {
+            TENObjectRetain(target);
+        }
+
         if (NULL != *holder) {
             TENObjectRelease(*holder);
         }
         
         *holder = target;
-        
-        if (NULL != *holder) {
-            TENObjectRetain(*holder);
-        }
     }
 }
 
