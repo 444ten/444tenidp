@@ -35,7 +35,7 @@ extern
 void TENLinkedListRemoveFirstStack(TENLinkedList *list);
 
 extern
-void TENLinkedListRemoveAllStack(TENLinkedList *list);
+void TENLinkedListRemoveAllStacks(TENLinkedList *list);
 
 extern
 void TENLinkedListSetRootNode(TENLinkedList *list, void *rootNode);

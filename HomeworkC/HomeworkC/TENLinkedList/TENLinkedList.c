@@ -43,14 +43,27 @@ void TENLinkedListAddStack(TENLinkedList *list, void *stack) {
 }
 
 extern
-void TENLinkedListRemoveNode(TENLinkedList *list, void *node);
+void TENLinkedListRemoveStack(TENLinkedList *list, void *node);
 
-extern
-void TENLinkedListRemoveFirstNode(TENLinkedList *list);
+void TENLinkedListRemoveFirstStack(TENLinkedList *list) {
+    assert(NULL != list);
 
-extern
-void TENLinkedListRemoveAllNodes(TENLinkedList *list);
+    TENLinkedListMutate(list);
+    
+    TENNode *newRootNode = TENNodeGetNextNode(TENLinkedListGetRootNode(list));
+    
+    TENLinkedListSetRootNode(list, newRootNode);
+    
+    list->_count -= 1;
+}
 
+void TENLinkedListRemoveAllStacks(TENLinkedList *list) {
+    assert(NULL != list);
+    
+    while (TENLinkedListGetCount(list)) {
+        TENLinkedListRemoveFirstStack(list);
+    }
+}
 
 void TENLinkedListSetRootNode(TENLinkedList *list, void *rootNode) {
     assert(NULL != list);
