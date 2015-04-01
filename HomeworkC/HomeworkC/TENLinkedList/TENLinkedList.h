@@ -47,9 +47,6 @@ extern
 uint64_t TENLinkedListGetCount(TENLinkedList *list);
 
 extern
-void TENLinkedListSetMutationCount(TENLinkedList *list, uint64_t mutationСount);
-
-extern
 uint64_t TENLinkedListGetMutationCount(TENLinkedList *list);
 
 #endif /* defined(__HomeworkC__TENLinkedList__) */

@@ -16,9 +16,10 @@
 #pragma mark -
 #pragma mark Public Implementations
 
-extern
 void __TENLinkedListDeallocate(TENLinkedList *list) {
+    TENLinkedListRemoveAllStacks(list);
     
+    __TENObjectDeallocate(list);
 }
 
 void TENLinkedListAddStack(TENLinkedList *list, void *stack) {
@@ -81,12 +82,6 @@ uint64_t TENLinkedListGetCount(TENLinkedList *list) {
     assert(NULL != list);
     
     return list->_count;
-}
-
-void TENLinkedListSetMutationCount(TENLinkedList *list, uint64_t mutationCount) {
-    assert(NULL != list);
-    
-    list->_mutationCount = mutationCount;
 }
 
 extern
