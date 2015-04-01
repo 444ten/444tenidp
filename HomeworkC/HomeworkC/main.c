@@ -8,6 +8,7 @@
 
 #include "TENCharBitTests.h"
 #include "TENHumanTests.h"
+#include "TENLinkedListTests.h"
 #include "TENMutableSetTests.h"
 #include "TENNodeTests.h"
 #include "TENObjectTests.h"
@@ -39,6 +40,8 @@ int main(int argc, const char * argv[]) {
     TENStackPerformTest();
     
     TENNodePerformTests();
+    
+    TENLinkedListPerformTests();
     
     return 0;
 }

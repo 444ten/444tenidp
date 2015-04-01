@@ -52,6 +52,7 @@
 /* Begin PBXFileReference section */
 		76D77F5D1AA479830051EA25 /* TENChildArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENChildArray.c; path = "0216 human/TENChildArray.c"; sourceTree = "<group>"; };
 		76D77F5E1AA479830051EA25 /* TENChildArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENChildArray.h; path = "0216 human/TENChildArray.h"; sourceTree = "<group>"; };
+		76D7DD4E1ACA98EA003BECB2 /* TENLinkedListPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TENLinkedListPrivate.h; path = TENLinkedList/TENLinkedListPrivate.h; sourceTree = "<group>"; };
 		76DB85F61AB083EA0081B192 /* TENObjectTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENObjectTests.c; path = "0216 human/Tests/TENObjectTests/TENObjectTests.c"; sourceTree = "<group>"; };
 		76DB85F71AB083EA0081B192 /* TENObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENObjectTests.h; path = "0216 human/Tests/TENObjectTests/TENObjectTests.h"; sourceTree = "<group>"; };
 		76DB85FA1AB332840081B192 /* TENProperty.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENProperty.c; path = "0216 human/TENProperty.c"; sourceTree = "<group>"; };
@@ -197,8 +198,9 @@
 		76DF8BE01AC43BD6005181CB /* TENLinkedList */ = {
 			isa = PBXGroup;
 			children = (
-				76DF8BDD1AC43BCF005181CB /* TENLinkedList.c */,
 				76DF8BDE1AC43BCF005181CB /* TENLinkedList.h */,
+				76D7DD4E1ACA98EA003BECB2 /* TENLinkedListPrivate.h */,
+				76DF8BDD1AC43BCF005181CB /* TENLinkedList.c */,
 			);
 			name = TENLinkedList;
 			sourceTree = "<group>";
@@ -206,8 +208,8 @@
 		76DF8BE41AC43C18005181CB /* TENLinkedListTests */ = {
 			isa = PBXGroup;
 			children = (
-				76DF8BE11AC43C00005181CB /* TENLinkedListTests.c */,
 				76DF8BE21AC43C00005181CB /* TENLinkedListTests.h */,
+				76DF8BE11AC43C00005181CB /* TENLinkedListTests.c */,
 			);
 			name = TENLinkedListTests;
 			sourceTree = "<group>";
