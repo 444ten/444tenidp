@@ -8,17 +8,11 @@
 
 #include <assert.h>
 
-#include "TENLinkedListEnumerator.h"
-
 #include "TENLinkedList.h"
+#include "TENLinkedListEnumerator.h"
+#include "TENLinkedListEnumeratorPrivate.h"
 #include "TENNode.h"
 #include "TENProperty.h"
-
-#pragma mark -
-#pragma mark Private Declarations
-
-static
-void TENLinkedListEnumeratorCheckMutations(TENLinkedListEnumerator *enumerator);
 
 #pragma mark -
 #pragma mark Public Implementations
@@ -55,6 +49,7 @@ bool TENLinkedListEnumeratorIsValid(TENLinkedListEnumerator *enumerator) {
 }
 
 #pragma mark -
+#pragma mark Private Implementations
 
 TENNode *TENLinkedListEnumeratorNextNode(TENLinkedListEnumerator *enumerator) {
     TENLinkedListEnumeratorCheckMutations(enumerator);
@@ -74,7 +69,7 @@ TENNode *TENLinkedListEnumeratorNextNode(TENLinkedListEnumerator *enumerator) {
     if (nextNode == NULL) {
         TENLinkedListEnumeratorSetValid(enumerator, false);
     }
-
+    
     TENLinkedListEnumeratorSetNode(enumerator, nextNode);
     
     return node;
@@ -88,7 +83,7 @@ void TENLinkedListEnumeratorSetList(TENLinkedListEnumerator *enumerator, TENLink
 
 TENLinkedList *TENLinkedListEnumeratorGetList(TENLinkedListEnumerator *enumerator) {
     assert(NULL != enumerator);
-
+    
     return enumerator->_list;
 }
 
@@ -112,22 +107,18 @@ void TENLinkedListEnumeratorSetMutationCount(TENLinkedListEnumerator *enumerator
 
 uint64_t TENLinkedListEnumeratorGetMutationCount(TENLinkedListEnumerator *enumerator) {
     assert(NULL != enumerator);
-
+    
     return enumerator->_mutationCount;
 }
 
 void TENLinkedListEnumeratorSetValid(TENLinkedListEnumerator *enumerator, bool valid) {
     assert(NULL != enumerator);
-
+    
     enumerator->_isValid = valid;
 }
-
-#pragma mark -
-#pragma mark Private Implementations
 
 void TENLinkedListEnumeratorCheckMutations(TENLinkedListEnumerator *enumerator) {
     uint64_t count = TENLinkedListGetMutationCount(TENLinkedListEnumeratorGetList(enumerator));
     
     assert(count == TENLinkedListEnumeratorGetMutationCount(enumerator));
 }
-

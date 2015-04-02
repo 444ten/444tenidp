@@ -56,6 +56,7 @@
 		76D7DD4E1ACA98EA003BECB2 /* TENLinkedListPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TENLinkedListPrivate.h; path = TENLinkedList/TENLinkedListPrivate.h; sourceTree = "<group>"; };
 		76D997371ACC24F400159027 /* TENLinkedListEnumerator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENLinkedListEnumerator.c; path = TENLinkedList/TENLinkedListEnumerator.c; sourceTree = "<group>"; };
 		76D997381ACC24F400159027 /* TENLinkedListEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENLinkedListEnumerator.h; path = TENLinkedList/TENLinkedListEnumerator.h; sourceTree = "<group>"; };
+		76D9973A1ACD75EA00159027 /* TENLinkedListEnumeratorPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TENLinkedListEnumeratorPrivate.h; path = TENLinkedList/TENLinkedListEnumeratorPrivate.h; sourceTree = "<group>"; };
 		76DB85F61AB083EA0081B192 /* TENObjectTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENObjectTests.c; path = "0216 human/Tests/TENObjectTests/TENObjectTests.c"; sourceTree = "<group>"; };
 		76DB85F71AB083EA0081B192 /* TENObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENObjectTests.h; path = "0216 human/Tests/TENObjectTests/TENObjectTests.h"; sourceTree = "<group>"; };
 		76DB85FA1AB332840081B192 /* TENProperty.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENProperty.c; path = "0216 human/TENProperty.c"; sourceTree = "<group>"; };
@@ -205,6 +206,7 @@
 				76D7DD4E1ACA98EA003BECB2 /* TENLinkedListPrivate.h */,
 				76DF8BDD1AC43BCF005181CB /* TENLinkedList.c */,
 				76D997381ACC24F400159027 /* TENLinkedListEnumerator.h */,
+				76D9973A1ACD75EA00159027 /* TENLinkedListEnumeratorPrivate.h */,
 				76D997371ACC24F400159027 /* TENLinkedListEnumerator.c */,
 			);
 			name = TENLinkedList;

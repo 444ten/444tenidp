@@ -14,9 +14,9 @@
 #include "TENObject.h"
 
 typedef struct TENLinkedList TENLinkedList;
+typedef struct TENLinkedListEnumerator TENLinkedListEnumerator;
 typedef struct TENNode TENNode;
 
-typedef struct TENLinkedListEnumerator TENLinkedListEnumerator;
 struct TENLinkedListEnumerator {
     TENObject _super;
     
@@ -37,30 +37,6 @@ extern
 void *TENLinkedListEnumeratorNextObject(TENLinkedListEnumerator *enumerator);
 
 extern
-TENNode *TENLinkedListEnumeratorNextNode(TENLinkedListEnumerator *enumerator);
-
-extern
 bool TENLinkedListEnumeratorIsValid(TENLinkedListEnumerator *enumerator);
-
-extern
-void TENLinkedListEnumeratorSetList(TENLinkedListEnumerator *enumerator, TENLinkedList *list);
-
-extern
-TENLinkedList *TENLinkedListEnumeratorGetList(TENLinkedListEnumerator *enumerator);
-
-extern
-void TENLinkedListEnumeratorSetNode(TENLinkedListEnumerator *enumerator, TENNode *node);
-
-extern
-TENNode *TENLinkedListEnumeratorGetNode(TENLinkedListEnumerator *enumerator);
-
-extern
-void TENLinkedListEnumeratorSetMutationCount(TENLinkedListEnumerator *enumerator, uint64_t mutationCount);
-
-extern
-uint64_t TENLinkedListEnumeratorGetMutationCount(TENLinkedListEnumerator *enumerator);
-
-extern
-void TENLinkedListEnumeratorSetValid(TENLinkedListEnumerator *enumerator, bool valid);
 
 #endif /* defined(__HomeworkC__TENLinkedListEnumerator__) */
