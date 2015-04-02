@@ -9,6 +9,7 @@
 #include <assert.h>
 
 #include "TENLinkedList.h"
+#include "TENLinkedListEnumerator.h"
 #include "TENLinkedListTests.h"
 #include "TENNode.h"
 #include "TENObject.h"
@@ -22,6 +23,9 @@ void TENLinkedListAddNodeTest();
 static
 void TENLinkedListRemoveNodeTest();
 
+static
+void TENLinkedListEnumeratorTest();
+
 #pragma mark -
 #pragma mark Public Implementations
 
@@ -29,6 +33,7 @@ extern
 void TENLinkedListPerformTests() {
     TENLinkedListAddNodeTest();
     TENLinkedListRemoveNodeTest();
+    TENLinkedListEnumeratorTest();
 
 }
 
@@ -119,6 +124,56 @@ void TENLinkedListRemoveNodeTest() {
         TENObjectRelease(stackArray[i]);
     }
 
+    TENObjectRelease(list);
+}
+
+void TENLinkedListEnumeratorTest() {
+
+    //TENLinkedList
+    //after being created and added three unique stacks
+    TENLinkedList *list = TENObjectCreate(TENLinkedList);
+    
+    const uint8_t count = 3;
+    TENObject *stackArray[count];
+    
+    for (int i = 0; i < count; i++) {
+        stackArray[i] = TENObjectCreate(TENObject);
+        TENLinkedListAddObject(list, stackArray[i]);
+    }
+
+    //after being created TENLinkedListEnumerator with list
+    TENLinkedListEnumerator *enumerator = TENLinkedListEnumeratorCreateWithList(list);
+
+    //enumerator should valid
+    assert(TENLinkedListEnumeratorIsValid(enumerator));
+    
+    //nextObject should equal stackArray[2]
+    assert(TENLinkedListEnumeratorNextObject(enumerator) == stackArray[2]);
+    
+    //nextObject should equal stackArray[1]
+    assert(TENLinkedListEnumeratorNextObject(enumerator) == stackArray[1]);
+    
+    //enumerator should valid
+    assert(TENLinkedListEnumeratorIsValid(enumerator));
+    
+    //after modifying list application should crash by assert
+//    TENLinkedListRemoveFirstObject(list);
+
+    //nextObject should equal stackArray[0]
+    assert(TENLinkedListEnumeratorNextObject(enumerator) == stackArray[0]);
+
+    //enumerator should not valid
+    assert(!TENLinkedListEnumeratorIsValid(enumerator));
+
+    //nextObject should equal NULL
+    assert(TENLinkedListEnumeratorNextObject(enumerator) == NULL);
+    
+    TENObjectRelease(enumerator);
+    
+    for (int i = 0; i < count; i++) {
+        TENObjectRelease(stackArray[i]);
+    }
+    
     TENObjectRelease(list);
 }
 
