@@ -26,6 +26,9 @@ void TENStackSetCapacity(TENStack *stack, uint64_t capacity);
 static
 uint64_t TENStackGetCapacity(TENStack *stack);
 
+static
+void TENStackPopAllObjects(TENStack *stack);
+
 #pragma mark -
 #pragma mark Public Implementations
 
@@ -39,9 +42,7 @@ TENStack *TENStackCreateWithCapacity(uint64_t capacity) {
 }
 
 void __TENStackDeallocate(TENStack *stack) {
-    while (!TENStackIsEmpty(stack)) {
-        TENStackPopObjects(stack);
-    }
+    TENStackPopAllObjects(stack);
 
     TENStackSetCapacity(stack, 0);
     
@@ -129,4 +130,10 @@ uint64_t TENStackGetCapacity(TENStack *stack) {
     assert(NULL != stack);
     
     return stack->_capacity;
+}
+
+void TENStackPopAllObjects(TENStack *stack) {
+    while (!TENStackIsEmpty(stack)) {
+        TENStackPopObjects(stack);
+    }
 }
