@@ -17,12 +17,12 @@
 #pragma mark Public Implementations
 
 void __TENLinkedListDeallocate(TENLinkedList *list) {
-    TENLinkedListRemoveAllStacks(list);
+    TENLinkedListRemoveAllObjects(list);
     
     __TENObjectDeallocate(list);
 }
 
-void TENLinkedListAddStack(TENLinkedList *list, void *stack) {
+void TENLinkedListAddObject(TENLinkedList *list, void *object) {
     assert(NULL != list);
     
     TENLinkedListMutate(list);
@@ -30,7 +30,7 @@ void TENLinkedListAddStack(TENLinkedList *list, void *stack) {
     TENNode *oldRootNode = TENLinkedListGetRootNode(list);
     
     TENNode *newRootNode = TENObjectCreate(TENNode);
-    TENNodeSetStack(newRootNode, stack);
+    TENNodeSetStack(newRootNode, object);
     
     if (NULL != oldRootNode) {
         TENNodeSetNextNode(newRootNode, oldRootNode);
@@ -44,9 +44,9 @@ void TENLinkedListAddStack(TENLinkedList *list, void *stack) {
 }
 
 extern
-void TENLinkedListRemoveStack(TENLinkedList *list, void *node);
+void TENLinkedListRemoveObject(TENLinkedList *list, void *object);
 
-void TENLinkedListRemoveFirstStack(TENLinkedList *list) {
+void TENLinkedListRemoveFirstObject(TENLinkedList *list) {
     assert(NULL != list);
 
     TENLinkedListMutate(list);
@@ -58,11 +58,11 @@ void TENLinkedListRemoveFirstStack(TENLinkedList *list) {
     list->_count -= 1;
 }
 
-void TENLinkedListRemoveAllStacks(TENLinkedList *list) {
+void TENLinkedListRemoveAllObjects(TENLinkedList *list) {
     assert(NULL != list);
     
     while (TENLinkedListGetCount(list)) {
-        TENLinkedListRemoveFirstStack(list);
+        TENLinkedListRemoveFirstObject(list);
     }
 }
 

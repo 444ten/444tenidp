@@ -26,16 +26,16 @@ extern
 void __TENLinkedListDeallocate(TENLinkedList *list);
 
 extern
-void TENLinkedListAddStack(TENLinkedList *list, void *stack);
+void TENLinkedListAddObject(TENLinkedList *list, void *object);
 
 extern
-void TENLinkedListRemoveStack(TENLinkedList *list, void *stack);
+void TENLinkedListRemoveObject(TENLinkedList *list, void *object);
 
 extern
-void TENLinkedListRemoveFirstStack(TENLinkedList *list);
+void TENLinkedListRemoveFirstObject(TENLinkedList *list);
 
 extern
-void TENLinkedListRemoveAllStacks(TENLinkedList *list);
+void TENLinkedListRemoveAllObjects(TENLinkedList *list);
 
 extern
 void TENLinkedListSetRootNode(TENLinkedList *list, void *rootNode);

@@ -43,7 +43,7 @@ void TENLinkedListAddNodeTest() {
 
     //      after add (TENObject *)stack1
     TENObject *stack1 = TENObjectCreate(TENObject);
-    TENLinkedListAddStack(list, stack1);
+    TENLinkedListAddObject(list, stack1);
     
     //          it count should equal 1
     assert(1 == TENLinkedListGetCount(list));
@@ -56,7 +56,7 @@ void TENLinkedListAddNodeTest() {
     
     //              after add (TENObject *)stack2
     TENObject *stack2 = TENObjectCreate(TENObject);
-    TENLinkedListAddStack(list, stack2);
+    TENLinkedListAddObject(list, stack2);
 
     //                  it count should equal 2
     assert(2 == TENLinkedListGetCount(list));
@@ -95,10 +95,10 @@ void TENLinkedListRemoveNodeTest() {
     
     for (int i = 0; i < count; i++) {
         stackArray[i] = TENObjectCreate(TENObject);
-        TENLinkedListAddStack(list, stackArray[i]);
+        TENLinkedListAddObject(list, stackArray[i]);
     }
     
-    TENLinkedListRemoveFirstStack(list);
+    TENLinkedListRemoveFirstObject(list);
 
     assert((count - 1) == TENLinkedListGetCount(list));
     
@@ -109,7 +109,7 @@ void TENLinkedListRemoveNodeTest() {
     TENNode *nextNode = TENNodeGetNextNode(TENLinkedListGetRootNode(list));
     assert(stackArray[2] == TENNodeGetStack(nextNode));
     
-    TENLinkedListRemoveAllStacks(list);
+    TENLinkedListRemoveAllObjects(list);
 
     assert(0 == TENLinkedListGetCount(list));
     
