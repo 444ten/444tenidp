@@ -9,6 +9,8 @@
 #include <assert.h>
 
 #include "TENLinkedList.h"
+#include "TENLinkedListEnumerator.h"
+#include "TENLinkedListEnumeratorPrivate.h"
 #include "TENLinkedListPrivate.h"
 #include "TENNode.h"
 #include "TENProperty.h"
@@ -43,8 +45,20 @@ void TENLinkedListAddObject(TENLinkedList *list, void *object) {
     TENObjectRelease(newRootNode);
 }
 
-extern
-void TENLinkedListRemoveObject(TENLinkedList *list, void *object);
+void TENLinkedListRemoveObject(TENLinkedList *list, void *object) {
+    TENNodeContext context = TENLinkedListGetContextForObject(list, object);
+    TENNode *node = context.node;
+    
+    TENLinkedListMutate(list);
+    
+    if (node == TENLinkedListGetRootNode(list)) {
+        TENLinkedListRemoveFirstObject(list);
+    } else {
+        TENNodeSetNextNode(context.previousNode, TENNodeGetNextNode(node));
+    }
+    
+    list->_count -= 1;
+}
 
 void TENLinkedListRemoveFirstObject(TENLinkedList *list) {
     assert(NULL != list);
@@ -84,13 +98,11 @@ uint64_t TENLinkedListGetCount(TENLinkedList *list) {
     return list->_count;
 }
 
-extern
 uint64_t TENLinkedListGetMutationCount(TENLinkedList *list) {
     assert(NULL != list);
     
     return list->_mutationCount;
 }
-
 
 #pragma mark -
 #pragma mark Private Implementations
@@ -100,3 +112,45 @@ void TENLinkedListMutate(TENLinkedList *list) {
     
     list->_mutationCount++;
 }
+
+TENNode *TENLinkedListFindNode(TENLinkedList *list, TENCompareFunction function, void *context) {
+    
+    TENLinkedListEnumerator *enumerator = TENLinkedListEnumeratorCreateWithList(list);
+    TENNode *result = NULL;
+    
+    while ((result = TENLinkedListEnumeratorNextNode(enumerator))) {
+        if (function(result, context)) {
+            break;
+        }
+    }
+    
+    TENObjectRelease(enumerator);
+    
+    return result;
+}
+
+TENNodeContext TENLinkedListGetContextForObject(TENLinkedList *list, void *object) {
+    TENNodeContext context;
+    context.object = object;
+    context.node = NULL;
+    context.previousNode = NULL;
+    
+    TENNode *node = TENLinkedListFindNode(list, &TENNodeContainsObject, &context);
+    
+    if (NULL == node) {
+        context.node = NULL;
+        context.previousNode = NULL;
+    }
+    
+    return context;
+}
+
+bool TENNodeContainsObject(void *node, void *nodeContext) {
+    TENNodeContext *context = nodeContext;
+    
+    context->previousNode = context->node;
+    context->node = node;
+    
+    return TENNodeGetStack(node) == context->object;
+}
+
