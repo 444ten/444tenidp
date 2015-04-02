@@ -17,6 +17,9 @@
 #pragma mark -
 #pragma mark Private Declarations
 
+static
+void TENLinkedListEnumeratorCheckMutations(TENLinkedListEnumerator *enumerator);
+
 #pragma mark -
 #pragma mark Public Implementations
 
@@ -34,17 +37,47 @@ TENLinkedListEnumerator *TENLinkedListEnumeratorCreateWithList(TENLinkedList *li
 
 void __TENLinkedListEnumeratorDeallocate(TENLinkedListEnumerator *enumerator) {
     TENLinkedListEnumeratorSetList(enumerator, NULL);
+    TENLinkedListEnumeratorSetNode(enumerator, NULL);
     
     __TENObjectDeallocate(enumerator);
 }
 
-extern
-TENNode *TENLinkedListEnumeratorNextStack(TENLinkedListEnumerator *enumerator);
+void *TENLinkedListEnumeratorNextObject(TENLinkedListEnumerator *enumerator) {
+    TENNode *node = TENLinkedListEnumeratorNextNode(enumerator);
+    
+    return (NULL != node) ? TENNodeGetStack(node) : NULL;
+}
 
 bool TENLinkedListEnumeratorIsValid(TENLinkedListEnumerator *enumerator) {
     assert(NULL != enumerator);
     
     return enumerator->_isValid;
+}
+
+#pragma mark -
+
+TENNode *TENLinkedListEnumeratorNextNode(TENLinkedListEnumerator *enumerator) {
+    TENLinkedListEnumeratorCheckMutations(enumerator);
+    
+    if (!TENLinkedListEnumeratorIsValid(enumerator)) {
+        return NULL;
+    }
+    
+    TENNode *node = TENLinkedListEnumeratorGetNode(enumerator);
+    if (NULL == node) {
+        TENLinkedList *list = TENLinkedListEnumeratorGetList(enumerator);
+        node = TENLinkedListGetRootNode(list);
+        TENLinkedListEnumeratorSetNode(enumerator, node);
+    }
+    
+    TENNode *nextNode = TENNodeGetNextNode(TENLinkedListEnumeratorGetNode(enumerator));
+    if (nextNode == NULL) {
+        TENLinkedListEnumeratorSetValid(enumerator, false);
+    }
+
+    TENLinkedListEnumeratorSetNode(enumerator, nextNode);
+    
+    return node;
 }
 
 void TENLinkedListEnumeratorSetList(TENLinkedListEnumerator *enumerator, TENLinkedList *list) {
@@ -57,6 +90,18 @@ TENLinkedList *TENLinkedListEnumeratorGetList(TENLinkedListEnumerator *enumerato
     assert(NULL != enumerator);
 
     return enumerator->_list;
+}
+
+void TENLinkedListEnumeratorSetNode(TENLinkedListEnumerator *enumerator, TENNode *node) {
+    assert(NULL != enumerator);
+    
+    TENPropertyHolderSetTargetRetain((void **)&enumerator->_node, node);
+}
+
+TENNode *TENLinkedListEnumeratorGetNode(TENLinkedListEnumerator *enumerator) {
+    assert(NULL != enumerator);
+    
+    return enumerator->_node;
 }
 
 void TENLinkedListEnumeratorSetMutationCount(TENLinkedListEnumerator *enumerator, uint64_t mutationCount) {
@@ -77,6 +122,12 @@ void TENLinkedListEnumeratorSetValid(TENLinkedListEnumerator *enumerator, bool v
     enumerator->_isValid = valid;
 }
 
-
 #pragma mark -
 #pragma mark Private Implementations
+
+void TENLinkedListEnumeratorCheckMutations(TENLinkedListEnumerator *enumerator) {
+    uint64_t count = TENLinkedListGetMutationCount(TENLinkedListEnumeratorGetList(enumerator));
+    
+    assert(count == TENLinkedListEnumeratorGetMutationCount(enumerator));
+}
+

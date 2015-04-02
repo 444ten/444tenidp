@@ -34,7 +34,10 @@ extern
 void __TENLinkedListEnumeratorDeallocate(TENLinkedListEnumerator *enumerator);
 
 extern
-TENNode *TENLinkedListEnumeratorNextStack(TENLinkedListEnumerator *enumerator);
+void *TENLinkedListEnumeratorNextObject(TENLinkedListEnumerator *enumerator);
+
+extern
+TENNode *TENLinkedListEnumeratorNextNode(TENLinkedListEnumerator *enumerator);
 
 extern
 bool TENLinkedListEnumeratorIsValid(TENLinkedListEnumerator *enumerator);
@@ -44,6 +47,12 @@ void TENLinkedListEnumeratorSetList(TENLinkedListEnumerator *enumerator, TENLink
 
 extern
 TENLinkedList *TENLinkedListEnumeratorGetList(TENLinkedListEnumerator *enumerator);
+
+extern
+void TENLinkedListEnumeratorSetNode(TENLinkedListEnumerator *enumerator, TENNode *node);
+
+extern
+TENNode *TENLinkedListEnumeratorGetNode(TENLinkedListEnumerator *enumerator);
 
 extern
 void TENLinkedListEnumeratorSetMutationCount(TENLinkedListEnumerator *enumerator, uint64_t mutationCount);
