@@ -25,26 +25,30 @@ void __TENNodeDeallocate(TENNode *node) {
 }
 
 void TENNodeSetNextNode(TENNode *node, TENNode* nextNode) {
-    assert(NULL != node);
     assert(node != nextNode);
+
+    if (NULL == node) {
+        return;
+    }
     
     TENPropertyHolderSetTargetRetain((void **)&node->_nextNode, nextNode);
+
 }
 
 TENNode *TENNodeGetNextNode(TENNode *node) {
-    return (NULL != node) ? node->_nextNode : NULL;
+    return (NULL == node) ? NULL : node->_nextNode;
 }
 
 void TENNodeSetStack(TENNode *node, TENObject *stack) {
-    assert(NULL != node);
+    if (NULL == node) {
+        return;
+    }
     
     TENPropertyHolderSetTargetRetain((void **)&node->_stack, stack);
 }
 
 void *TENNodeGetStack(TENNode *node) {
-    assert(NULL != node);
-
-    return node->_stack;
+    return (NULL == node) ? NULL : node->_stack;
 }
 
 #pragma mark -
