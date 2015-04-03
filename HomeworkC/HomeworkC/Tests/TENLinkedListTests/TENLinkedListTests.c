@@ -24,7 +24,13 @@ static
 void TENLinkedListRemoveNodeTest();
 
 static
+void TENLinkedListEmtyEnumeratorTest();
+
+static
 void TENLinkedListEnumeratorTest();
+
+static
+void TENLinkedListRemoveObjectTest();
 
 #pragma mark -
 #pragma mark Public Implementations
@@ -33,7 +39,9 @@ extern
 void TENLinkedListPerformTests() {
     TENLinkedListAddNodeTest();
     TENLinkedListRemoveNodeTest();
+    TENLinkedListEmtyEnumeratorTest();
     TENLinkedListEnumeratorTest();
+    TENLinkedListRemoveObjectTest();
 
 }
 
@@ -127,10 +135,92 @@ void TENLinkedListRemoveNodeTest() {
     TENObjectRelease(list);
 }
 
+void TENLinkedListRemoveObjectTest() {
+//TENLinkedList
+//after being created and added five unique stacks
+//after remove stackArray[4] (first object)
+//it count should decrease by 1
+//it rootNode->stack should equal stackArray[3]
+//after remove stackArray[0] (last object)
+//it count should decrease by 1
+//after remove stackArray[2] (middle object)
+//it count should decrease by 1
+//after remove non-included object (stackArray[4]
+//it count should not change
+//after remove NULL object
+//it count should not change
+//after remove all objects
+//after remove object
+    
+    TENLinkedList *list = TENObjectCreate(TENLinkedList);
+    
+    const uint8_t count = 5;
+    uint8_t currentCount = count;
+    TENObject *stackArray[count];
+    
+    for (int i = 0; i < count; i++) {
+        stackArray[i] = TENObjectCreate(TENObject);
+        TENLinkedListAddObject(list, stackArray[i]);
+    }
+    
+    TENLinkedListRemoveObject(list, stackArray[4]);
+    currentCount -= 1;
+    assert(currentCount == TENLinkedListGetCount(list));
+    assert(stackArray[3] == TENNodeGetStack(TENLinkedListGetRootNode(list)));
+    
+    TENLinkedListRemoveObject(list, stackArray[0]);
+    currentCount -= 1;
+    assert(currentCount == TENLinkedListGetCount(list));
+    
+    TENLinkedListRemoveObject(list, stackArray[2]);
+    currentCount -= 1;
+    assert(currentCount == TENLinkedListGetCount(list));
+
+    TENLinkedListRemoveObject(list, stackArray[4]);
+    assert(currentCount == TENLinkedListGetCount(list));
+    
+    TENLinkedListRemoveObject(list, NULL);
+    assert(currentCount == TENLinkedListGetCount(list));
+    
+    TENLinkedListRemoveAllObjects(list);
+//    TENLinkedListRemoveObject(list, stackArray[4]);
+    assert(0 == TENLinkedListGetCount(list));
+
+    for (int i = 0; i < count; i++) {
+        TENObjectRelease(stackArray[i]);
+    }
+    
+    TENObjectRelease(list);
+
+    
+    
+}
+
+void TENLinkedListEmtyEnumeratorTest() {
+    //TENLinkedList
+    //after being created
+    TENLinkedList *list = TENObjectCreate(TENLinkedList);
+
+    //after being created TENLinkedListEnumerator with list
+    TENLinkedListEnumerator *enumerator = TENLinkedListEnumeratorCreateWithList(list);
+    
+    //enumerator should valid
+    assert(TENLinkedListEnumeratorIsValid(enumerator));
+    
+    //nextObject should equal NULL
+    assert(TENLinkedListEnumeratorNextObject(enumerator) == NULL);
+
+    //enumerator should not valid
+    assert(!TENLinkedListEnumeratorIsValid(enumerator));
+    
+    TENObjectRelease(enumerator);
+    TENObjectRelease(list);
+}
+
+
 void TENLinkedListEnumeratorTest() {
 
     //TENLinkedList
-    //after being created and added three unique stacks
     TENLinkedList *list = TENObjectCreate(TENLinkedList);
     
     const uint8_t count = 3;

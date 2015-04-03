@@ -64,8 +64,8 @@ TENNode *TENLinkedListEnumeratorNextNode(TENLinkedListEnumerator *enumerator) {
         node = TENLinkedListGetRootNode(list);
         TENLinkedListEnumeratorSetNode(enumerator, node);
     }
-    
-    TENNode *nextNode = TENNodeGetNextNode(TENLinkedListEnumeratorGetNode(enumerator));
+        
+    TENNode *nextNode = TENNodeGetNextNode(node);
     if (nextNode == NULL) {
         TENLinkedListEnumeratorSetValid(enumerator, false);
     }

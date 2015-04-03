@@ -49,15 +49,17 @@ void TENLinkedListRemoveObject(TENLinkedList *list, void *object) {
     TENNodeContext context = TENLinkedListGetContextForObject(list, object);
     TENNode *node = context.node;
     
-    TENLinkedListMutate(list);
-    
-    if (node == TENLinkedListGetRootNode(list)) {
-        TENLinkedListRemoveFirstObject(list);
-    } else {
-        TENNodeSetNextNode(context.previousNode, TENNodeGetNextNode(node));
+    if (NULL != node) {
+        TENLinkedListMutate(list);
+        
+        if (node == TENLinkedListGetRootNode(list)) {
+            TENLinkedListRemoveFirstObject(list);
+        } else {
+            TENNodeSetNextNode(context.previousNode, TENNodeGetNextNode(node));
+            list->_count -= 1;
+        }
     }
     
-    list->_count -= 1;
 }
 
 void TENLinkedListRemoveFirstObject(TENLinkedList *list) {

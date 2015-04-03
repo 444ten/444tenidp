@@ -32,9 +32,7 @@ void TENNodeSetNextNode(TENNode *node, TENNode* nextNode) {
 }
 
 TENNode *TENNodeGetNextNode(TENNode *node) {
-    assert(NULL != node);
-
-    return node->_nextNode;
+    return (NULL != node) ? node->_nextNode : NULL;
 }
 
 void TENNodeSetStack(TENNode *node, TENObject *stack) {
