@@ -25,7 +25,9 @@ void __TENLinkedListDeallocate(TENLinkedList *list) {
 }
 
 void TENLinkedListAddObject(TENLinkedList *list, void *object) {
-    assert(NULL != list);
+    if (NULL == list) {
+        return;
+    }
     
     TENLinkedListMutate(list);
     
@@ -59,11 +61,12 @@ void TENLinkedListRemoveObject(TENLinkedList *list, void *object) {
             list->_count -= 1;
         }
     }
-    
 }
 
 void TENLinkedListRemoveFirstObject(TENLinkedList *list) {
-    assert(NULL != list);
+    if (NULL == list) {
+        return;
+    }
 
     TENLinkedListMutate(list);
     
@@ -75,7 +78,9 @@ void TENLinkedListRemoveFirstObject(TENLinkedList *list) {
 }
 
 void TENLinkedListRemoveAllObjects(TENLinkedList *list) {
-    assert(NULL != list);
+    if (NULL == list) {
+        return;
+    }
     
     while (TENLinkedListGetCount(list)) {
         TENLinkedListRemoveFirstObject(list);
@@ -83,39 +88,50 @@ void TENLinkedListRemoveAllObjects(TENLinkedList *list) {
 }
 
 void TENLinkedListSetRootNode(TENLinkedList *list, void *rootNode) {
-    assert(NULL != list);
+    if (NULL == list) {
+        return;
+    }
     
     TENPropertyHolderSetTargetRetain((void **)&list->_rootNode, rootNode);
 }
 
+bool TENLinkedListContainsObject(TENLinkedList *list, void *object) {
+    return NULL != TENLinkedListGetNodeForObject(list, object);
+}
+
+extern
+bool TENLinkedListInsertObjectBeforeObject(TENLinkedList *list, void *object, void *insertionPoint);
+
+extern
+bool TENLinkedListInsertObjectAfterObject(TENLinkedList *list, void *object, void *insertionPoint);
+
 TENNode *TENLinkedListGetRootNode(TENLinkedList *list) {
-    assert(NULL != list);
-    
-    return list->_rootNode;
+    return (NULL == list) ? NULL : list->_rootNode;
 }
 
 uint64_t TENLinkedListGetCount(TENLinkedList *list) {
-    assert(NULL != list);
-    
-    return list->_count;
+    return (NULL == list) ? 0 : list->_count;
 }
 
 uint64_t TENLinkedListGetMutationCount(TENLinkedList *list) {
-    assert(NULL != list);
-    
-    return list->_mutationCount;
+    return (NULL == list) ? 0 : list->_mutationCount;
 }
 
 #pragma mark -
 #pragma mark Private Implementations
 
 void TENLinkedListMutate(TENLinkedList *list) {
-    assert(NULL != list);
+    if (NULL == list) {
+        return;
+    }
     
     list->_mutationCount++;
 }
 
 TENNode *TENLinkedListFindNode(TENLinkedList *list, TENCompareFunction function, void *context) {
+    if (NULL == list) {
+        return NULL;
+    }
     
     TENLinkedListEnumerator *enumerator = TENLinkedListEnumeratorCreateWithList(list);
     TENNode *result = NULL;
@@ -145,6 +161,16 @@ TENNodeContext TENLinkedListGetContextForObject(TENLinkedList *list, void *objec
     }
     
     return context;
+}
+
+TENNode *TENLinkedListGetNodeForObject(TENLinkedList *list, void *object) {
+    if (NULL == list) {
+        return NULL;
+    }
+    
+    TENNodeContext context = TENLinkedListGetContextForObject(list, object);
+    
+    return context.node;
 }
 
 bool TENNodeContainsObject(void *node, void *nodeContext) {

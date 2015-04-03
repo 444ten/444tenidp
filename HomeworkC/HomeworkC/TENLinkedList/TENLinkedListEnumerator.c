@@ -18,7 +18,9 @@
 #pragma mark Public Implementations
 
 TENLinkedListEnumerator *TENLinkedListEnumeratorCreateWithList(TENLinkedList *list) {
-    assert(NULL != list);
+    if (NULL == list) {
+        return NULL;
+    }
     
     TENLinkedListEnumerator *enumerator = TENObjectCreate(TENLinkedListEnumerator);
     

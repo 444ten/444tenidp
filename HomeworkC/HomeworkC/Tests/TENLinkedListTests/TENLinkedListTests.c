@@ -159,6 +159,12 @@ void TENLinkedListRemoveObjectTest() {
     //it rootNode->stack should equal stackArray[3]
     assert(stackArray[3] == TENNodeGetStack(TENLinkedListGetRootNode(list)));
     
+    //it should contain stackArray[2]
+    assert(TENLinkedListContainsObject(list, stackArray[2]));
+    
+    //it should not contain stackArray[4]
+    assert(!TENLinkedListContainsObject(list, stackArray[4]));
+    
     //after remove stackArray[0] (last object)
     TENLinkedListRemoveObject(list, stackArray[0]);
 

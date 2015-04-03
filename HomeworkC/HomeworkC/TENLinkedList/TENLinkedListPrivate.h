@@ -26,6 +26,9 @@ extern
 TENNodeContext TENLinkedListGetContextForObject(TENLinkedList *list, void *object);
 
 extern
+TENNode *TENLinkedListGetNodeForObject(TENLinkedList *list, void *object);
+
+extern
 void TENLinkedListMutate(TENLinkedList *list);
 
 struct TENNodeContext {
