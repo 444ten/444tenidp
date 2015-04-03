@@ -99,11 +99,37 @@ bool TENLinkedListContainsObject(TENLinkedList *list, void *object) {
     return NULL != TENLinkedListGetNodeForObject(list, object);
 }
 
-extern
-bool TENLinkedListInsertObjectBeforeObject(TENLinkedList *list, void *object, void *insertionPoint);
+void TENLinkedListInsertObjectBeforeObject(TENLinkedList *list, void *object, void *insertionPoint) {
+    if (NULL == list || NULL == object || NULL == insertionPoint) {
+        return;
+    }
+    
+    TENLinkedListMutate(list);
+    
+    TENNodeContext context = TENLinkedListGetContextForObject(list, insertionPoint);
+    TENNode *insertionPointNode = context.node;
+    
+    if (NULL == insertionPointNode) {
+        return;
+    }
+
+    if (insertionPointNode == TENLinkedListGetRootNode(list)) {
+        TENLinkedListAddObject(list, object);
+    } else {
+        TENNode *node = TENObjectCreate(TENNode);
+        TENNodeSetStack(node, object);
+        
+        TENNodeSetNextNode(node, insertionPointNode);
+        TENNodeSetNextNode(context.previousNode, node);
+        
+        list->_count += 1;
+        
+        TENObjectRelease(node);
+    }
+}
 
 extern
-bool TENLinkedListInsertObjectAfterObject(TENLinkedList *list, void *object, void *insertionPoint);
+void TENLinkedListInsertObjectAfterObject(TENLinkedList *list, void *object, void *insertionPoint);
 
 TENNode *TENLinkedListGetRootNode(TENLinkedList *list) {
     return (NULL == list) ? NULL : list->_rootNode;

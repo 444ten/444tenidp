@@ -43,10 +43,10 @@ extern
 bool TENLinkedListContainsObject(TENLinkedList *list, void *object);
 
 extern
-bool TENLinkedListInsertObjectBeforeObject(TENLinkedList *list, void *object, void *insertionPoint);
+void TENLinkedListInsertObjectBeforeObject(TENLinkedList *list, void *object, void *insertionPoint);
 
 extern
-bool TENLinkedListInsertObjectAfterObject(TENLinkedList *list, void *object, void *insertionPoint);
+void TENLinkedListInsertObjectAfterObject(TENLinkedList *list, void *object, void *insertionPoint);
 
 extern
 void TENLinkedListSetRootNode(TENLinkedList *list, void *rootNode);
