@@ -33,8 +33,7 @@ void TENLinkedListAddObject(TENLinkedList *list, void *object) {
     
     TENNode *oldRootNode = TENLinkedListGetRootNode(list);
     
-    TENNode *newRootNode = TENObjectCreate(TENNode);
-    TENNodeSetStack(newRootNode, object);
+    TENNode *newRootNode = TENNodeCreateWithNextNodeAndObject(NULL, object);
     
     if (NULL != oldRootNode) {
         TENNodeSetNextNode(newRootNode, oldRootNode);
@@ -116,10 +115,7 @@ void TENLinkedListInsertObjectBeforeObject(TENLinkedList *list, void *object, vo
     if (insertionPointNode == TENLinkedListGetRootNode(list)) {
         TENLinkedListAddObject(list, object);
     } else {
-        TENNode *node = TENObjectCreate(TENNode);
-        TENNodeSetStack(node, object);
-        
-        TENNodeSetNextNode(node, insertionPointNode);
+        TENNode *node = TENNodeCreateWithNextNodeAndObject(insertionPointNode, object);
         TENNodeSetNextNode(context.previousNode, node);
         
         list->_count += 1;
@@ -128,8 +124,10 @@ void TENLinkedListInsertObjectBeforeObject(TENLinkedList *list, void *object, vo
     }
 }
 
-extern
-void TENLinkedListInsertObjectAfterObject(TENLinkedList *list, void *object, void *insertionPoint);
+void TENLinkedListInsertObjectAfterObject(TENLinkedList *list, void *object, void *insertionPoint) {
+    
+//    TENNode *insertionPointNode = TENLinkedListGetNodeForObject(list, insertionPoint);
+}
 
 TENNode *TENLinkedListGetRootNode(TENLinkedList *list) {
     return (NULL == list) ? NULL : list->_rootNode;

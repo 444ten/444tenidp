@@ -17,6 +17,16 @@
 #pragma mark -
 #pragma mark Public Implementations
 
+TENNode *TENNodeCreateWithNextNodeAndObject(TENNode *nextNode, TENObject *stack) {
+    TENNode *node = TENObjectCreate(TENNode);
+    
+    TENNodeSetNextNode(node, nextNode);
+    TENNodeSetStack(node, stack);
+    
+    return node;
+}
+
+
 void __TENNodeDeallocate(TENNode *node) {
     TENNodeSetNextNode(node, NULL);
     TENNodeSetStack(node, NULL);
