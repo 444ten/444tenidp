@@ -9,6 +9,7 @@
 #include <assert.h>
 
 #include "TENLinkedList.h"
+#include "TENLinkedListPrivate.h"
 #include "TENLinkedListEnumerator.h"
 #include "TENLinkedListTests.h"
 #include "TENNode.h"
@@ -35,6 +36,9 @@ void TENLinkedListRemoveObjectTest();
 static
 void TENLinkedListInsertObjectBeforeObjectTest();
 
+static
+void TENLinkedListInsertObjectAfterObjectTest();
+
 #pragma mark -
 #pragma mark Public Implementations
 
@@ -46,6 +50,7 @@ void TENLinkedListPerformTests() {
     TENLinkedListEnumeratorTest();
     TENLinkedListRemoveObjectTest();
     TENLinkedListInsertObjectBeforeObjectTest();
+    TENLinkedListInsertObjectAfterObjectTest();
 
 }
 
@@ -276,6 +281,76 @@ void TENLinkedListInsertObjectBeforeObjectTest() {
     TENObjectRelease(object1);
     TENObjectRelease(object2);
     TENObjectRelease(list);
+}
+
+
+void TENLinkedListInsertObjectAfterObjectTest() {
+    //TENLinkedList
+    //after being created and added two unique stacks
+    TENLinkedList *list = TENObjectCreate(TENLinkedList);
+    
+    const uint8_t count = 2;
+    uint8_t currentCount = count;
+    
+    TENObject *stackArray[count];
+    
+    for (int i = 0; i < count; i++) {
+        stackArray[i] = TENObjectCreate(TENObject);
+        TENLinkedListAddObject(list, stackArray[i]);
+    }
+    
+    //after inserted object1 after stackArray[1] (first object)
+    TENObject *object1 = TENObjectCreate(TENObject);
+    TENLinkedListInsertObjectAfterObject(list, object1, stackArray[1]);
+    
+    //it count should increase by 1
+    currentCount += 1;
+    assert(currentCount == TENLinkedListGetCount(list));
+    
+    //after inserted object2 after stackArray[0] (last object)
+    TENObject *object2 = TENObjectCreate(TENObject);
+    TENLinkedListInsertObjectAfterObject(list, object2, stackArray[0]);
+    
+    //it count should increase by 1
+    currentCount += 1;
+    assert(currentCount == TENLinkedListGetCount(list));
+
+    //after remove first object
+    TENLinkedListRemoveFirstObject(list);
+    currentCount -= 1;
+
+    //it rootNode->stack should equal object1
+    assert(object1 == TENNodeGetStack(TENLinkedListGetRootNode(list)));
+    
+    //after inserted object2 after stackArray[1] (non-included object)
+    TENLinkedListInsertObjectAfterObject(list, object2, stackArray[1]);
+    
+    //it count should not change
+    assert(currentCount == TENLinkedListGetCount(list));
+
+    //after remove first object twice
+    TENLinkedListRemoveFirstObject(list);
+    currentCount -= 1;
+    TENLinkedListRemoveFirstObject(list);
+    currentCount -= 1;
+
+    //it rootNode->stack should equal object2
+    assert(object2 == TENNodeGetStack(TENLinkedListGetRootNode(list)));
+
+    //after inserted NULL before NULL
+    TENLinkedListInsertObjectAfterObject(list, NULL, NULL);
+    
+    //it count should not change
+    assert(currentCount == TENLinkedListGetCount(list));
+    
+    for (int i = 0; i < count; i++) {
+        TENObjectRelease(stackArray[i]);
+    }
+    
+    TENObjectRelease(object1);
+    TENObjectRelease(object2);
+    TENObjectRelease(list);
+
 }
 
 

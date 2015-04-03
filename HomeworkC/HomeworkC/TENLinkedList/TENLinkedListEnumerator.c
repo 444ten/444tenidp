@@ -9,6 +9,7 @@
 #include <assert.h>
 
 #include "TENLinkedList.h"
+#include "TENLinkedListPrivate.h"
 #include "TENLinkedListEnumerator.h"
 #include "TENLinkedListEnumeratorPrivate.h"
 #include "TENNode.h"

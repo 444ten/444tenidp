@@ -31,6 +31,12 @@ extern
 void TENLinkedListAddObject(TENLinkedList *list, void *object);
 
 extern
+void TENLinkedListInsertObjectBeforeObject(TENLinkedList *list, void *object, void *insertionPoint);
+
+extern
+void TENLinkedListInsertObjectAfterObject(TENLinkedList *list, void *object, void *insertionPoint);
+
+extern
 void TENLinkedListRemoveObject(TENLinkedList *list, void *object);
 
 extern
@@ -43,21 +49,6 @@ extern
 bool TENLinkedListContainsObject(TENLinkedList *list, void *object);
 
 extern
-void TENLinkedListInsertObjectBeforeObject(TENLinkedList *list, void *object, void *insertionPoint);
-
-extern
-void TENLinkedListInsertObjectAfterObject(TENLinkedList *list, void *object, void *insertionPoint);
-
-extern
-void TENLinkedListSetRootNode(TENLinkedList *list, void *rootNode);
-
-extern
-TENNode *TENLinkedListGetRootNode(TENLinkedList *list);
-
-extern
 uint64_t TENLinkedListGetCount(TENLinkedList *list);
-
-extern
-uint64_t TENLinkedListGetMutationCount(TENLinkedList *list);
 
 #endif /* defined(__HomeworkC__TENLinkedList__) */

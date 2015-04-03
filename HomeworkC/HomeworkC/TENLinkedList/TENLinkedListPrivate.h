@@ -20,6 +20,18 @@ typedef bool(*TENCompareFunction)(void *object, void *context);
 #pragma mark -
 #pragma mark Private Declarations
 
+extern
+void TENLinkedListSetRootNode(TENLinkedList *list, void *rootNode);
+
+extern
+TENNode *TENLinkedListGetRootNode(TENLinkedList *list);
+
+extern
+void TENLinkedListMutate(TENLinkedList *list);
+
+extern
+uint64_t TENLinkedListGetMutationCount(TENLinkedList *list);
+
 TENNode *TENLinkedListFindNode(TENLinkedList *list, TENCompareFunction function, void *context);
 
 extern
@@ -27,9 +39,6 @@ TENNodeContext TENLinkedListGetContextForObject(TENLinkedList *list, void *objec
 
 extern
 TENNode *TENLinkedListGetNodeForObject(TENLinkedList *list, void *object);
-
-extern
-void TENLinkedListMutate(TENLinkedList *list);
 
 struct TENNodeContext {
     void *object;
