@@ -37,15 +37,11 @@ void __TENLinkedListEnumeratorDeallocate(TENLinkedListEnumerator *enumerator) {
 }
 
 void *TENLinkedListEnumeratorNextObject(TENLinkedListEnumerator *enumerator) {
-    TENNode *node = TENLinkedListEnumeratorNextNode(enumerator);
-    
-    return (NULL != node) ? TENNodeGetStack(node) : NULL;
+    return TENNodeGetStack(TENLinkedListEnumeratorNextNode(enumerator));
 }
 
 bool TENLinkedListEnumeratorIsValid(TENLinkedListEnumerator *enumerator) {
-    assert(NULL != enumerator);
-    
-    return enumerator->_isValid;
+    return (NULL != enumerator) && enumerator->_isValid;
 }
 
 #pragma mark -
@@ -76,43 +72,45 @@ TENNode *TENLinkedListEnumeratorNextNode(TENLinkedListEnumerator *enumerator) {
 }
 
 void TENLinkedListEnumeratorSetList(TENLinkedListEnumerator *enumerator, TENLinkedList *list) {
-    assert(NULL != enumerator);
-    
+    if (NULL == enumerator) {
+        return;
+    }
+
     TENPropertyHolderSetTargetRetain((void **)&enumerator->_list, list);
 }
 
 TENLinkedList *TENLinkedListEnumeratorGetList(TENLinkedListEnumerator *enumerator) {
-    assert(NULL != enumerator);
-    
-    return enumerator->_list;
+    return (NULL == enumerator) ? NULL : enumerator->_list;
 }
 
 void TENLinkedListEnumeratorSetNode(TENLinkedListEnumerator *enumerator, TENNode *node) {
-    assert(NULL != enumerator);
+    if (NULL == enumerator) {
+        return;
+    }
     
     TENPropertyHolderSetTargetRetain((void **)&enumerator->_node, node);
 }
 
 TENNode *TENLinkedListEnumeratorGetNode(TENLinkedListEnumerator *enumerator) {
-    assert(NULL != enumerator);
-    
-    return enumerator->_node;
+    return (NULL == enumerator) ? NULL : enumerator->_node;
 }
 
 void TENLinkedListEnumeratorSetMutationCount(TENLinkedListEnumerator *enumerator, uint64_t mutationCount) {
-    assert(NULL != enumerator);
+    if (NULL == enumerator) {
+        return;
+    }
     
     enumerator->_mutationCount = mutationCount;
 }
 
 uint64_t TENLinkedListEnumeratorGetMutationCount(TENLinkedListEnumerator *enumerator) {
-    assert(NULL != enumerator);
-    
-    return enumerator->_mutationCount;
+    return (NULL == enumerator) ? 0 : enumerator->_mutationCount;
 }
 
 void TENLinkedListEnumeratorSetValid(TENLinkedListEnumerator *enumerator, bool valid) {
-    assert(NULL != enumerator);
+    if (NULL == enumerator) {
+        return;
+    }
     
     enumerator->_isValid = valid;
 }
