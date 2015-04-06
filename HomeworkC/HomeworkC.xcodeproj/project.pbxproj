@@ -19,6 +19,7 @@
 		76DF8BDF1AC43BCF005181CB /* TENLinkedList.c in Sources */ = {isa = PBXBuildFile; fileRef = 76DF8BDD1AC43BCF005181CB /* TENLinkedList.c */; };
 		76DF8BE31AC43C00005181CB /* TENLinkedListTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 76DF8BE11AC43C00005181CB /* TENLinkedListTests.c */; };
 		76EBDC481AD280F800494194 /* TENAutoreleasePoolTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 76EBDC461AD280F800494194 /* TENAutoreleasePoolTests.c */; };
+		76EBDC4B1AD287FB00494194 /* TENAutoreleasePool.c in Sources */ = {isa = PBXBuildFile; fileRef = 76EBDC491AD287FB00494194 /* TENAutoreleasePool.c */; };
 		76F0A5551A9B959400F8412B /* TENOutputParent.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5511A9B959400F8412B /* TENOutputParent.c */; };
 		76F0A5561A9B959400F8412B /* TENOutputParentTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5531A9B959400F8412B /* TENOutputParentTest.c */; };
 		76F0A55B1A9B963B00F8412B /* TENOutputMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F0A5571A9B963B00F8412B /* TENOutputMacros.c */; };
@@ -78,6 +79,8 @@
 		76DF8BE21AC43C00005181CB /* TENLinkedListTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENLinkedListTests.h; path = Tests/TENLinkedListTests/TENLinkedListTests.h; sourceTree = "<group>"; };
 		76EBDC461AD280F800494194 /* TENAutoreleasePoolTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENAutoreleasePoolTests.c; sourceTree = "<group>"; };
 		76EBDC471AD280F800494194 /* TENAutoreleasePoolTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENAutoreleasePoolTests.h; sourceTree = "<group>"; };
+		76EBDC491AD287FB00494194 /* TENAutoreleasePool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENAutoreleasePool.c; path = TENAutoreleasePool/TENAutoreleasePool.c; sourceTree = "<group>"; };
+		76EBDC4A1AD287FB00494194 /* TENAutoreleasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENAutoreleasePool.h; path = TENAutoreleasePool/TENAutoreleasePool.h; sourceTree = "<group>"; };
 		76F0A5511A9B959400F8412B /* TENOutputParent.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENOutputParent.c; path = "0209 mamapapa/TENOutputParent.c"; sourceTree = "<group>"; };
 		76F0A5521A9B959400F8412B /* TENOutputParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENOutputParent.h; path = "0209 mamapapa/TENOutputParent.h"; sourceTree = "<group>"; };
 		76F0A5531A9B959400F8412B /* TENOutputParentTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TENOutputParentTest.c; path = "0209 mamapapa/TENOutputParentTest.c"; sourceTree = "<group>"; };
@@ -168,10 +171,10 @@
 		76DE25061AC3017D003A4AC8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				76EBDC451AD280D100494194 /* TENAutoreleasePoolTests */,
 				76DE25071AC30199003A4AC8 /* TENStackTests */,
 				76DF8BD81AC421D0005181CB /* TENNodeTests */,
 				76DF8BE41AC43C18005181CB /* TENLinkedListTests */,
+				76EBDC451AD280D100494194 /* TENAutoreleasePoolTests */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -235,6 +238,15 @@
 			path = Tests/TENAutoreleasePoolTests;
 			sourceTree = "<group>";
 		};
+		76EBDC4C1AD2880400494194 /* TENAutoreleasePool */ = {
+			isa = PBXGroup;
+			children = (
+				76EBDC4A1AD287FB00494194 /* TENAutoreleasePool.h */,
+				76EBDC491AD287FB00494194 /* TENAutoreleasePool.c */,
+			);
+			name = TENAutoreleasePool;
+			sourceTree = "<group>";
+		};
 		76F1030C1ABB2B290056E423 /* 0319 enumerator */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +287,7 @@
 				76DE25021AC2E17F003A4AC8 /* TENStack */,
 				76DF8BDC1AC422AF005181CB /* TENNode */,
 				76DF8BE01AC43BD6005181CB /* TENLinkedList */,
+				76EBDC4C1AD2880400494194 /* TENAutoreleasePool */,
 				76DE25061AC3017D003A4AC8 /* Tests */,
 			);
 			path = HomeworkC;
@@ -452,6 +465,7 @@
 				76DF8BE31AC43C00005181CB /* TENLinkedListTests.c in Sources */,
 				76D77F5F1AA479830051EA25 /* TENChildArray.c in Sources */,
 				76F0A5801AA0C47100F8412B /* TENObject.c in Sources */,
+				76EBDC4B1AD287FB00494194 /* TENAutoreleasePool.c in Sources */,
 				76D997391ACC24F400159027 /* TENLinkedListEnumerator.c in Sources */,
 				76DE25011AC2E176003A4AC8 /* TENStack.c in Sources */,
 				76F0A56D1A9B973100F8412B /* TENValueBitOutput.c in Sources */,
