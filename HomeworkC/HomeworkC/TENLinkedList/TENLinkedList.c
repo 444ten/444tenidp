@@ -32,12 +32,9 @@ void TENLinkedListAddObject(TENLinkedList *list, void *object) {
     TENLinkedListMutate(list);
     
     TENNode *oldRootNode = TENLinkedListGetRootNode(list);
-    
     TENNode *newRootNode = TENNodeCreateWithNextNodeAndObject(NULL, object);
     
-    if (NULL != oldRootNode) {
-        TENNodeSetNextNode(newRootNode, oldRootNode);
-    }
+    TENNodeSetNextNode(newRootNode, oldRootNode);
 
     TENLinkedListSetRootNode(list, newRootNode);
     

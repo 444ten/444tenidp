@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
+#include "TENAutoreleasePoolTests.h"
 #include "TENCharBitTests.h"
 #include "TENHumanTests.h"
 #include "TENLinkedListTests.h"
@@ -42,6 +43,8 @@ int main(int argc, const char * argv[]) {
     TENNodePerformTests();
     
     TENLinkedListPerformTests();
+    
+    TENAutoreleasePoolPerformTests();
     
     return 0;
 }

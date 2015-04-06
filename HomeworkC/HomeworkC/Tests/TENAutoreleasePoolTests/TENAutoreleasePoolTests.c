@@ -1,12 +1,12 @@
 //
-//  TENAutoreleasePool.c
+//  TENAutoreleasePoolTests.c
 //  HomeworkC
 //
 //  Created by 444ten on 4/6/15.
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#include "TENAutoreleasePool.h"
+#include "TENAutoreleasePoolTests.h"
 
 #pragma mark -
 #pragma mark Private Declarations
