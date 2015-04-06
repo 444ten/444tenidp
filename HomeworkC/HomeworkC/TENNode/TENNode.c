@@ -17,6 +17,16 @@
 #pragma mark -
 #pragma mark Public Implementations
 
+TENNode *TENNodeCreateWithNextNodeAndObject(TENNode *nextNode, TENObject *stack) {
+    TENNode *node = TENObjectCreate(TENNode);
+    
+    TENNodeSetNextNode(node, nextNode);
+    TENNodeSetStack(node, stack);
+    
+    return node;
+}
+
+
 void __TENNodeDeallocate(TENNode *node) {
     TENNodeSetNextNode(node, NULL);
     TENNodeSetStack(node, NULL);
@@ -25,28 +35,30 @@ void __TENNodeDeallocate(TENNode *node) {
 }
 
 void TENNodeSetNextNode(TENNode *node, TENNode* nextNode) {
-    assert(NULL != node);
     assert(node != nextNode);
+
+    if (NULL == node) {
+        return;
+    }
     
     TENPropertyHolderSetTargetRetain((void **)&node->_nextNode, nextNode);
+
 }
 
 TENNode *TENNodeGetNextNode(TENNode *node) {
-    assert(NULL != node);
-
-    return node->_nextNode;
+    return (NULL == node) ? NULL : node->_nextNode;
 }
 
 void TENNodeSetStack(TENNode *node, TENObject *stack) {
-    assert(NULL != node);
+    if (NULL == node) {
+        return;
+    }
     
     TENPropertyHolderSetTargetRetain((void **)&node->_stack, stack);
 }
 
 void *TENNodeGetStack(TENNode *node) {
-    assert(NULL != node);
-
-    return node->_stack;
+    return (NULL == node) ? NULL : node->_stack;
 }
 
 #pragma mark -

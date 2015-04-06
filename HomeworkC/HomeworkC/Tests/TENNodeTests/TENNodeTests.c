@@ -32,7 +32,7 @@ void TENNodePerformTests() {
     //      object should equal NULL
     assert(NULL == TENNodeGetStack(node));
     
-    //          after setting object = (IDPObject *)object
+    //          after setting object = (TENObject *)object
     TENObject *object = TENObjectCreate(TENObject);
     TENNodeSetStack(node, object);
     
@@ -53,7 +53,7 @@ void TENNodePerformTests() {
     
     TENObjectRelease(object);
     
-    //          after setting next node = (IDPLinkedListNode *)nextNode
+    //          after setting next node = (TENNode *)nextNode
     TENNode *nextNode = TENObjectCreate(TENNode);
     TENNodeSetNextNode(node, nextNode);
     

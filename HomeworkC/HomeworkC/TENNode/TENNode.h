@@ -20,6 +20,9 @@ struct TENNode {
 };
 
 extern
+TENNode *TENNodeCreateWithNextNodeAndObject(TENNode *nextNode, TENObject *stack);
+
+extern
 void __TENNodeDeallocate(TENNode *node);
 
 extern
