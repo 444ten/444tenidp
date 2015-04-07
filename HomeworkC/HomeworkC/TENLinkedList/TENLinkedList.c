@@ -138,6 +138,10 @@ uint64_t TENLinkedListGetCount(TENLinkedList *list) {
     return (NULL == list) ? 0 : list->_count;
 }
 
+void *TENLinkedListGetFirstObject(TENLinkedList *list) {
+    return (NULL == list) ? NULL : TENNodeGetStack(TENLinkedListGetRootNode(list));
+}
+
 #pragma mark -
 #pragma mark Private Implementations
 

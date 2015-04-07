@@ -11,6 +11,9 @@
 
 #include <stdlib.h>
 
+static
+const uint64_t TENStackCapacity       = 16;
+
 typedef struct TENAutoreleasePool TENAutoreleasePool;
 typedef struct TENLinkedList TENLinkedList;
 typedef struct TENStack TENStack;

@@ -51,4 +51,7 @@ bool TENLinkedListContainsObject(TENLinkedList *list, void *object);
 extern
 uint64_t TENLinkedListGetCount(TENLinkedList *list);
 
+extern
+void *TENLinkedListGetFirstObject(TENLinkedList *list);
+
 #endif /* defined(__HomeworkC__TENLinkedList__) */
