@@ -99,9 +99,8 @@ void TENAutoreleasePoolDrainTest() {
     //it stackCount should equal 1
     assert(1 == pool0->_stackCount);
 
-    assert(TENStackIsEmpty(pool0->_currentStack));
-    
-    TENAutoreleasePoolAddObject(pool0, TENObjectRetain(object));
+    //after adding object application should crash by assert
+//    TENAutoreleasePoolAddObject(pool0, TENObjectRetain(object));
     
     TENObjectRelease(object);
 }

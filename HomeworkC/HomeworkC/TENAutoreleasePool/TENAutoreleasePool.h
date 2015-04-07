@@ -24,7 +24,6 @@ struct TENAutoreleasePool {
     TENStack *_currentStack;
     
     uint64_t _stackCount;
-    
 };
 
 extern

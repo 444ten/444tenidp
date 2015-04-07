@@ -149,11 +149,17 @@ void TENAutoreleasePoolValidate(TENAutoreleasePool *pool) {
     assert(NULL != pool);
 
     TENLinkedList *list = TENAutoreleasePoolGetList(pool);
-    TENStack *firstStack = TENLinkedListGetFirstObject(list);
+    TENLinkedListEnumerator *enumerator = TENLinkedListEnumeratorCreateWithList(list);
+    TENStack *stack = NULL;
     
-    assert(!TENStackIsEmpty(firstStack));
+    while (TENLinkedListEnumeratorIsValid(enumerator)) {
+        stack = TENLinkedListEnumeratorNextObject(enumerator);
+    }
+    
+    TENObjectRelease(enumerator);
+    
+    assert(!TENStackIsEmpty(stack));
 }
-
 
 void TENAutoreleasePoolSetList(TENAutoreleasePool *pool, void *list) {
     if (NULL == pool) {
