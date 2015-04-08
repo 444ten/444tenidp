@@ -75,7 +75,7 @@ TENStackPopType TENStackPopObject(TENStack *stack) {
     TENStackSetCount(stack, index);
     
     if (NULL != stack->_data[index]) {
-        TENObjectRelease(stack->_data[index]);
+        TENRelease(stack->_data[index]);
         stack->_data[index] = NULL;
         
         return TENStackPopTypeObject;

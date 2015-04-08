@@ -50,7 +50,7 @@ TENHuman *TENHumanCreateWithNameGender(TENString *name, TENGender gender) {
     
     TENChildArray *childArray = TENObjectCreate(TENChildArray);
     TENHumanSetChildArray(human, childArray);
-    TENObjectRelease(childArray);
+    TENRelease(childArray);
     
     return human;
 }

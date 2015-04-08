@@ -51,7 +51,7 @@ void TENNodePerformTests() {
     //                      value retain count should equal 1
     assert(TENObjectGetReferenceCount(object) == 1);
     
-    TENObjectRelease(object);
+    TENRelease(object);
     
     //          after setting next node = (TENNode *)nextNode
     TENNode *nextNode = TENObjectCreate(TENNode);
@@ -72,9 +72,9 @@ void TENNodePerformTests() {
     //                      next node should equal NULL
     assert(TENNodeGetNextNode(node) == NULL);
     
-    TENObjectRelease(nextNode);
+    TENRelease(nextNode);
     
-    TENObjectRelease(node);
+    TENRelease(node);
 }
 
 #pragma mark -

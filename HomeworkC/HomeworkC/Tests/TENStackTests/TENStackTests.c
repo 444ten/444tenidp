@@ -57,14 +57,14 @@ void TENStackCreateTest() {
     //      it is empty
     assert(TENStackIsEmpty(stack));
     
-    TENObjectRelease(stack);
+    TENRelease(stack);
 }
 
 void TENStackOneObjectPushAndPopTest() {
     //TENStack
     //  after being created
     TENStack *stack = TENStackCreateWithCapacity(TENStackCapacity);
-    TENObject *object = TENObjectRetain(TENObjectCreate(TENObject));
+    TENObject *object = TENRetain(TENObjectCreate(TENObject));
     
     //      after pushing 1 object
     TENStackPushObject(stack, object);
@@ -87,8 +87,8 @@ void TENStackOneObjectPushAndPopTest() {
     //                  stack pop type should equal IDPAutoreleasingStackObjectPop
     assert(TENStackPopTypeObject == popType);
     
-    TENObjectRelease(object);
-    TENObjectRelease(stack);
+    TENRelease(object);
+    TENRelease(stack);
 }
 
 void TENStackSixteenObjectsPushAndPopTest() {
@@ -99,7 +99,7 @@ void TENStackSixteenObjectsPushAndPopTest() {
     
     //      after pushing 1 object 16 times
     for (uint8_t retainCount = 0; retainCount < 16; retainCount++) {
-        TENObjectRetain(object);
+        TENRetain(object);
         
         //          objects reference count shouldn't change
         assert(TENObjectGetReferenceCount(object) == (retainCount + 2));
@@ -127,8 +127,8 @@ void TENStackSixteenObjectsPushAndPopTest() {
     //          stack should be empty
     assert(TENStackIsEmpty(stack));
     
-    TENObjectRelease(object);
-    TENObjectRelease(stack);
+    TENRelease(object);
+    TENRelease(stack);
 }
 
 void TENStackNULLAndFifteenObjectsPushAndPopTest() {
@@ -140,7 +140,7 @@ void TENStackNULLAndFifteenObjectsPushAndPopTest() {
     //      after pushing 1 null once and one object 15 times
     TENStackPushObject(stack, NULL);
     for (uint8_t retainCount = 0; retainCount < 15; retainCount++) {
-        TENObjectRetain(object);
+        TENRetain(object);
         
         //          objects reference count shouldn't change
         assert(TENObjectGetReferenceCount(object) == (retainCount + 2));
@@ -165,8 +165,8 @@ void TENStackNULLAndFifteenObjectsPushAndPopTest() {
     //          stack should be empty
     assert(TENStackIsEmpty(stack));
     
-    TENObjectRelease(object);
-    TENObjectRelease(stack);
+    TENRelease(object);
+    TENRelease(stack);
 }
 
 void TENStackSixteenNULLObjectsPushAndPopTest() {
@@ -191,5 +191,5 @@ void TENStackSixteenNULLObjectsPushAndPopTest() {
     //              stack should return TENStackPopTypeNull 16 times
     assert(16 == count);
     
-    TENObjectRelease(stack);
+    TENRelease(stack);
 }

@@ -25,10 +25,10 @@ void TENChildArrayTest() {
     TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
     TENHuman *kain = TENHumanMaleCreateWithName(kainName);
     
-    TENObjectRelease(adamName);
-    TENObjectRelease(evaName);
-    TENObjectRelease(kainName);
-    TENObjectRelease(avelName);
+    TENRelease(adamName);
+    TENRelease(evaName);
+    TENRelease(kainName);
+    TENRelease(avelName);
     
     TENChildArray *godArray = TENObjectCreate(TENChildArray);
     
@@ -57,10 +57,10 @@ void TENHumanChildTest() {
     TENHuman *kain = TENHumanMaleCreateWithName(kainName);
     TENHuman *avel = TENHumanMaleCreateWithName(avelName);
     
-    TENObjectRelease(adamName);
-    TENObjectRelease(evaName);
-    TENObjectRelease(kainName);
-    TENObjectRelease(avelName);
+    TENRelease(adamName);
+    TENRelease(evaName);
+    TENRelease(kainName);
+    TENRelease(avelName);
     
     TENHumanPrint(adam);
     TENHumanPrint(eva);
@@ -97,10 +97,10 @@ void TENHumanPartnerTest() {
 //    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
 //    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
     
-    TENObjectRelease(adamName);
-    TENObjectRelease(evaName);
-    TENObjectRelease(kainName);
-    TENObjectRelease(avelName);
+    TENRelease(adamName);
+    TENRelease(evaName);
+    TENRelease(kainName);
+    TENRelease(avelName);
     
     TENHumanPrint(adam);
     TENHumanPrint(eva);
@@ -111,12 +111,12 @@ void TENHumanPartnerTest() {
     TENHumanPrint(adam);
     TENHumanPrint(eva);
     
-//    TENObjectRelease(eva);
+//    TENRelease(eva);
 //    TENHumanPrint(adam);
 //    TENHumanPrint(eva);
     
-//    TENObjectRelease(adam);
-//    TENObjectRelease(adam);
+//    TENRelease(adam);
+//    TENRelease(adam);
 
 //    TENHumanPrint(adam);
 //    TENHumanPrint(eva);

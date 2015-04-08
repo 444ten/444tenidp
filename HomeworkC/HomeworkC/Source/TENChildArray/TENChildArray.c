@@ -45,7 +45,7 @@ void TENChildArrayAddObject(TENChildArray *childArray, TENHuman *object) {
     TENChildArrayAlloc(childArray);
     childArray->_array[childArray->_childrenCount] = object;
     childArray->_childrenCount += 1;
-    TENObjectRetain(object);
+    TENRetain(object);
 }
 
 uint8_t TENChildArrayIndexOfObject(TENChildArray *childArray, TENHuman *object) {
@@ -63,7 +63,7 @@ uint8_t TENChildArrayIndexOfObject(TENChildArray *childArray, TENHuman *object) 
 void TENChildArrayRemoveObjectAtIndex(TENChildArray *childArray, uint8_t index) {
     if (TENIndexNotFound != index) {
         childArray->_childrenCount -= 1;
-        TENObjectRelease(childArray->_array[index]);
+        TENRelease(childArray->_array[index]);
         
         for (; index < childArray->_childrenCount; index++) {
             childArray->_array[index] = childArray->_array[index + 1];

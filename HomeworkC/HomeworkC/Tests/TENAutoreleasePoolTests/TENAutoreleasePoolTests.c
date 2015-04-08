@@ -53,7 +53,7 @@ void TENAutoreleasePoolDrainTest() {
     TENObject *object = TENObjectCreate(TENObject);
     
     for (uint64_t i = 1; i < TENStackCapacity; i++) {
-        TENAutoreleasePoolAddObject(pool0, TENObjectRetain(object));
+        TENAutoreleasePoolAddObject(pool0, TENRetain(object));
     }
     
     //it stackCount should equal 1
@@ -64,7 +64,7 @@ void TENAutoreleasePoolDrainTest() {
     
     //after adding (TENObject *)object (TENStackCapacity - 1) times
     for (uint64_t i = 1; i < TENStackCapacity; i++) {
-        TENAutoreleasePoolAddObject(pool1, TENObjectRetain(object));
+        TENAutoreleasePoolAddObject(pool1, TENRetain(object));
     }
     
     //it stackCount should equal 2
@@ -75,7 +75,7 @@ void TENAutoreleasePoolDrainTest() {
     
     //after adding (TENObject *)object (TENStackCapacity - 1) times
     for (uint64_t i = 1; i < TENStackCapacity; i++) {
-        TENAutoreleasePoolAddObject(pool2, TENObjectRetain(object));
+        TENAutoreleasePoolAddObject(pool2, TENRetain(object));
     }
     
     //it stackCount should equal 3
@@ -100,9 +100,9 @@ void TENAutoreleasePoolDrainTest() {
     assert(1 == pool0->_stackCount);
 
     //after adding object application should crash by assert
-//    TENAutoreleasePoolAddObject(pool0, TENObjectRetain(object));
+//    TENAutoreleasePoolAddObject(pool0, TENRetain(object));
     
-    TENObjectRelease(object);
+    TENRelease(object);
 }
 
 
@@ -116,7 +116,7 @@ void TENAutoreleasePoolMultiplePoolsTest() {
     TENObject *object = TENObjectCreate(TENObject);
     
     for (uint64_t i = 0; i < count; i++) {
-        TENAutoreleasePoolAddObject(pool0, TENObjectRetain(object));
+        TENAutoreleasePoolAddObject(pool0, TENRetain(object));
     }
     
     //object retain count should not change
@@ -138,7 +138,7 @@ void TENAutoreleasePoolMultiplePoolsTest() {
     TENAutoreleasePoolDrain(pool2);
     
     //after adding object
-    TENAutoreleasePoolAddObject(pool0, TENObjectRetain(object));
+    TENAutoreleasePoolAddObject(pool0, TENRetain(object));
     
     //object retain count shouldn't change
     assert(TENObjectGetReferenceCount(object) == (count + 2));
@@ -155,7 +155,7 @@ void TENAutoreleasePoolMultiplePoolsTest() {
     //object retain count should decrement by 100
     assert(TENObjectGetReferenceCount(object) == 1);
     
-    TENObjectRelease(object);
+    TENRelease(object);
 }
 
 
@@ -170,12 +170,12 @@ void TENAutoreleasePoolOneObjectTest() {
     
     TENObject *object = TENObjectCreate(TENObject);
     
-    TENAutoreleasePoolAddObject(pool, TENObjectRetain(object));
+    TENAutoreleasePoolAddObject(pool, TENRetain(object));
     
     assert(1 == pool->_stackCount);
     assert(TENObjectGetReferenceCount(object) == 2);
 
-    TENObjectRelease(object);
+    TENRelease(object);
 
 }
 
@@ -197,7 +197,7 @@ void TENAutoreleasePoolMultiObjectsTest() {
     const uint64_t count = 14;
     
     for (uint64_t i = 0; i < count; i++) {
-        TENAutoreleasePoolAddObject(pool0, TENObjectRetain(object));
+        TENAutoreleasePoolAddObject(pool0, TENRetain(object));
     }
     
     assert(1 == pool0->_stackCount);
@@ -207,8 +207,8 @@ void TENAutoreleasePoolMultiObjectsTest() {
     assert(pool0 == pool1);
     assert(1 == pool0->_stackCount);
 
-    TENAutoreleasePoolAddObject(pool1, TENObjectRetain(object));
+    TENAutoreleasePoolAddObject(pool1, TENRetain(object));
     assert(2 == pool0->_stackCount);
     
-    TENObjectRelease(object);
+    TENRelease(object);
 }

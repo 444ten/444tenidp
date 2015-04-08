@@ -36,31 +36,31 @@ void TENObjectCreateTest() {
     
     assert(1 == TENObjectGetReferenceCount(object));
     
-    TENObjectRelease(object);
+    TENRelease(object);
 }
 
 void TENObjectBehaviorTest() {
     //TENObject
     //  after retaining NULL object
     //      method should return NULL
-    assert(NULL == TENObjectRetain(NULL));
+    assert(NULL == TENRetain(NULL));
     
     //TENObject
     //  after being created
     TENObject *object = TENObjectCreate(TENObject);
     
     //      after retaining object two times
-    TENObjectRetain(TENObjectRetain(object));
+    TENRetain(TENRetain(object));
     
     //          objects reference count should equal 3
     assert(3 == TENObjectGetReferenceCount(object));
     
     //              after releasing object
-    TENObjectRelease(object);
+    TENRelease(object);
     
     //                  objects reference count should equal 2
     assert(2 == TENObjectGetReferenceCount(object));
     
-    TENObjectRelease(object);
-    TENObjectRelease(object);
+    TENRelease(object);
+    TENRelease(object);
 }

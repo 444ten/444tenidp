@@ -69,7 +69,7 @@ void *TENAutoreleasePoolNew() {
         
         TENLinkedList *list = TENObjectCreate(TENLinkedList);
         TENAutoreleasePoolSetList(pool, list);
-        TENObjectRelease(list);
+        TENRelease(list);
     }
     
     TENAutoreleasePoolInsertObject(pool, NULL);
@@ -115,7 +115,7 @@ void TENAutoreleasePoolDrain(TENAutoreleasePool *pool) {
                 TENAutoreleasePoolSetCurrentStack(pool, currentStack);
             }
             
-            TENObjectRelease(enumerator);
+            TENRelease(enumerator);
         }
         
         if (TENStackPopTypeNull == popType) {
@@ -156,7 +156,7 @@ void TENAutoreleasePoolValidate(TENAutoreleasePool *pool) {
         stack = TENLinkedListEnumeratorNextObject(enumerator);
     }
     
-    TENObjectRelease(enumerator);
+    TENRelease(enumerator);
     
     assert(!TENStackIsEmpty(stack));
 }
@@ -200,7 +200,7 @@ void TENAutoreleasePoolInsertObject(TENAutoreleasePool *pool, void *object) {
         TENLinkedListAddObject(list, currentStack);
         
         pool->_stackCount += 1;
-        TENObjectRelease(currentStack);
+        TENRelease(currentStack);
     }
     
     TENStackPushObject(currentStack, object);
@@ -246,7 +246,7 @@ bool TENAutoreleasePoolShouldDeflate(TENAutoreleasePool *pool) {
         stackCount += 1;
     }
     
-    TENObjectRelease(enumerator);
+    TENRelease(enumerator);
     
     return stackCount > TENStackDeflationCount;
 }

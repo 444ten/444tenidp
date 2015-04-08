@@ -77,10 +77,10 @@ void TENMutableSetAllocateTest() {
     
     //releasing objects
     for (int i = 0; i < size; i++) {
-        TENObjectRelease(objectArray[i]);
+        TENRelease(objectArray[i]);
     }
     
-    TENObjectRelease(set);
+    TENRelease(set);
 }
 
 void TENMutableSetAddObjectTest() {
@@ -122,11 +122,11 @@ void TENMutableSetAddObjectTest() {
     assert(NULL == TENMutableSetGetObjectAtIndex(set, 3));
     
     //releasing objects
-    TENObjectRelease(object0);
-    TENObjectRelease(object1);
-    TENObjectRelease(object2);
+    TENRelease(object0);
+    TENRelease(object1);
+    TENRelease(object2);
     
-    TENObjectRelease(set);
+    TENRelease(set);
 }
 
 void TENMutableSetRemoveObjectTest() {
@@ -198,10 +198,10 @@ void TENMutableSetRemoveObjectTest() {
     assert(NULL == TENMutableSetGetObjectAtIndex(set, 0));
     
     //releasing objects
-    TENObjectRelease(object0);
-    TENObjectRelease(object1);
-    TENObjectRelease(object2);
-    TENObjectRelease(object3);
+    TENRelease(object0);
+    TENRelease(object1);
+    TENRelease(object2);
+    TENRelease(object3);
     
-    TENObjectRelease(set);
+    TENRelease(set);
  }

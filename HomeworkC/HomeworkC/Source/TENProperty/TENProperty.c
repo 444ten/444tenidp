@@ -15,11 +15,11 @@
 void TENPropertyHolderSetTargetRetain(void **holder, void *target) {
     if (*holder != target) {
         if (NULL != target) {
-            TENObjectRetain(target);
+            TENRetain(target);
         }
 
         if (NULL != *holder) {
-            TENObjectRelease(*holder);
+            TENRelease(*holder);
         }
         
         *holder = target;

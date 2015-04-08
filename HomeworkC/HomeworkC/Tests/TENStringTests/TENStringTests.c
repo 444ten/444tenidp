@@ -62,7 +62,7 @@ void TENStringPerformTest() {
     //      string data should equal NULL
     assert(NULL == string->_data);
     
-    TENObjectRelease(string);
+    TENRelease(string);
 }
 
 #pragma mark -

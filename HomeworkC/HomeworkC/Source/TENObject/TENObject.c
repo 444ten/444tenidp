@@ -18,7 +18,7 @@ void *__TENObjectCreate(size_t objectSize, TENDeallocateCallback deallocateCallb
     return object;
 }
 
-void *TENObjectRetain(void *object) {
+void *TENRetain(void *object) {
     if (NULL != object) {
         ((TENObject *)object)->_referenceCount += 1;
     }
@@ -26,7 +26,7 @@ void *TENObjectRetain(void *object) {
     return object;
 }
 
-void TENObjectRelease(void *voidObject) {
+void TENRelease(void *voidObject) {
     if (NULL != voidObject) {
         TENObject *object = (TENObject *)voidObject;
         

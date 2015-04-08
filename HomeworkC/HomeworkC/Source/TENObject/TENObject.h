@@ -25,10 +25,10 @@ void *__TENObjectCreate(size_t objectSize, TENDeallocateCallback deallocateCallb
     __TENObjectCreate(sizeof(type), (TENDeallocateCallback)__##type##Deallocate)
 
 extern
-void *TENObjectRetain(void *object);
+void *TENRetain(void *object);
 
 extern
-void TENObjectRelease(void *voidObject);
+void TENRelease(void *voidObject);
 
 extern
 uint64_t TENObjectGetReferenceCount(void *object);
