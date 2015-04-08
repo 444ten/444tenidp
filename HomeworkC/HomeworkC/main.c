@@ -33,19 +33,19 @@ int main(int argc, const char * argv[]) {
 
     TENHumanPerformTests();
 
-//    TENObjectPerformTest();
+    TENObjectPerformTest();
     
-//    TENStringPerformTest();
-//    
-//    TENMutableSetPerformTests();
+    TENStringPerformTest();
     
-//    TENStackPerformTest();
-//    
-//    TENNodePerformTests();
-//    
-//    TENLinkedListPerformTests();
-//    
-//    TENAutoreleasePoolPerformTests();
+    TENMutableSetPerformTests();
+    
+    TENStackPerformTest();
+    
+    TENNodePerformTests();
+    
+    TENLinkedListPerformTests();
+    
+    TENAutoreleasePoolPerformTests();
     
     return 0;
 }

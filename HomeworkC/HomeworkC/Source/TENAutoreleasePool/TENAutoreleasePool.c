@@ -219,11 +219,13 @@ bool TENAutoreleasePoolShouldDeflate(TENAutoreleasePool *pool) {
         return false;
     }
     
+    uint64_t stackDeflationCount = TENStackDeflationCount;
     TENLinkedList *list = TENAutoreleasePoolGetList(pool);
     TENStack *currentStack = TENAutoreleasePoolGetCurrentStack(pool);
     
+    
     if (currentStack == TENLinkedListGetFirstObject(list) ||
-        list->_count < TENStackDeflationCount)
+        list->_count < stackDeflationCount)
     {
         return false;
     }
@@ -245,5 +247,5 @@ bool TENAutoreleasePoolShouldDeflate(TENAutoreleasePool *pool) {
     
     TENRelease(enumerator);
     
-    return stackCount > TENStackDeflationCount;
+    return stackCount > stackDeflationCount;
 }

@@ -33,7 +33,4 @@ void TENPropertyHolderSetTargetAssign(void **holder, void *target);
 extern
 bool TENPropertyIsNullOrIsTarget(void *property, void *target);
 
-
-
-
 #endif /* defined(__HomeworkC__TENProperty__) */
