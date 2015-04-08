@@ -21,30 +21,31 @@
 #include "TENValueBitOutputTest.h"
 
 int main(int argc, const char * argv[]) {
-    TENOutputParentPerformTest();
-    
-    TENOutputMacrosPerformTests();
-
-    TENCharBitPerformTests();
-
-    TENStructPerformTest();
-
-    TENValueBitOutputPerformTest();
+//    TENOutputParentPerformTest();
+//    
+//    TENOutputMacrosPerformTests();
+//
+//    TENCharBitPerformTests();
+//
+//    TENStructPerformTest();
+//
+//    TENValueBitOutputPerformTest();
 
     TENHumanPerformTests();
-    TENObjectPerformTest();
+
+//    TENObjectPerformTest();
     
-    TENStringPerformTest();
+//    TENStringPerformTest();
+//    
+//    TENMutableSetPerformTests();
     
-    TENMutableSetPerformTests();
-    
-    TENStackPerformTest();
-    
-    TENNodePerformTests();
-    
-    TENLinkedListPerformTests();
-    
-    TENAutoreleasePoolPerformTests();
+//    TENStackPerformTest();
+//    
+//    TENNodePerformTests();
+//    
+//    TENLinkedListPerformTests();
+//    
+//    TENAutoreleasePoolPerformTests();
     
     return 0;
 }

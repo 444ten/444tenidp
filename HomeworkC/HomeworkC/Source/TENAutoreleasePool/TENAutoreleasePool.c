@@ -29,9 +29,6 @@ static
 void TENSetAutoreleasePool(TENAutoreleasePool *pool);
 
 static
-void *TENGetAutoreleasePool();
-
-static
 void TENAutoreleasePoolValidate(TENAutoreleasePool *pool);
 
 static
@@ -75,6 +72,10 @@ void *TENAutoreleasePoolNew() {
     TENAutoreleasePoolInsertObject(pool, NULL);
     
     return pool;
+}
+
+void *TENGetAutoreleasePool() {
+    return  __TENAutoreleasePool;
 }
 
 void TENAutoreleasePoolAddObject(TENAutoreleasePool *pool, void *object) {
@@ -139,10 +140,6 @@ void __TENAutoreleasePoolDeallocate(TENAutoreleasePool *pool) {
 
 void TENSetAutoreleasePool(TENAutoreleasePool *pool) {
     __TENAutoreleasePool = pool;
-}
-
-void *TENGetAutoreleasePool() {
-    return  __TENAutoreleasePool;
 }
 
 void TENAutoreleasePoolValidate(TENAutoreleasePool *pool) {

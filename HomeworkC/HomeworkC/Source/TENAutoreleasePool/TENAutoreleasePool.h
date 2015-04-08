@@ -30,6 +30,9 @@ extern
 void *TENAutoreleasePoolNew();
 
 extern
+void *TENGetAutoreleasePool();
+
+extern
 void TENAutoreleasePoolAddObject(TENAutoreleasePool *pool, void *object);
 
 extern

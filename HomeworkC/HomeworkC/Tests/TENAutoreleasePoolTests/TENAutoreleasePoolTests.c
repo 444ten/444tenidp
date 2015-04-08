@@ -33,9 +33,9 @@ void TENAutoreleasePoolDrainTest();
 #pragma mark Public Implementations
 
 void TENAutoreleasePoolPerformTests() {
-//    TENAutoreleasePoolOneObjectTest();
-//    TENAutoreleasePoolMultiObjectsTest();
-//    TENAutoreleasePoolMultiplePoolsTest();
+    TENAutoreleasePoolOneObjectTest();
+    TENAutoreleasePoolMultiObjectsTest();
+    TENAutoreleasePoolMultiplePoolsTest();
     TENAutoreleasePoolDrainTest();
 
 

@@ -6,14 +6,44 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "TENAutoreleasePool.h"
 #include "TENChildArray.h"
 #include "TENHuman.h"
 #include "TENHumanTests.h"
 #include "TENObject.h"
 #include "TENString.h"
+
+#pragma mark -
+#pragma mark Private Declarations
+
+static
+void TENChildArrayTest();
+
+static
+void TENHumanChildTest();
+
+static
+void TENHumanPartnerTest();
+
+static
+void TENHumanAutoreleaseTest();
+
+#pragma mark -
+#pragma mark Public Implementation
+
+void TENHumanPerformTests() {
+//    TENChildArrayTest();
+//    TENHumanChildTest();
+//    TENHumanPartnerTest();
+    TENHumanAutoreleaseTest();
+}
+
+#pragma mark -
+#pragma mark Private Implementations
 
 void TENChildArrayTest() {
     TENString *adamName = TENStringCreateWithData("Adam");
@@ -94,8 +124,8 @@ void TENHumanPartnerTest() {
     
     TENHuman *adam = TENHumanMaleCreateWithName(adamName);
     TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
-//    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
-//    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
+    //    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
+    //    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
     
     TENRelease(adamName);
     TENRelease(evaName);
@@ -104,41 +134,62 @@ void TENHumanPartnerTest() {
     
     TENHumanPrint(adam);
     TENHumanPrint(eva);
-//    TENHumanPrint(kain);
-//    TENHumanPrint(avel);
+    //    TENHumanPrint(kain);
+    //    TENHumanPrint(avel);
     
     TENHumanMarry(adam, eva);
     TENHumanPrint(adam);
     TENHumanPrint(eva);
     
-//    TENRelease(eva);
-//    TENHumanPrint(adam);
-//    TENHumanPrint(eva);
+    //    TENRelease(eva);
+    //    TENHumanPrint(adam);
+    //    TENHumanPrint(eva);
     
-//    TENRelease(adam);
-//    TENRelease(adam);
+    //    TENRelease(adam);
+    //    TENRelease(adam);
+    
+    //    TENHumanPrint(adam);
+    //    TENHumanPrint(eva);
+    
+    //    TENHumanPrint(kain);
+    //    TENHumanPrint(avel);
+    
+    //    TENHumanMarry(avel, eva);
+    //    TENHumanPrint(adam);
+    //    TENHumanPrint(eva);
+    //    TENHumanPrint(kain);
+    //    TENHumanPrint(avel);
+    //    
+    //    TENHumanMarry(kain, kain);
+    
+}
 
-//    TENHumanPrint(adam);
-//    TENHumanPrint(eva);
+void TENHumanAutoreleaseTest() {
+    //after being creating AutoreleasePool
+    TENAutoreleasePool *pool = TENAutoreleasePoolNew();
+    
+    //TENHuman
+    //after being calling and retain
+    TENString *adamName = TENStringCreateWithData("adam");
+    TENHuman *adam = TENHumanMaleCreateWithName(adamName);
+    TENRetain(adam);
+    
+    //it retainCount should equal 2
+    assert(2 == TENObjectGetReferenceCount(adam));
+    
+    //afte drain pool
+    TENAutoreleasePoolDrain(pool);
+    
+    //it retainCount should equal 1
+    assert(1 == TENObjectGetReferenceCount(adam));
 
-//    TENHumanPrint(kain);
-//    TENHumanPrint(avel);
-
-//    TENHumanMarry(avel, eva);
-//    TENHumanPrint(adam);
-//    TENHumanPrint(eva);
-//    TENHumanPrint(kain);
-//    TENHumanPrint(avel);
-//    
-//    TENHumanMarry(kain, kain);
+    TENRelease(adam);
+    TENRelease(adamName);
     
 }
 
 
-void TENHumanPerformTests() {
-//    TENChildArrayTest();
-//    TENHumanChildTest();
-    TENHumanPartnerTest();
-    
-    
-}
+
+
+
+

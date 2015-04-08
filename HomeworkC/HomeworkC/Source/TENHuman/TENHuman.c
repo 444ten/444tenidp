@@ -42,7 +42,8 @@ void TENHumanSetGender(TENHuman *human, TENGender gender);
 #pragma mark Public Implementations
 
 TENHuman *TENHumanCreateWithNameGender(TENString *name, TENGender gender) {
-    TENHuman *human = TENObjectCreate(TENHuman);
+//    TENHuman *human = TENObjectCreate(TENHuman);
+    TENHuman *human = TENObjectWithType(TENHuman);
 
     TENHumanSetName(human, name);
     TENHumanSetAge(human, 16);
