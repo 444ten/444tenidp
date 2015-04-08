@@ -41,8 +41,7 @@ void TENHumanSetGender(TENHuman *human, TENGender gender);
 #pragma mark -
 #pragma mark Public Implementations
 
-TENHuman *TENHumanCreateWithNameGender(TENString *name, TENGender gender) {
-//    TENHuman *human = TENObjectCreate(TENHuman);
+TENHuman *TENHumanWithNameGender(TENString *name, TENGender gender) {
     TENHuman *human = TENObjectWithType(TENHuman);
 
     TENHumanSetName(human, name);
@@ -56,12 +55,12 @@ TENHuman *TENHumanCreateWithNameGender(TENString *name, TENGender gender) {
     return human;
 }
 
-TENHuman *TENHumanMaleCreateWithName(TENString *name) {
-    return TENHumanCreateWithNameGender(name, TENGenderMale);
+TENHuman *TENHumanMaleWithName(TENString *name) {
+    return TENHumanWithNameGender(name, TENGenderMale);
 }
 
-TENHuman *TENHumanFemaleCreateWithName(TENString *name) {
-    return TENHumanCreateWithNameGender(name, TENGenderFemale);
+TENHuman *TENHumanFemaleWithName(TENString *name) {
+    return TENHumanWithNameGender(name, TENGenderFemale);
 }
 
 void __TENHumanDeallocate(TENHuman *human) {

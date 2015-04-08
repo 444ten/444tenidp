@@ -21,6 +21,9 @@
 #pragma mark Private Declarations
 
 static
+void TENHumanAutoreleaseTest();
+
+static
 void TENChildArrayTest();
 
 static
@@ -28,9 +31,6 @@ void TENHumanChildTest();
 
 static
 void TENHumanPartnerTest();
-
-static
-void TENHumanAutoreleaseTest();
 
 #pragma mark -
 #pragma mark Public Implementation
@@ -45,15 +45,39 @@ void TENHumanPerformTests() {
 #pragma mark -
 #pragma mark Private Implementations
 
+void TENHumanAutoreleaseTest() {
+    //after being creating AutoreleasePool
+    TENAutoreleasePool *pool = TENAutoreleasePoolNew();
+    
+    //TENHuman
+    //after being calling and retain
+    TENString *adamName = TENStringCreateWithData("adam");
+    TENHuman *adam = TENHumanMaleWithName(adamName);
+    TENRetain(adam);
+    
+    //it retainCount should equal 2
+    assert(2 == TENObjectGetReferenceCount(adam));
+    
+    //afte drain pool
+    TENAutoreleasePoolDrain(pool);
+    
+    //it retainCount should equal 1
+    assert(1 == TENObjectGetReferenceCount(adam));
+    
+    TENRelease(adam);
+    TENRelease(adamName);
+    
+}
+
 void TENChildArrayTest() {
     TENString *adamName = TENStringCreateWithData("Adam");
     TENString *evaName = TENStringCreateWithData("Eva");
     TENString *kainName = TENStringCreateWithData("Kain");
     TENString *avelName = TENStringCreateWithData("Avel");
     
-    TENHuman *adam = TENHumanMaleCreateWithName(adamName);
-    TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
-    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
+    TENHuman *adam = TENHumanMaleWithName(adamName);
+    TENHuman *eva = TENHumanFemaleWithName(evaName);
+    TENHuman *kain = TENHumanMaleWithName(kainName);
     
     TENRelease(adamName);
     TENRelease(evaName);
@@ -82,10 +106,10 @@ void TENHumanChildTest() {
     TENString *kainName = TENStringCreateWithData("Kain");
     TENString *avelName = TENStringCreateWithData("Avel");
     
-    TENHuman *adam = TENHumanMaleCreateWithName(adamName);
-    TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
-    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
-    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
+    TENHuman *adam = TENHumanMaleWithName(adamName);
+    TENHuman *eva = TENHumanFemaleWithName(evaName);
+    TENHuman *kain = TENHumanMaleWithName(kainName);
+    TENHuman *avel = TENHumanMaleWithName(avelName);
     
     TENRelease(adamName);
     TENRelease(evaName);
@@ -122,8 +146,8 @@ void TENHumanPartnerTest() {
     TENString *kainName = TENStringCreateWithData("Kain");
     TENString *avelName = TENStringCreateWithData("Avel");
     
-    TENHuman *adam = TENHumanMaleCreateWithName(adamName);
-    TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
+    TENHuman *adam = TENHumanMaleWithName(adamName);
+    TENHuman *eva = TENHumanFemaleWithName(evaName);
     //    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
     //    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
     
@@ -164,29 +188,6 @@ void TENHumanPartnerTest() {
     
 }
 
-void TENHumanAutoreleaseTest() {
-    //after being creating AutoreleasePool
-    TENAutoreleasePool *pool = TENAutoreleasePoolNew();
-    
-    //TENHuman
-    //after being calling and retain
-    TENString *adamName = TENStringCreateWithData("adam");
-    TENHuman *adam = TENHumanMaleCreateWithName(adamName);
-    TENRetain(adam);
-    
-    //it retainCount should equal 2
-    assert(2 == TENObjectGetReferenceCount(adam));
-    
-    //afte drain pool
-    TENAutoreleasePoolDrain(pool);
-    
-    //it retainCount should equal 1
-    assert(1 == TENObjectGetReferenceCount(adam));
-
-    TENRelease(adam);
-    TENRelease(adamName);
-    
-}
 
 
 
