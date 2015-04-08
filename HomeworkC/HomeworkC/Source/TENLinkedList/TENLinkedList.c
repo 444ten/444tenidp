@@ -32,12 +32,9 @@ void TENLinkedListAddObject(TENLinkedList *list, void *object) {
     TENLinkedListMutate(list);
     
     TENNode *oldRootNode = TENLinkedListGetRootNode(list);
-    
     TENNode *newRootNode = TENNodeCreateWithNextNodeAndObject(NULL, object);
     
-    if (NULL != oldRootNode) {
-        TENNodeSetNextNode(newRootNode, oldRootNode);
-    }
+    TENNodeSetNextNode(newRootNode, oldRootNode);
 
     TENLinkedListSetRootNode(list, newRootNode);
     
@@ -139,6 +136,10 @@ bool TENLinkedListContainsObject(TENLinkedList *list, void *object) {
 
 uint64_t TENLinkedListGetCount(TENLinkedList *list) {
     return (NULL == list) ? 0 : list->_count;
+}
+
+void *TENLinkedListGetFirstObject(TENLinkedList *list) {
+    return (NULL == list) ? NULL : TENNodeGetStack(TENLinkedListGetRootNode(list));
 }
 
 #pragma mark -
