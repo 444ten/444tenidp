@@ -184,27 +184,23 @@ void TENHumanPrint(TENHuman *human) {
 #pragma mark Private Implementations
 
 void TENHumanSetName(TENHuman *human, TENString *name) {
-    if (TENPropertyIsNullOrIsTarget(human, NULL)) {
-        return;
-    }
-
-    TENPropertyHolderSetTargetRetain((void **)&human->_name, name);
+    TENRetainingSetter(human, &human->_name, name);
 }
 
 void TENHumanSetFather(TENHuman *human, TENHuman *father) {
-    if (TENPropertyIsNullOrIsTarget(human, father)) {
+    if (human == father) {
         return;
     }
 
-    TENPropertyHolderSetTargetRetain((void **)&human->_father, father);
+    TENRetainingSetter(human, &human->_father, father);
 }
 
 void TENHumanSetMother(TENHuman *human, TENHuman *mother) {
-    if (TENPropertyIsNullOrIsTarget(human, mother)) {
+    if (human == mother) {
         return;
     }
-
-    TENPropertyHolderSetTargetRetain((void **)&human->_mother, mother);
+    
+    TENRetainingSetter(human, &human->_mother, mother);
 }
 
 void TENHumanSetPartner(TENHuman *human, TENHuman *partner) {

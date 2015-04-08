@@ -36,9 +36,9 @@ void TENHumanPartnerTest();
 #pragma mark Public Implementation
 
 void TENHumanPerformTests() {
-//    TENChildArrayTest();
-//    TENHumanChildTest();
-//    TENHumanPartnerTest();
+    TENChildArrayTest();
+    TENHumanChildTest();
+    TENHumanPartnerTest();
     TENHumanAutoreleaseTest();
 }
 
