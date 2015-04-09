@@ -93,9 +93,9 @@ void TENLinkedListAddNodeTest() {
     TENNode *nextNode = TENNodeGetNextNode(TENLinkedListGetRootNode(list));
     assert(stack1 == TENNodeGetStack(nextNode));
 
-    TENObjectRelease(stack1);
-    TENObjectRelease(stack2);
-    TENObjectRelease(list);
+    TENRelease(stack1);
+    TENRelease(stack2);
+    TENRelease(list);
 }
 
 void TENLinkedListRemoveNodeTest() {
@@ -138,10 +138,10 @@ void TENLinkedListRemoveNodeTest() {
     assert(NULL == TENLinkedListGetRootNode(list));
     
     for (int i = 0; i < count; i++) {
-        TENObjectRelease(stackArray[i]);
+        TENRelease(stackArray[i]);
     }
 
-    TENObjectRelease(list);
+    TENRelease(list);
 }
 
 void TENLinkedListRemoveObjectTest() {
@@ -210,10 +210,10 @@ void TENLinkedListRemoveObjectTest() {
     TENLinkedListRemoveObject(list, stackArray[4]);
 
     for (int i = 0; i < count; i++) {
-        TENObjectRelease(stackArray[i]);
+        TENRelease(stackArray[i]);
     }
     
-    TENObjectRelease(list);
+    TENRelease(list);
 }
 
 void TENLinkedListInsertObjectBeforeObjectTest() {
@@ -275,12 +275,12 @@ void TENLinkedListInsertObjectBeforeObjectTest() {
     assert(currentCount == TENLinkedListGetCount(list));
     
     for (int i = 0; i < count; i++) {
-        TENObjectRelease(stackArray[i]);
+        TENRelease(stackArray[i]);
     }
     
-    TENObjectRelease(object1);
-    TENObjectRelease(object2);
-    TENObjectRelease(list);
+    TENRelease(object1);
+    TENRelease(object2);
+    TENRelease(list);
 }
 
 
@@ -344,12 +344,12 @@ void TENLinkedListInsertObjectAfterObjectTest() {
     assert(currentCount == TENLinkedListGetCount(list));
     
     for (int i = 0; i < count; i++) {
-        TENObjectRelease(stackArray[i]);
+        TENRelease(stackArray[i]);
     }
     
-    TENObjectRelease(object1);
-    TENObjectRelease(object2);
-    TENObjectRelease(list);
+    TENRelease(object1);
+    TENRelease(object2);
+    TENRelease(list);
 
 }
 
@@ -371,8 +371,8 @@ void TENLinkedListEmtyEnumeratorTest() {
     //enumerator should not valid
     assert(!TENLinkedListEnumeratorIsValid(enumerator));
     
-    TENObjectRelease(enumerator);
-    TENObjectRelease(list);
+    TENRelease(enumerator);
+    TENRelease(list);
 }
 
 void TENLinkedListEnumeratorTest() {
@@ -414,12 +414,12 @@ void TENLinkedListEnumeratorTest() {
     //nextObject should equal NULL
     assert(TENLinkedListEnumeratorNextObject(enumerator) == NULL);
     
-    TENObjectRelease(enumerator);
+    TENRelease(enumerator);
     
     for (int i = 0; i < count; i++) {
-        TENObjectRelease(stackArray[i]);
+        TENRelease(stackArray[i]);
     }
     
-    TENObjectRelease(list);
+    TENRelease(list);
 }
 

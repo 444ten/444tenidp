@@ -41,8 +41,8 @@ void TENHumanSetGender(TENHuman *human, TENGender gender);
 #pragma mark -
 #pragma mark Public Implementations
 
-TENHuman *TENHumanCreateWithNameGender(TENString *name, TENGender gender) {
-    TENHuman *human = TENObjectCreate(TENHuman);
+TENHuman *TENHumanWithNameGender(TENString *name, TENGender gender) {
+    TENHuman *human = TENObjectWithType(TENHuman);
 
     TENHumanSetName(human, name);
     TENHumanSetAge(human, 16);
@@ -50,17 +50,17 @@ TENHuman *TENHumanCreateWithNameGender(TENString *name, TENGender gender) {
     
     TENChildArray *childArray = TENObjectCreate(TENChildArray);
     TENHumanSetChildArray(human, childArray);
-    TENObjectRelease(childArray);
+    TENRelease(childArray);
     
     return human;
 }
 
-TENHuman *TENHumanMaleCreateWithName(TENString *name) {
-    return TENHumanCreateWithNameGender(name, TENGenderMale);
+TENHuman *TENHumanMaleWithName(TENString *name) {
+    return TENHumanWithNameGender(name, TENGenderMale);
 }
 
-TENHuman *TENHumanFemaleCreateWithName(TENString *name) {
-    return TENHumanCreateWithNameGender(name, TENGenderFemale);
+TENHuman *TENHumanFemaleWithName(TENString *name) {
+    return TENHumanWithNameGender(name, TENGenderFemale);
 }
 
 void __TENHumanDeallocate(TENHuman *human) {
@@ -184,27 +184,23 @@ void TENHumanPrint(TENHuman *human) {
 #pragma mark Private Implementations
 
 void TENHumanSetName(TENHuman *human, TENString *name) {
-    if (TENPropertyIsNullOrIsTarget(human, NULL)) {
-        return;
-    }
-
-    TENPropertyHolderSetTargetRetain((void **)&human->_name, name);
+    TENRetainingSetter(human, &human->_name, name);
 }
 
 void TENHumanSetFather(TENHuman *human, TENHuman *father) {
-    if (TENPropertyIsNullOrIsTarget(human, father)) {
+    if (human == father) {
         return;
     }
 
-    TENPropertyHolderSetTargetRetain((void **)&human->_father, father);
+    TENRetainingSetter(human, &human->_father, father);
 }
 
 void TENHumanSetMother(TENHuman *human, TENHuman *mother) {
-    if (TENPropertyIsNullOrIsTarget(human, mother)) {
+    if (human == mother) {
         return;
     }
-
-    TENPropertyHolderSetTargetRetain((void **)&human->_mother, mother);
+    
+    TENRetainingSetter(human, &human->_mother, mother);
 }
 
 void TENHumanSetPartner(TENHuman *human, TENHuman *partner) {

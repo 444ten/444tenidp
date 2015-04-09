@@ -12,14 +12,40 @@
 #pragma mark -
 #pragma mark Public Implementations
 
+void __TENRetainingSetter(void *owner, void **dataRef, void *object) {
+    if (NULL == owner) {
+        return;
+    }
+    
+    if (*dataRef != object) {
+        if (NULL != object) {
+            TENRetain(object);
+        }
+        
+        if (NULL != *dataRef) {
+            TENRelease(object);
+        }
+        
+        *dataRef = object;
+    }
+}
+
+void __TENAssigningSetter(void *owner, void **dataRef, void *object) {
+    if (NULL == owner) {
+        return;
+    }
+
+    *dataRef = object;
+}
+
 void TENPropertyHolderSetTargetRetain(void **holder, void *target) {
     if (*holder != target) {
         if (NULL != target) {
-            TENObjectRetain(target);
+            TENRetain(target);
         }
 
         if (NULL != *holder) {
-            TENObjectRelease(*holder);
+            TENRelease(*holder);
         }
         
         *holder = target;

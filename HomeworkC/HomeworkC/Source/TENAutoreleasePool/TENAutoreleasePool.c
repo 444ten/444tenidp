@@ -29,9 +29,6 @@ static
 void TENSetAutoreleasePool(TENAutoreleasePool *pool);
 
 static
-void *TENGetAutoreleasePool();
-
-static
 void TENAutoreleasePoolValidate(TENAutoreleasePool *pool);
 
 static
@@ -69,12 +66,16 @@ void *TENAutoreleasePoolNew() {
         
         TENLinkedList *list = TENObjectCreate(TENLinkedList);
         TENAutoreleasePoolSetList(pool, list);
-        TENObjectRelease(list);
+        TENRelease(list);
     }
     
     TENAutoreleasePoolInsertObject(pool, NULL);
     
     return pool;
+}
+
+void *TENGetAutoreleasePool() {
+    return  __TENAutoreleasePool;
 }
 
 void TENAutoreleasePoolAddObject(TENAutoreleasePool *pool, void *object) {
@@ -115,7 +116,7 @@ void TENAutoreleasePoolDrain(TENAutoreleasePool *pool) {
                 TENAutoreleasePoolSetCurrentStack(pool, currentStack);
             }
             
-            TENObjectRelease(enumerator);
+            TENRelease(enumerator);
         }
         
         if (TENStackPopTypeNull == popType) {
@@ -141,10 +142,6 @@ void TENSetAutoreleasePool(TENAutoreleasePool *pool) {
     __TENAutoreleasePool = pool;
 }
 
-void *TENGetAutoreleasePool() {
-    return  __TENAutoreleasePool;
-}
-
 void TENAutoreleasePoolValidate(TENAutoreleasePool *pool) {
     assert(NULL != pool);
 
@@ -156,7 +153,7 @@ void TENAutoreleasePoolValidate(TENAutoreleasePool *pool) {
         stack = TENLinkedListEnumeratorNextObject(enumerator);
     }
     
-    TENObjectRelease(enumerator);
+    TENRelease(enumerator);
     
     assert(!TENStackIsEmpty(stack));
 }
@@ -200,7 +197,7 @@ void TENAutoreleasePoolInsertObject(TENAutoreleasePool *pool, void *object) {
         TENLinkedListAddObject(list, currentStack);
         
         pool->_stackCount += 1;
-        TENObjectRelease(currentStack);
+        TENRelease(currentStack);
     }
     
     TENStackPushObject(currentStack, object);
@@ -222,11 +219,13 @@ bool TENAutoreleasePoolShouldDeflate(TENAutoreleasePool *pool) {
         return false;
     }
     
+    uint64_t stackDeflationCount = TENStackDeflationCount;
     TENLinkedList *list = TENAutoreleasePoolGetList(pool);
     TENStack *currentStack = TENAutoreleasePoolGetCurrentStack(pool);
     
+    
     if (currentStack == TENLinkedListGetFirstObject(list) ||
-        list->_count < TENStackDeflationCount)
+        list->_count < stackDeflationCount)
     {
         return false;
     }
@@ -246,7 +245,7 @@ bool TENAutoreleasePoolShouldDeflate(TENAutoreleasePool *pool) {
         stackCount += 1;
     }
     
-    TENObjectRelease(enumerator);
+    TENRelease(enumerator);
     
-    return stackCount > TENStackDeflationCount;
+    return stackCount > stackDeflationCount;
 }

@@ -6,8 +6,14 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#include <stdlib.h>
+#include "TENAutoreleasePool.h"
 #include "TENObject.h"
+
+#pragma mark -
+#pragma mark Private Declarations
+
+#pragma mark -
+#pragma mark Public Implementation
 
 void *__TENObjectCreate(size_t objectSize, TENDeallocateCallback deallocateCallback) {
     TENObject *object = calloc(1, objectSize);
@@ -18,7 +24,19 @@ void *__TENObjectCreate(size_t objectSize, TENDeallocateCallback deallocateCallb
     return object;
 }
 
-void *TENObjectRetain(void *object) {
+void *__TENObjectWithSizeAndDeallocator(size_t objectSize, TENDeallocateCallback dellocatorCallback) {
+    return TENAutorelease(__TENObjectCreate(objectSize, dellocatorCallback));
+}
+
+void __TENObjectDeallocate(void *object) {
+    free(object);
+}
+
+uint64_t TENObjectGetReferenceCount(void *object) {
+    return (NULL == object) ? 0 : ((TENObject *)object)->_referenceCount;
+}
+
+void *TENRetain(void *object) {
     if (NULL != object) {
         ((TENObject *)object)->_referenceCount += 1;
     }
@@ -26,7 +44,7 @@ void *TENObjectRetain(void *object) {
     return object;
 }
 
-void TENObjectRelease(void *voidObject) {
+void TENRelease(void *voidObject) {
     if (NULL != voidObject) {
         TENObject *object = (TENObject *)voidObject;
         
@@ -37,10 +55,15 @@ void TENObjectRelease(void *voidObject) {
     }
 }
 
-uint64_t TENObjectGetReferenceCount(void *object) {
-    return (NULL == object) ? 0 : ((TENObject *)object)->_referenceCount;
+void *TENAutorelease(void *object) {
+    if (NULL == object) {
+        return NULL;
+    }
+    
+    TENAutoreleasePoolAddObject(TENGetAutoreleasePool(), object);
+    
+    return object;
 }
 
-void __TENObjectDeallocate(void *object) {
-    free(object);
-}
+#pragma mark -
+#pragma mark Private Implementation

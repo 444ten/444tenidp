@@ -40,7 +40,7 @@ void TENLinkedListAddObject(TENLinkedList *list, void *object) {
     
     list->_count += 1;
 
-    TENObjectRelease(newRootNode);
+    TENRelease(newRootNode);
 }
 
 void TENLinkedListInsertObjectBeforeObject(TENLinkedList *list, void *object, void *insertionPoint) {
@@ -65,7 +65,7 @@ void TENLinkedListInsertObjectBeforeObject(TENLinkedList *list, void *object, vo
         
         list->_count += 1;
         
-        TENObjectRelease(node);
+        TENRelease(node);
     }
 }
 
@@ -87,7 +87,7 @@ void TENLinkedListInsertObjectAfterObject(TENLinkedList *list, void *object, voi
     
     list->_count += 1;
     
-    TENObjectRelease(node);
+    TENRelease(node);
 }
 
 void TENLinkedListRemoveObject(TENLinkedList *list, void *object) {
@@ -183,7 +183,7 @@ TENNode *TENLinkedListFindNode(TENLinkedList *list, TENCompareFunction function,
         }
     }
     
-    TENObjectRelease(enumerator);
+    TENRelease(enumerator);
     
     return result;
 }

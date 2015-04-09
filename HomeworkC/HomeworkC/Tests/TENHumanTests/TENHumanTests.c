@@ -6,14 +6,68 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "TENAutoreleasePool.h"
 #include "TENChildArray.h"
 #include "TENHuman.h"
 #include "TENHumanTests.h"
 #include "TENObject.h"
 #include "TENString.h"
+
+#pragma mark -
+#pragma mark Private Declarations
+
+static
+void TENHumanAutoreleaseTest();
+
+static
+void TENChildArrayTest();
+
+static
+void TENHumanChildTest();
+
+static
+void TENHumanPartnerTest();
+
+#pragma mark -
+#pragma mark Public Implementation
+
+void TENHumanPerformTests() {
+    TENChildArrayTest();
+    TENHumanChildTest();
+    TENHumanPartnerTest();
+    TENHumanAutoreleaseTest();
+}
+
+#pragma mark -
+#pragma mark Private Implementations
+
+void TENHumanAutoreleaseTest() {
+    //after being creating AutoreleasePool
+    TENAutoreleasePool *pool = TENAutoreleasePoolNew();
+    
+    //TENHuman
+    //after being calling and retain
+    TENString *adamName = TENStringCreateWithData("adam");
+    TENHuman *adam = TENHumanMaleWithName(adamName);
+    TENRetain(adam);
+    
+    //it retainCount should equal 2
+    assert(2 == TENObjectGetReferenceCount(adam));
+    
+    //afte drain pool
+    TENAutoreleasePoolDrain(pool);
+    
+    //it retainCount should equal 1
+    assert(1 == TENObjectGetReferenceCount(adam));
+    
+    TENRelease(adam);
+    TENRelease(adamName);
+    
+}
 
 void TENChildArrayTest() {
     TENString *adamName = TENStringCreateWithData("Adam");
@@ -21,14 +75,14 @@ void TENChildArrayTest() {
     TENString *kainName = TENStringCreateWithData("Kain");
     TENString *avelName = TENStringCreateWithData("Avel");
     
-    TENHuman *adam = TENHumanMaleCreateWithName(adamName);
-    TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
-    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
+    TENHuman *adam = TENHumanMaleWithName(adamName);
+    TENHuman *eva = TENHumanFemaleWithName(evaName);
+    TENHuman *kain = TENHumanMaleWithName(kainName);
     
-    TENObjectRelease(adamName);
-    TENObjectRelease(evaName);
-    TENObjectRelease(kainName);
-    TENObjectRelease(avelName);
+    TENRelease(adamName);
+    TENRelease(evaName);
+    TENRelease(kainName);
+    TENRelease(avelName);
     
     TENChildArray *godArray = TENObjectCreate(TENChildArray);
     
@@ -52,15 +106,15 @@ void TENHumanChildTest() {
     TENString *kainName = TENStringCreateWithData("Kain");
     TENString *avelName = TENStringCreateWithData("Avel");
     
-    TENHuman *adam = TENHumanMaleCreateWithName(adamName);
-    TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
-    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
-    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
+    TENHuman *adam = TENHumanMaleWithName(adamName);
+    TENHuman *eva = TENHumanFemaleWithName(evaName);
+    TENHuman *kain = TENHumanMaleWithName(kainName);
+    TENHuman *avel = TENHumanMaleWithName(avelName);
     
-    TENObjectRelease(adamName);
-    TENObjectRelease(evaName);
-    TENObjectRelease(kainName);
-    TENObjectRelease(avelName);
+    TENRelease(adamName);
+    TENRelease(evaName);
+    TENRelease(kainName);
+    TENRelease(avelName);
     
     TENHumanPrint(adam);
     TENHumanPrint(eva);
@@ -92,53 +146,51 @@ void TENHumanPartnerTest() {
     TENString *kainName = TENStringCreateWithData("Kain");
     TENString *avelName = TENStringCreateWithData("Avel");
     
-    TENHuman *adam = TENHumanMaleCreateWithName(adamName);
-    TENHuman *eva = TENHumanFemaleCreateWithName(evaName);
-//    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
-//    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
+    TENHuman *adam = TENHumanMaleWithName(adamName);
+    TENHuman *eva = TENHumanFemaleWithName(evaName);
+    //    TENHuman *kain = TENHumanMaleCreateWithName(kainName);
+    //    TENHuman *avel = TENHumanMaleCreateWithName(avelName);
     
-    TENObjectRelease(adamName);
-    TENObjectRelease(evaName);
-    TENObjectRelease(kainName);
-    TENObjectRelease(avelName);
+    TENRelease(adamName);
+    TENRelease(evaName);
+    TENRelease(kainName);
+    TENRelease(avelName);
     
     TENHumanPrint(adam);
     TENHumanPrint(eva);
-//    TENHumanPrint(kain);
-//    TENHumanPrint(avel);
+    //    TENHumanPrint(kain);
+    //    TENHumanPrint(avel);
     
     TENHumanMarry(adam, eva);
     TENHumanPrint(adam);
     TENHumanPrint(eva);
     
-//    TENObjectRelease(eva);
-//    TENHumanPrint(adam);
-//    TENHumanPrint(eva);
+    //    TENRelease(eva);
+    //    TENHumanPrint(adam);
+    //    TENHumanPrint(eva);
     
-//    TENObjectRelease(adam);
-//    TENObjectRelease(adam);
-
-//    TENHumanPrint(adam);
-//    TENHumanPrint(eva);
-
-//    TENHumanPrint(kain);
-//    TENHumanPrint(avel);
-
-//    TENHumanMarry(avel, eva);
-//    TENHumanPrint(adam);
-//    TENHumanPrint(eva);
-//    TENHumanPrint(kain);
-//    TENHumanPrint(avel);
-//    
-//    TENHumanMarry(kain, kain);
+    //    TENRelease(adam);
+    //    TENRelease(adam);
     
-}
-
-
-void TENHumanPerformTests() {
-//    TENChildArrayTest();
-//    TENHumanChildTest();
-    TENHumanPartnerTest();
+    //    TENHumanPrint(adam);
+    //    TENHumanPrint(eva);
     
+    //    TENHumanPrint(kain);
+    //    TENHumanPrint(avel);
+    
+    //    TENHumanMarry(avel, eva);
+    //    TENHumanPrint(adam);
+    //    TENHumanPrint(eva);
+    //    TENHumanPrint(kain);
+    //    TENHumanPrint(avel);
+    //    
+    //    TENHumanMarry(kain, kain);
     
 }
+
+
+
+
+
+
+

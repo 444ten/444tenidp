@@ -35,13 +35,13 @@ struct TENHuman {
 };
 
 extern
-TENHuman *TENHumanCreateWithNameGender(TENString *name, TENGender gender);
+TENHuman *TENHumanWithNameGender(TENString *name, TENGender gender);
 
 extern
-TENHuman *TENHumanMaleCreateWithName(TENString *name);
+TENHuman *TENHumanMaleWithName(TENString *name);
 
 extern
-TENHuman *TENHumanFemaleCreateWithName(TENString *name);
+TENHuman *TENHumanFemaleWithName(TENString *name);
 
 extern
 void __TENHumanDeallocate(TENHuman *human);

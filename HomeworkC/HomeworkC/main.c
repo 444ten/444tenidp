@@ -30,13 +30,14 @@ int main(int argc, const char * argv[]) {
 //    TENStructPerformTest();
 //
 //    TENValueBitOutputPerformTest();
-//
-//    TENHumanPerformTests();
-//    TENObjectPerformTest();
-//    
-//    TENStringPerformTest();
-//    
-//    TENMutableSetPerformTests();
+
+    TENHumanPerformTests();
+
+    TENObjectPerformTest();
+    
+    TENStringPerformTest();
+    
+    TENMutableSetPerformTests();
     
     TENStackPerformTest();
     
