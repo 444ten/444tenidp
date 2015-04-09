@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		767A374B1AD6A2E7008C29D3 /* TENObjCSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A374A1AD6A2E7008C29D3 /* TENObjCSyntax.m */; };
 		769C9FA11AD551DF008B1F73 /* TENAutoreleasePool.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F491AD551DF008B1F73 /* TENAutoreleasePool.c */; };
 		769C9FA21AD551DF008B1F73 /* TENCharBit.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F4C1AD551DF008B1F73 /* TENCharBit.c */; };
 		769C9FA31AD551DF008B1F73 /* TENChildArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F4F1AD551DF008B1F73 /* TENChildArray.c */; };
@@ -36,10 +37,20 @@
 		769C9FBB1AD551DF008B1F73 /* TENStringTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F991AD551DF008B1F73 /* TENStringTests.c */; };
 		769C9FBC1AD551DF008B1F73 /* TENStructTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F9C1AD551DF008B1F73 /* TENStructTest.c */; };
 		769C9FBD1AD551DF008B1F73 /* TENValueBitOutputTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F9F1AD551DF008B1F73 /* TENValueBitOutputTest.c */; };
+		769DFBDB1AD6895600D0919A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 769DFBDA1AD6895600D0919A /* main.m */; };
 		76F255D31A8E40A500135F2A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255D21A8E40A500135F2A /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		769DFBD61AD6895600D0919A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		76F255A71A8E2B9200135F2A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -52,6 +63,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		767A374A1AD6A2E7008C29D3 /* TENObjCSyntax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENObjCSyntax.m; path = Source/TENSyntax/TENObjCSyntax.m; sourceTree = "<group>"; };
+		767A374C1AD6A359008C29D3 /* TENObjCSyntax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TENObjCSyntax.h; path = Source/TENSyntax/TENObjCSyntax.h; sourceTree = "<group>"; };
 		769C9F491AD551DF008B1F73 /* TENAutoreleasePool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENAutoreleasePool.c; sourceTree = "<group>"; };
 		769C9F4A1AD551DF008B1F73 /* TENAutoreleasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENAutoreleasePool.h; sourceTree = "<group>"; };
 		769C9F4C1AD551DF008B1F73 /* TENCharBit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENCharBit.c; sourceTree = "<group>"; };
@@ -112,11 +125,20 @@
 		769C9F9D1AD551DF008B1F73 /* TENStructTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENStructTest.h; sourceTree = "<group>"; };
 		769C9F9F1AD551DF008B1F73 /* TENValueBitOutputTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENValueBitOutputTest.c; sourceTree = "<group>"; };
 		769C9FA01AD551DF008B1F73 /* TENValueBitOutputTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENValueBitOutputTest.h; sourceTree = "<group>"; };
+		769DFBD81AD6895600D0919A /* HomeworkObjC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HomeworkObjC; sourceTree = BUILT_PRODUCTS_DIR; };
+		769DFBDA1AD6895600D0919A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76F255A91A8E2B9200135F2A /* HomeworkC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HomeworkC; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F255D21A8E40A500135F2A /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		769DFBD51AD6895600D0919A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76F255A61A8E2B9200135F2A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -127,6 +149,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		767A37471AD6A255008C29D3 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				767A37491AD6A27C008C29D3 /* TENSyntax */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		767A37481AD6A262008C29D3 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		767A37491AD6A27C008C29D3 /* TENSyntax */ = {
+			isa = PBXGroup;
+			children = (
+				767A374C1AD6A359008C29D3 /* TENObjCSyntax.h */,
+				767A374A1AD6A2E7008C29D3 /* TENObjCSyntax.m */,
+			);
+			name = TENSyntax;
+			sourceTree = "<group>";
+		};
 		769C9F471AD551DF008B1F73 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,10 +471,21 @@
 			path = TENValueBitOutputTest;
 			sourceTree = "<group>";
 		};
+		769DFBD91AD6895600D0919A /* HomeworkObjC */ = {
+			isa = PBXGroup;
+			children = (
+				769DFBDA1AD6895600D0919A /* main.m */,
+				767A37471AD6A255008C29D3 /* Source */,
+				767A37481AD6A262008C29D3 /* Tests */,
+			);
+			path = HomeworkObjC;
+			sourceTree = "<group>";
+		};
 		76F255A01A8E2B9200135F2A = {
 			isa = PBXGroup;
 			children = (
 				76F255AB1A8E2B9200135F2A /* HomeworkC */,
+				769DFBD91AD6895600D0919A /* HomeworkObjC */,
 				76F255AA1A8E2B9200135F2A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -437,6 +494,7 @@
 			isa = PBXGroup;
 			children = (
 				76F255A91A8E2B9200135F2A /* HomeworkC */,
+				769DFBD81AD6895600D0919A /* HomeworkObjC */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -454,6 +512,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		769DFBD71AD6895600D0919A /* HomeworkObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 769DFBDE1AD6895600D0919A /* Build configuration list for PBXNativeTarget "HomeworkObjC" */;
+			buildPhases = (
+				769DFBD41AD6895600D0919A /* Sources */,
+				769DFBD51AD6895600D0919A /* Frameworks */,
+				769DFBD61AD6895600D0919A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HomeworkObjC;
+			productName = HomeworkObjC;
+			productReference = 769DFBD81AD6895600D0919A /* HomeworkObjC */;
+			productType = "com.apple.product-type.tool";
+		};
 		76F255A81A8E2B9200135F2A /* HomeworkC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76F255B01A8E2B9300135F2A /* Build configuration list for PBXNativeTarget "HomeworkC" */;
@@ -480,6 +555,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = 444ten;
 				TargetAttributes = {
+					769DFBD71AD6895600D0919A = {
+						CreatedOnToolsVersion = 6.2;
+					};
 					76F255A81A8E2B9200135F2A = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -498,11 +576,21 @@
 			projectRoot = "";
 			targets = (
 				76F255A81A8E2B9200135F2A /* HomeworkC */,
+				769DFBD71AD6895600D0919A /* HomeworkObjC */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		769DFBD41AD6895600D0919A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				767A374B1AD6A2E7008C29D3 /* TENObjCSyntax.m in Sources */,
+				769DFBDB1AD6895600D0919A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76F255A51A8E2B9200135F2A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -543,6 +631,27 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		769DFBDC1AD6895600D0919A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		769DFBDD1AD6895600D0919A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COPY_PHASE_STRIP = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		76F255AE1A8E2B9300135F2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -634,6 +743,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		769DFBDE1AD6895600D0919A /* Build configuration list for PBXNativeTarget "HomeworkObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				769DFBDC1AD6895600D0919A /* Debug */,
+				769DFBDD1AD6895600D0919A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		76F255A41A8E2B9200135F2A /* Build configuration list for PBXProject "HomeworkC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

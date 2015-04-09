@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>HomeworkObjC.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>769DFBD71AD6895600D0919A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>76F255A81A8E2B9200135F2A</key>
 		<dict>
 			<key>primary</key>

@@ -38,6 +38,9 @@ void TENHumanSetAge(TENHuman *human, uint8_t age);
 static
 void TENHumanSetGender(TENHuman *human, TENGender gender);
 
+static
+void TENHumanValidateObject(TENHuman *human, TENHuman* object);
+
 #pragma mark -
 #pragma mark Public Implementations
 
