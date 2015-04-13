@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		767A374B1AD6A2E7008C29D3 /* TENObjCSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A374A1AD6A2E7008C29D3 /* TENObjCSyntax.m */; };
 		767A37511ADBBB0D008C29D3 /* TENEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A37501ADBBB0D008C29D3 /* TENEntity.m */; };
-		767A37581ADBBEE5008C29D3 /* TENEntityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A37571ADBBEE5008C29D3 /* TENEntityTests.m */; };
+		767A375E1ADC33C4008C29D3 /* TENEntityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A375D1ADC33C4008C29D3 /* TENEntityTests.m */; };
 		769C9FA11AD551DF008B1F73 /* TENAutoreleasePool.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F491AD551DF008B1F73 /* TENAutoreleasePool.c */; };
 		769C9FA21AD551DF008B1F73 /* TENCharBit.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F4C1AD551DF008B1F73 /* TENCharBit.c */; };
 		769C9FA31AD551DF008B1F73 /* TENChildArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F4F1AD551DF008B1F73 /* TENChildArray.c */; };
@@ -69,8 +69,8 @@
 		767A374C1AD6A359008C29D3 /* TENObjCSyntax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TENObjCSyntax.h; path = Source/TENSyntax/TENObjCSyntax.h; sourceTree = "<group>"; };
 		767A374F1ADBBB0D008C29D3 /* TENEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENEntity.h; sourceTree = "<group>"; };
 		767A37501ADBBB0D008C29D3 /* TENEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENEntity.m; sourceTree = "<group>"; };
-		767A37561ADBBEE5008C29D3 /* TENEntityTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENEntityTests.h; path = ../../../../../../Documents/TENEntityTests.h; sourceTree = "<group>"; };
-		767A37571ADBBEE5008C29D3 /* TENEntityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEntityTests.m; path = ../../../../../../Documents/TENEntityTests.m; sourceTree = "<group>"; };
+		767A375C1ADC33C4008C29D3 /* TENEntityTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENEntityTests.h; sourceTree = "<group>"; };
+		767A375D1ADC33C4008C29D3 /* TENEntityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENEntityTests.m; sourceTree = "<group>"; };
 		769C9F491AD551DF008B1F73 /* TENAutoreleasePool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENAutoreleasePool.c; sourceTree = "<group>"; };
 		769C9F4A1AD551DF008B1F73 /* TENAutoreleasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENAutoreleasePool.h; sourceTree = "<group>"; };
 		769C9F4C1AD551DF008B1F73 /* TENCharBit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENCharBit.c; sourceTree = "<group>"; };
@@ -194,8 +194,8 @@
 		767A37521ADBBE3E008C29D3 /* TENEntityTests */ = {
 			isa = PBXGroup;
 			children = (
-				767A37561ADBBEE5008C29D3 /* TENEntityTests.h */,
-				767A37571ADBBEE5008C29D3 /* TENEntityTests.m */,
+				767A375C1ADC33C4008C29D3 /* TENEntityTests.h */,
+				767A375D1ADC33C4008C29D3 /* TENEntityTests.m */,
 			);
 			name = TENEntityTests;
 			path = Tests/TENEntityTests;
@@ -614,9 +614,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				767A375E1ADC33C4008C29D3 /* TENEntityTests.m in Sources */,
 				767A374B1AD6A2E7008C29D3 /* TENObjCSyntax.m in Sources */,
 				767A37511ADBBB0D008C29D3 /* TENEntity.m in Sources */,
-				767A37581ADBBEE5008C29D3 /* TENEntityTests.m in Sources */,
 				769DFBDB1AD6895600D0919A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

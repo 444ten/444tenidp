@@ -8,7 +8,14 @@
 
 #import "TENEntity.h"
 
+@interface TENEntity ()
+@property (nonatomic, retain)   NSMutableArray  *childrenMutableArray;
+
+@end
+
 @implementation TENEntity
+
+@dynamic children;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -38,7 +45,7 @@
         [self setGender:gender];
         [self setAge:age];
         [self setWeight:weight];
-        [self setChildren:[[NSMutableArray new] autorelease]];
+        [self setChildrenMutableArray:[[NSMutableArray new] autorelease]];
     }
     
     return self;
@@ -46,9 +53,16 @@
 
 - (void)dealloc {
     [self setName:nil];
-    [self setChildren:nil];
+    [self setChildrenMutableArray:nil];
 
     [super dealloc];
+}
+
+#pragma mark - 
+#pragma mark Accessors Methods
+
+- (NSArray *)children {
+    return [[[self childrenMutableArray] copy] autorelease];
 }
 
 #pragma mark -
@@ -56,6 +70,10 @@
 
 - (void)sayHi {
     NSLog(@"%@ say Hi", [self name]);
+    
+    for (TENEntity *child in [self childrenMutableArray]) {
+        [child sayHi];
+    }
 }
 
 - (void)fighting {
@@ -70,18 +88,21 @@
 }
 
 - (void)addChild:(TENEntity *)child {
-    if ([self isEqualTo:child] || [[self children] containsObject:child ]) {
+    if ([self isEqualTo:child] || [[self childrenMutableArray] containsObject:child ]) {
         NSLog(@"dublicate\n");
         
         return;
     }
     
-    [[self children] addObject:child];
+    [[self childrenMutableArray] addObject:child];
 }
 
 - (void)removeChild:(TENEntity *)child {
-    [[self children] removeObject:child];
-    
+    if ([[self childrenMutableArray] containsObject:child]) {
+        [[self childrenMutableArray] removeObject:child];
+    } else {
+        NSLog(@"%@ not contains in %@'s children\n", [child name], [self name]);
+    }
 }
 
 @end
