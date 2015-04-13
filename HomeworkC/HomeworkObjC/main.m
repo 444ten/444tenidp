@@ -7,10 +7,13 @@
 //
 
 #import "TENObjCSyntax.h"
+#import "TENEntityTests.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        TENObjCSyntax();
+//        TENObjCSyntax();
+        
+        TENEntityPerformTests();
     }
     
     return 0;

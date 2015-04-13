@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		767A374B1AD6A2E7008C29D3 /* TENObjCSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A374A1AD6A2E7008C29D3 /* TENObjCSyntax.m */; };
+		767A37511ADBBB0D008C29D3 /* TENEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A37501ADBBB0D008C29D3 /* TENEntity.m */; };
+		767A37581ADBBEE5008C29D3 /* TENEntityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A37571ADBBEE5008C29D3 /* TENEntityTests.m */; };
 		769C9FA11AD551DF008B1F73 /* TENAutoreleasePool.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F491AD551DF008B1F73 /* TENAutoreleasePool.c */; };
 		769C9FA21AD551DF008B1F73 /* TENCharBit.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F4C1AD551DF008B1F73 /* TENCharBit.c */; };
 		769C9FA31AD551DF008B1F73 /* TENChildArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F4F1AD551DF008B1F73 /* TENChildArray.c */; };
@@ -65,6 +67,10 @@
 /* Begin PBXFileReference section */
 		767A374A1AD6A2E7008C29D3 /* TENObjCSyntax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENObjCSyntax.m; path = Source/TENSyntax/TENObjCSyntax.m; sourceTree = "<group>"; };
 		767A374C1AD6A359008C29D3 /* TENObjCSyntax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TENObjCSyntax.h; path = Source/TENSyntax/TENObjCSyntax.h; sourceTree = "<group>"; };
+		767A374F1ADBBB0D008C29D3 /* TENEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENEntity.h; sourceTree = "<group>"; };
+		767A37501ADBBB0D008C29D3 /* TENEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENEntity.m; sourceTree = "<group>"; };
+		767A37561ADBBEE5008C29D3 /* TENEntityTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENEntityTests.h; path = ../../../../../../Documents/TENEntityTests.h; sourceTree = "<group>"; };
+		767A37571ADBBEE5008C29D3 /* TENEntityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEntityTests.m; path = ../../../../../../Documents/TENEntityTests.m; sourceTree = "<group>"; };
 		769C9F491AD551DF008B1F73 /* TENAutoreleasePool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENAutoreleasePool.c; sourceTree = "<group>"; };
 		769C9F4A1AD551DF008B1F73 /* TENAutoreleasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENAutoreleasePool.h; sourceTree = "<group>"; };
 		769C9F4C1AD551DF008B1F73 /* TENCharBit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENCharBit.c; sourceTree = "<group>"; };
@@ -153,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				767A37491AD6A27C008C29D3 /* TENSyntax */,
+				767A374E1ADBBAC8008C29D3 /* TENEntity */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -160,6 +167,7 @@
 		767A37481AD6A262008C29D3 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				767A37521ADBBE3E008C29D3 /* TENEntityTests */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -171,6 +179,26 @@
 				767A374A1AD6A2E7008C29D3 /* TENObjCSyntax.m */,
 			);
 			name = TENSyntax;
+			sourceTree = "<group>";
+		};
+		767A374E1ADBBAC8008C29D3 /* TENEntity */ = {
+			isa = PBXGroup;
+			children = (
+				767A374F1ADBBB0D008C29D3 /* TENEntity.h */,
+				767A37501ADBBB0D008C29D3 /* TENEntity.m */,
+			);
+			name = TENEntity;
+			path = Source/TENEntity;
+			sourceTree = "<group>";
+		};
+		767A37521ADBBE3E008C29D3 /* TENEntityTests */ = {
+			isa = PBXGroup;
+			children = (
+				767A37561ADBBEE5008C29D3 /* TENEntityTests.h */,
+				767A37571ADBBEE5008C29D3 /* TENEntityTests.m */,
+			);
+			name = TENEntityTests;
+			path = Tests/TENEntityTests;
 			sourceTree = "<group>";
 		};
 		769C9F471AD551DF008B1F73 /* Source */ = {
@@ -587,6 +615,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				767A374B1AD6A2E7008C29D3 /* TENObjCSyntax.m in Sources */,
+				767A37511ADBBB0D008C29D3 /* TENEntity.m in Sources */,
+				767A37581ADBBEE5008C29D3 /* TENEntityTests.m in Sources */,
 				769DFBDB1AD6895600D0919A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
