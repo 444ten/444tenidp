@@ -9,6 +9,8 @@
 #import <assert.h>
 
 #import "TENEntity.h"
+#import "TENEntityFemale.h"
+#import "TENEntityMale.h"
 #import "TENEntityTests.h"
 
 #pragma mark -
@@ -20,18 +22,21 @@ void TENEntityCreateTest();
 static
 void TENEntityMakeEntityTest();
 
+static
+void TENEntityMaleFemaleTest();
+
 #pragma mark -
 #pragma mark Public Implementations
 
 void TENEntityPerformTests() {
-//    TENEntityCreateTest();
-    TENEntityMakeEntityTest();
+    TENEntityCreateTest();
+//    TENEntityMakeEntityTest();
+//    TENEntityMaleFemaleTest();
+
 }
 
 #pragma mark -
 #pragma mark Private Implementations
-
-
 
 void TENEntityCreateTest() {
     //TENEntity
@@ -70,8 +75,6 @@ void TENEntityCreateTest() {
         [john addChild:mike];
         [jane addChild:barbie];
         [jane addChild:mike];
-        
-        [john sayHi];
     }
     
     assert(1 == [john retainCount]);
@@ -131,5 +134,13 @@ void TENEntityMakeEntityTest() {
             [entity fighting];
         }
     }
+}
+
+void TENEntityMaleFemaleTest() {
+    TENEntityMale *ivan = [TENEntityMale entityWithName:@"Ivan" age:30 weight:70];
+    TENEntityFemale *mary = [TENEntityFemale entityWithName:@"Mary" age:25 weight:50];
+    
+    [ivan performGenderSpecificOperation];
+    [mary performGenderSpecificOperation];
 }
 

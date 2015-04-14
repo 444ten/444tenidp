@@ -7,6 +7,7 @@
 //
 
 #import "TENEntity.h"
+#import "NSObject+TENObjectCategory.h"
 
 @interface TENEntity ()
 @property (nonatomic, retain)   NSMutableArray  *childrenMutableArray;
@@ -45,7 +46,7 @@
         [self setGender:gender];
         [self setAge:age];
         [self setWeight:weight];
-        [self setChildrenMutableArray:[[NSMutableArray new] autorelease]];
+        [self setChildrenMutableArray:[NSMutableArray object]];
     }
     
     return self;

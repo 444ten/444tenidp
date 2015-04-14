@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
-    TENGenderFemale,
-    TENGenderMale
-} TENGender;
-
 @interface TENSimpleEntity : NSObject
 
 @property (nonatomic, assign)           uint16_t    age;
@@ -21,7 +16,6 @@ typedef enum {
 @property (nonatomic, assign)           double      weight;
 
 + (instancetype)entityWithName:(NSString *)name
-                        gender:(TENGender)gender
                            age:(uint16_t)age
                         weight:(double)weight;
 
