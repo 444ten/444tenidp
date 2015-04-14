@@ -17,12 +17,15 @@
 static
 void TENEntityCreateTest();
 
+static
+void TENEntityMakeEntityTest();
+
 #pragma mark -
 #pragma mark Public Implementations
 
 void TENEntityPerformTests() {
-    TENEntityCreateTest();
-    
+//    TENEntityCreateTest();
+    TENEntityMakeEntityTest();
 }
 
 #pragma mark -
@@ -79,3 +82,54 @@ void TENEntityCreateTest() {
     
     [jane release];
 }
+
+void TENEntityMakeEntityTest() {
+    TENEntity *viktor = [TENEntity entityWithName:@"Viktor"
+                                           gender:TENGenderMale
+                                              age:62
+                                           weight:80.8];
+    TENEntity *natali = [TENEntity entityWithName:@"Natali"
+                                           gender:TENGenderFemale
+                                              age:50
+                                           weight:60.6];
+    TENEntity *andrey = [TENEntity entityWithName:@"Andrey"
+                                           gender:TENGenderMale
+                                              age:40
+                                           weight:74.7];
+    
+    NSArray *entityArray = @[viktor, natali, andrey];
+    
+    TENEntity *vitaliy = [TENEntity entityWithName:@"Vitaliy"
+                                           gender:TENGenderMale
+                                              age:38
+                                           weight:77.7];
+    TENEntity *yulia = [TENEntity entityWithName:@"Yulia"
+                                          gender:TENGenderFemale
+                                             age:35
+                                          weight:50.1];
+    TENEntity *anna = [TENEntity entityWithName:@"Anna"
+                                           gender:TENGenderFemale
+                                              age:37
+                                           weight:60.1];
+    TENEntity *sergey = [TENEntity entityWithName:@"Sergeyy"
+                                            gender:TENGenderMale
+                                               age:20
+                                            weight:60.7];
+    [viktor addChild:vitaliy];
+    [viktor addChild:yulia];
+    [natali addChild:anna];
+    [andrey addChild:sergey];
+
+    NSMutableArray *makeEntityArray = [[NSMutableArray new] autorelease];
+    
+    for (TENEntity *entity in entityArray) {
+        if (TENGenderFemale == [entity gender]) {
+            [makeEntityArray addObject:[entity makeEntityWithName:@"noname"
+                                                           gender:TENGenderFemale
+                                                           weight:2.5]];
+        } else {
+            [entity fighting];
+        }
+    }
+}
+
