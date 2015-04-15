@@ -9,5 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface TENBilding : NSObject
+@property (nonatomic, retain)   NSString        *name;
+@property (nonatomic, retain)   NSMutableArray  *roomsArray;
+
++ (instancetype)bildingWithName:(NSString *)name;
+
+- (id)roomWithSpecification:(NSArray *)specification;
+- (void)buildWithMasterplan:(NSDictionary *)masterplan;
 
 @end

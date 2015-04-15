@@ -37,4 +37,14 @@
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark Public Methods
+
+- (NSString *)description {
+    NSMutableString *string = [NSMutableString stringWithString:[super description]];
+    [string appendFormat:@" name:'%@', people capacity = %lu", self.name, self.peopleCapacity];
+
+    return string;
+}
+
 @end

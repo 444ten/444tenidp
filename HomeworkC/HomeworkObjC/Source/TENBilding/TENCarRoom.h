@@ -9,7 +9,7 @@
 #import "TENRoom.h"
 
 @interface TENCarRoom : TENRoom
-@property (nonatomic, assign)   NSUInteger  carCapasity;
+@property (nonatomic, assign)   NSUInteger  carCapacity;
 
 + (instancetype)carRoomWithName:(NSString *)name
                  peopleCapacity:(NSUInteger)peopleCapacity

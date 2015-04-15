@@ -32,14 +32,20 @@
     self = [super initWithName:name peopleCapacity:peopleCapacity];
     
     if (self) {
-        self.carCapasity = carCapacity;
+        self.carCapacity = carCapacity;
     }
     
     return self;
 }
 
-- (void)dealloc {
-    [super dealloc];
+#pragma mark -
+#pragma mark Public Methods
+
+- (NSString *)description {
+    NSMutableString *string = [NSMutableString stringWithString:[super description]];
+    [string appendFormat:@", car capacity = %lu", self.carCapacity];
+    
+    return string;
 }
 
 @end
