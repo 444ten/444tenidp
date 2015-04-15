@@ -6,17 +6,13 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
+#import "TENEntity.h"
 #import "TENSimpleEntity.h"
-#import "TENSimpleEntityProtocol.h"
 
-@class TENEntityMale;
+@interface TENEntityFemale : TENSimpleEntity
 
-@interface TENEntityFemale : TENSimpleEntity <TENSimpleEntityProtocol>
-
-- (TENEntityMale *)makeEntityMaleWithName:(NSString *)name
-                                weight:(double)weight;
-
-- (instancetype)makeEntityFemaleWithName:(NSString *)name
-                                  weight:(double)weight;
+- (id)makeChildWithGender:(TENGender)gender
+                     name:(NSString *)name
+                   weight:(double)weight;
 
 @end

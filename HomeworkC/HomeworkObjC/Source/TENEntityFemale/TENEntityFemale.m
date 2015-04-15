@@ -11,12 +11,16 @@
 
 @implementation TENEntityFemale
 
-- (TENEntityMale *)makeEntityMaleWithName:(NSString *)name weight:(double)weight {
-    return [TENEntityMale entityWithName:name age:0 weight:weight];
-}
+#pragma mark -
+#pragma mark Public Methods
 
-- (instancetype)makeEntityFemaleWithName:(NSString *)name weight:(double)weight {
-    return [TENEntityFemale entityWithName:name age:0 weight:weight];
+- (id)makeChildWithGender:(TENGender)gender
+                     name:(NSString *)name
+                   weight:(double)weight
+{
+    Class class = (gender == TENGenderMale) ? [TENEntityMale class] : [TENEntityFemale class];
+    
+    return [class entityWithName:name age:0 weight:weight];
 }
 
 - (void)performGenderSpecificOperation {

@@ -7,9 +7,8 @@
 //
 
 #import "TENSimpleEntity.h"
-#import "TENSimpleEntityProtocol.h"
 
-@interface TENEntityMale : TENSimpleEntity <TENSimpleEntityProtocol>
+@interface TENEntityMale : TENSimpleEntity
 
 - (void)fighting;
 

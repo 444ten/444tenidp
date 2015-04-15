@@ -22,5 +22,6 @@
 - (void)sayHi;
 - (void)addChild:(TENSimpleEntity *)child;
 - (void)removeChild:(TENSimpleEntity *)child;
+- (void)performGenderSpecificOperation;
 
 @end

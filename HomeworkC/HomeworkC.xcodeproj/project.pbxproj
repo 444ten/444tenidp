@@ -81,7 +81,6 @@
 		767A376C1ADD3962008C29D3 /* TENEntityFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEntityFemale.m; path = Source/TENEntityFemale/TENEntityFemale.m; sourceTree = "<group>"; };
 		767A376E1ADD39C7008C29D3 /* TENEntityMale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENEntityMale.h; path = Source/TENEntityMale/TENEntityMale.h; sourceTree = "<group>"; };
 		767A376F1ADD39C7008C29D3 /* TENEntityMale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEntityMale.m; path = Source/TENEntityMale/TENEntityMale.m; sourceTree = "<group>"; };
-		767A37711ADD3FD6008C29D3 /* TENSimpleEntityProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENSimpleEntityProtocol.h; sourceTree = "<group>"; };
 		767A37791ADD527B008C29D3 /* NSObject+TENObjectCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+TENObjectCategory.h"; path = "Source/NSObject+TENObjectCategory/NSObject+TENObjectCategory.h"; sourceTree = "<group>"; };
 		767A377A1ADD527B008C29D3 /* NSObject+TENObjectCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+TENObjectCategory.m"; path = "Source/NSObject+TENObjectCategory/NSObject+TENObjectCategory.m"; sourceTree = "<group>"; };
 		769C9F491AD551DF008B1F73 /* TENAutoreleasePool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TENAutoreleasePool.c; sourceTree = "<group>"; };
@@ -223,7 +222,6 @@
 			children = (
 				767A375F1ADD3478008C29D3 /* TENSimpleEntity.h */,
 				767A37601ADD3478008C29D3 /* TENSimpleEntity.m */,
-				767A37711ADD3FD6008C29D3 /* TENSimpleEntityProtocol.h */,
 			);
 			name = TENSimpleEntity;
 			path = Source/TENEntity;

@@ -14,12 +14,11 @@ typedef enum {
 } TENGender;
 
 @interface TENEntity : NSObject
-
-@property (nonatomic, assign)           uint16_t    age;
-@property (nonatomic, retain, readonly) NSArray     *children;
-@property (nonatomic, assign)           TENGender   gender;
-@property (nonatomic, retain)           NSString    *name;
-@property (nonatomic, assign)           double      weight;
+@property (nonatomic, retain)   NSString    *name;
+@property (nonatomic, assign)   uint16_t    age;
+@property (nonatomic, assign)   TENGender   gender;
+@property (nonatomic, assign)   double      weight;
+@property (nonatomic, readonly) NSArray     *children;
 
 + (instancetype)entityWithName:(NSString *)name
                         gender:(TENGender)gender
@@ -28,9 +27,9 @@ typedef enum {
 
 - (void)sayHi;
 - (void)fighting;
-- (instancetype)makeEntityWithName:(NSString *)name
-                    gender:(TENGender)gender
-                    weight:(double)weight;
+- (instancetype)makeChildWithName:(NSString *)name
+                           gender:(TENGender)gender
+                           weight:(double)weight;
 - (void)addChild:(TENEntity *)child;
 - (void)removeChild:(TENEntity *)child;
 

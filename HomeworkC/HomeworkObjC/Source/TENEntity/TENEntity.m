@@ -42,19 +42,19 @@
 {
     self = [super init];
     if (self) {
-        [self setName:name];
-        [self setGender:gender];
-        [self setAge:age];
-        [self setWeight:weight];
-        [self setChildrenMutableArray:[NSMutableArray object]];
+        self.name = name;
+        self.gender = gender;
+        self.age = age;
+        self.weight = weight;
+        self.childrenMutableArray = [NSMutableArray object];
     }
     
     return self;
 }
 
 - (void)dealloc {
-    [self setName:nil];
-    [self setChildrenMutableArray:nil];
+    self.name = nil;
+    self.childrenMutableArray = nil;
 
     [super dealloc];
 }
@@ -63,46 +63,50 @@
 #pragma mark Accessors Methods
 
 - (NSArray *)children {
-    return [[[self childrenMutableArray] copy] autorelease];
+    return [[self.childrenMutableArray copy] autorelease];
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
 - (void)sayHi {
-    NSLog(@"%@ say Hi", [self name]);
+    NSLog(@"%@ say Hi", self.name);
     
-    for (TENEntity *child in [self childrenMutableArray]) {
+    for (TENEntity *child in self.childrenMutableArray) {
         [child sayHi];
     }
 }
 
 - (void)fighting {
-    NSLog(@"%@ fighting", [self name]);
+    NSLog(@"%@ fighting", self.name);
 }
 
-- (instancetype)makeEntityWithName:(NSString *)name
-                            gender:(TENGender)gender
-                            weight:(double)weight
+- (instancetype)makeChildWithName:(NSString *)name
+                           gender:(TENGender)gender
+                           weight:(double)weight
 {
    return [TENEntity entityWithName:name gender:gender age:0 weight:weight];
 }
 
 - (void)addChild:(TENEntity *)child {
-    if ([self isEqualTo:child] || [[self childrenMutableArray] containsObject:child ]) {
+    NSMutableArray *array = self.childrenMutableArray;
+    
+    if ([self isEqualTo:child] || [array containsObject:child ]) {
         NSLog(@"dublicate\n");
         
         return;
     }
     
-    [[self childrenMutableArray] addObject:child];
+    [array addObject:child];
 }
 
 - (void)removeChild:(TENEntity *)child {
-    if ([[self childrenMutableArray] containsObject:child]) {
-        [[self childrenMutableArray] removeObject:child];
+    NSMutableArray *array = self.childrenMutableArray;
+    
+    if ([array containsObject:child]) {
+        [array removeObject:child];
     } else {
-        NSLog(@"%@ not contains in %@'s children\n", [child name], [self name]);
+        NSLog(@"%@ not contains in %@'s children\n", child.name, self.name);
     }
 }
 

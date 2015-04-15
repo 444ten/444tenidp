@@ -25,14 +25,17 @@ void TENEntityMakeEntityTest();
 static
 void TENEntityMaleFemaleTest();
 
+static
+void TENEntityFemaleMakeChildTest();
+
 #pragma mark -
 #pragma mark Public Implementations
 
 void TENEntityPerformTests() {
-    TENEntityCreateTest();
+//    TENEntityCreateTest();
 //    TENEntityMakeEntityTest();
 //    TENEntityMaleFemaleTest();
-
+    TENEntityFemaleMakeChildTest();
 }
 
 #pragma mark -
@@ -51,7 +54,7 @@ void TENEntityCreateTest() {
         [john retain];
         assert(2 == [john retainCount]);
         
-        jane = [john makeEntityWithName:@"Jane" gender:TENGenderFemale weight:55.5];
+        jane = [john makeChildWithName:@"Jane" gender:TENGenderFemale weight:55.5];
         [jane retain];
         assert(2 == [jane retainCount]);
         
@@ -103,21 +106,21 @@ void TENEntityMakeEntityTest() {
     NSArray *entityArray = @[viktor, natali, andrey];
     
     TENEntity *vitaliy = [TENEntity entityWithName:@"Vitaliy"
-                                           gender:TENGenderMale
-                                              age:38
-                                           weight:77.7];
+                                            gender:TENGenderMale
+                                               age:38
+                                            weight:77.7];
     TENEntity *yulia = [TENEntity entityWithName:@"Yulia"
                                           gender:TENGenderFemale
                                              age:35
                                           weight:50.1];
     TENEntity *anna = [TENEntity entityWithName:@"Anna"
-                                           gender:TENGenderFemale
-                                              age:37
-                                           weight:60.1];
+                                         gender:TENGenderFemale
+                                            age:37
+                                         weight:60.1];
     TENEntity *sergey = [TENEntity entityWithName:@"Sergeyy"
-                                            gender:TENGenderMale
-                                               age:20
-                                            weight:60.7];
+                                           gender:TENGenderMale
+                                              age:20
+                                           weight:60.7];
     [viktor addChild:vitaliy];
     [viktor addChild:yulia];
     [natali addChild:anna];
@@ -127,9 +130,9 @@ void TENEntityMakeEntityTest() {
     
     for (TENEntity *entity in entityArray) {
         if (TENGenderFemale == [entity gender]) {
-            [makeEntityArray addObject:[entity makeEntityWithName:@"noname"
-                                                           gender:TENGenderFemale
-                                                           weight:2.5]];
+            [makeEntityArray addObject:[entity makeChildWithName:@"noname"
+                                                          gender:TENGenderFemale
+                                                          weight:2.5]];
         } else {
             [entity fighting];
         }
@@ -143,4 +146,34 @@ void TENEntityMaleFemaleTest() {
     [ivan performGenderSpecificOperation];
     [mary performGenderSpecificOperation];
 }
+
+void TENEntityFemaleMakeChildTest() {
+    TENEntityFemale *anna = [TENEntityFemale entityWithName:@"Anna"
+                                                        age:37
+                                                     weight:60.1];
+    [anna performGenderSpecificOperation];
+
+    id petr = [anna makeChildWithGender:TENGenderMale name:@"Petr" weight:2.5];
+    [petr performGenderSpecificOperation];
+    
+    id inna = [anna makeChildWithGender:TENGenderFemale name:@"Inna" weight:2.5];
+    [inna performGenderSpecificOperation];    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
