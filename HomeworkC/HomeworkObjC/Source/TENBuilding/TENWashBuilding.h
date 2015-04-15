@@ -1,13 +1,13 @@
 //
-//  TENStaffBuilding.h
+//  TENWashBuilding.h
 //  HomeworkC
 //
 //  Created by 444ten on 4/15/15.
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#import "TENBilding.h"
+#import "TENBuilding.h"
 
-@interface TENStaffBuilding : TENBilding
+@interface TENWashBuilding : TENBuilding
 
 @end

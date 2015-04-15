@@ -1,15 +1,15 @@
 //
-//  TENBildingTests.m
+//  TENBuildingTests.m
 //  HomeworkC
 //
 //  Created by 444ten on 4/15/15.
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#import "TENBildingTests.h"
+#import "TENBuildingTests.h"
 #import "TENCarRoom.h"
 #import "TENStaffBuilding.h"
-#import "TENWashBilding.h"
+#import "TENWashBuilding.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -23,7 +23,7 @@ void TENBuildingTest();
 #pragma mark -
 #pragma mark Public Implementations
 
-void TENBildingPerformTests() {
+void TENBuildingPerformTests() {
     TENCarRoomTest();
     TENBuildingTest();
 }
@@ -39,7 +39,7 @@ void TENCarRoomTest() {
 }
 
 void TENBuildingTest() {
-    TENStaffBuilding *staffBuilding = [TENStaffBuilding bildingWithName:@"Admin"];
+    TENStaffBuilding *staffBuilding = [TENStaffBuilding buildingWithName:@"Admin"];
     
 //    : name, peopleCapacity
     NSDictionary *masterplanStaff = @{@(1) : @[@"Director"    , @(1)],
@@ -48,13 +48,13 @@ void TENBuildingTest() {
 
     [staffBuilding buildWithMasterplan:masterplanStaff];
     
-    TENWashBilding *washBilding = [TENWashBilding bildingWithName:@"Wash"];
+    TENWashBuilding *washBuilding = [TENWashBuilding buildingWithName:@"Wash"];
 
 //    : name, peopleCapacity, carCapacity    
     NSDictionary *masterplanWash = @{@(1) : @[@"Big"   , @(6), @(3)],
                                      @(2) : @[@"Medium", @(4), @(2)],
                                      @(3) : @[@"Small" , @(2), @(1)],};
 
-    [washBilding buildWithMasterplan:masterplanWash];
+    [washBuilding buildWithMasterplan:masterplanWash];
 }
 

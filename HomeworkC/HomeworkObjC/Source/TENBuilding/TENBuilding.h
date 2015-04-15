@@ -1,5 +1,5 @@
 //
-//  TENBilding.h
+//  TENBuilding.h
 //  HomeworkC
 //
 //  Created by 444ten on 4/15/15.
@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TENBilding : NSObject
+@interface TENBuilding : NSObject
 @property (nonatomic, retain)   NSString        *name;
 @property (nonatomic, retain)   NSMutableArray  *roomsArray;
 
-+ (instancetype)bildingWithName:(NSString *)name;
++ (instancetype)buildingWithName:(NSString *)name;
 
 - (id)roomWithSpecification:(NSArray *)specification;
 - (void)buildWithMasterplan:(NSDictionary *)masterplan;

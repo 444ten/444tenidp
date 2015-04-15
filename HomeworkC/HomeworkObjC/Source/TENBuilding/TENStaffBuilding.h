@@ -1,10 +1,13 @@
 //
-//  TENBildingTests.h
+//  TENStaffBuilding.h
 //  HomeworkC
 //
 //  Created by 444ten on 4/15/15.
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-extern
-void TENBildingPerformTests();
+#import "TENBuilding.h"
+
+@interface TENStaffBuilding : TENBuilding
+
+@end
