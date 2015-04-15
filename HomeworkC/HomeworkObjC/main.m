@@ -6,14 +6,15 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
+#import "TENBildingTests.h"
 #import "TENObjCSyntax.h"
 #import "TENEntityTests.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 //        TENObjCSyntax();
-        
-        TENEntityPerformTests();
+//        TENEntityPerformTests();
+        TENBildingPerformTests();
     }
     
     return 0;

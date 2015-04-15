@@ -159,21 +159,3 @@ void TENEntityFemaleMakeChildTest() {
     id inna = [anna makeChildWithGender:TENGenderFemale name:@"Inna" weight:2.5];
     [inna performGenderSpecificOperation];    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
