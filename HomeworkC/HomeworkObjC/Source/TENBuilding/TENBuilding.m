@@ -49,7 +49,7 @@
     NSArray *keysArray = [masterplan allKeys];
     
     for (NSNumber *key in keysArray) {
-        NSArray *specification = [masterplan objectForKey:key];
+        NSArray *specification = masterplan[key];
         
         [self.roomsArray addObject:[self roomWithSpecification:specification]];
     }
