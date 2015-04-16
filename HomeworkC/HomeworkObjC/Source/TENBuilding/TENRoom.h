@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface TENRoom : NSObject
-@property (nonatomic, retain)   NSString    *name;
+@property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, assign)   NSUInteger  peopleCapacity;
 
 + (instancetype)roomWithName:(NSString *)name peopleCapacity:(NSUInteger)peopleCapacity;

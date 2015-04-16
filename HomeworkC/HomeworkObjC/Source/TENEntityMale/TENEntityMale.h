@@ -10,6 +10,6 @@
 
 @interface TENEntityMale : TENSimpleEntity
 
-- (void)fighting;
+- (void)fight;
 
 @end

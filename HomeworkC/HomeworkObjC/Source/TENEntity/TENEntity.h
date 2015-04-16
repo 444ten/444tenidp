@@ -26,7 +26,7 @@ typedef enum {
                         weight:(double)weight;
 
 - (void)sayHi;
-- (void)fighting;
+- (void)fight;
 - (instancetype)makeChildWithName:(NSString *)name
                            gender:(TENGender)gender
                            weight:(double)weight;

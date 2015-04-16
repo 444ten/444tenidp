@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface TENBuilding : NSObject
-@property (nonatomic, retain)   NSString        *name;
+@property (nonatomic, copy)     NSString        *name;
 @property (nonatomic, retain)   NSMutableArray  *roomsArray;
 
 + (instancetype)buildingWithName:(NSString *)name;

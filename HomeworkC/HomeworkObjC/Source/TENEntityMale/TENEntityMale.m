@@ -13,12 +13,12 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)fighting {
-    NSLog(@"%@ fighting", [self name]);
+- (void)fight {
+    NSLog(@"%@ fighting", self.name);
 }
 
 - (void)performGenderSpecificOperation {
-    [self fighting];
+    [self fight];
 }
 
 @end

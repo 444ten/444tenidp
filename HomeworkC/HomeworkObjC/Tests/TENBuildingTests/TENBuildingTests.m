@@ -50,11 +50,14 @@ void TENBuildingTest() {
     
     TENWashBuilding *washBuilding = [TENWashBuilding buildingWithName:@"Wash"];
 
+    NSMutableString *big = [NSMutableString stringWithString:@"BIG"];
 //    : name, peopleCapacity, carCapacity    
-    NSDictionary *masterplanWash = @{@(1) : @[@"Big"   , @(6), @(3)],
+    NSDictionary *masterplanWash = @{@(1) : @[big   , @(6), @(3)],
                                      @(2) : @[@"Medium", @(4), @(2)],
                                      @(3) : @[@"Small" , @(2), @(1)],};
 
     [washBuilding buildWithMasterplan:masterplanWash];
+    
+    [big appendString:@" very"];
 }
 
