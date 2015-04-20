@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
+#import "NSObject+TENExtensions.h"
+#import "NSStringTests.h"
 #import "TENBuildingTests.h"
 #import "TENCopyTests.h"
 #import "TENObjCSyntax.h"
@@ -15,8 +17,11 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
 //        TENObjCSyntax();
 //        TENEntityPerformTests();
-        TENBuildingPerformTests();
+//        TENBuildingPerformTests();
 //        TENCopyPerformTests();
+        
+        [[NSStringTests object] performTests];
+        
     }
     
     return 0;
