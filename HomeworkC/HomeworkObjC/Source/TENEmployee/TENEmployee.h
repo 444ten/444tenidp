@@ -8,15 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TENEmployee : NSObject
-@property (nonatomic, copy, readonly)   NSString    *name;
+#import "TENObjectWithName.h"
+
+@interface TENEmployee : TENObjectWithName
 @property (nonatomic, assign)           NSUInteger  experience;
 @property (nonatomic, assign)           NSUInteger  money;
 @property (nonatomic, assign)           NSUInteger  salary;
-
-+ (instancetype)employeeWithName:(NSString *)name;
-
-- (instancetype)initWithName:(NSString *)name;
 
 - (void)transferMoney:(NSUInteger)money toEmployee:(TENEmployee *)employee;
 

@@ -9,44 +9,10 @@
 #import "TENEmployee.h"
 
 @interface TENEmployee()
-@property (nonatomic, copy, readwrite)  NSString    *name;
 
 @end
 
 @implementation TENEmployee
-
-#pragma mark -
-#pragma mark Class Methods
-
-+ (instancetype)employeeWithName:(NSString *)name {
-    return [[[self alloc] initWithName:name] autorelease];
-}
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-    self.name = nil;
-    
-    [super dealloc];
-}
-
-- (instancetype)initWithName:(NSString *)name {
-    self = [super init];
-    
-    if (self) {
-        self.name = name;
-    }
-    
-    return self;
-}
-
-#pragma mark -
-#pragma mark Accessors Methods
-
-- (NSString *)name {
-    return [NSString stringWithString:_name];
-}
 
 #pragma mark -
 #pragma mark Public Methods
