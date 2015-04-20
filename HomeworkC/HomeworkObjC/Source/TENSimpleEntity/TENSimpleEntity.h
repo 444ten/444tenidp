@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface TENSimpleEntity : NSObject
-
-@property (nonatomic, assign)           uint16_t    age;
-@property (nonatomic, retain, readonly) NSArray     *children;
-@property (nonatomic, retain)           NSString    *name;
-@property (nonatomic, assign)           double      weight;
+@property (nonatomic, retain)   NSString    *name;
+@property (nonatomic, assign)   uint16_t    age;
+@property (nonatomic, assign)   double      weight;
+@property (nonatomic, readonly) NSArray     *children;
 
 + (instancetype)entityWithName:(NSString *)name
                            age:(uint16_t)age

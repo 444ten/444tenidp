@@ -8,7 +8,6 @@
 
 #import "TENSimpleEntity.h"
 
-
 @interface TENSimpleEntity ()
 @property (nonatomic, retain)   NSMutableArray  *childrenMutableArray;
 
@@ -39,18 +38,18 @@
 {
     self = [super init];
     if (self) {
-        [self setName:name];
-        [self setAge:age];
-        [self setWeight:weight];
-        [self setChildrenMutableArray:[[NSMutableArray new] autorelease]];
+        self.name = name;
+        self.age = age;
+        self.weight = weight;
+        self.childrenMutableArray = [NSMutableArray array];
     }
     
     return self;
 }
 
 - (void)dealloc {
-    [self setName:nil];
-    [self setChildrenMutableArray:nil];
+    self.name = nil;
+    self.childrenMutableArray = nil;
     
     [super dealloc];
 }
@@ -59,7 +58,7 @@
 #pragma mark Accessors Methods
 
 - (NSArray *)children {
-    return [[[self childrenMutableArray] copy] autorelease];
+    return [[self.childrenMutableArray copy] autorelease];
 }
 
 #pragma mark -
@@ -68,29 +67,35 @@
 - (void)sayHi {
     NSLog(@"%@ say Hi", [self name]);
     
-    for (TENSimpleEntity *child in [self childrenMutableArray]) {
+    for (TENSimpleEntity *child in self.childrenMutableArray) {
         [child sayHi];
     }
 }
 
 - (void)addChild:(TENSimpleEntity *)child {
-    if ([self isEqualTo:child] || [[self childrenMutableArray] containsObject:child ]) {
+    NSMutableArray *array = self.childrenMutableArray;
+    
+    if ([self isEqualTo:child] || [array containsObject:child ]) {
         NSLog(@"dublicate\n");
         
         return;
     }
     
-    [[self childrenMutableArray] addObject:child];
+    [array addObject:child];
 }
 
 - (void)removeChild:(TENSimpleEntity *)child {
-    if ([[self childrenMutableArray] containsObject:child]) {
-        [[self childrenMutableArray] removeObject:child];
+    NSMutableArray *array = self.childrenMutableArray;
+    
+    if ([array containsObject:child]) {
+        [array removeObject:child];
     } else {
-        NSLog(@"%@ not contains in %@'s children\n", [child name], [self name]);
+        NSLog(@"%@ not contains in %@'s children\n", child.name, self.name);
     }
 }
 
 - (void)performGenderSpecificOperation {
+    
 }
+
 @end

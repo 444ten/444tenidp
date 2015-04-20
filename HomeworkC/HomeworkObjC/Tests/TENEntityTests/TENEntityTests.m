@@ -32,9 +32,9 @@ void TENEntityFemaleMakeChildTest();
 #pragma mark Public Implementations
 
 void TENEntityPerformTests() {
-//    TENEntityCreateTest();
-//    TENEntityMakeEntityTest();
-//    TENEntityMaleFemaleTest();
+    TENEntityCreateTest();
+    TENEntityMakeEntityTest();
+    TENEntityMaleFemaleTest();
     TENEntityFemaleMakeChildTest();
 }
 
@@ -134,7 +134,7 @@ void TENEntityMakeEntityTest() {
                                                           gender:TENGenderFemale
                                                           weight:2.5]];
         } else {
-            [entity fighting];
+            [entity fight];
         }
     }
 }
@@ -159,21 +159,3 @@ void TENEntityFemaleMakeChildTest() {
     id inna = [anna makeChildWithGender:TENGenderFemale name:@"Inna" weight:2.5];
     [inna performGenderSpecificOperation];    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

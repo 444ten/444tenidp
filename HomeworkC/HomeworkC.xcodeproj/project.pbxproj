@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7603A0991ADFBDA700EC0867 /* TENEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0981ADFBDA700EC0867 /* TENEmployee.m */; };
+		7603A09F1ADFF59900EC0867 /* TENEmployeeDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A09E1ADFF59900EC0867 /* TENEmployeeDirector.m */; };
+		7603A0A21ADFF5E300EC0867 /* TENEmployeeAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0A11ADFF5E300EC0867 /* TENEmployeeAccountant.m */; };
+		7603A0A51ADFF64400EC0867 /* TENEmployeeWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0A41ADFF64400EC0867 /* TENEmployeeWasher.m */; };
+		7603A0A91ADFF82A00EC0867 /* TENCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0A81ADFF82A00EC0867 /* TENCar.m */; };
+		7603A0B41AE052EF00EC0867 /* TENCopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0B31AE052EF00EC0867 /* TENCopyTests.m */; };
+		76277D871AE3D3A700CEC9AB /* TENBeing.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277D861AE3D3A700CEC9AB /* TENBeing.m */; };
+		76277D8A1AE3D3CB00CEC9AB /* TENBeingFemail.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277D891AE3D3CB00CEC9AB /* TENBeingFemail.m */; };
+		7653DB8A1ADEA30C0011EDF0 /* TENBuildingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB891ADEA30C0011EDF0 /* TENBuildingTests.m */; };
+		7653DB961ADEA3320011EDF0 /* TENBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB8D1ADEA3320011EDF0 /* TENBuilding.m */; };
+		7653DB971ADEA3320011EDF0 /* TENCarRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB8F1ADEA3320011EDF0 /* TENCarRoom.m */; };
+		7653DB981ADEA3320011EDF0 /* TENRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB911ADEA3320011EDF0 /* TENRoom.m */; };
+		7653DB991ADEA3320011EDF0 /* TENStaffBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB931ADEA3320011EDF0 /* TENStaffBuilding.m */; };
+		7653DB9A1ADEA3320011EDF0 /* TENWashBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB951ADEA3320011EDF0 /* TENWashBuilding.m */; };
+		765FF7A41AE0557300EDE4BC /* TENCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 765FF7A31AE0557300EDE4BC /* TENCopy.m */; };
 		767A374B1AD6A2E7008C29D3 /* TENObjCSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A374A1AD6A2E7008C29D3 /* TENObjCSyntax.m */; };
 		767A37511ADBBB0D008C29D3 /* TENEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A37501ADBBB0D008C29D3 /* TENEntity.m */; };
 		767A375E1ADC33C4008C29D3 /* TENEntityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A375D1ADC33C4008C29D3 /* TENEntityTests.m */; };
@@ -69,6 +84,36 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7603A0971ADFBDA700EC0867 /* TENEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENEmployee.h; path = Source/TENEmployee/TENEmployee.h; sourceTree = "<group>"; };
+		7603A0981ADFBDA700EC0867 /* TENEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEmployee.m; path = Source/TENEmployee/TENEmployee.m; sourceTree = "<group>"; };
+		7603A09D1ADFF59900EC0867 /* TENEmployeeDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENEmployeeDirector.h; path = Source/TENEmployee/TENEmployeeDirector.h; sourceTree = "<group>"; };
+		7603A09E1ADFF59900EC0867 /* TENEmployeeDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEmployeeDirector.m; path = Source/TENEmployee/TENEmployeeDirector.m; sourceTree = "<group>"; };
+		7603A0A01ADFF5E300EC0867 /* TENEmployeeAccountant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENEmployeeAccountant.h; path = Source/TENEmployee/TENEmployeeAccountant.h; sourceTree = "<group>"; };
+		7603A0A11ADFF5E300EC0867 /* TENEmployeeAccountant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEmployeeAccountant.m; path = Source/TENEmployee/TENEmployeeAccountant.m; sourceTree = "<group>"; };
+		7603A0A31ADFF64400EC0867 /* TENEmployeeWasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENEmployeeWasher.h; path = Source/TENEmployee/TENEmployeeWasher.h; sourceTree = "<group>"; };
+		7603A0A41ADFF64400EC0867 /* TENEmployeeWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEmployeeWasher.m; path = Source/TENEmployee/TENEmployeeWasher.m; sourceTree = "<group>"; };
+		7603A0A71ADFF82A00EC0867 /* TENCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENCar.h; path = Source/TENCar/TENCar.h; sourceTree = "<group>"; };
+		7603A0A81ADFF82A00EC0867 /* TENCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENCar.m; path = Source/TENCar/TENCar.m; sourceTree = "<group>"; };
+		7603A0B21AE052EF00EC0867 /* TENCopyTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENCopyTests.h; path = Tests/TENCopyTests/TENCopyTests.h; sourceTree = "<group>"; };
+		7603A0B31AE052EF00EC0867 /* TENCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENCopyTests.m; path = Tests/TENCopyTests/TENCopyTests.m; sourceTree = "<group>"; };
+		76277D851AE3D3A700CEC9AB /* TENBeing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENBeing.h; path = Source/TENCopy/TENBeing.h; sourceTree = "<group>"; };
+		76277D861AE3D3A700CEC9AB /* TENBeing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENBeing.m; path = Source/TENCopy/TENBeing.m; sourceTree = "<group>"; };
+		76277D881AE3D3CB00CEC9AB /* TENBeingFemail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENBeingFemail.h; path = Source/TENCopy/TENBeingFemail.h; sourceTree = "<group>"; };
+		76277D891AE3D3CB00CEC9AB /* TENBeingFemail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENBeingFemail.m; path = Source/TENCopy/TENBeingFemail.m; sourceTree = "<group>"; };
+		7653DB881ADEA30C0011EDF0 /* TENBuildingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENBuildingTests.h; sourceTree = "<group>"; };
+		7653DB891ADEA30C0011EDF0 /* TENBuildingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENBuildingTests.m; sourceTree = "<group>"; };
+		7653DB8C1ADEA3320011EDF0 /* TENBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENBuilding.h; sourceTree = "<group>"; };
+		7653DB8D1ADEA3320011EDF0 /* TENBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENBuilding.m; sourceTree = "<group>"; };
+		7653DB8E1ADEA3320011EDF0 /* TENCarRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENCarRoom.h; sourceTree = "<group>"; };
+		7653DB8F1ADEA3320011EDF0 /* TENCarRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENCarRoom.m; sourceTree = "<group>"; };
+		7653DB901ADEA3320011EDF0 /* TENRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENRoom.h; sourceTree = "<group>"; };
+		7653DB911ADEA3320011EDF0 /* TENRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENRoom.m; sourceTree = "<group>"; };
+		7653DB921ADEA3320011EDF0 /* TENStaffBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENStaffBuilding.h; sourceTree = "<group>"; };
+		7653DB931ADEA3320011EDF0 /* TENStaffBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENStaffBuilding.m; sourceTree = "<group>"; };
+		7653DB941ADEA3320011EDF0 /* TENWashBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENWashBuilding.h; sourceTree = "<group>"; };
+		7653DB951ADEA3320011EDF0 /* TENWashBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENWashBuilding.m; sourceTree = "<group>"; };
+		765FF7A21AE0557300EDE4BC /* TENCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENCopy.h; path = Source/TENCopy/TENCopy.h; sourceTree = "<group>"; };
+		765FF7A31AE0557300EDE4BC /* TENCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENCopy.m; path = Source/TENCopy/TENCopy.m; sourceTree = "<group>"; };
 		767A374A1AD6A2E7008C29D3 /* TENObjCSyntax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENObjCSyntax.m; path = Source/TENSyntax/TENObjCSyntax.m; sourceTree = "<group>"; };
 		767A374C1AD6A359008C29D3 /* TENObjCSyntax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TENObjCSyntax.h; path = Source/TENSyntax/TENObjCSyntax.h; sourceTree = "<group>"; };
 		767A374F1ADBBB0D008C29D3 /* TENEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENEntity.h; sourceTree = "<group>"; };
@@ -167,15 +212,93 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7603A0961ADFBD5F00EC0867 /* TENEmployee */ = {
+			isa = PBXGroup;
+			children = (
+				7603A0971ADFBDA700EC0867 /* TENEmployee.h */,
+				7603A0981ADFBDA700EC0867 /* TENEmployee.m */,
+				7603A09D1ADFF59900EC0867 /* TENEmployeeDirector.h */,
+				7603A09E1ADFF59900EC0867 /* TENEmployeeDirector.m */,
+				7603A0A01ADFF5E300EC0867 /* TENEmployeeAccountant.h */,
+				7603A0A11ADFF5E300EC0867 /* TENEmployeeAccountant.m */,
+				7603A0A31ADFF64400EC0867 /* TENEmployeeWasher.h */,
+				7603A0A41ADFF64400EC0867 /* TENEmployeeWasher.m */,
+			);
+			name = TENEmployee;
+			sourceTree = "<group>";
+		};
+		7603A0A61ADFF81400EC0867 /* TENCar */ = {
+			isa = PBXGroup;
+			children = (
+				7603A0A71ADFF82A00EC0867 /* TENCar.h */,
+				7603A0A81ADFF82A00EC0867 /* TENCar.m */,
+			);
+			name = TENCar;
+			sourceTree = "<group>";
+		};
+		7603A0AA1AE0520A00EC0867 /* TENCopy */ = {
+			isa = PBXGroup;
+			children = (
+				765FF7A21AE0557300EDE4BC /* TENCopy.h */,
+				765FF7A31AE0557300EDE4BC /* TENCopy.m */,
+				76277D851AE3D3A700CEC9AB /* TENBeing.h */,
+				76277D861AE3D3A700CEC9AB /* TENBeing.m */,
+				76277D881AE3D3CB00CEC9AB /* TENBeingFemail.h */,
+				76277D891AE3D3CB00CEC9AB /* TENBeingFemail.m */,
+			);
+			name = TENCopy;
+			sourceTree = "<group>";
+		};
+		7603A0AB1AE0522700EC0867 /* TENCopyTests */ = {
+			isa = PBXGroup;
+			children = (
+				7603A0B21AE052EF00EC0867 /* TENCopyTests.h */,
+				7603A0B31AE052EF00EC0867 /* TENCopyTests.m */,
+			);
+			name = TENCopyTests;
+			sourceTree = "<group>";
+		};
+		7653DB871ADEA30C0011EDF0 /* TENBuildingTests */ = {
+			isa = PBXGroup;
+			children = (
+				7653DB881ADEA30C0011EDF0 /* TENBuildingTests.h */,
+				7653DB891ADEA30C0011EDF0 /* TENBuildingTests.m */,
+			);
+			name = TENBuildingTests;
+			path = Tests/TENBuildingTests;
+			sourceTree = "<group>";
+		};
+		7653DB8B1ADEA3320011EDF0 /* TENBuilding */ = {
+			isa = PBXGroup;
+			children = (
+				7653DB901ADEA3320011EDF0 /* TENRoom.h */,
+				7653DB911ADEA3320011EDF0 /* TENRoom.m */,
+				7653DB8E1ADEA3320011EDF0 /* TENCarRoom.h */,
+				7653DB8F1ADEA3320011EDF0 /* TENCarRoom.m */,
+				7653DB8C1ADEA3320011EDF0 /* TENBuilding.h */,
+				7653DB8D1ADEA3320011EDF0 /* TENBuilding.m */,
+				7653DB921ADEA3320011EDF0 /* TENStaffBuilding.h */,
+				7653DB931ADEA3320011EDF0 /* TENStaffBuilding.m */,
+				7653DB941ADEA3320011EDF0 /* TENWashBuilding.h */,
+				7653DB951ADEA3320011EDF0 /* TENWashBuilding.m */,
+			);
+			name = TENBuilding;
+			path = Source/TENBuilding;
+			sourceTree = "<group>";
+		};
 		767A37471AD6A255008C29D3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				7603A0AA1AE0520A00EC0867 /* TENCopy */,
 				767A377C1ADD5289008C29D3 /* NSObject+TENObjectCategory */,
-				767A37491AD6A27C008C29D3 /* TENSyntax */,
 				767A374E1ADBBAC8008C29D3 /* TENEntity */,
+				767A37491AD6A27C008C29D3 /* TENSyntax */,
 				767A37621ADD3488008C29D3 /* TENSimpleEntity */,
 				767A376A1ADD380F008C29D3 /* TENEntityFemale */,
 				767A37661ADD3740008C29D3 /* TENEntityMale */,
+				7603A0961ADFBD5F00EC0867 /* TENEmployee */,
+				7603A0A61ADFF81400EC0867 /* TENCar */,
+				7653DB8B1ADEA3320011EDF0 /* TENBuilding */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -183,7 +306,9 @@
 		767A37481AD6A262008C29D3 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				7603A0AB1AE0522700EC0867 /* TENCopyTests */,
 				767A37521ADBBE3E008C29D3 /* TENEntityTests */,
+				7653DB871ADEA30C0011EDF0 /* TENBuildingTests */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -667,13 +792,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7653DB971ADEA3320011EDF0 /* TENCarRoom.m in Sources */,
+				7653DB8A1ADEA30C0011EDF0 /* TENBuildingTests.m in Sources */,
+				76277D8A1AE3D3CB00CEC9AB /* TENBeingFemail.m in Sources */,
+				7603A0B41AE052EF00EC0867 /* TENCopyTests.m in Sources */,
 				767A37701ADD39C7008C29D3 /* TENEntityMale.m in Sources */,
+				7653DB9A1ADEA3320011EDF0 /* TENWashBuilding.m in Sources */,
+				7603A0A91ADFF82A00EC0867 /* TENCar.m in Sources */,
+				7653DB981ADEA3320011EDF0 /* TENRoom.m in Sources */,
+				7603A0A51ADFF64400EC0867 /* TENEmployeeWasher.m in Sources */,
 				767A375E1ADC33C4008C29D3 /* TENEntityTests.m in Sources */,
+				7603A0991ADFBDA700EC0867 /* TENEmployee.m in Sources */,
 				767A374B1AD6A2E7008C29D3 /* TENObjCSyntax.m in Sources */,
+				76277D871AE3D3A700CEC9AB /* TENBeing.m in Sources */,
 				767A376D1ADD3962008C29D3 /* TENEntityFemale.m in Sources */,
 				767A37511ADBBB0D008C29D3 /* TENEntity.m in Sources */,
+				765FF7A41AE0557300EDE4BC /* TENCopy.m in Sources */,
+				7653DB991ADEA3320011EDF0 /* TENStaffBuilding.m in Sources */,
+				7603A09F1ADFF59900EC0867 /* TENEmployeeDirector.m in Sources */,
 				767A37611ADD3478008C29D3 /* TENSimpleEntity.m in Sources */,
 				767A377B1ADD527B008C29D3 /* NSObject+TENObjectCategory.m in Sources */,
+				7603A0A21ADFF5E300EC0867 /* TENEmployeeAccountant.m in Sources */,
+				7653DB961ADEA3320011EDF0 /* TENBuilding.m in Sources */,
 				769DFBDB1AD6895600D0919A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

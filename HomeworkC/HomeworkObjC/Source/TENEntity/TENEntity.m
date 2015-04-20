@@ -46,7 +46,7 @@
         self.gender = gender;
         self.age = age;
         self.weight = weight;
-        self.childrenMutableArray = [NSMutableArray object];
+        self.childrenMutableArray = [NSMutableArray array];
     }
     
     return self;
@@ -77,8 +77,8 @@
     }
 }
 
-- (void)fighting {
-    NSLog(@"%@ fighting", self.name);
+- (void)fight {
+    NSLog(@"%@ fight", self.name);
 }
 
 - (instancetype)makeChildWithName:(NSString *)name
@@ -97,7 +97,7 @@
         return;
     }
     
-    [array addObject:child];
+    [self.childrenMutableArray addObject:child];
 }
 
 - (void)removeChild:(TENEntity *)child {
