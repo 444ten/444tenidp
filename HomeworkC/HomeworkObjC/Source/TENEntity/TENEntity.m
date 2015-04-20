@@ -7,7 +7,7 @@
 //
 
 #import "TENEntity.h"
-#import "NSObject+TENObjectCategory.h"
+#import "NSObject+TENExtensions.h"
 
 @interface TENEntity ()
 @property (nonatomic, retain)   NSMutableArray  *childrenMutableArray;

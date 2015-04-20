@@ -18,7 +18,6 @@
 + (id)alphabetWithCharacterSet:(NSCharacterSet *)characterSet;
 + (id)alphabetWithASCIIRange:(NSRange)range characterSet:(NSCharacterSet *)characterSet;
 
-
 + (id)randomStringWithRange:(NSRange)range alphabet:(NSString *)alphabet;
 + (id)randomStringWithLength:(NSUInteger)length alphabet:(NSString *)alphabet;
 + (id)randomStringWithLength:(NSUInteger)length;

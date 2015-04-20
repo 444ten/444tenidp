@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#import "NSObject+TENObjectCategory.h"
+#import "NSObject+TENExtensions.h"
 
 @implementation NSObject (TENObjectCategory)
 

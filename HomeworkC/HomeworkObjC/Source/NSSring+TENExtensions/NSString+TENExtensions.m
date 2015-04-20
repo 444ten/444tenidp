@@ -33,8 +33,7 @@ static const NSUInteger kNSStringRandomSrtingDefaultLength = 10;
 }
 
 + (id)alphabetWithCharacterSet:(NSCharacterSet *)characterSet {
-    return [self alphabetWithASCIIRange:NSMakeRange(' ', '~' - ' ')
-                           characterSet:characterSet];
+    return [self alphabetWithASCIIRange:NSMakeRange(' ', '~' - ' ') characterSet:characterSet];
 }
 
 + (id)alphabetWithASCIIRange:(NSRange)range characterSet:(NSCharacterSet *)characterSet {
