@@ -8,33 +8,44 @@
 
 #import "TENRoom.h"
 
+@interface TENRoom()
+@property (nonatomic, copy, readwrite)  NSString    *name;
+
+@end
+
 @implementation TENRoom
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)roomWithName:(NSString *)name peopleCapacity:(NSUInteger)peopleCapacity {
-    return [[[self alloc] initWithName:name peopleCapacity:peopleCapacity] autorelease];
++ (instancetype)roomWithName:(NSString *)name {
+    return [[[self alloc] initWithName:name] autorelease];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initWithName:(NSString *)name peopleCapacity:(NSUInteger)peopleCapacity {
+- (void)dealloc {
+    self.name = nil;
+    
+    [super dealloc];
+}
+
+- (instancetype)initWithName:(NSString *)name {
     self = [super init];
     
     if (self) {
         self.name = name;
-        self.peopleCapacity = peopleCapacity;
     }
     
     return self;
 }
 
-- (void)dealloc {
-    self.name = nil;
-    
-    [super dealloc];
+#pragma mark
+#pragma mark - Accessors Methods
+
+- (NSString *)name {
+    return [NSString stringWithString:_name];
 }
 
 #pragma mark -

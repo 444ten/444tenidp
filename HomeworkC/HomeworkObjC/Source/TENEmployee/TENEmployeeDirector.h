@@ -10,6 +10,6 @@
 
 @interface TENEmployeeDirector : TENEmployee
 
-- (NSUInteger)profit;
+- (void)takeProfit;
 
 @end

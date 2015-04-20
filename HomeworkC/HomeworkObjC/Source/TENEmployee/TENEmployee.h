@@ -9,14 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface TENEmployee : NSObject
-@property (nonatomic, copy)     NSString*   name;
-@property (nonatomic, assign)   NSUInteger  experience;
-@property (nonatomic, assign)   NSUInteger  salary;
-@property (nonatomic, assign)   NSUInteger  money;
+@property (nonatomic, copy, readonly)   NSString    *name;
+@property (nonatomic, assign)           NSUInteger  experience;
+@property (nonatomic, assign)           NSUInteger  money;
+@property (nonatomic, assign)           NSUInteger  salary;
 
-+ (instancetype)employee;
-+ (instancetype)employeeWithName:(NSString *)name salary:(NSUInteger)salary;
++ (instancetype)employeeWithName:(NSString *)name;
 
-- (BOOL)money:(NSUInteger)money toEmployee:(TENEmployee *)employee;
+- (instancetype)initWithName:(NSString *)name;
+
+- (void)transferMoney:(NSUInteger)money toEmployee:(TENEmployee *)employee;
 
 @end

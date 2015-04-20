@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface TENRoom : NSObject
-@property (nonatomic, copy)     NSString    *name;
-@property (nonatomic, assign)   NSUInteger  peopleCapacity;
+@property (nonatomic, copy, readonly)   NSString    *name;
+@property (nonatomic, assign)           NSUInteger  peopleCapacity;
 
-+ (instancetype)roomWithName:(NSString *)name peopleCapacity:(NSUInteger)peopleCapacity;
++ (instancetype)roomWithName:(NSString *)name;
 
-- (instancetype)initWithName:(NSString *)name peopleCapacity:(NSUInteger)peopleCapacity;
+- (instancetype)initWithName:(NSString *)name;
 
 @end

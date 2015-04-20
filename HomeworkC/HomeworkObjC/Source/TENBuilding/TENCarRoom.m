@@ -11,34 +11,6 @@
 @implementation TENCarRoom
 
 #pragma mark -
-#pragma mark Class Methods
-
-+ (instancetype)carRoomWithName:(NSString *)name
-                 peopleCapacity:(NSUInteger)peopleCapacity
-                    carCapacity:(NSUInteger)carCapacity
-{
-    return [[[self alloc] initWithName:name
-                        peopleCapacity:peopleCapacity
-                           carCapacity:carCapacity] autorelease];
-}
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (instancetype)initWithName:(NSString *)name
-                 peopleCapacity:(NSUInteger)peopleCapacity
-                    carCapacity:(NSUInteger)carCapacity
-{
-    self = [super initWithName:name peopleCapacity:peopleCapacity];
-    
-    if (self) {
-        self.carCapacity = carCapacity;
-    }
-    
-    return self;
-}
-
-#pragma mark -
 #pragma mark Public Methods
 
 - (NSString *)description {

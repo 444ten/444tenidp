@@ -13,9 +13,8 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (NSUInteger)profit {
-    return self.money;
+- (void)takeProfit {
+    NSLog(@"Director %@ took profit: %lu", self.name, self.money);
 }
-
 
 @end

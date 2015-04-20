@@ -10,8 +10,8 @@
 
 @implementation TENEmployeeAccountant
 
-- (NSUInteger)calculation {
-    return self.money;
+- (void)calculateMoney {
+    NSLog(@"Accountant %@ calculated money: %lu", self.name, self.money);
 }
 
 @end

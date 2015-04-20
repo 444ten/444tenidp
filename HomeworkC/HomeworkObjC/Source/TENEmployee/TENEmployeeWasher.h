@@ -12,6 +12,7 @@
 
 @interface TENEmployeeWasher : TENEmployee
 
-- (BOOL)workWithCar:(TENCar *)car;
+- (void)washCar:(TENCar *)car;
+- (void)takeMoney:(NSUInteger)money fromCar:(TENCar *)car;
 
 @end

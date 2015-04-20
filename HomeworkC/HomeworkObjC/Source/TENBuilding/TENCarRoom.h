@@ -11,8 +11,4 @@
 @interface TENCarRoom : TENRoom
 @property (nonatomic, assign)   NSUInteger  carCapacity;
 
-+ (instancetype)carRoomWithName:(NSString *)name
-                 peopleCapacity:(NSUInteger)peopleCapacity
-                    carCapacity:(NSUInteger)carCapacity;
-
 @end

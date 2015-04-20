@@ -13,6 +13,6 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (NSUInteger)calculation;
+- (void)calculateMoney;
 
 @end

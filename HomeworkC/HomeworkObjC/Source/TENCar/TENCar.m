@@ -8,6 +8,11 @@
 
 #import "TENCar.h"
 
+@interface TENCar()
+@property (nonatomic, copy, readwrite)  NSString    *name;
+
+@end
+
 @implementation TENCar
 
 #pragma mark -
@@ -20,28 +25,27 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initWithName:(NSString *)name {
-    self = [super init];
-    
-    if (self) {
-        self.name = name;
-        self.money = 100;
-        self.clean = false;
-    }
-    
-    return self;
-}
-
 - (void)dealloc {
     self.name = nil;
     
     [super dealloc];
 }
 
+- (instancetype)initWithName:(NSString *)name {
+    self = [super init];
+    
+    if (self) {
+        self.name = name;
+    }
+    
+    return self;
+}
+
 #pragma mark -
 #pragma mark Accessors Methods
 
-#pragma mark -
-#pragma mark Public Methods
+- (NSString *)name {
+    return [NSString stringWithString:_name];
+}
 
 @end
