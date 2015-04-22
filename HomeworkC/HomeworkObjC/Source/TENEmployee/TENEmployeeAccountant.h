@@ -1,5 +1,5 @@
 //
-//  TENAccountant.h
+//  TENEmployeeAccountant.h
 //  HomeworkC
 //
 //  Created by 444ten on 4/16/15.
@@ -8,7 +8,7 @@
 
 #import "TENEmployee.h"
 
-@interface TENAccountant : TENEmployee
+@interface TENEmployeeAccountant : TENEmployee
 
 #pragma mark -
 #pragma mark Public Methods

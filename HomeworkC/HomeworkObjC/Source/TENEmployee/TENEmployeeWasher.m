@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#import "TENWasher.h"
+#import "TENEmployeeWasher.h"
 
 #import "TENCar.h"
 
-@implementation TENWasher
+@implementation TENEmployeeWasher
 
 #pragma mark -
 #pragma mark Public Methods

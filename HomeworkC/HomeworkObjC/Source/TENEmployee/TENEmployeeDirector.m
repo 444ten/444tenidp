@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#import "TENDirector.h"
+#import "TENEmployeeDirector.h"
 
-@implementation TENDirector
+@implementation TENEmployeeDirector
 
 #pragma mark -
 #pragma mark Public Methods

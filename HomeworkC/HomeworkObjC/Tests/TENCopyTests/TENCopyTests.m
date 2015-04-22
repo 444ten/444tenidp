@@ -8,6 +8,7 @@
 
 #import "TENCopyTests.h"
 
+#import "TENBeingFemail.h"
 #import "TENCopy.h"
 
 #pragma mark -
@@ -16,7 +17,11 @@
 #pragma mark -
 #pragma mark Public Implementations
 
-void TENCopyPerformTests() {    
+void TENCopyPerformTests() {
+    TENBeingFemail *beingFemale = [TENBeingFemail being];
+    
+    NSLog(@"beimg... %@", beingFemale);
+    
     NSMutableString *nameString = [NSMutableString stringWithString:@"nnn"];
     TENCopy *object = [TENCopy objectWithName:nameString];
     

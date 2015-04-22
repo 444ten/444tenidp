@@ -1,24 +1,24 @@
 //
-//  TENCar.m
+//  TENObjectWithName.m
 //  HomeworkC
 //
-//  Created by 444ten on 4/16/15.
+//  Created by 444ten on 4/20/15.
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#import "TENCar.h"
+#import "TENObjectWithName.h"
 
-@interface TENCar()
+@interface TENObjectWithName()
 @property (nonatomic, copy, readwrite)  NSString    *name;
 
 @end
 
-@implementation TENCar
+@implementation TENObjectWithName
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)carWithName:(NSString *)name {
++ (instancetype)objectWithName:(NSString *)name {
     return [[[self alloc] initWithName:name] autorelease];
 }
 
@@ -33,11 +33,19 @@
 
 - (instancetype)initWithName:(NSString *)name {
     self = [super init];
+    
     if (self) {
         self.name = name;
     }
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors Methods
+
+- (NSString *)name {
+    return [NSString stringWithString:_name];
 }
 
 @end

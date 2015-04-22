@@ -1,5 +1,5 @@
 //
-//  TENDirector.h
+//  TENEmployeeDirector.h
 //  HomeworkC
 //
 //  Created by 444ten on 4/16/15.
@@ -8,7 +8,7 @@
 
 #import "TENEmployee.h"
 
-@interface TENDirector : TENEmployee
+@interface TENEmployeeDirector : TENEmployee
 
 - (void)takeProfit;
 
