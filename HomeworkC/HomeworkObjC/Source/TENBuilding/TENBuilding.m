@@ -8,7 +8,15 @@
 
 #import "TENBuilding.h"
 
+@interface TENBuilding()
+@property (nonatomic, copy, readwrite)  NSString        *name;
+@property (nonatomic, retain)           NSMutableArray  *roomsMutableArray;
+
+@end
+
 @implementation TENBuilding
+
+@dynamic rooms;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -25,7 +33,7 @@
     
     if (self) {
         self.name = name;
-        self.roomsArray = [[[NSMutableArray alloc] init] autorelease];
+        self.roomsMutableArray = [NSMutableArray array];
     }
     
     return self;
@@ -33,27 +41,27 @@
 
 - (void)dealloc {
     self.name = nil;
-    self.roomsArray = nil;
+    self.roomsMutableArray = nil;
     
     [super dealloc];
 }
 
 #pragma mark -
+#pragma mark Accessors Methods
+
+- (NSArray *)rooms {
+    return [[self.roomsMutableArray copy] autorelease];
+}
+
+#pragma mark -
 #pragma mark Public Methods
 
-- (id)roomWithSpecification:(NSArray *)specification {
-    return nil;
+- (void)addRoom:(id)room {
+    [self.roomsMutableArray addObject:room];
 }
 
-- (void)buildWithMasterplan:(NSDictionary *)masterplan {
-    NSArray *keysArray = [masterplan allKeys];
-    
-    for (NSNumber *key in keysArray) {
-        NSArray *specification = masterplan[key];
-        
-        [self.roomsArray addObject:[self roomWithSpecification:specification]];
-    }
+- (void)removeRoom:(id)room {
+    [self.roomsMutableArray removeObject:room];
 }
-
 
 @end

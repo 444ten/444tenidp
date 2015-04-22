@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface TENBuilding : NSObject
-@property (nonatomic, copy)     NSString        *name;
-@property (nonatomic, retain)   NSMutableArray  *roomsArray;
+@property (nonatomic, copy, readonly)   NSString    *name;
+@property (nonatomic, readonly)         NSArray     *rooms;
 
 + (instancetype)buildingWithName:(NSString *)name;
 
-- (id)roomWithSpecification:(NSArray *)specification;
-- (void)buildWithMasterplan:(NSDictionary *)masterplan;
+- (void)addRoom:(id)room;
+- (void)removeRoom:(id)room;
 
 @end

@@ -8,6 +8,36 @@
 
 #import "TENCar.h"
 
+@interface TENCar()
+@property (nonatomic, copy, readwrite)  NSString    *name;
+
+@end
+
 @implementation TENCar
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (instancetype)carWithName:(NSString *)name {
+    return [[[self alloc] initWithName:name] autorelease];
+}
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.name = nil;
+    
+    [super dealloc];
+}
+
+- (instancetype)initWithName:(NSString *)name {
+    self = [super init];
+    if (self) {
+        self.name = name;
+    }
+    
+    return self;
+}
 
 @end

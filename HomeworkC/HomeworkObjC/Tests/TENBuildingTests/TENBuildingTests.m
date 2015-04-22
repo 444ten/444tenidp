@@ -7,9 +7,10 @@
 //
 
 #import "TENBuildingTests.h"
+
+#import "TENBuilding.h"
 #import "TENCarRoom.h"
-#import "TENStaffBuilding.h"
-#import "TENWashBuilding.h"
+#import "TENEnterprise.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -32,7 +33,7 @@ void TENBuildingPerformTests() {
 #pragma mark Private Implementations
 
 void TENCarRoomTest() {
-    TENCarRoom *carRoom = [TENCarRoom objectWithName:@"car wash 1"];
+    TENCarRoom *carRoom = [TENCarRoom roomWithName:@"car wash 1"];
     carRoom.peopleCapacity = 3;
     carRoom.carCapacity = 1;
                            
@@ -40,6 +41,10 @@ void TENCarRoomTest() {
 }
 
 void TENBuildingTest() {
-
+    TENEnterprise *enterprise = [TENEnterprise enterpriseWithName:@"Enterprise"];
+    
+    [enterprise makeStaffBuilding];
+    [enterprise makeCarwashBuilding];
+    [enterprise populate];
 }
 
