@@ -43,8 +43,6 @@ void TENCarRoomTest() {
 void TENBuildingTest() {
     TENEnterprise *enterprise = [TENEnterprise enterpriseWithName:@"Enterprise"];
     
-    [enterprise makeStaffBuilding];
-    [enterprise makeCarwashBuilding];
-    [enterprise populate];
+    NSLog(@"%@", enterprise);
 }
 
