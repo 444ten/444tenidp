@@ -33,7 +33,7 @@ void TENBuildingPerformTests() {
 #pragma mark Private Implementations
 
 void TENCarRoomTest() {
-    TENCarRoom *carRoom = [TENCarRoom roomWithName:@"car wash 1"];
+    TENCarRoom *carRoom = [[TENCarRoom new] autorelease];
     carRoom.peopleCapacity = 3;
     carRoom.carCapacity = 1;
                            

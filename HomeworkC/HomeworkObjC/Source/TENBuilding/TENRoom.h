@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "TENObjectWithName.h"
-
-@interface TENRoom : TENObjectWithName
+@interface TENRoom : NSObject
 @property (nonatomic, assign)           NSUInteger  peopleCapacity;
 
 @end

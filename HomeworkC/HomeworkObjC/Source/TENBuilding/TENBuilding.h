@@ -14,6 +14,7 @@
 
 + (instancetype)buildingWithName:(NSString *)name;
 
+- (instancetype)initWithName:(NSString *)name;
 - (void)addRoom:(id)room;
 - (void)removeRoom:(id)room;
 

@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-#include "TENObjectWithName.h"
 
-@interface TENCar : TENObjectWithName
+@interface TENCar : NSObject
+@property (nonatomic, copy, readonly)           NSString    *model;
 @property (nonatomic, assign)                   NSUInteger  money;
 @property (nonatomic, assign, getter=isClean)   BOOL        clean;
+
++ (instancetype)carWithModel:(NSString *)model;
+
+- (instancetype)initWithModel:(NSString *)model;
 
 @end

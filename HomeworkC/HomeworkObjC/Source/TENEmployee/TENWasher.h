@@ -1,5 +1,5 @@
 //
-//  TENEmployeeWasher.h
+//  TENWasher.h
 //  HomeworkC
 //
 //  Created by 444ten on 4/16/15.
@@ -10,7 +10,7 @@
 
 @class TENCar;
 
-@interface TENEmployeeWasher : TENEmployee
+@interface TENWasher : TENEmployee
 
 - (void)washCar:(TENCar *)car;
 - (void)takeMoney:(NSUInteger)money fromCar:(TENCar *)car;

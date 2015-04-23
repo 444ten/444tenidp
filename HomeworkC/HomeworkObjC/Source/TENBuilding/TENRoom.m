@@ -15,7 +15,7 @@
 
 - (NSString *)description {
     NSMutableString *string = [NSMutableString stringWithString:[super description]];
-    [string appendFormat:@" name:'%@', people capacity = %lu", self.name, self.peopleCapacity];
+    [string appendFormat:@" name:'%@', people capacity = %lu", [self className], self.peopleCapacity];
 
     return string;
 }

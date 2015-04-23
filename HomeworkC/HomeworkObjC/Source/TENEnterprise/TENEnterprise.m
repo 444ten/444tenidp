@@ -69,14 +69,14 @@
 #pragma mark Public Methods
 
 - (void)makeStaffBuilding {
-    TENRoom *room = [TENRoom roomWithName:@"Administration"];
+    TENRoom *room = [[TENRoom new] autorelease];
     room.peopleCapacity = 2;
     
     [self.staffBuilding addRoom:room];
 }
 
 - (void)makeCarwashBuilding {
-    TENCarRoom *carRoom = [TENCarRoom roomWithName:@"Number 1"];
+    TENCarRoom *carRoom = [[TENCarRoom new] autorelease];
     carRoom.peopleCapacity = 1;
     carRoom.carCapacity = 1;
     
