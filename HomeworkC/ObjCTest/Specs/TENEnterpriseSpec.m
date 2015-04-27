@@ -12,27 +12,27 @@
 
 SPEC_BEGIN(TENEnterpriseSpec)
 
-describe(@"IDPAlphabet", ^{
+describe(@"TENEntity.h", ^{
     __block TENEntity *john = nil;
     
     afterAll(^{
         john = nil;
     });
     
-    context(@"when initialized with +alphabetWithRange: with range 'A'-'B'", ^{
+    context(@"when initialized with +entityWithName:@\"John\" gender:TENGenderMale age:16 weight:70.6", ^{
         beforeAll(^{
             john = [TENEntity entityWithName:@"John" gender:TENGenderMale age:16 weight:70.6];
         });
 
-        it(@"should be of class IDPRangeAlphabet", ^{
+        it(@"should be of class TENEntity", ^{
             [[john should] beKindOfClass:[TENEntity class]];
         });
+
+        it(@"should be of count 2", ^{
+            [[theValue([john retainCount]) should] equal:@(2)];
+            [[[john retainCount] should] haveCountOf:2];
+        });
 //
-//        it(@"should be of count 2", ^{
-//            //            [[theValue([alphabet count]) should] equal:@(2)];
-//            [[alphabet should] haveCountOf:2];
-//        });
-//        
 //        it(@"should contain @\"A\" at index = 0", ^{
 //            [[[alphabet stringAtIndex:0] should] equal:@"A"];
 //        });
