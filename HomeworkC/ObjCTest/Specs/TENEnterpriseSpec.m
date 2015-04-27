@@ -30,7 +30,6 @@ describe(@"TENEntity.h", ^{
 
         it(@"should be of count 2", ^{
             [[theValue([john retainCount]) should] equal:@(2)];
-            [[[john retainCount] should] haveCountOf:2];
         });
 //
 //        it(@"should contain @\"A\" at index = 0", ^{
