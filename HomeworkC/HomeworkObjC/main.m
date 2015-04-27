@@ -17,9 +17,9 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
 //        TENObjCSyntax();
 //        TENEntityPerformTests();
-        TENBuildingPerformTests();
+//        TENBuildingPerformTests();
 //        TENCopyPerformTests();
-//        [[NSStringTests object] performTests];
+        [[NSStringTests object] performTests];
     }
     
     return 0;

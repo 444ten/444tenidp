@@ -10,6 +10,9 @@
 
 #import <math.h>
 
+#import "NSString+TENExtensions.h"
+#import "TENStringsAlphabet.h"
+
 NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
     unichar maxValue = MAX(value1, value2);
     unichar minValue = MIN(value1, value2);
@@ -31,11 +34,11 @@ NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
 }
 
 + (instancetype)alphabetWithStrings:(NSArray *)strings {
-    return nil;
+    return [[[TENStringsAlphabet alloc] initWithStrings:strings] autorelease];
 }
 
 + (instancetype)alphabetWithSymbols:(NSString *)string {
-    return nil;
+    return [self alphabetWithStrings:[string symbols]];
 }
 
 #pragma mark -
@@ -54,11 +57,13 @@ NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
 }
 
 - (instancetype)initWithStrings:(NSArray *)strings {
-    return nil;
+    [self release];
+    
+    return [[TENStringsAlphabet alloc] initWithStrings:strings];
 }
 
 - (instancetype)initWithSymbols:(NSString *)string {
-    return nil;
+    return [self initWithStrings:[string symbols]];
 
 }
 
@@ -66,10 +71,14 @@ NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
 #pragma mark Public Methods
 
 - (NSUInteger)count {
+    [self doesNotRecognizeSelector:_cmd];
+    
     return 0;
 }
 
 - (NSString *)stringAtIndex:(NSUInteger)index {
+    [self doesNotRecognizeSelector:_cmd];
+    
     return nil;
 }
 
