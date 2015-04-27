@@ -20,8 +20,5 @@
 
 - (instancetype)initWithName:(NSString *)name;
 
-- (void)makeStaffBuilding;
-- (void)makeCarwashBuilding;
-- (void)populate;
 
 @end

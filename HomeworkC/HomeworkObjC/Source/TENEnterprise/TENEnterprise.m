@@ -21,6 +21,11 @@
 @property (nonatomic, readwrite)        TENBuilding     *staffBuilding;
 @property (nonatomic, readwrite)        TENBuilding     *carwashBuilding;
 
+- (void)prepareBuilding;
+- (void)hireStaff;
+- (void)prepareStaffBuilding;
+- (void)prepareCarwashBuilding;
+
 @end
 
 @implementation TENEnterprise
@@ -50,9 +55,8 @@
     self = [super init];
     if (self) {
         self.name = name;
-        self.employeesMutableArray = [NSMutableArray array];
-        self.staffBuilding = [TENBuilding buildingWithName:@"Staff"];
-        self.carwashBuilding = [TENBuilding buildingWithName:@"CarWash"];
+        [self prepareBuilding];
+        [self hireStaff];
     }
     
     return self;
@@ -68,27 +72,37 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)makeStaffBuilding {
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)prepareBuilding {
+    [self prepareStaffBuilding];
+    [self prepareCarwashBuilding];
+}
+
+- (void)prepareStaffBuilding {
     TENRoom *room = [[TENRoom new] autorelease];
     room.peopleCapacity = 2;
-    
+
+    self.staffBuilding = [TENBuilding buildingWithName:@"Staff"];
     [self.staffBuilding addRoom:room];
 }
 
-- (void)makeCarwashBuilding {
+- (void)prepareCarwashBuilding {
     TENCarRoom *carRoom = [[TENCarRoom new] autorelease];
     carRoom.peopleCapacity = 1;
     carRoom.carCapacity = 1;
-    
+
+    self.carwashBuilding = [TENBuilding buildingWithName:@"CarWash"];
     [self.carwashBuilding addRoom:carRoom];
 }
 
-- (void)populate {
+- (void)hireStaff {
     TENDirector *director = [TENDirector employeeWithName:@"Ivan Ivanovich"];
     TENAccountant *accountant = [TENAccountant employeeWithName:@"Natali"];
     TENWasher *washer = [TENWasher employeeWithName:@"Vasya"];
-    
-    [self.employeesMutableArray addObjectsFromArray:@[director, accountant, washer]];
+
+    self.employeesMutableArray = [NSMutableArray arrayWithArray:@[director, accountant, washer]];
 }
 
 @end

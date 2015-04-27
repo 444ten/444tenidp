@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CD2B3EF1AEE206C0030516B /* TENEnterpriseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3EE1AEE206C0030516B /* TENEnterpriseSpec.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6CD2B3F21AEE28180030516B /* TENEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A37501ADBBB0D008C29D3 /* TENEntity.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7603A0991ADFBDA700EC0867 /* TENEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0981ADFBDA700EC0867 /* TENEmployee.m */; };
 		7603A09F1ADFF59900EC0867 /* TENDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A09E1ADFF59900EC0867 /* TENDirector.m */; };
 		7603A0A21ADFF5E300EC0867 /* TENAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0A11ADFF5E300EC0867 /* TENAccountant.m */; };
@@ -59,6 +61,7 @@
 		769DFBDB1AD6895600D0919A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 769DFBDA1AD6895600D0919A /* main.m */; };
 		76AEE1ED1AE9246400E7D1E5 /* TENCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AEE1EC1AE9246400E7D1E5 /* TENCar.m */; };
 		76F255D31A8E40A500135F2A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255D21A8E40A500135F2A /* main.c */; };
+		AC504507AD87D656F8122947 /* libPods-ObjCTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 630CFA7CA131387662FB0001 /* libPods-ObjCTest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +86,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5ABE7605A9FBFC4A8BCA9664 /* Pods-ObjCTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ObjCTest/Pods-ObjCTest.debug.xcconfig"; sourceTree = "<group>"; };
+		630CFA7CA131387662FB0001 /* libPods-ObjCTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ObjCTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CD2B3E21AEE1DB60030516B /* ObjCTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjCTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CD2B3E51AEE1DB60030516B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CD2B3EE1AEE206C0030516B /* TENEnterpriseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEnterpriseSpec.m; path = Specs/TENEnterpriseSpec.m; sourceTree = "<group>"; };
+		6FDEEBB680E31291DC2D47B5 /* Pods-ObjCTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ObjCTest/Pods-ObjCTest.release.xcconfig"; sourceTree = "<group>"; };
 		7603A0971ADFBDA700EC0867 /* TENEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENEmployee.h; path = Source/TENEmployee/TENEmployee.h; sourceTree = "<group>"; };
 		7603A0981ADFBDA700EC0867 /* TENEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEmployee.m; path = Source/TENEmployee/TENEmployee.m; sourceTree = "<group>"; };
 		7603A09D1ADFF59900EC0867 /* TENDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENDirector.h; path = Source/TENEmployee/TENDirector.h; sourceTree = "<group>"; };
@@ -192,6 +201,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6CD2B3DF1AEE1DB60030516B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC504507AD87D656F8122947 /* libPods-ObjCTest.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		769DFBD51AD6895600D0919A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -209,6 +226,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		685F6190484E8C6E40920D33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				630CFA7CA131387662FB0001 /* libPods-ObjCTest.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6CD2B3E31AEE1DB60030516B /* ObjCTest */ = {
+			isa = PBXGroup;
+			children = (
+				6CD2B3ED1AEE1FE00030516B /* Specs */,
+				6CD2B3E41AEE1DB60030516B /* Supporting Files */,
+			);
+			path = ObjCTest;
+			sourceTree = "<group>";
+		};
+		6CD2B3E41AEE1DB60030516B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6CD2B3E51AEE1DB60030516B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6CD2B3ED1AEE1FE00030516B /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				6CD2B3EE1AEE206C0030516B /* TENEnterpriseSpec.m */,
+			);
+			name = Specs;
+			sourceTree = "<group>";
+		};
 		7603A0961ADFBD5F00EC0867 /* TENEmployee */ = {
 			isa = PBXGroup;
 			children = (
@@ -712,7 +762,10 @@
 			children = (
 				76F255AB1A8E2B9200135F2A /* HomeworkC */,
 				769DFBD91AD6895600D0919A /* HomeworkObjC */,
+				6CD2B3E31AEE1DB60030516B /* ObjCTest */,
 				76F255AA1A8E2B9200135F2A /* Products */,
+				9DB0ADBD5B7122033FA7310F /* Pods */,
+				685F6190484E8C6E40920D33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -721,6 +774,7 @@
 			children = (
 				76F255A91A8E2B9200135F2A /* HomeworkC */,
 				769DFBD81AD6895600D0919A /* HomeworkObjC */,
+				6CD2B3E21AEE1DB60030516B /* ObjCTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -735,9 +789,37 @@
 			path = HomeworkC;
 			sourceTree = "<group>";
 		};
+		9DB0ADBD5B7122033FA7310F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5ABE7605A9FBFC4A8BCA9664 /* Pods-ObjCTest.debug.xcconfig */,
+				6FDEEBB680E31291DC2D47B5 /* Pods-ObjCTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6CD2B3E11AEE1DB60030516B /* ObjCTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6CD2B3EA1AEE1DB60030516B /* Build configuration list for PBXNativeTarget "ObjCTest" */;
+			buildPhases = (
+				F73332A0A526BAC2B4154299 /* Check Pods Manifest.lock */,
+				6CD2B3DE1AEE1DB60030516B /* Sources */,
+				6CD2B3DF1AEE1DB60030516B /* Frameworks */,
+				6CD2B3E01AEE1DB60030516B /* Resources */,
+				965E5097D5321B9A68AF52BB /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ObjCTest;
+			productName = ObjCTest;
+			productReference = 6CD2B3E21AEE1DB60030516B /* ObjCTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		769DFBD71AD6895600D0919A /* HomeworkObjC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 769DFBDE1AD6895600D0919A /* Build configuration list for PBXNativeTarget "HomeworkObjC" */;
@@ -781,6 +863,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = 444ten;
 				TargetAttributes = {
+					6CD2B3E11AEE1DB60030516B = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
 					769DFBD71AD6895600D0919A = {
 						CreatedOnToolsVersion = 6.2;
 					};
@@ -803,11 +888,64 @@
 			targets = (
 				76F255A81A8E2B9200135F2A /* HomeworkC */,
 				769DFBD71AD6895600D0919A /* HomeworkObjC */,
+				6CD2B3E11AEE1DB60030516B /* ObjCTest */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		6CD2B3E01AEE1DB60030516B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		965E5097D5321B9A68AF52BB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ObjCTest/Pods-ObjCTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F73332A0A526BAC2B4154299 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		6CD2B3DE1AEE1DB60030516B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CD2B3F21AEE28180030516B /* TENEntity.m in Sources */,
+				6CD2B3EF1AEE206C0030516B /* TENEnterpriseSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		769DFBD41AD6895600D0919A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -877,6 +1015,44 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		6CD2B3E81AEE1DB60030516B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5ABE7605A9FBFC4A8BCA9664 /* Pods-ObjCTest.debug.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ObjCTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6CD2B3E91AEE1DB60030516B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FDEEBB680E31291DC2D47B5 /* Pods-ObjCTest.release.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = ObjCTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		769DFBDC1AD6895600D0919A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -989,6 +1165,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6CD2B3EA1AEE1DB60030516B /* Build configuration list for PBXNativeTarget "ObjCTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CD2B3E81AEE1DB60030516B /* Debug */,
+				6CD2B3E91AEE1DB60030516B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		769DFBDE1AD6895600D0919A /* Build configuration list for PBXNativeTarget "HomeworkObjC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
