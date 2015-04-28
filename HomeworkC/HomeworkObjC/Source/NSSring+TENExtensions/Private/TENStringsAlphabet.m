@@ -34,5 +34,16 @@
     
 }
 
+#pragma mark - 
+#pragma mark - Public Methods
+
+- (NSUInteger)count {
+    return [self.strings count];
+}
+
+- (NSString *)stringAtIndex:(NSUInteger)index {
+    return self.strings[index];
+}
+
 
 @end

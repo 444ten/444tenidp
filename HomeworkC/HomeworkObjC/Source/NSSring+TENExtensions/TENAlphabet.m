@@ -82,4 +82,43 @@ NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
     return nil;
 }
 
+- (NSString *)string {
+    NSMutableString *string = [NSMutableString string];
+    
+    for (NSString *symbol in self) {
+        [string appendString:symbol];
+    }
+    
+    return [[string copy] autorelease];
+}
+
+- (NSString *)objectAtIndexedSubscript:(NSUInteger)index {
+    return [self stringAtIndex:index];
+}
+
+#pragma mark -
+#pragma mark NSFastEnumeration
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                  objects:(id __unsafe_unretained [])buffer
+                                    count:(NSUInteger)len
+{
+    state->mutationsPtr = (unsigned long *)self;
+    
+    NSUInteger length = MIN(state->state + len, [self count]);
+    len = length - state->state;
+    
+    if (0 != len) {
+        for (NSUInteger i = 0; i < len; i++) {
+            buffer[i] = self[i + state->state];
+        }
+    }
+    
+    state->itemsPtr = buffer;
+    
+    state->state += len;
+    
+    return len;
+}
+
 @end

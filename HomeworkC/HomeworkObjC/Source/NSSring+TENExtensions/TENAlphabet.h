@@ -11,7 +11,7 @@
 extern
 NSRange TENMakeAlphabetRange(unichar value1, unichar value2);
 
-@interface TENAlphabet : NSObject
+@interface TENAlphabet : NSObject <NSFastEnumeration>
 
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabets;
 + (instancetype)alphabetWithRange:(NSRange)range;
@@ -28,5 +28,9 @@ NSRange TENMakeAlphabetRange(unichar value1, unichar value2);
 
 //the method should be overriden
 - (NSString *)stringAtIndex:(NSUInteger)index;
+
+- (NSString *)objectAtIndexedSubscript:(NSUInteger)index;
+
+- (NSString *)string;
 
 @end
