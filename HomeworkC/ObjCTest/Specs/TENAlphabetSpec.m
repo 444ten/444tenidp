@@ -9,6 +9,7 @@
 #import "Kiwi.h"
 
 #import "TENAlphabet.h"
+#import "TENClusterAlphabet.h"
 #import "TENRangeAlphabet.h"
 #import "TENStringsAlphabet.h"
 
@@ -53,7 +54,7 @@ describe(@"TENAlphabet", ^{
         });
     });
 
-    context(@"when initialized with...", ^{
+    context(@"when initialized with +alphabetWithRange:'A' - 'B'", ^{
         beforeAll(^{
             alphabet = [TENAlphabet alphabetWithRange:TENMakeAlphabetRange('A', 'B')];
         });
@@ -85,6 +86,37 @@ describe(@"TENAlphabet", ^{
         });
     });
 
+    context(@"when initialized with ...", ^{
+        TENAlphabet *capitalizedAlphabet =[TENAlphabet alphabetWithRange:TENMakeAlphabetRange('A', 'Z')];
+        TENAlphabet *lowercaseAlphabet =[TENAlphabet alphabetWithRange:TENMakeAlphabetRange('a', 'z')];
+        
+        beforeAll(^{
+            alphabet = [TENAlphabet alphabetWithAlphabets:@[capitalizedAlphabet,lowercaseAlphabet]];
+        });
+        
+        it(@"should be of class TENClusterAlphabet", ^{
+            [[alphabet should] beKindOfClass:[TENClusterAlphabet class]];
+        });
+        
+        it(@"should be of count 52", ^{
+            [[alphabet should] haveCountOf:52];
+        });
+        
+        it(@"should contain @\"A\" at index 0", ^{
+            [[alphabet[0] should] equal:@"A"];
+        });
+        
+        it(@"should contain @\"a\" at index 26", ^{
+            [[[alphabet stringAtIndex:26] should] equal:@"a"];
+        });
+        
+        it(@"should raise, when requesting object at index 52", ^{
+            [[theBlock(^{
+                [alphabet[52] description];
+            }) should] raise];
+        });
+        
+    });
 });
 
 SPEC_END
