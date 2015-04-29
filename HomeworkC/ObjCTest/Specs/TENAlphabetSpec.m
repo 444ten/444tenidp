@@ -8,29 +8,47 @@
 
 #import "Kiwi.h"
 
-#import "TENEntity.h"
+#import "TENAlphabet.h"
+#import "TENStringsAlphabet.h"
 
-SPEC_BEGIN(TENEnterpriseSpec)
+SPEC_BEGIN(TENAlphabetSpec)
 
-describe(@"TENEntity.h", ^{
-    
-    __block TENEntity *john = nil;
+describe(@"TENAlphabet", ^{
+    __block TENAlphabet *alphabet = nil;
     
     afterAll(^{
-        john = nil;
+        alphabet = nil;
     });
     
-    context(@"when initialized with +entityWithName:@\"John\" gender:TENGenderMale age:16 weight:70.6", ^{
-        beforeAll(^{            
-            john = [TENEntity entityWithName:@"John" gender:TENGenderMale age:16 weight:70.6];
+    context(@"when initialized with +alphabetWithStrings:@[@\"And\",@\"rey\"]", ^{
+        beforeAll(^{
+            alphabet = [TENAlphabet alphabetWithStrings:@[@"And",@"rey"]];
         });
 
-        it(@"should be of class TENEntity", ^{
-            [[john should] beKindOfClass:[TENEntity class]];
+        it(@"should be of class TENStringsAlphabet", ^{
+            [[alphabet should] beKindOfClass:[TENStringsAlphabet class]];
         });
 
         it(@"should be of count 2", ^{
-            [[theValue([john retainCount]) should] equal:@(2)];
+            [[alphabet should] haveCountOf:2];
+        });
+
+        it(@"should contain @\"And\" at index 0", ^{
+            [[alphabet[0] should] equal:@"And"];
+        });
+        
+        it(@"should contain @\"rey\" at index 1", ^{
+            [[[alphabet stringAtIndex:1] should] equal:@"rey"];
+        });
+        
+        it(@"should raise, when requesting object at index 2", ^{
+            [[theBlock(^{
+                [alphabet[2] description];
+            }) should] raise];
+        });
+
+        it(@"should return @\"Andrey\" from -string", ^{
+            [[[alphabet string] should] equal:@"Andrey"];
         });
     });
 });
