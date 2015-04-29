@@ -11,6 +11,7 @@
 #import <math.h>
 
 #import "NSString+TENExtensions.h"
+#import "TENRangeAlphabet.h"
 #import "TENStringsAlphabet.h"
 
 NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
@@ -30,7 +31,7 @@ NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
 }
 
 + (instancetype)alphabetWithRange:(NSRange)range {
-    return nil;
+    return [[[TENRangeAlphabet alloc] initWithRange:range] autorelease];
 }
 
 + (instancetype)alphabetWithStrings:(NSArray *)strings {
@@ -53,7 +54,9 @@ NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
 }
 
 - (instancetype)initWithRange:(NSRange)range {
-    return nil;
+    [self release];
+    
+    return [[TENRangeAlphabet alloc] initWithRange:range];
 }
 
 - (instancetype)initWithStrings:(NSArray *)strings {
@@ -64,7 +67,6 @@ NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
 
 - (instancetype)initWithSymbols:(NSString *)string {
     return [self initWithStrings:[string symbols]];
-
 }
 
 #pragma mark -

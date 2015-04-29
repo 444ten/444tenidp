@@ -9,6 +9,7 @@
 #import "Kiwi.h"
 
 #import "TENAlphabet.h"
+#import "TENRangeAlphabet.h"
 #import "TENStringsAlphabet.h"
 
 SPEC_BEGIN(TENAlphabetSpec)
@@ -51,6 +52,39 @@ describe(@"TENAlphabet", ^{
             [[[alphabet string] should] equal:@"Andrey"];
         });
     });
+
+    context(@"when initialized with...", ^{
+        beforeAll(^{
+            alphabet = [TENAlphabet alphabetWithRange:TENMakeAlphabetRange('A', 'B')];
+        });
+        
+        it(@"should be of class TENRangeAlphabet", ^{
+            [[alphabet should] beKindOfClass:[TENRangeAlphabet class]];
+        });
+        
+        it(@"should be of count 2", ^{
+            [[alphabet should] haveCountOf:2];
+        });
+        
+        it(@"should contain @\"A\" at index 0", ^{
+            [[alphabet[0] should] equal:@"A"];
+        });
+        
+        it(@"should contain @\"B\" at index 1", ^{
+            [[[alphabet stringAtIndex:1] should] equal:@"B"];
+        });
+        
+        it(@"should raise, when requesting object at index 2", ^{
+            [[theBlock(^{
+                [alphabet[2] description];
+            }) should] raise];
+        });
+        
+        it(@"should return @\"AB\" from -string", ^{
+            [[[alphabet string] should] equal:@"AB"];
+        });
+    });
+
 });
 
 SPEC_END
