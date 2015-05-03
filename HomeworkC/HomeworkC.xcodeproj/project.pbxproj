@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6CD2B3EF1AEE206C0030516B /* TENEnterpriseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3EE1AEE206C0030516B /* TENEnterpriseSpec.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6CD2B3EF1AEE206C0030516B /* TENAlphabetSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3EE1AEE206C0030516B /* TENAlphabetSpec.m */; };
 		6CD2B3F21AEE28180030516B /* TENEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A37501ADBBB0D008C29D3 /* TENEntity.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6CD2B3F51AEE39710030516B /* TENAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3F41AEE39710030516B /* TENAlphabet.m */; };
+		6CD2B3F61AEE39710030516B /* TENAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3F41AEE39710030516B /* TENAlphabet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6CD2B3FA1AEE78DC0030516B /* TENStringsAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3F91AEE78DC0030516B /* TENStringsAlphabet.m */; };
+		6CD2B3FB1AEE78DC0030516B /* TENStringsAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3F91AEE78DC0030516B /* TENStringsAlphabet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6CD2B3FE1AF116950030516B /* TENRangeAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3FD1AF116950030516B /* TENRangeAlphabet.m */; };
+		6CD2B3FF1AF1169D0030516B /* TENRangeAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3FD1AF116950030516B /* TENRangeAlphabet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6CD2B4021AF11AA90030516B /* TENClusterAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B4011AF11AA90030516B /* TENClusterAlphabet.m */; };
+		6CD2B4031AF11AAF0030516B /* TENClusterAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B4011AF11AA90030516B /* TENClusterAlphabet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7603A0991ADFBDA700EC0867 /* TENEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0981ADFBDA700EC0867 /* TENEmployee.m */; };
 		7603A09F1ADFF59900EC0867 /* TENDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A09E1ADFF59900EC0867 /* TENDirector.m */; };
 		7603A0A21ADFF5E300EC0867 /* TENAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0A11ADFF5E300EC0867 /* TENAccountant.m */; };
@@ -90,7 +98,15 @@
 		630CFA7CA131387662FB0001 /* libPods-ObjCTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ObjCTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CD2B3E21AEE1DB60030516B /* ObjCTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjCTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CD2B3E51AEE1DB60030516B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6CD2B3EE1AEE206C0030516B /* TENEnterpriseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEnterpriseSpec.m; path = Specs/TENEnterpriseSpec.m; sourceTree = "<group>"; };
+		6CD2B3EE1AEE206C0030516B /* TENAlphabetSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENAlphabetSpec.m; path = Specs/TENAlphabetSpec.m; sourceTree = "<group>"; };
+		6CD2B3F31AEE39710030516B /* TENAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENAlphabet.h; path = "Source/NSSring+TENExtensions/TENAlphabet.h"; sourceTree = "<group>"; };
+		6CD2B3F41AEE39710030516B /* TENAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENAlphabet.m; path = "Source/NSSring+TENExtensions/TENAlphabet.m"; sourceTree = "<group>"; };
+		6CD2B3F81AEE78DC0030516B /* TENStringsAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENStringsAlphabet.h; path = "Source/NSSring+TENExtensions/Private/TENStringsAlphabet.h"; sourceTree = "<group>"; };
+		6CD2B3F91AEE78DC0030516B /* TENStringsAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENStringsAlphabet.m; path = "Source/NSSring+TENExtensions/Private/TENStringsAlphabet.m"; sourceTree = "<group>"; };
+		6CD2B3FC1AF116950030516B /* TENRangeAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENRangeAlphabet.h; path = "Source/NSSring+TENExtensions/Private/TENRangeAlphabet.h"; sourceTree = "<group>"; };
+		6CD2B3FD1AF116950030516B /* TENRangeAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENRangeAlphabet.m; path = "Source/NSSring+TENExtensions/Private/TENRangeAlphabet.m"; sourceTree = "<group>"; };
+		6CD2B4001AF11AA90030516B /* TENClusterAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENClusterAlphabet.h; path = "Source/NSSring+TENExtensions/Private/TENClusterAlphabet.h"; sourceTree = "<group>"; };
+		6CD2B4011AF11AA90030516B /* TENClusterAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENClusterAlphabet.m; path = "Source/NSSring+TENExtensions/Private/TENClusterAlphabet.m"; sourceTree = "<group>"; };
 		6FDEEBB680E31291DC2D47B5 /* Pods-ObjCTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ObjCTest/Pods-ObjCTest.release.xcconfig"; sourceTree = "<group>"; };
 		7603A0971ADFBDA700EC0867 /* TENEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENEmployee.h; path = Source/TENEmployee/TENEmployee.h; sourceTree = "<group>"; };
 		7603A0981ADFBDA700EC0867 /* TENEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEmployee.m; path = Source/TENEmployee/TENEmployee.m; sourceTree = "<group>"; };
@@ -254,9 +270,22 @@
 		6CD2B3ED1AEE1FE00030516B /* Specs */ = {
 			isa = PBXGroup;
 			children = (
-				6CD2B3EE1AEE206C0030516B /* TENEnterpriseSpec.m */,
+				6CD2B3EE1AEE206C0030516B /* TENAlphabetSpec.m */,
 			);
 			name = Specs;
+			sourceTree = "<group>";
+		};
+		6CD2B3F71AEE3E0F0030516B /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6CD2B3F81AEE78DC0030516B /* TENStringsAlphabet.h */,
+				6CD2B3F91AEE78DC0030516B /* TENStringsAlphabet.m */,
+				6CD2B3FC1AF116950030516B /* TENRangeAlphabet.h */,
+				6CD2B3FD1AF116950030516B /* TENRangeAlphabet.m */,
+				6CD2B4001AF11AA90030516B /* TENClusterAlphabet.h */,
+				6CD2B4011AF11AA90030516B /* TENClusterAlphabet.m */,
+			);
+			name = Private;
 			sourceTree = "<group>";
 		};
 		7603A0961ADFBD5F00EC0867 /* TENEmployee */ = {
@@ -306,6 +335,9 @@
 			children = (
 				76277D8B1AE4E3B700CEC9AB /* NSString+TENExtensions.h */,
 				76277D8C1AE4E3B700CEC9AB /* NSString+TENExtensions.m */,
+				6CD2B3F31AEE39710030516B /* TENAlphabet.h */,
+				6CD2B3F41AEE39710030516B /* TENAlphabet.m */,
+				6CD2B3F71AEE3E0F0030516B /* Private */,
 			);
 			name = "NSString+TENExtensions";
 			sourceTree = "<group>";
@@ -941,8 +973,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CD2B3F61AEE39710030516B /* TENAlphabet.m in Sources */,
+				6CD2B4031AF11AAF0030516B /* TENClusterAlphabet.m in Sources */,
+				6CD2B3FF1AF1169D0030516B /* TENRangeAlphabet.m in Sources */,
+				6CD2B3FB1AEE78DC0030516B /* TENStringsAlphabet.m in Sources */,
 				6CD2B3F21AEE28180030516B /* TENEntity.m in Sources */,
-				6CD2B3EF1AEE206C0030516B /* TENEnterpriseSpec.m in Sources */,
+				6CD2B3EF1AEE206C0030516B /* TENAlphabetSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,7 +987,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7653DB971ADEA3320011EDF0 /* TENCarRoom.m in Sources */,
+				6CD2B3FE1AF116950030516B /* TENRangeAlphabet.m in Sources */,
+				6CD2B3FA1AEE78DC0030516B /* TENStringsAlphabet.m in Sources */,
 				7653DB8A1ADEA30C0011EDF0 /* TENBuildingTests.m in Sources */,
+				6CD2B3F51AEE39710030516B /* TENAlphabet.m in Sources */,
 				7603A0B41AE052EF00EC0867 /* TENCopyTests.m in Sources */,
 				767A37701ADD39C7008C29D3 /* TENEntityMale.m in Sources */,
 				76277D8D1AE4E3B700CEC9AB /* NSString+TENExtensions.m in Sources */,
@@ -972,6 +1011,7 @@
 				7603A0A21ADFF5E300EC0867 /* TENAccountant.m in Sources */,
 				7653DB961ADEA3320011EDF0 /* TENBuilding.m in Sources */,
 				769DFBDB1AD6895600D0919A /* main.m in Sources */,
+				6CD2B4021AF11AA90030516B /* TENClusterAlphabet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

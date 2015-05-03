@@ -33,13 +33,13 @@ static const NSUInteger kNSStringRandomSrtingDefaultLength = 10;
 }
 
 + (id)alphabetWithCharacterSet:(NSCharacterSet *)characterSet {
-    return [self alphabetWithASCIIRange:NSMakeRange(' ', '~' - ' ') characterSet:characterSet];
+    return [self alphabetWithASCIIRange:NSMakeRange(' ', '~' - ' ' + 1) characterSet:characterSet];
 }
 
 + (id)alphabetWithASCIIRange:(NSRange)range characterSet:(NSCharacterSet *)characterSet {
     NSMutableString *string = [NSMutableString string];
 
-    for (unichar character = range.location; character <= NSMaxRange(range); character++) {
+    for (unichar character = range.location; character < NSMaxRange(range); character++) {
         if ([characterSet characterIsMember:character]) {
             [string appendFormat:@"%c", character];
         }
@@ -72,6 +72,17 @@ static const NSUInteger kNSStringRandomSrtingDefaultLength = 10;
 
 + (id)randomString {
     return [self randomStringWithLength:kNSStringRandomSrtingDefaultLength];
+}
+
+- (NSArray *)symbols {
+    NSUInteger length = [self length];
+    NSMutableArray *mutableSymbols = [NSMutableArray arrayWithCapacity:length];
+
+    for (NSUInteger i = 0; i < length; i++) {
+        [mutableSymbols addObject:[NSString stringWithFormat:@"%c", [self characterAtIndex:i]]];
+    }
+    
+    return [[mutableSymbols copy] autorelease];
 }
 
 @end

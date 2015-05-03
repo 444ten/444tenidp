@@ -23,4 +23,6 @@
 + (id)randomStringWithLength:(NSUInteger)length;
 + (id)randomString;
 
+- (NSArray *)symbols;
+
 @end

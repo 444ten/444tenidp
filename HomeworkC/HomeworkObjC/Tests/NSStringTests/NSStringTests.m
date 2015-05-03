@@ -16,12 +16,20 @@
     NSLog(@"%@ run...", [self className]);
     
     NSLog(@"%@", [NSString alphanumericAlphabet]);
-    
     NSLog(@"%@", [NSString alphabetWithCharacterSet:[NSCharacterSet punctuationCharacterSet]]);
+    NSLog(@"%@", [NSString alphabetWithASCIIRange:NSMakeRange('0', '9' - '0' + 1)
+                                     characterSet:[NSCharacterSet alphanumericCharacterSet]]);
+    NSLog(@"%@", [NSString alphabetWithASCIIRange:NSMakeRange('a', 'z' - 'a' + 1)
+                                     characterSet:[NSCharacterSet alphanumericCharacterSet]]);
+
+    NSString *string = @"abcdef";
+    NSArray *array = [NSArray arrayWithArray:[string symbols]];
     
-    for (NSUInteger i = 0; i < 20; i++) {
-        NSLog(@"%@", [NSString randomString]);
-    }
+//    for (NSUInteger i = 0; i < 20; i++) {
+//        NSLog(@"%@", [NSString randomString]);
+//    }
+    
+    
 }
 
 @end
