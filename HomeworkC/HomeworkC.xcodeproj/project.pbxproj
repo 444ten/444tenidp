@@ -214,6 +214,7 @@
 		76AEE1EC1AE9246400E7D1E5 /* TENCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENCar.m; path = Source/TENCar/TENCar.m; sourceTree = "<group>"; };
 		76F255A91A8E2B9200135F2A /* HomeworkC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HomeworkC; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F255D21A8E40A500135F2A /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		76F8565B1AF6A678003D6F36 /* TENMoneyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENMoneyProtocol.h; path = Source/TENEmployee/TENMoneyProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +300,7 @@
 				7603A0A11ADFF5E300EC0867 /* TENAccountant.m */,
 				7603A0A31ADFF64400EC0867 /* TENWasher.h */,
 				7603A0A41ADFF64400EC0867 /* TENWasher.m */,
+				76F8565B1AF6A678003D6F36 /* TENMoneyProtocol.h */,
 			);
 			name = TENEmployee;
 			sourceTree = "<group>";

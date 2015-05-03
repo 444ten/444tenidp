@@ -19,11 +19,12 @@
     car.clean = true;
 }
 
-- (void)takeMoney:(NSUInteger)money fromCar:(TENCar *)car {
-    if (money <= car.money) {
+- (void)takeMoney:(NSUInteger)money fromPayer:(id<TENMoneyProtocol>)payer {
+    if (money <= payer.money) {
         self.money += money;
-        car.money -= money;
+        payer.money -= money;
     }
 }
+
 
 @end

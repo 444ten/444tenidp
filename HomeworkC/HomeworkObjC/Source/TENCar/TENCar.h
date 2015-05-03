@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TENMoneyProtocol.h"
 
-@interface TENCar : NSObject
+@interface TENCar : NSObject <TENMoneyProtocol>
 @property (nonatomic, copy, readonly)           NSString    *model;
-@property (nonatomic, assign)                   NSUInteger  money;
 @property (nonatomic, assign, getter=isClean)   BOOL        clean;
 
 + (instancetype)carWithModel:(NSString *)model;

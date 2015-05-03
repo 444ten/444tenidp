@@ -15,6 +15,8 @@
 
 @implementation TENEmployee
 
+@synthesize money = _money;
+
 #pragma mark -
 #pragma mark Class Methods
 
@@ -44,10 +46,10 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)transferMoney:(NSUInteger)money toEmployee:(TENEmployee *)employee {
+- (void)transferMoney:(NSUInteger)money toPayee:(id<TENMoneyProtocol>)payee {
     if (money <= self.money) {
         self.money -= money;
-        employee.money += money;
+        payee.money += money;
     }
 }
 

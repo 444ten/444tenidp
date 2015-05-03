@@ -13,6 +13,5 @@
 @interface TENWasher : TENEmployee
 
 - (void)washCar:(TENCar *)car;
-- (void)takeMoney:(NSUInteger)money fromCar:(TENCar *)car;
 
 @end

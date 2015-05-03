@@ -15,6 +15,8 @@
 
 @implementation TENCar
 
+@synthesize money = _money;
+
 #pragma mark -
 #pragma mark Class Methods
 
@@ -27,7 +29,6 @@
 
 - (instancetype)initWithModel:(NSString *)model {
     self = [super init];
-    
     if (self) {
         self.model = model;
     }

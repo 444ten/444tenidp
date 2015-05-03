@@ -22,8 +22,6 @@
     NSLog(@"%@", [NSString alphabetWithASCIIRange:NSMakeRange('a', 'z' - 'a' + 1)
                                      characterSet:[NSCharacterSet alphanumericCharacterSet]]);
 
-    NSString *string = @"abcdef";
-    NSArray *array = [NSArray arrayWithArray:[string symbols]];
     
 //    for (NSUInteger i = 0; i < 20; i++) {
 //        NSLog(@"%@", [NSString randomString]);
