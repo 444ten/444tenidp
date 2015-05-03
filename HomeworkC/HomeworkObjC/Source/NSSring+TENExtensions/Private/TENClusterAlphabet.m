@@ -69,7 +69,6 @@
 
 - (NSUInteger)countWithAlphabets:(NSArray *)alphabets {
     NSUInteger count = 0;
-    
     for (TENAlphabet *alphabet in alphabets) {
         count += [alphabet count];
     }

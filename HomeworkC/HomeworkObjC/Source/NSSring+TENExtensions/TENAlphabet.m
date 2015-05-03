@@ -46,10 +46,6 @@ NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
 #pragma mark -
 #pragma mark Deallocations and Initializations
 
-- (void)dealloc {
-    [super dealloc];
-}
-
 - (instancetype)initWithAlphabets:(NSArray *)alphabets {
     [self release];
     
@@ -112,7 +108,6 @@ NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
     
     NSUInteger length = MIN(state->state + len, [self count]);
     len = length - state->state;
-    
     if (0 != len) {
         for (NSUInteger i = 0; i < len; i++) {
             buffer[i] = self[i + state->state];
@@ -120,7 +115,6 @@ NSRange TENMakeAlphabetRange(unichar value1, unichar value2) {
     }
     
     state->itemsPtr = buffer;
-    
     state->state += len;
     
     return len;

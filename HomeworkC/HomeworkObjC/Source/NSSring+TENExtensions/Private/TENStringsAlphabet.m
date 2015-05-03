@@ -31,7 +31,6 @@
     }
 
     return self;
-    
 }
 
 #pragma mark - 
@@ -44,7 +43,6 @@
 - (NSString *)stringAtIndex:(NSUInteger)index {
     return self.strings[index];
 }
-
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
                                   objects:(id __unsafe_unretained [])buffer

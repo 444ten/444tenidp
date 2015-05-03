@@ -70,9 +70,8 @@ describe(@"TENAlphabet", ^{
     context(@"when initialized with -initWithStrings:strings", ^{
         NSArray *strings = @[@"Andrey", @"Ten", @"IDAP"];
         
-        beforeEach (^{
-//            alphabet = [[TENAlphabet alloc] initWithStrings:strings];
-            alphabet = [TENAlphabet alphabetWithStrings:strings];
+        beforeAll (^{
+            alphabet = [[TENAlphabet alloc] initWithStrings:strings];
         });
         
         it(@"should not raise", ^{
@@ -144,7 +143,6 @@ describe(@"TENAlphabet", ^{
         
         beforeAll(^{
             alphabet = [[TENAlphabet alloc] initWithRange:range];
-//            alphabet = [TENAlphabet alphabetWithRange:range];
         });
         
         it(@"should not raise", ^{

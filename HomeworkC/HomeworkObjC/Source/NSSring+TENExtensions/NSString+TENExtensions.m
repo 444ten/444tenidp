@@ -74,7 +74,6 @@ static const NSUInteger kNSStringRandomSrtingDefaultLength = 10;
     return [self randomStringWithLength:kNSStringRandomSrtingDefaultLength];
 }
 
-
 - (NSArray *)symbols {
     NSUInteger length = [self length];
     NSMutableArray *mutableSymbols = [NSMutableArray arrayWithCapacity:length];

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6CD2B3EF1AEE206C0030516B /* TENAlphabetSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3EE1AEE206C0030516B /* TENAlphabetSpec.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6CD2B3EF1AEE206C0030516B /* TENAlphabetSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3EE1AEE206C0030516B /* TENAlphabetSpec.m */; };
 		6CD2B3F21AEE28180030516B /* TENEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 767A37501ADBBB0D008C29D3 /* TENEntity.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6CD2B3F51AEE39710030516B /* TENAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3F41AEE39710030516B /* TENAlphabet.m */; };
 		6CD2B3F61AEE39710030516B /* TENAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B3F41AEE39710030516B /* TENAlphabet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
