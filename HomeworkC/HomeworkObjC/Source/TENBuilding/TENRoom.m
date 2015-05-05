@@ -8,16 +8,40 @@
 
 #import "TENRoom.h"
 
+@interface TENRoom ()
+@property (nonatomic, retain)   NSMutableArray  *mutableEmployees;
+
+@end
+
 @implementation TENRoom
 
+@dynamic employees;
+
 #pragma mark -
-#pragma mark Public Methods
+#pragma mark Initializations and Deallocations
 
-- (NSString *)description {
-    NSMutableString *string = [NSMutableString stringWithString:[super description]];
-    [string appendFormat:@" name:'%@', people capacity = %lu", [self className], self.peopleCapacity];
+- (void)dealloc {
+    self.mutableEmployees = nil;
+    
+    [super dealloc];
+}
 
-    return string;
+#pragma mark -
+#pragma mark Accessors
+
+- (NSArray *)employees {
+    return [[self.mutableEmployees copy] autorelease];
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)addEmployee:(TENEmployee *)employee {
+    
+}
+
+- (void)removeEmployee:(TENEmployee *)employee {
+    
 }
 
 @end

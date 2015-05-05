@@ -8,7 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class TENEmployee;
+
 @interface TENRoom : NSObject
-@property (nonatomic, assign)           NSUInteger  peopleCapacity;
+@property (nonatomic, assign)   NSUInteger  peopleCapacity;
+@property (nonatomic, readonly) NSArray     *employees;
+
+- (void)addEmployee:(TENEmployee *)employee;
+- (void)removeEmployee:(TENEmployee *)employee;
 
 @end

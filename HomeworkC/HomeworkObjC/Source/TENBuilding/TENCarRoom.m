@@ -13,11 +13,4 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (NSString *)description {
-    NSMutableString *string = [NSMutableString stringWithString:[super description]];
-    [string appendFormat:@", car capacity = %lu", self.carCapacity];
-    
-    return string;
-}
-
 @end
