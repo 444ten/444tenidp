@@ -20,6 +20,15 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.mutableEmployees = [NSMutableArray new];
+    }
+    
+    return self;
+}
+
 - (void)dealloc {
     self.mutableEmployees = nil;
     
@@ -37,11 +46,15 @@
 #pragma mark Public
 
 - (void)addEmployee:(TENEmployee *)employee {
+    NSMutableArray *array = self.mutableEmployees;
     
+    if (array.count < self.peopleCapacity && ![array containsObject:employee]) {
+        [self.mutableEmployees addObject:employee];
+    }
 }
 
 - (void)removeEmployee:(TENEmployee *)employee {
-    
+    [self.mutableEmployees removeObject:employee];
 }
 
 @end

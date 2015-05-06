@@ -8,7 +8,13 @@
 
 #import "TENRoom.h"
 
+@class TENCar;
+
 @interface TENCarRoom : TENRoom
 @property (nonatomic, assign)   NSUInteger  carCapacity;
+@property (nonatomic, readonly) NSArray     *cars;
+
+- (void)addCar:(TENCar *)car;
+- (void)removeCar:(TENCar *)car;
 
 @end
