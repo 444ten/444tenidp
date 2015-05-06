@@ -22,6 +22,12 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+    self.mutableCars = nil;
+    
+    [super dealloc];
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -29,12 +35,6 @@
     }
     
     return self;
-}
-
-- (void)dealloc {
-    self.mutableCars = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark -

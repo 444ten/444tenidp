@@ -20,6 +20,12 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+    self.mutableEmployees = nil;
+    
+    [super dealloc];
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -27,12 +33,6 @@
     }
     
     return self;
-}
-
-- (void)dealloc {
-    self.mutableEmployees = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark -
