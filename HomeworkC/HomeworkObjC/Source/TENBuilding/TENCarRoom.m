@@ -31,7 +31,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.mutableCars = [NSMutableArray new];
+        self.mutableCars = [NSMutableArray array];
     }
     
     return self;

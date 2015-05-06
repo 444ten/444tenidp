@@ -19,4 +19,6 @@
 
 - (instancetype)initWithName:(NSString *)name;
 
+- (void)performWorkWithObject:(id<TENMoneyProtocol>)object;
+
 @end

@@ -14,4 +14,10 @@
     NSLog(@"Accountant %@ calculated money: %lu", self.name, self.money);
 }
 
+- (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
+    [super performWorkWithObject:object];
+
+    [self calculateMoney];
+}
+
 @end

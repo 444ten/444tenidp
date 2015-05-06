@@ -10,8 +10,6 @@
 
 #import "TENCar.h"
 
-static const NSUInteger kTENDefaultPrice = 100;
-
 @implementation TENWasher
 
 #pragma mark -
@@ -19,15 +17,12 @@ static const NSUInteger kTENDefaultPrice = 100;
 
 - (void)washCar:(TENCar *)car {
     car.clean = true;
-    
-    [self takeMoney:kTENDefaultPrice fromPayer:car];
 }
 
-- (void)takeMoney:(NSUInteger)money fromPayer:(id<TENMoneyProtocol>)payer {
-    if (money <= payer.money) {
-        self.money += money;
-        payer.money -= money;
-    }
+- (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
+    [self washCar:object];
+    
+    [super performWorkWithObject:object];
 }
 
 @end

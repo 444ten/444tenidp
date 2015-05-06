@@ -8,16 +8,24 @@
 
 #import "TENEnterprise.h"
 
+#import "NSObject+TENExtensions.h"
+#import "TENAccountant.h"
 #import "TENBuilding.h"
-#import "TENRoom.h"
+#import "TENCar.h"
 #import "TENCarRoom.h"
 #import "TENDirector.h"
-#import "TENAccountant.h"
+#import "TENRoom.h"
 #import "TENWasher.h"
 
+static const NSUInteger kTENRoomPeopleCapacity = 2;
+static const NSUInteger kTENCarRoomPeopleCapacity = 1;
+static const NSUInteger kTENCarCapacity = 1;
+static  NSString *kTENDirectorName = @"Director";
+static  NSString *kTENAccountantName = @"Accountant";
+static  NSString *kTENWasherName = @"Washer";
+
 @interface TENEnterprise()
-@property (nonatomic, copy, readwrite)  NSString        *name;
-@property (nonatomic, readwrite)        NSMutableArray  *employeesMutableArray;
+@property (nonatomic, readwrite)        NSMutableArray  *mutableEmployees;
 @property (nonatomic, readwrite)        TENBuilding     *staffBuilding;
 @property (nonatomic, readwrite)        TENBuilding     *carwashBuilding;
 
@@ -33,28 +41,20 @@
 @dynamic employees;
 
 #pragma mark -
-#pragma mark Class Methods
-
-+ (instancetype)enterpriseWithName:(NSString *)name {
-    return [[[self alloc] initWithName:name] autorelease];
-}
-
-#pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.name = nil;
-    self.employeesMutableArray = nil;
+    self.mutableEmployees = nil;
     self.staffBuilding = nil;
     self.carwashBuilding = nil;
     
     [super dealloc];
 }
 
-- (instancetype)initWithName:(NSString *)name {
+- (instancetype)init {
     self = [super init];
     if (self) {
-        self.name = name;
+        self.mutableEmployees = [NSMutableArray array];
         [self prepareBuilding];
         [self hireStaff];
     }
@@ -66,11 +66,23 @@
 #pragma mark Accessors Methods
 
 - (NSArray *)employees {
-    return [[self.employeesMutableArray copy] autorelease];
+    return [[self.mutableEmployees copy] autorelease];
 }
 
 #pragma mark -
 #pragma mark Public Methods
+
+- (void)performWorkWithCar:(TENCar *)car {
+    if (!car.isClean) {
+        TENDirector *director = self.mutableEmployees[0];
+        TENAccountant *accountant = self.mutableEmployees[1];
+        TENWasher *washer = self.mutableEmployees[2];
+        
+        [washer performWorkWithObject:car];
+        [accountant performWorkWithObject:washer];
+        [director performWorkWithObject:accountant];
+    }
+}
 
 #pragma mark -
 #pragma mark Private Methods
@@ -81,28 +93,42 @@
 }
 
 - (void)prepareStaffBuilding {
-    TENRoom *room = [[TENRoom new] autorelease];
-    room.peopleCapacity = 2;
-
-    self.staffBuilding = [TENBuilding buildingWithName:@"Staff"];
+    TENRoom *room = [TENRoom object];
+    room.peopleCapacity = kTENRoomPeopleCapacity;
+    
+    self.staffBuilding = [TENBuilding object];
     [self.staffBuilding addRoom:room];
 }
 
 - (void)prepareCarwashBuilding {
-    TENCarRoom *carRoom = [[TENCarRoom new] autorelease];
-    carRoom.peopleCapacity = 1;
-    carRoom.carCapacity = 1;
+    TENCarRoom *carRoom = [TENCarRoom object];
+    carRoom.peopleCapacity = kTENCarRoomPeopleCapacity;
+    carRoom.carCapacity = kTENCarCapacity;
 
-    self.carwashBuilding = [TENBuilding buildingWithName:@"CarWash"];
+    self.carwashBuilding = [TENBuilding object];
     [self.carwashBuilding addRoom:carRoom];
 }
 
 - (void)hireStaff {
-    TENDirector *director = [TENDirector employeeWithName:@"Ivan Ivanovich"];
-    TENAccountant *accountant = [TENAccountant employeeWithName:@"Natali"];
-    TENWasher *washer = [TENWasher employeeWithName:@"Vasya"];
-
-    self.employeesMutableArray = [NSMutableArray arrayWithArray:@[director, accountant, washer]];
+    TENDirector *director = [TENDirector employeeWithName:kTENDirectorName];
+    TENAccountant *accountant = [TENAccountant employeeWithName:kTENAccountantName];
+    TENWasher *washer = [TENWasher employeeWithName:kTENWasherName];
+    
+    [self.mutableEmployees addObjectsFromArray:@[director, accountant, washer]];
+    
+    [self.staffBuilding.rooms[0] addEmployee:director];
+    [self.staffBuilding.rooms[0] addEmployee:accountant];
+    [self.carwashBuilding.rooms[0] addEmployee:washer];
 }
 
 @end
+
+
+
+
+
+
+
+
+
+

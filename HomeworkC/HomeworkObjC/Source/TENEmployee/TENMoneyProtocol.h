@@ -11,9 +11,6 @@
 @protocol TENMoneyProtocol <NSObject>
 @property (nonatomic, assign) NSUInteger money;
 
-@optional
-
-- (void)transferMoney:(NSUInteger)money toPayee:(id<TENMoneyProtocol>)payee;
-- (void)takeMoney:(NSUInteger)money fromPayer:(id<TENMoneyProtocol>)payer;
+- (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer;
 
 @end

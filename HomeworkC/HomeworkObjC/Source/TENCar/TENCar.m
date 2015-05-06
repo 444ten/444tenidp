@@ -21,11 +21,17 @@
 #pragma mark Class Methods
 
 + (instancetype)carWithModel:(NSString *)model {
-    return [[[self alloc] initWithName:model] autorelease];
+    return [[[self alloc] initWithModel:model] autorelease];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.model = nil;
+    
+    [super dealloc];
+}
 
 - (instancetype)initWithModel:(NSString *)model {
     self = [super init];
@@ -36,10 +42,11 @@
     return self;
 }
 
-- (void)dealloc {
-    self.model = nil;
-    
-    [super dealloc];
+#pragma mark -
+#pragma mark Public
+
+- (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer {
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 @end

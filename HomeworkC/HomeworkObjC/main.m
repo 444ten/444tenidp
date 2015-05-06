@@ -9,9 +9,12 @@
 #import "NSObject+TENExtensions.h"
 #import "NSStringTests.h"
 #import "TENBuildingTests.h"
+#import "TENCar.h"
 #import "TENCopyTests.h"
-#import "TENObjCSyntax.h"
+#import "TENEnterprise.h"
 #import "TENEntityTests.h"
+#import "TENObject.h"
+#import "TENObjCSyntax.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -19,7 +22,20 @@ int main(int argc, const char * argv[]) {
 //        TENEntityPerformTests();
 //        TENBuildingPerformTests();
 //        TENCopyPerformTests();
-        [[NSStringTests object] performTests];
+//        [[NSStringTests object] performTests];
+        
+        TENEnterprise *enterprise = [TENEnterprise object];
+        
+        TENCar *car = [TENCar carWithModel:@"Lexus"];
+        car.money = 100;
+        car.clean = NO;
+        [enterprise performWorkWithCar:car];
+        
+        TENCar *honda = [TENCar carWithModel:@"Honda"];
+        honda.money = 75;
+        honda.clean = NO;
+        [enterprise performWorkWithCar:honda];
+        
     }
     
     return 0;

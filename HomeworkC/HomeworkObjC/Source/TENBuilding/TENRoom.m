@@ -29,7 +29,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.mutableEmployees = [NSMutableArray new];
+        self.mutableEmployees = [NSMutableArray array];
     }
     
     return self;
