@@ -43,7 +43,15 @@
 }
 
 #pragma mark -
-#pragma mark Public Methods
+#pragma mark Accessors
+
+- (void)setMoney:(NSUInteger)money {
+    _money = money;
+    [self.delegate employee:self didChangeMoney:money];
+}
+
+#pragma mark -
+#pragma mark Public
 
 - (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer {
         self.money += payer.money;
@@ -52,6 +60,15 @@
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
     [self takeMoneyFromPayer:object];
+}
+
+#pragma mark -
+#pragma mark TENEmployeeDelegate
+
+- (void)employee:(TENEmployee *)employee didChangeMoney:(NSUInteger)money {
+    if (0 != money) {
+        [self performWorkWithObject:employee];
+    }
 }
 
 @end

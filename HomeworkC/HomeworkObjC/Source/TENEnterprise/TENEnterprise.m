@@ -83,10 +83,12 @@ static  NSString *kTENWasherName = @"Washer";
     if (!car.isClean) {
         TENAccountant *aAccountant = self.accountant;
         TENWasher *aWasher = self.washer;
+        car.delegate = aWasher;
+        [aWasher washCar:car];
         
-        [aWasher performWorkWithObject:car];
-        [aAccountant performWorkWithObject:aWasher];
-        [self.director performWorkWithObject:aAccountant];
+//        [aWasher performWorkWithObject:car];
+//        [aAccountant performWorkWithObject:aWasher];
+//        [self.director performWorkWithObject:aAccountant];
     }
 }
 
@@ -123,6 +125,9 @@ static  NSString *kTENWasherName = @"Washer";
     TENDirector *aDirector = self.director;
     TENAccountant *aAccountant = self.accountant;
     TENWasher *aWasher = self.washer;
+    
+    aWasher.delegate = aAccountant;
+    aAccountant.delegate = aDirector;
     
     NSMutableArray *aEmployees = self.mutableEmployees;
     [aEmployees addObject:aDirector];

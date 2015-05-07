@@ -16,13 +16,20 @@
 #pragma mark Public Methods
 
 - (void)washCar:(TENCar *)car {
-    car.clean = true;
+    car.clean = YES;
 }
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
-    [self washCar:object];
-    
     [super performWorkWithObject:object];
+}
+
+#pragma mark -
+#pragma mark TENCarDelegate
+
+- (void)car:(TENCar *)car didChangeClean:(BOOL)clean {
+    if (clean) {
+        [self performWorkWithObject:car];
+    }
 }
 
 @end

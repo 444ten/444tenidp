@@ -10,10 +10,20 @@
 
 #import "TENMoneyProtocol.h"
 
-@interface TENEmployee : NSObject <TENMoneyProtocol>
+@class TENEmployee;
+
+@protocol TENEmployeeDelegate <NSObject>
+
+- (void)employee:(TENEmployee *)employee didChangeMoney:(NSUInteger)money;
+
+@end
+
+@interface TENEmployee : NSObject <TENMoneyProtocol, TENEmployeeDelegate>
 @property (nonatomic, copy, readonly)   NSString    *name;
 @property (nonatomic, assign)           NSUInteger  experience;
 @property (nonatomic, assign)           NSUInteger  salary;
+
+@property (nonatomic, assign)   id<TENEmployeeDelegate> delegate;
 
 + (instancetype)employeeWithName:(NSString *)name;
 

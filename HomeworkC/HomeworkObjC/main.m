@@ -15,6 +15,7 @@
 #import "TENEntityTests.h"
 #import "TENObject.h"
 #import "TENObjCSyntax.h"
+#import "TENWasher.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -28,14 +29,11 @@ int main(int argc, const char * argv[]) {
         
         TENCar *car = [TENCar carWithModel:@"Lexus"];
         car.money = 100;
-        car.clean = NO;
         [enterprise performWorkWithCar:car];
         
         TENCar *honda = [TENCar carWithModel:@"Honda"];
         honda.money = 75;
-        honda.clean = NO;
         [enterprise performWorkWithCar:honda];
-        
     }
     
     return 0;

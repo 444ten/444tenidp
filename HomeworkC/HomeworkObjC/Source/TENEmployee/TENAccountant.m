@@ -11,13 +11,13 @@
 @implementation TENAccountant
 
 - (void)calculateMoney {
-    NSLog(@"Accountant %@ calculated money: %lu", self.name, self.money);
+    NSLog(@"Accountant %@ calculated money", self.name);
 }
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
-    [super performWorkWithObject:object];
-
     [self calculateMoney];
+
+    [super performWorkWithObject:object];
 }
 
 @end

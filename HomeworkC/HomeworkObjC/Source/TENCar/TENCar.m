@@ -42,6 +42,15 @@
     return self;
 }
 
+#pragma mark - 
+#pragma mark Accessors
+
+- (void)setClean:(BOOL)clean {
+    _clean = clean;
+    [self.delegate car:self didChangeClean:clean];
+}
+
+
 #pragma mark -
 #pragma mark Public
 

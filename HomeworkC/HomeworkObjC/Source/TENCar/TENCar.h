@@ -10,9 +10,19 @@
 
 #import "TENMoneyProtocol.h"
 
+@class TENCar;
+
+@protocol TENCarDelegate <NSObject>
+
+- (void)car:(TENCar *)car didChangeClean:(BOOL)clean;
+
+@end
+
 @interface TENCar : NSObject <TENMoneyProtocol>
 @property (nonatomic, copy, readonly)           NSString    *model;
 @property (nonatomic, assign, getter=isClean)   BOOL        clean;
+
+@property (nonatomic, assign)   id<TENCarDelegate>  delegate;
 
 + (instancetype)carWithModel:(NSString *)model;
 
