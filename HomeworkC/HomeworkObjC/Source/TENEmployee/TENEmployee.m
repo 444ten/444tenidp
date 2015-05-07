@@ -9,11 +9,13 @@
 #import "TENEmployee.h"
 
 @interface TENEmployee()
-@property (nonatomic, copy, readwrite)  NSString        *name;
+@property (nonatomic, copy, readwrite)  NSString    *name;
 
 @end
 
 @implementation TENEmployee
+
+@synthesize money = _money;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -25,9 +27,14 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+    self.name = nil;
+    
+    [super dealloc];
+}
+
 - (instancetype)initWithName:(NSString *)name {
     self = [super init];
-    
     if (self) {
         self.name = name;
     }
@@ -35,24 +42,16 @@
     return self;
 }
 
-- (void)dealloc {
-    self.name = nil;
-    
-    [super dealloc];
-}
-
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)transferMoney:(NSUInteger)money toEmployee:(TENEmployee *)employee {
-    if (money <= self.money) {
-        self.money -= money;
-        employee.money += money;
-    }
+- (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer {
+        self.money += payer.money;
+        payer.money = 0;
+}
+
+- (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
+    [self takeMoneyFromPayer:object];
 }
 
 @end
-
-
-
-

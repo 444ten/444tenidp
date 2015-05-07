@@ -8,16 +8,55 @@
 
 #import "TENCarRoom.h"
 
+#import "TENCar.h"
+
+@interface TENCarRoom ()
+@property (nonatomic, retain)   NSMutableArray  *mutableCars;
+
+@end
+
 @implementation TENCarRoom
 
-#pragma mark -
-#pragma mark Public Methods
+@dynamic cars;
 
-- (NSString *)description {
-    NSMutableString *string = [NSMutableString stringWithString:[super description]];
-    [string appendFormat:@", car capacity = %lu", self.carCapacity];
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.mutableCars = nil;
     
-    return string;
+    [super dealloc];
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.mutableCars = [NSMutableArray array];
+    }
+    
+    return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSArray *)cars {
+    return [[self.mutableCars copy] autorelease];
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)addCar:(TENCar *)car {
+    NSMutableArray *aCars = self.mutableCars;
+    
+    if (aCars.count < self.carCapacity && ![aCars containsObject:car]) {
+        [aCars addObject:car];
+    }
+}
+
+- (void)removeCar:(TENCar *)car {
+    [self.mutableCars removeObject:car];
 }
 
 @end

@@ -17,4 +17,10 @@
     NSLog(@"Director %@ took profit: %lu", self.name, self.money);
 }
 
+- (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
+    [super performWorkWithObject:object];
+
+    [self takeProfit];
+}
+
 @end

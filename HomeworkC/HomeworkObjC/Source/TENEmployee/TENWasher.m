@@ -19,11 +19,10 @@
     car.clean = true;
 }
 
-- (void)takeMoney:(NSUInteger)money fromCar:(TENCar *)car {
-    if (money <= car.money) {
-        self.money += money;
-        car.money -= money;
-    }
+- (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
+    [self washCar:object];
+    
+    [super performWorkWithObject:object];
 }
 
 @end

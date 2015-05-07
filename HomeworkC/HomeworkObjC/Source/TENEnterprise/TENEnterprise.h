@@ -9,16 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @class TENBuilding;
+@class TENCar;
 
 @interface TENEnterprise : NSObject
-@property (nonatomic, copy, readonly)   NSString    *name;
 @property (nonatomic, readonly)         NSArray     *employees;
 @property (nonatomic, readonly)         TENBuilding *staffBuilding;
 @property (nonatomic, readonly)         TENBuilding *carwashBuilding;
 
-+ (instancetype)enterpriseWithName:(NSString *)name;
-
-- (instancetype)initWithName:(NSString *)name;
-
+- (void)performWorkWithCar:(TENCar *)car;
 
 @end
