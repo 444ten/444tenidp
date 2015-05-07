@@ -48,10 +48,10 @@
 #pragma mark Public
 
 - (void)addCar:(TENCar *)car {
-    NSMutableArray *array = self.mutableCars;
+    NSMutableArray *aCars = self.mutableCars;
     
-    if (array.count < self.carCapacity && ![array containsObject:car]) {
-        [self.mutableCars addObject:car];
+    if (aCars.count < self.carCapacity && ![aCars containsObject:car]) {
+        [aCars addObject:car];
     }
 }
 

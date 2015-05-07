@@ -46,7 +46,6 @@
 #pragma mark Public
 
 - (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer {
-    [self doesNotRecognizeSelector:_cmd];
 }
 
 @end

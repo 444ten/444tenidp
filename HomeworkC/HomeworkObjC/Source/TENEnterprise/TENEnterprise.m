@@ -25,9 +25,13 @@ static  NSString *kTENAccountantName = @"Accountant";
 static  NSString *kTENWasherName = @"Washer";
 
 @interface TENEnterprise()
-@property (nonatomic, readwrite)        NSMutableArray  *mutableEmployees;
-@property (nonatomic, readwrite)        TENBuilding     *staffBuilding;
-@property (nonatomic, readwrite)        TENBuilding     *carwashBuilding;
+@property (nonatomic, readwrite)    NSMutableArray  *mutableEmployees;
+@property (nonatomic, readwrite)    TENBuilding     *staffBuilding;
+@property (nonatomic, readwrite)    TENBuilding     *carwashBuilding;
+@property (nonatomic, retain)       TENDirector     *director;
+@property (nonatomic, retain)       TENAccountant   *accountant;
+@property (nonatomic, retain)       TENWasher       *washer;
+
 
 - (void)prepareBuilding;
 - (void)hireStaff;
@@ -44,9 +48,12 @@ static  NSString *kTENWasherName = @"Washer";
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.mutableEmployees = nil;
     self.staffBuilding = nil;
     self.carwashBuilding = nil;
+    self.director = nil;
+    self.accountant = nil;
+    self.washer = nil;
+    self.mutableEmployees = nil;
     
     [super dealloc];
 }
@@ -74,13 +81,12 @@ static  NSString *kTENWasherName = @"Washer";
 
 - (void)performWorkWithCar:(TENCar *)car {
     if (!car.isClean) {
-        TENDirector *director = self.mutableEmployees[0];
-        TENAccountant *accountant = self.mutableEmployees[1];
-        TENWasher *washer = self.mutableEmployees[2];
+        TENAccountant *aAccountant = self.accountant;
+        TENWasher *aWasher = self.washer;
         
-        [washer performWorkWithObject:car];
-        [accountant performWorkWithObject:washer];
-        [director performWorkWithObject:accountant];
+        [aWasher performWorkWithObject:car];
+        [aAccountant performWorkWithObject:aWasher];
+        [self.director performWorkWithObject:aAccountant];
     }
 }
 
@@ -110,15 +116,25 @@ static  NSString *kTENWasherName = @"Washer";
 }
 
 - (void)hireStaff {
-    TENDirector *director = [TENDirector employeeWithName:kTENDirectorName];
-    TENAccountant *accountant = [TENAccountant employeeWithName:kTENAccountantName];
-    TENWasher *washer = [TENWasher employeeWithName:kTENWasherName];
+    self.director = [TENDirector employeeWithName:kTENDirectorName];
+    self.accountant = [TENAccountant employeeWithName:kTENAccountantName];
+    self.washer = [TENWasher employeeWithName:kTENWasherName];
     
-    [self.mutableEmployees addObjectsFromArray:@[director, accountant, washer]];
+    TENDirector *aDirector = self.director;
+    TENAccountant *aAccountant = self.accountant;
+    TENWasher *aWasher = self.washer;
     
-    [self.staffBuilding.rooms[0] addEmployee:director];
-    [self.staffBuilding.rooms[0] addEmployee:accountant];
-    [self.carwashBuilding.rooms[0] addEmployee:washer];
+    NSMutableArray *aEmployees = self.mutableEmployees;
+    [aEmployees addObject:aDirector];
+    [aEmployees addObject:aAccountant];
+    [aEmployees addObject:aWasher];
+    
+    TENRoom *room = self.staffBuilding.rooms[0];
+    [room addEmployee:aDirector];
+    [room addEmployee:aAccountant];
+    
+    TENCarRoom *carRoom = self.carwashBuilding.rooms[0];
+    [carRoom addEmployee:aWasher];
 }
 
 @end

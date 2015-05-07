@@ -46,10 +46,10 @@
 #pragma mark Public
 
 - (void)addEmployee:(TENEmployee *)employee {
-    NSMutableArray *array = self.mutableEmployees;
+    NSMutableArray *aEmployees = self.mutableEmployees;
     
-    if (array.count < self.peopleCapacity && ![array containsObject:employee]) {
-        [self.mutableEmployees addObject:employee];
+    if (aEmployees.count < self.peopleCapacity && ![aEmployees containsObject:employee]) {
+        [aEmployees addObject:employee];
     }
 }
 
