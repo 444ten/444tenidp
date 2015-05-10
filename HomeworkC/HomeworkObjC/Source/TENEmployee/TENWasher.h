@@ -8,9 +8,9 @@
 
 #import "TENEmployee.h"
 
-#import "TENCar.h"
+@class TENCar;
 
-@interface TENWasher : TENEmployee <TENCarDelegate>
+@interface TENWasher : TENEmployee
 
 - (void)washCar:(TENCar *)car;
 

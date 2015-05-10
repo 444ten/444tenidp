@@ -81,9 +81,7 @@ static  NSString *kTENWasherName = @"Washer";
 
 - (void)performWorkWithCar:(TENCar *)car {
     if (!car.isClean) {
-        TENWasher *aWasher = self.washer;
-        car.delegate = aWasher;
-        [aWasher washCar:car];
+        [self.washer washCar:car];
     }
 }
 
@@ -117,24 +115,24 @@ static  NSString *kTENWasherName = @"Washer";
     self.accountant = [TENAccountant employeeWithName:kTENAccountantName];
     self.washer = [TENWasher employeeWithName:kTENWasherName];
     
-    TENDirector *aDirector = self.director;
-    TENAccountant *aAccountant = self.accountant;
-    TENWasher *aWasher = self.washer;
+    TENDirector *director = self.director;
+    TENAccountant *accountant = self.accountant;
+    TENWasher *washer = self.washer;
     
-    aWasher.delegate = aAccountant;
-    aAccountant.delegate = aDirector;
+    washer.delegate = accountant;
+    accountant.delegate = director;
     
-    NSMutableArray *aEmployees = self.mutableEmployees;
-    [aEmployees addObject:aDirector];
-    [aEmployees addObject:aAccountant];
-    [aEmployees addObject:aWasher];
+    NSMutableArray *employees = self.mutableEmployees;
+    [employees addObject:director];
+    [employees addObject:accountant];
+    [employees addObject:washer];
     
     TENRoom *room = self.staffBuilding.rooms[0];
-    [room addEmployee:aDirector];
-    [room addEmployee:aAccountant];
+    [room addEmployee:director];
+    [room addEmployee:accountant];
     
     TENCarRoom *carRoom = self.carwashBuilding.rooms[0];
-    [carRoom addEmployee:aWasher];
+    [carRoom addEmployee:washer];
 }
 
 @end
