@@ -11,6 +11,8 @@
 @interface TENCar()
 @property (nonatomic, copy, readwrite)  NSString    *model;
 
+- (void)performNotification;
+
 @end
 
 @implementation TENCar
@@ -46,15 +48,23 @@
 #pragma mark Accessors
 
 - (void)setClean:(BOOL)clean {
-    _clean = clean;
-    [self.delegate car:self didChangeClean:clean];
+    if (_clean != clean) {
+        _clean = clean;
+        [self performNotification];
+    }    
 }
-
 
 #pragma mark -
 #pragma mark Public
 
 - (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer {
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)performNotification {
+    [self.delegate carDidChange:self];
 }
 
 @end

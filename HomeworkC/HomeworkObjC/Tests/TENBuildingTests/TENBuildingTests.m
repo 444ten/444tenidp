@@ -41,7 +41,7 @@ void TENCarRoomTest() {
 }
 
 void TENBuildingTest() {
-    TENEnterprise *enterprise = [TENEnterprise enterpriseWithName:@"Enterprise"];
+    TENEnterprise *enterprise = [[TENEnterprise new] autorelease];
     
     NSLog(@"%@", enterprise);
 }

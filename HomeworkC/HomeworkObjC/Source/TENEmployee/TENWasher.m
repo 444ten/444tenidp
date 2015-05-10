@@ -26,10 +26,14 @@
 #pragma mark -
 #pragma mark TENCarDelegate
 
-- (void)car:(TENCar *)car didChangeClean:(BOOL)clean {
-    if (clean) {
+- (void)carDidChange:(TENCar *)car {
+    if ([self carShouldChange:car]) {
         [self performWorkWithObject:car];
     }
+}
+
+- (BOOL)carShouldChange:(TENCar *)car {
+    return car.isClean;
 }
 
 @end

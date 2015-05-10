@@ -14,7 +14,8 @@
 
 @protocol TENCarDelegate <NSObject>
 
-- (void)car:(TENCar *)car didChangeClean:(BOOL)clean;
+- (void)carDidChange:(TENCar *)car;
+- (BOOL)carShouldChange:(TENCar *)car;
 
 @end
 

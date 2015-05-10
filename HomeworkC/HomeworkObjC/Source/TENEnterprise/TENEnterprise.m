@@ -81,14 +81,9 @@ static  NSString *kTENWasherName = @"Washer";
 
 - (void)performWorkWithCar:(TENCar *)car {
     if (!car.isClean) {
-        TENAccountant *aAccountant = self.accountant;
         TENWasher *aWasher = self.washer;
         car.delegate = aWasher;
         [aWasher washCar:car];
-        
-//        [aWasher performWorkWithObject:car];
-//        [aAccountant performWorkWithObject:aWasher];
-//        [self.director performWorkWithObject:aAccountant];
     }
 }
 
