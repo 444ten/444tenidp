@@ -10,9 +10,6 @@
 
 @interface TENAccountant : TENEmployee
 
-#pragma mark -
-#pragma mark Public Methods
-
 - (void)calculateMoney;
 
 @end

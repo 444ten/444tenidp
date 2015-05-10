@@ -10,16 +10,22 @@
 
 @implementation TENAccountant
 
+#pragma mark -
+#pragma mark Public
+
 - (void)calculateMoney {
     NSLog(@"Accountant %@ calculated money: %lu", self.name, (unsigned long)self.money);
 }
 
+#pragma mark -
+#pragma mark Overload
+
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
-    self.state = TENEmployeeBusy;
+    [self busy];
     [super performWorkWithObject:object];
     
     [self calculateMoney];
-    self.state = TENEmployeeFree;
+    [self ready];
 }
 
 @end

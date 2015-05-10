@@ -32,7 +32,6 @@ static  NSString *kTENWasherName = @"Washer";
 @property (nonatomic, retain)       TENAccountant   *accountant;
 @property (nonatomic, retain)       TENWasher       *washer;
 
-
 - (void)prepareBuilding;
 - (void)hireStaff;
 - (void)prepareStaffBuilding;
@@ -70,14 +69,14 @@ static  NSString *kTENWasherName = @"Washer";
 }
 
 #pragma mark -
-#pragma mark Accessors Methods
+#pragma mark Accessors
 
 - (NSArray *)employees {
     return [[self.mutableEmployees copy] autorelease];
 }
 
 #pragma mark -
-#pragma mark Public Methods
+#pragma mark Public
 
 - (void)performWorkWithCar:(TENCar *)car {
     if (!car.isClean) {
@@ -86,7 +85,7 @@ static  NSString *kTENWasherName = @"Washer";
 }
 
 #pragma mark -
-#pragma mark Private Methods
+#pragma mark Private
 
 - (void)prepareBuilding {
     [self prepareStaffBuilding];
@@ -136,13 +135,3 @@ static  NSString *kTENWasherName = @"Washer";
 }
 
 @end
-
-
-
-
-
-
-
-
-
-

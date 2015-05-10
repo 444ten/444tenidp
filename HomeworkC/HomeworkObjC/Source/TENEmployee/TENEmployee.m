@@ -20,7 +20,7 @@
 @synthesize money = _money;
 
 #pragma mark -
-#pragma mark Class Methods
+#pragma mark Class
 
 + (instancetype)employeeWithName:(NSString *)name {
     return [[[self alloc] initWithName:name] autorelease];
@@ -39,6 +39,7 @@
     self = [super init];
     if (self) {
         self.name = name;
+        [self ready];
     }
     
     return self;
@@ -58,13 +59,16 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer {
-        self.money += payer.money;
-        payer.money = 0;
-}
-
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
     [self takeMoneyFromPayer:object];
+}
+
+- (void)ready {
+    self.state = TENEmployeeReady;
+}
+
+- (void)busy {
+    self.state = TENEmployeeBusy;
 }
 
 #pragma mark -
@@ -72,6 +76,14 @@
 
 - (void)performNotification {
     [self.delegate employeeDidChange:self];
+}
+
+#pragma mark -
+#pragma mark TENMoneyProtocol
+
+- (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer {
+    self.money += payer.money;
+    payer.money = 0;
 }
 
 #pragma mark -
@@ -87,7 +99,7 @@
 }
 
 - (BOOL)employeeShouldChange:(TENEmployee *)employee {
-    return TENEmployeeFree == employee.state;
+    return TENEmployeeReady == employee.state;
 }
 
 @end

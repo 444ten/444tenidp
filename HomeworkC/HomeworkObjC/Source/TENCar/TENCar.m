@@ -18,7 +18,7 @@
 @synthesize money = _money;
 
 #pragma mark -
-#pragma mark Class Methods
+#pragma mark Class
 
 + (instancetype)carWithModel:(NSString *)model {
     return [[[self alloc] initWithModel:model] autorelease];
@@ -43,10 +43,9 @@
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark TENMoneyProtocol
 
 - (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer {
 }
-
 
 @end

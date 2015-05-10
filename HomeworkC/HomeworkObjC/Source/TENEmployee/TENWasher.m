@@ -13,18 +13,21 @@
 @implementation TENWasher
 
 #pragma mark -
-#pragma mark Public Methods
+#pragma mark Public
 
 - (void)washCar:(TENCar *)car {
     [self performWorkWithObject:car];
 }
 
+#pragma mark -
+#pragma mark Overload
+
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
-    self.state = TENEmployeeBusy;
+    [self busy];
     ((TENCar *)object).clean = YES;
     
     [super performWorkWithObject:object];
-    self.state = TENEmployeeFree;
+    [self ready];
 }
 
 @end

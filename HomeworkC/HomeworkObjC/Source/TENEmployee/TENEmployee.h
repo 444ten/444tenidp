@@ -11,7 +11,7 @@
 #import "TENMoneyProtocol.h"
 
 typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
-    TENEmployeeFree,
+    TENEmployeeReady,
     TENEmployeeBusy
 };
 
@@ -40,5 +40,7 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 - (instancetype)initWithName:(NSString *)name;
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object;
+- (void)ready;
+- (void)busy;
 
 @end

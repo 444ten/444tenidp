@@ -17,10 +17,15 @@
     NSLog(@"Director %@ took profit: %lu", self.name, self.money);
 }
 
+#pragma mark -
+#pragma mark Overload
+
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
+    [self busy];
     [super performWorkWithObject:object];
 
     [self takeProfit];
+    [self ready];
 }
 
 @end
