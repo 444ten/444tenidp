@@ -20,7 +20,9 @@
 }
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
+    self.state = TENEmployeeBusy;
     [super performWorkWithObject:object];
+    self.state = TENEmployeeFree;
 }
 
 #pragma mark -

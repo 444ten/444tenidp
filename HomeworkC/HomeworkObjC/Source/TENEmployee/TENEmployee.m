@@ -11,6 +11,8 @@
 @interface TENEmployee()
 @property (nonatomic, copy, readwrite)  NSString    *name;
 
+- (void)performNotification;
+
 @end
 
 @implementation TENEmployee
@@ -45,9 +47,12 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setMoney:(NSUInteger)money {
-    _money = money;
-    [self.delegate employee:self didChangeMoney:money];
+- (void)setState:(TENEmployeeState)state {
+    if (_state != state) {
+        _state = state;
+        [self performNotification];
+    }
+    
 }
 
 #pragma mark -
@@ -63,12 +68,26 @@
 }
 
 #pragma mark -
+#pragma mark Private
+
+- (void)performNotification {
+    [self.delegate employeeDidChange:self];
+}
+
+#pragma mark -
 #pragma mark TENEmployeeDelegate
 
-- (void)employee:(TENEmployee *)employee didChangeMoney:(NSUInteger)money {
-    if (0 != money) {
-        [self performWorkWithObject:employee];
+- (void)employeeDidChange:(TENEmployee *)employee {
+    if ([self respondsToSelector:@selector(employeeShouldChange:)]) {
+        if ([self employeeShouldChange:employee]) {
+            [self performWorkWithObject:employee];
+        }
     }
+    
+}
+
+- (BOOL)employeeShouldChange:(TENEmployee *)employee {
+    return TENEmployeeFree == employee.state;
 }
 
 @end

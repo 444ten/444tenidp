@@ -61,7 +61,7 @@
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Private
 
 - (void)performNotification {
     [self.delegate carDidChange:self];

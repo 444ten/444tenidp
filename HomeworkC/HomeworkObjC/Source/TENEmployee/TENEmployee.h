@@ -10,18 +10,28 @@
 
 #import "TENMoneyProtocol.h"
 
+typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
+    TENEmployeeFree,
+    TENEmployeeBusy
+};
+
 @class TENEmployee;
 
 @protocol TENEmployeeDelegate <NSObject>
 
-- (void)employee:(TENEmployee *)employee didChangeMoney:(NSUInteger)money;
+- (void)employeeDidChange:(TENEmployee *)employee;
+
+@optional
+
+- (BOOL)employeeShouldChange:(TENEmployee *)employee;
 
 @end
 
 @interface TENEmployee : NSObject <TENMoneyProtocol, TENEmployeeDelegate>
-@property (nonatomic, copy, readonly)   NSString    *name;
-@property (nonatomic, assign)           NSUInteger  experience;
-@property (nonatomic, assign)           NSUInteger  salary;
+@property (nonatomic, copy, readonly)   NSString            *name;
+@property (nonatomic, assign)           NSUInteger          experience;
+@property (nonatomic, assign)           NSUInteger          salary;
+@property (nonatomic, assign)           TENEmployeeState    state;
 
 @property (nonatomic, assign)   id<TENEmployeeDelegate> delegate;
 
