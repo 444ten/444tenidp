@@ -39,7 +39,7 @@
     self = [super init];
     if (self) {
         self.name = name;
-        self.state = TENEmployeeReady;
+        self.state = TENEmployeeFree;
     }
     
     return self;
@@ -52,7 +52,7 @@
     if (_state != state) {
         _state = state;
         
-        if (TENEmployeeReady == state) {
+        if (TENEmployeeReadyGiveMoney == state) {
             [self performNotification];
         }
     }

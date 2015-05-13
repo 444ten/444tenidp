@@ -11,8 +11,9 @@
 #import "TENMoneyProtocol.h"
 
 typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
-    TENEmployeeReady,
-    TENEmployeeBusy
+    TENEmployeeFree,
+    TENEmployeePerformWork,
+    TENEmployeeReadyGiveMoney
 };
 
 @class TENEmployee;
