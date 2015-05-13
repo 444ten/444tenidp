@@ -16,7 +16,7 @@
 #pragma mark Public
 
 - (void)washCar:(TENCar *)car {
-    car.clean = YES;
+    car.state = TENCarCleanAndReady;
 }
 
 #pragma mark -
