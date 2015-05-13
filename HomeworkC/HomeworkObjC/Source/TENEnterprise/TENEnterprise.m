@@ -17,21 +17,21 @@
 #import "TENRoom.h"
 #import "TENWasher.h"
 
-static const NSUInteger kTENRoomPeopleCapacity = 2;
-static const NSUInteger kTENCarRoomPeopleCapacity = 1;
-static const NSUInteger kTENCarCapacity = 1;
-static  NSString *kTENDirectorName = @"Director";
-static  NSString *kTENAccountantName = @"Accountant";
-static  NSString *kTENWasherName = @"Washer";
+static const NSUInteger kTENRoomPeopleCapacity      = 2;
+static const NSUInteger kTENCarRoomPeopleCapacity   = 1;
+static const NSUInteger kTENCarCapacity             = 1;
+
+static  NSString * const kTENDirectorName   = @"Director";
+static  NSString * const kTENAccountantName = @"Accountant";
+static  NSString * const kTENWasherName     = @"Washer";
 
 @interface TENEnterprise()
-@property (nonatomic, readwrite)    NSMutableArray  *mutableEmployees;
-@property (nonatomic, readwrite)    TENBuilding     *staffBuilding;
-@property (nonatomic, readwrite)    TENBuilding     *carwashBuilding;
-@property (nonatomic, retain)       TENDirector     *director;
-@property (nonatomic, retain)       TENAccountant   *accountant;
-@property (nonatomic, retain)       TENWasher       *washer;
-
+@property (nonatomic, retain)   NSMutableArray  *mutableEmployees;
+@property (nonatomic, retain)   TENBuilding     *staffBuilding;
+@property (nonatomic, retain)   TENBuilding     *carwashBuilding;
+@property (nonatomic, retain)   TENDirector     *director;
+@property (nonatomic, retain)   TENAccountant   *accountant;
+@property (nonatomic, retain)   TENWasher       *washer;
 
 - (void)prepareBuilding;
 - (void)hireStaff;
@@ -70,28 +70,23 @@ static  NSString *kTENWasherName = @"Washer";
 }
 
 #pragma mark -
-#pragma mark Accessors Methods
+#pragma mark Accessors
 
 - (NSArray *)employees {
     return [[self.mutableEmployees copy] autorelease];
 }
 
 #pragma mark -
-#pragma mark Public Methods
+#pragma mark Public
 
-- (void)performWorkWithCar:(TENCar *)car {
+- (void)workWithCar:(TENCar *)car {
     if (!car.isClean) {
-        TENAccountant *aAccountant = self.accountant;
-        TENWasher *aWasher = self.washer;
-        
-        [aWasher performWorkWithObject:car];
-        [aAccountant performWorkWithObject:aWasher];
-        [self.director performWorkWithObject:aAccountant];
+        [self.washer performWorkWithObject:car];
     }
 }
 
 #pragma mark -
-#pragma mark Private Methods
+#pragma mark Private
 
 - (void)prepareBuilding {
     [self prepareStaffBuilding];
@@ -120,31 +115,24 @@ static  NSString *kTENWasherName = @"Washer";
     self.accountant = [TENAccountant employeeWithName:kTENAccountantName];
     self.washer = [TENWasher employeeWithName:kTENWasherName];
     
-    TENDirector *aDirector = self.director;
-    TENAccountant *aAccountant = self.accountant;
-    TENWasher *aWasher = self.washer;
+    TENDirector *director = self.director;
+    TENAccountant *accountant = self.accountant;
+    TENWasher *washer = self.washer;
     
-    NSMutableArray *aEmployees = self.mutableEmployees;
-    [aEmployees addObject:aDirector];
-    [aEmployees addObject:aAccountant];
-    [aEmployees addObject:aWasher];
+    washer.delegate = accountant;
+    accountant.delegate = director;
+    
+    NSMutableArray *employees = self.mutableEmployees;
+    [employees addObject:director];
+    [employees addObject:accountant];
+    [employees addObject:washer];
     
     TENRoom *room = self.staffBuilding.rooms[0];
-    [room addEmployee:aDirector];
-    [room addEmployee:aAccountant];
+    [room addEmployee:director];
+    [room addEmployee:accountant];
     
     TENCarRoom *carRoom = self.carwashBuilding.rooms[0];
-    [carRoom addEmployee:aWasher];
+    [carRoom addEmployee:washer];
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
