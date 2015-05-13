@@ -21,10 +21,6 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 
 - (void)employeeDidChange:(TENEmployee *)employee;
 
-@optional
-
-- (BOOL)employeeShouldChange:(TENEmployee *)employee;
-
 @end
 
 @interface TENEmployee : NSObject <TENMoneyProtocol, TENEmployeeDelegate>
@@ -40,7 +36,5 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 - (instancetype)initWithName:(NSString *)name;
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object;
-- (void)ready;
-- (void)busy;
 
 @end

@@ -16,6 +16,6 @@
 @property (nonatomic, readonly)         TENBuilding *staffBuilding;
 @property (nonatomic, readonly)         TENBuilding *carwashBuilding;
 
-- (void)performWorkWithCar:(TENCar *)car;
+- (void)workWithCar:(TENCar *)car;
 
 @end

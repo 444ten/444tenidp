@@ -39,7 +39,7 @@
     self = [super init];
     if (self) {
         self.name = name;
-        [self ready];
+        self.state = TENEmployeeReady;
     }
     
     return self;
@@ -51,9 +51,11 @@
 - (void)setState:(TENEmployeeState)state {
     if (_state != state) {
         _state = state;
-        [self performNotification];
+        
+        if (TENEmployeeReady == state) {
+            [self performNotification];
+        }
     }
-    
 }
 
 #pragma mark -
@@ -61,14 +63,6 @@
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
     [self takeMoneyFromPayer:object];
-}
-
-- (void)ready {
-    self.state = TENEmployeeReady;
-}
-
-- (void)busy {
-    self.state = TENEmployeeBusy;
 }
 
 #pragma mark -
@@ -90,16 +84,7 @@
 #pragma mark TENEmployeeDelegate
 
 - (void)employeeDidChange:(TENEmployee *)employee {
-    if ([self respondsToSelector:@selector(employeeShouldChange:)]) {
-        if ([self employeeShouldChange:employee]) {
-            [self performWorkWithObject:employee];
-        }
-    }
-    
-}
-
-- (BOOL)employeeShouldChange:(TENEmployee *)employee {
-    return TENEmployeeReady == employee.state;
+    [self performWorkWithObject:employee];
 }
 
 @end

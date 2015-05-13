@@ -16,18 +16,18 @@
 #pragma mark Public
 
 - (void)washCar:(TENCar *)car {
-    [self performWorkWithObject:car];
+    car.clean = YES;
 }
 
 #pragma mark -
 #pragma mark Overload
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
-    [self busy];
-    ((TENCar *)object).clean = YES;
+    self.state = TENEmployeeBusy;
+    [self washCar:object];
     
     [super performWorkWithObject:object];
-    [self ready];
+    self.state = TENEmployeeReady;
 }
 
 @end

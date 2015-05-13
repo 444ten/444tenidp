@@ -29,11 +29,11 @@ int main(int argc, const char * argv[]) {
         
         TENCar *car = [TENCar carWithModel:@"Lexus"];
         car.money = 100;
-        [enterprise performWorkWithCar:car];
+        [enterprise workWithCar:car];
         
         TENCar *honda = [TENCar carWithModel:@"Honda"];
         honda.money = 75;
-        [enterprise performWorkWithCar:honda];
+        [enterprise workWithCar:honda];
     }
     
     return 0;
