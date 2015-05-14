@@ -80,9 +80,7 @@ static  NSString * const kTENWasherName     = @"Washer";
 #pragma mark Public
 
 - (void)workWithCar:(TENCar *)car {
-    if (!car.isClean) {
-        [self.washer performWorkWithObject:car];
-    }
+    [self.washer performWorkWithObject:car];
 }
 
 #pragma mark -

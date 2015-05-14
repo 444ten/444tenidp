@@ -20,13 +20,9 @@
 #pragma mark -
 #pragma mark Overload
 
-- (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
-    self.state = TENEmployeePerformWork;
-    [super performWorkWithObject:object];
-
+- (void)performSpecificOperationWithObject:(id<TENMoneyProtocol>)object {
+    [self takeMoneyFromPayer:object];
     [self takeProfit];
-    self.state = TENEmployeeReadyGiveMoney;
-    self.state = TENEmployeeFree;
 }
 
 @end

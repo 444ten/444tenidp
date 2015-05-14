@@ -62,7 +62,16 @@
 #pragma mark Public
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
-    [self takeMoneyFromPayer:object];
+    self.state = TENEmployeePerformWork;
+    
+    [self performSpecificOperationWithObject:object];
+
+    self.state = TENEmployeeReadyGiveMoney;
+    self.state = TENEmployeeFree;
+}
+
+- (void)performSpecificOperationWithObject:(id<TENMoneyProtocol>)object {
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 #pragma mark -
