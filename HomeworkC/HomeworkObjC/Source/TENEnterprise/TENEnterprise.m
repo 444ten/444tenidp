@@ -24,6 +24,7 @@ static  NSString * const kTENWasherName     = @"Washer";
 @property (nonatomic, retain)   TENDirector     *director;
 @property (nonatomic, retain)   TENAccountant   *accountant;
 @property (nonatomic, retain)   NSMutableArray  *mutableWashers;
+@property (nonatomic, retain)   NSMutableArray  *queueWashers;
 
 - (void)hireStaff;
 
@@ -40,6 +41,7 @@ static  NSString * const kTENWasherName     = @"Washer";
     self.director = nil;
     self.accountant = nil;
     self.mutableWashers = nil;
+    self.queueWashers = nil;
     
     [super dealloc];
 }
@@ -68,6 +70,9 @@ static  NSString * const kTENWasherName     = @"Washer";
 #pragma mark Public
 
 - (void)workWithCar:(TENCar *)car {
+    TENWasher *washer = self.queueWashers[0];
+    [self.queueWashers removeObjectAtIndex:0];
+    [washer performWorkWithObject:car];
 }
 
 #pragma mark -
@@ -82,6 +87,7 @@ static  NSString * const kTENWasherName     = @"Washer";
     TENAccountant *accountant = self.accountant;
     NSMutableArray *washers = self.mutableWashers;
     
+    
     for (NSUInteger iterator = 0; iterator < TENWasherCount; iterator++) {
         NSMutableString *nameWasher = [NSMutableString stringWithString:kTENWasherName];
         [nameWasher appendString:[NSString stringWithFormat:@"_%lu", iterator]];
@@ -90,6 +96,8 @@ static  NSString * const kTENWasherName     = @"Washer";
         washer.delegate = accountant;
         [washers addObject:washer];
     }
+    
+    self.queueWashers = [NSMutableArray arrayWithArray:washers];
     
     accountant.delegate = director;
 }

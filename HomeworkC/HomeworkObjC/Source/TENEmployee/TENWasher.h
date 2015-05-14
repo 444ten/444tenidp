@@ -9,9 +9,20 @@
 #import "TENEmployee.h"
 
 @class TENCar;
+@class TENWasher;
+
+@protocol TENWasherObserver <NSObject>
+
+- (void)washerDidBecomeFree:(TENWasher *)washer;
+- (void)washerDidBecomePerformWork:(TENWasher *)washer;
+- (void)washerDidBecomeReadyMoneyOperation:(TENWasher *)washer;
+
+@end
 
 @interface TENWasher : TENEmployee
 
 - (void)washCar:(TENCar *)car;
+
+- (SEL)selectorForState:(TENEmployeeState)state;
 
 @end
