@@ -13,8 +13,6 @@
 
 @interface TENEnterprise : NSObject
 @property (nonatomic, readonly)         NSArray     *employees;
-@property (nonatomic, readonly)         TENBuilding *staffBuilding;
-@property (nonatomic, readonly)         TENBuilding *carwashBuilding;
 
 - (void)workWithCar:(TENCar *)car;
 

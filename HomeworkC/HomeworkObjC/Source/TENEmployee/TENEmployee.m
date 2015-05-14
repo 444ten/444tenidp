@@ -52,7 +52,7 @@
     if (_state != state) {
         _state = state;
         
-        if (TENEmployeeReadyGiveMoney == state) {
+        if (TENEmployeeReadyMoneyOperation == state) {
             [self performNotification];
         }
     }
@@ -66,7 +66,7 @@
     
     [self performSpecificOperationWithObject:object];
 
-    self.state = TENEmployeeReadyGiveMoney;
+    self.state = TENEmployeeReadyMoneyOperation;
     self.state = TENEmployeeFree;
 }
 

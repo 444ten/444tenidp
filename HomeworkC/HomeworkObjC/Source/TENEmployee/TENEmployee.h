@@ -13,7 +13,7 @@
 typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
     TENEmployeeFree,
     TENEmployeePerformWork,
-    TENEmployeeReadyGiveMoney
+    TENEmployeeReadyMoneyOperation
 };
 
 @class TENEmployee;
