@@ -20,7 +20,7 @@
 #pragma mark -
 #pragma mark Overload
 
-- (void)performSpecificOperationWithObject:(id<TENMoneyProtocol>)object {
+- (void)processObject:(id<TENMoneyProtocol>)object {
     [self takeMoneyFromPayer:object];
     [self calculateMoney];
 }
@@ -36,7 +36,7 @@
     
 }
 
-- (void)washerDidBecomeReadyMoneyOperation:(TENWasher *)washer {
+- (void)washerDidBecomeReadyForMoneyOperation:(TENWasher *)washer {
     
 }
 

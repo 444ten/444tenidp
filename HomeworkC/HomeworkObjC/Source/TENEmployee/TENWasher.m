@@ -35,8 +35,8 @@
         case TENEmployeePerformWork:
             return @selector(washerDidBecomePerformWork:);
             
-        case TENEmployeeReadyMoneyOperation:
-            return @selector(washerDidBecomeReadyMoneyOperation:);
+        case TENEmployeeReadyForMoneyOperation:
+            return @selector(washerDidBecomeReadyForMoneyOperation:);
     }
 
     return nil;
@@ -52,7 +52,7 @@
 #pragma mark -
 #pragma mark Overload
 
-- (void)performSpecificOperationWithObject:(id<TENMoneyProtocol>)object {
+- (void)processObject:(id<TENMoneyProtocol>)object {
     [self washCar:object];
     [self takeMoneyFromPayer:object];
 }

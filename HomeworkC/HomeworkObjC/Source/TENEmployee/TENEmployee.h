@@ -13,7 +13,7 @@
 typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
     TENEmployeeFree,
     TENEmployeePerformWork,
-    TENEmployeeReadyMoneyOperation
+    TENEmployeeReadyForMoneyOperation
 };
 
 @class TENEmployee;
@@ -39,6 +39,6 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object;
 
 // This method is intended for subclassing
-- (void)performSpecificOperationWithObject:(id<TENMoneyProtocol>)object;
+- (void)processObject:(id<TENMoneyProtocol>)object;
 
 @end

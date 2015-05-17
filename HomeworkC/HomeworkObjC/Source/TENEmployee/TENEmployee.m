@@ -11,7 +11,7 @@
 @interface TENEmployee()
 @property (nonatomic, copy, readwrite)  NSString    *name;
 
-- (void)performNotification;
+- (void)notify;
 
 @end
 
@@ -52,8 +52,8 @@
     if (_state != state) {
         _state = state;
         
-        if (TENEmployeeReadyMoneyOperation == state) {
-            [self performNotification];
+        if (TENEmployeeReadyForMoneyOperation == state) {
+            [self notify];
         }
     }
 }
@@ -64,20 +64,20 @@
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
     self.state = TENEmployeePerformWork;
     
-    [self performSpecificOperationWithObject:object];
+    [self processObject:object];
 
-    self.state = TENEmployeeReadyMoneyOperation;
+    self.state = TENEmployeeReadyForMoneyOperation;
     self.state = TENEmployeeFree;
 }
 
-- (void)performSpecificOperationWithObject:(id<TENMoneyProtocol>)object {
+- (void)processObject:(id<TENMoneyProtocol>)object {
     [self doesNotRecognizeSelector:_cmd];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)performNotification {
+- (void)notify {
     [self.delegate employeeDidChange:self];
 }
 
