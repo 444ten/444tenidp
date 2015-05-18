@@ -110,15 +110,27 @@ static  NSString * const kTENWasherName     = @"Washer";
 }
 
 - (TENEmployee *)freeWithClass:(Class)class {
+//    NSSet *employees = self.mutableEmployeeSet;
+//    
+//    for (TENEmployee *employee in employees) {
+//        if (class == [employee class] && TENEmployeeFree == employee.state) {
+//            return employee;
+//        }
+//    }
+//    
+//    return nil;
+    
     NSSet *employees = self.mutableEmployeeSet;
+    NSMutableArray *mutableEmployees = [NSMutableArray array];
     
     for (TENEmployee *employee in employees) {
         if (class == [employee class] && TENEmployeeFree == employee.state) {
-            return employee;
+            [mutableEmployees addObject:employee];
         }
     }
     
-    return nil;
+    NSUInteger randomIndex = arc4random_uniform([mutableEmployees count]);
+    return mutableEmployees[randomIndex];
 }
 
 #pragma mark -
