@@ -93,13 +93,13 @@ static  NSString * const kTENWasherName     = @"Washer";
         [nameWasher appendString:[NSString stringWithFormat:@"_%lu", iterator]];
 
         TENWasher *washer = [TENWasher employeeWithName:nameWasher];
-//        washer.delegate = accountant;
+        [washer addObserver:accountant];
         [washers addObject:washer];
     }
     
     self.queueWashers = [NSMutableArray arrayWithArray:washers];
     
-//    accountant.delegate = director;
+    [accountant addObserver:director];
 }
 
 @end

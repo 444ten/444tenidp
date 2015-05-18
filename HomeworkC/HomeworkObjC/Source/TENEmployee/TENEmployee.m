@@ -65,7 +65,13 @@
 }
 
 - (NSSet *)observerSet {
-    return [[self.mutableObserverReferenceSet copy] autorelease];
+    NSSet *referenceSet = self.mutableObserverReferenceSet;
+    NSMutableSet *observers = [NSMutableSet setWithCapacity:[referenceSet count]];
+    for (TENReference *reference in referenceSet) {
+        [observers addObject:reference.target];
+    }
+    
+    return [[observers copy] autorelease];
 }
 
 #pragma mark -
@@ -100,26 +106,28 @@
 }
 
 - (void)addObserver:(id<TENEmployeeObserver>)observer {
-    
+    [self.mutableObserverReferenceSet addObject:[TENAssignReference referenceWithTarget:observer]];
 }
 
 - (void)removeObserver:(id<TENEmployeeObserver>)observer {
-    
+    [self.mutableObserverReferenceSet removeObject:[TENAssignReference referenceWithTarget:observer]];
 }
 
 - (BOOL)isObsevedByObserver:(id<TENEmployeeObserver>)observer {
-    return NO;
+    return [self.mutableObserverReferenceSet containsObject:[TENAssignReference referenceWithTarget:observer]];
 }
 
 #pragma mark -
 #pragma mark Private
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector {
-//    if ([self.delegate respondsToSelector:selector]) {
-//        [self.delegate performSelector:selector withObject:self];
-//    }
+    NSSet *referenceSet = self.mutableObserverReferenceSet;
+    for (TENReference *reference in referenceSet) {
+        if ([reference.target respondsToSelector:selector]) {
+            [reference.target performSelector:selector withObject:self];
+        }
+    }
 }
-
 
 #pragma mark -
 #pragma mark TENMoneyProtocol
@@ -148,10 +156,8 @@
 //}
 
 - (void)employeeDidBecomeReadyForMoneyOperation:(TENEmployee *)employee {
-    
     NSLog(@"%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-//    [(TENEmployee *)employee.delegate performWorkWithObject:employee];
-    
+    [self performWorkWithObject:employee];
 }
 
 @end
