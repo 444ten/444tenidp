@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class TENBuilding;
+#import "TENEmployee.h"
+
 @class TENCar;
 
-@interface TENEnterprise : NSObject
-@property (nonatomic, readonly)         NSArray     *employees;
+@interface TENEnterprise : NSObject <TENEmployeeObserver>
+@property (nonatomic, readonly) NSSet   *employeeSet;
+@property (nonatomic, readonly) NSArray *cars;
 
 - (void)workWithCar:(TENCar *)car;
+
+- (void)addCar:(TENCar *)car;
+- (void)removeCar:(TENCar *)car;
 
 @end

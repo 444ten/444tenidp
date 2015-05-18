@@ -21,27 +21,25 @@ static  NSString * const kTENAccountantName = @"Accountant";
 static  NSString * const kTENWasherName     = @"Washer";
 
 @interface TENEnterprise()
-@property (nonatomic, retain)   TENDirector     *director;
-@property (nonatomic, retain)   TENAccountant   *accountant;
-@property (nonatomic, retain)   NSMutableArray  *mutableWashers;
-@property (nonatomic, retain)   NSMutableArray  *queueWashers;
+@property (nonatomic, retain)   NSMutableSet    *mutableEmployeeSet;
+@property (nonatomic, retain)   NSMutableArray  *mutableCars;
 
 - (void)hireStaff;
+- (TENEmployee *)freeWithClass:(Class)class;
 
 @end
 
 @implementation TENEnterprise
 
-@dynamic employees;
+@dynamic employeeSet;
+@dynamic cars;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.director = nil;
-    self.accountant = nil;
-    self.mutableWashers = nil;
-    self.queueWashers = nil;
+    self.mutableEmployeeSet = nil;
+    self.mutableCars = nil;
     
     [super dealloc];
 }
@@ -49,6 +47,9 @@ static  NSString * const kTENWasherName     = @"Washer";
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.mutableEmployeeSet = [NSMutableSet set];
+        self.mutableCars = [NSMutableArray array];
+        
         [self hireStaff];
     }
     
@@ -58,35 +59,44 @@ static  NSString * const kTENWasherName     = @"Washer";
 #pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)employees {
-    NSMutableArray *employees = [NSMutableArray arrayWithArray:self.mutableWashers];
-    [employees addObject:self.accountant];
-    [employees addObject:self.director];
-    
-    return [[employees copy] autorelease];
+- (NSSet *)employeeSet {
+    return [[self.mutableEmployeeSet copy] autorelease];
 }
 
+- (NSArray *)cars {
+    return [[self.mutableCars copy] autorelease];
+}
 #pragma mark -
 #pragma mark Public
 
 - (void)workWithCar:(TENCar *)car {
-    TENWasher *washer = self.queueWashers[0];
-    [self.queueWashers removeObjectAtIndex:0];
-    [washer performWorkWithObject:car];
+    TENWasher *washer = (TENWasher *)[self freeWithClass:[TENWasher class]];
+    if (washer) {
+        [self removeCar:car];
+        [washer performWorkWithObject:car];
+    }
 }
+
+- (void)addCar:(TENCar *)car {
+    [self.mutableCars addObject:car];
+    [self workWithCar:car];
+}
+
+- (void)removeCar:(TENCar *)car {
+    [self.mutableCars removeObject:car];
+}
+
 
 #pragma mark -
 #pragma mark Private
 
 - (void)hireStaff {
-    self.director = [TENDirector employeeWithName:kTENDirectorName];
-    self.accountant = [TENAccountant employeeWithName:kTENAccountantName];
-    self.mutableWashers = [NSMutableArray arrayWithCapacity:TENWasherCount];
+    TENDirector *director = [TENDirector employeeWithName:kTENDirectorName];
+    TENAccountant *accountant = [TENAccountant employeeWithName:kTENAccountantName];
     
-    TENDirector *director = self.director;
-    TENAccountant *accountant = self.accountant;
-    NSMutableArray *washers = self.mutableWashers;
-    
+    [self.mutableEmployeeSet addObject:director];
+    [self.mutableEmployeeSet addObject:accountant];
+    [accountant addObserver:director];
     
     for (NSUInteger iterator = 0; iterator < TENWasherCount; iterator++) {
         NSMutableString *nameWasher = [NSMutableString stringWithString:kTENWasherName];
@@ -94,12 +104,32 @@ static  NSString * const kTENWasherName     = @"Washer";
 
         TENWasher *washer = [TENWasher employeeWithName:nameWasher];
         [washer addObserver:accountant];
-        [washers addObject:washer];
+        [washer addObserver:self];
+        [self.mutableEmployeeSet addObject:washer];
+    }
+}
+
+- (TENEmployee *)freeWithClass:(Class)class {
+    NSSet *employees = self.mutableEmployeeSet;
+    
+    for (TENEmployee *employee in employees) {
+        if (class == [employee class] && TENEmployeeFree == employee.state) {
+            return employee;
+        }
     }
     
-    self.queueWashers = [NSMutableArray arrayWithArray:washers];
+    return nil;
+}
+
+#pragma mark -
+#pragma mark TENEmployeeObserver
+
+- (void)employeeDidBecomeFree:(TENEmployee *)employee {
+    NSArray *cars = self.mutableCars;
     
-    [accountant addObserver:director];
+    if ([cars count] > 0) {
+        [self workWithCar:cars[0]];
+    }
 }
 
 @end

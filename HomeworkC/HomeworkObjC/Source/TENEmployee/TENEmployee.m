@@ -78,12 +78,12 @@
 #pragma mark Public
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
-    self.state = TENEmployeePerformWork;
-    
-    [self processObject:object];
-
-    self.state = TENEmployeeReadyForMoneyOperation;
-    self.state = TENEmployeeFree;
+        self.state = TENEmployeePerformWork;
+        
+        [self processObject:object];
+        
+        self.state = TENEmployeeReadyForMoneyOperation;
+        self.state = TENEmployeeFree;
 }
 
 - (void)processObject:(id<TENMoneyProtocol>)object {
@@ -144,16 +144,6 @@
 
 #pragma mark -
 #pragma mark TENEmployeeObserver
-
-//- (void)employeeDidBecomeFree:(TENEmployee *)employee {
-//    NSLog(@"%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-//    
-//}
-//
-//- (void)employeeDidBecomePerformWork:(TENEmployee *)employee {
-//    NSLog(@"%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-//    
-//}
 
 - (void)employeeDidBecomeReadyForMoneyOperation:(TENEmployee *)employee {
     NSLog(@"%@ -> %@", employee.name, NSStringFromSelector(_cmd));

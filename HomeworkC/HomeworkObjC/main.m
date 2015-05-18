@@ -27,13 +27,13 @@ int main(int argc, const char * argv[]) {
         
         TENEnterprise *enterprise = [TENEnterprise object];
         
-        TENCar *car = [TENCar carWithModel:@"Lexus"];
-        car.money = 100;
-        [enterprise workWithCar:car];
+        TENCar *lexus = [TENCar carWithModel:@"Lexus"];
+        lexus.money = 100;
+        [enterprise addCar:lexus];
         
         TENCar *honda = [TENCar carWithModel:@"Honda"];
         honda.money = 75;
-        [enterprise workWithCar:honda];
+        [enterprise addCar:honda];
     }
     
     return 0;
