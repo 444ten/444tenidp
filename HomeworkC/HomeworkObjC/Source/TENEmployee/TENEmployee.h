@@ -18,19 +18,24 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 
 @class TENEmployee;
 
-@protocol TENEmployeeDelegate <NSObject>
+@protocol TENEmployeeObserver <NSObject>
 
-- (void)employeeDidChange:(TENEmployee *)employee;
+@optional
+
+- (void)employeeDidBecomeFree:(TENEmployee *)employee;
+- (void)employeeDidBecomePerformWork:(TENEmployee *)employee;
+- (void)employeeDidBecomeReadyForMoneyOperation:(TENEmployee *)employee;
 
 @end
 
-@interface TENEmployee : NSObject <TENMoneyProtocol, TENEmployeeDelegate>
+
+@interface TENEmployee : NSObject <TENMoneyProtocol, TENEmployeeObserver>
 @property (nonatomic, copy, readonly)   NSString            *name;
 @property (nonatomic, assign)           NSUInteger          experience;
 @property (nonatomic, assign)           NSUInteger          salary;
 @property (nonatomic, assign)           TENEmployeeState    state;
 
-@property (nonatomic, assign)   id<TENEmployeeDelegate> delegate;
+@property (nonatomic, readonly) NSSet   *observerSet;
 
 + (instancetype)employeeWithName:(NSString *)name;
 
@@ -40,5 +45,11 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 
 // This method is intended for subclassing
 - (void)processObject:(id<TENMoneyProtocol>)object;
+
+- (SEL)selectorForState:(TENEmployeeState)state;
+
+- (void)addObserver:(id<TENEmployeeObserver>)observer;
+- (void)removeObserver:(id<TENEmployeeObserver>)observer;
+- (BOOL)isObsevedByObserver:(id<TENEmployeeObserver>)observer;
 
 @end

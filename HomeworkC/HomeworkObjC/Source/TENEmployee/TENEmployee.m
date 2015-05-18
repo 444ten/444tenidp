@@ -8,14 +8,20 @@
 
 #import "TENEmployee.h"
 
-@interface TENEmployee()
-@property (nonatomic, copy, readwrite)  NSString    *name;
+#import "TENAssignReference.h"
+#import "TENCar.h"
 
-- (void)notify;
+@interface TENEmployee()
+@property (nonatomic, copy, readwrite)  NSString        *name;
+@property (nonatomic, retain)           NSMutableSet    *mutableObserverReferenceSet;
+
+- (void)notifyOfStateChangeWithSelector:(SEL)selector;
 
 @end
 
 @implementation TENEmployee
+
+@dynamic observerSet;
 
 @synthesize money = _money;
 
@@ -31,6 +37,7 @@
 
 - (void)dealloc {
     self.name = nil;
+    self.mutableObserverReferenceSet = nil;
     
     [super dealloc];
 }
@@ -40,6 +47,7 @@
     if (self) {
         self.name = name;
         self.state = TENEmployeeFree;
+        self.mutableObserverReferenceSet = [NSMutableSet set];
     }
     
     return self;
@@ -52,10 +60,12 @@
     if (_state != state) {
         _state = state;
         
-        if (TENEmployeeReadyForMoneyOperation == state) {
-            [self notify];
-        }
+        [self notifyOfStateChangeWithSelector:[self selectorForState:state]];
     }
+}
+
+- (NSSet *)observerSet {
+    return [[self.mutableObserverReferenceSet copy] autorelease];
 }
 
 #pragma mark -
@@ -74,26 +84,74 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+- (SEL)selectorForState:(TENEmployeeState)state {
+    switch (state) {
+        case TENEmployeeFree:
+            return @selector(employeeDidBecomeFree:);
+            
+        case TENEmployeePerformWork:
+            return @selector(employeeDidBecomePerformWork:);
+            
+        case TENEmployeeReadyForMoneyOperation:
+            return @selector(employeeDidBecomeReadyForMoneyOperation:);
+    }
+    
+    return nil;
+}
+
+- (void)addObserver:(id<TENEmployeeObserver>)observer {
+    
+}
+
+- (void)removeObserver:(id<TENEmployeeObserver>)observer {
+    
+}
+
+- (BOOL)isObsevedByObserver:(id<TENEmployeeObserver>)observer {
+    return NO;
+}
+
 #pragma mark -
 #pragma mark Private
 
-- (void)notify {
-    [self.delegate employeeDidChange:self];
+- (void)notifyOfStateChangeWithSelector:(SEL)selector {
+//    if ([self.delegate respondsToSelector:selector]) {
+//        [self.delegate performSelector:selector withObject:self];
+//    }
 }
+
 
 #pragma mark -
 #pragma mark TENMoneyProtocol
 
 - (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer {
+    NSString *name  = ([payer isKindOfClass:[TENEmployee class]])
+                    ? ((TENEmployee *)payer).name
+                    : ((TENCar *)payer).model;
+    
+    NSLog(@"%@ take %lu from %@", self.name, (unsigned long)payer.money, name);
     self.money += payer.money;
     payer.money = 0;
 }
 
 #pragma mark -
-#pragma mark TENEmployeeDelegate
+#pragma mark TENEmployeeObserver
 
-- (void)employeeDidChange:(TENEmployee *)employee {
-    [self performWorkWithObject:employee];
+//- (void)employeeDidBecomeFree:(TENEmployee *)employee {
+//    NSLog(@"%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+//    
+//}
+//
+//- (void)employeeDidBecomePerformWork:(TENEmployee *)employee {
+//    NSLog(@"%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+//    
+//}
+
+- (void)employeeDidBecomeReadyForMoneyOperation:(TENEmployee *)employee {
+    
+    NSLog(@"%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+//    [(TENEmployee *)employee.delegate performWorkWithObject:employee];
+    
 }
 
 @end

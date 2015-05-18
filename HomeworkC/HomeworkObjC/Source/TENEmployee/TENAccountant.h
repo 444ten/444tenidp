@@ -9,7 +9,7 @@
 #import "TENEmployee.h"
 #import "TENWasher.h"
 
-@interface TENAccountant : TENEmployee <TENWasherObserver>
+@interface TENAccountant : TENEmployee
 
 - (void)calculateMoney;
 

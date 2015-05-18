@@ -10,13 +10,6 @@
 
 #import "TENCar.h"
 
-@interface TENWasher ()
-
-- (void)notifyOfStateChangeWithSelector:(SEL)selector;
-
-@end
-
-
 @implementation TENWasher
 
 #pragma mark -
@@ -25,28 +18,6 @@
 - (void)washCar:(TENCar *)car {
     car.state = TENCarCleanAndReady;
     NSLog(@"washer %@ clear car %@", self.name, car.model);
-}
-
-- (SEL)selectorForState:(TENEmployeeState)state {
-    switch (state) {
-        case TENEmployeeFree:
-            return @selector(washerDidBecomeFree:);
-            
-        case TENEmployeePerformWork:
-            return @selector(washerDidBecomePerformWork:);
-            
-        case TENEmployeeReadyForMoneyOperation:
-            return @selector(washerDidBecomeReadyForMoneyOperation:);
-    }
-
-    return nil;
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (void)notifyOfStateChangeWithSelector:(SEL)selector {
-    [self.delegate performSelector:selector withObject:self];
 }
 
 #pragma mark -

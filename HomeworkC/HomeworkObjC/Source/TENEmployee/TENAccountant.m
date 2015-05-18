@@ -25,19 +25,4 @@
     [self calculateMoney];
 }
 
-#pragma mark -
-#pragma mark TENWasherObserver
-
-- (void)washerDidBecomeFree:(TENWasher *)washer {
-    
-}
-
-- (void)washerDidBecomePerformWork:(TENWasher *)washer {
-    
-}
-
-- (void)washerDidBecomeReadyForMoneyOperation:(TENWasher *)washer {
-    
-}
-
 @end
