@@ -25,7 +25,7 @@ static  NSString * const kTENWasherName     = @"Washer";
 @property (nonatomic, retain)   NSMutableArray  *mutableCars;
 
 - (void)hireStaff;
-- (TENEmployee *)freeWithClass:(Class)class;
+- (id)freeEmployeeWithClass:(Class)class;
 
 @end
 
@@ -38,6 +38,15 @@ static  NSString * const kTENWasherName     = @"Washer";
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
+    NSSet *employees = self.mutableEmployeeSet;
+    for (TENEmployee *employee in employees) {
+        NSSet *observers = employee.observerSet;
+        
+        for (id observer in observers) {
+            [employee removeObserver:observer];
+        }
+    }
+    
     self.mutableEmployeeSet = nil;
     self.mutableCars = nil;
     
@@ -70,22 +79,27 @@ static  NSString * const kTENWasherName     = @"Washer";
 #pragma mark Public
 
 - (void)workWithCar:(TENCar *)car {
-    TENWasher *washer = (TENWasher *)[self freeWithClass:[TENWasher class]];
+    TENWasher *washer = [self freeEmployeeWithClass:[TENWasher class]];
     if (washer) {
+        [car retain];
+        
         [self removeCar:car];
         [washer performWorkWithObject:car];
+        
+        [car release];
     }
 }
 
 - (void)addCar:(TENCar *)car {
-    [self.mutableCars addObject:car];
-    [self workWithCar:car];
+    if (car) {
+        [self.mutableCars addObject:car];
+        [self workWithCar:car];
+    }
 }
 
 - (void)removeCar:(TENCar *)car {
     [self.mutableCars removeObject:car];
 }
-
 
 #pragma mark -
 #pragma mark Private
@@ -109,7 +123,7 @@ static  NSString * const kTENWasherName     = @"Washer";
     }
 }
 
-- (TENEmployee *)freeWithClass:(Class)class {
+- (id)freeEmployeeWithClass:(Class)class {
 //    NSSet *employees = self.mutableEmployeeSet;
 //    
 //    for (TENEmployee *employee in employees) {
@@ -137,10 +151,10 @@ static  NSString * const kTENWasherName     = @"Washer";
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeFree:(TENEmployee *)employee {
-    NSArray *cars = self.mutableCars;
+    TENCar *car = [self.mutableCars firstObject];
     
-    if ([cars count] > 0) {
-        [self workWithCar:cars[0]];
+    if (car) {
+        [self workWithCar:car];
     }
 }
 
