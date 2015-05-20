@@ -26,8 +26,6 @@
 - (void)processObject:(id<TENMoneyProtocol>)object {
     [self washCar:object];
     [self takeMoneyFromPayer:object];
-    
-    [super processObject:object];
 }
 
 @end

@@ -79,12 +79,13 @@
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
     self.state = TENEmployeePerformWork;
-    
     [self processObject:object];
+    
+    self.state = TENEmployeeReadyForMoneyOperation;
 }
 
 - (void)processObject:(id<TENMoneyProtocol>)object {
-    self.state = TENEmployeeReadyForMoneyOperation;
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 - (SEL)selectorForState:(TENEmployeeState)state {
@@ -99,7 +100,7 @@
             return @selector(employeeDidBecomeReadyForMoneyOperation:);
     }
     
-    return nil;
+    return NULL;
 }
 
 - (void)addObserver:(id<TENEmployeeObserver>)observer {

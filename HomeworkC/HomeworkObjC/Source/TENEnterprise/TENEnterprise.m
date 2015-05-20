@@ -23,9 +23,11 @@ static  NSString * const kTENWasherName     = @"Washer";
 @interface TENEnterprise()
 @property (nonatomic, retain)   NSMutableSet    *mutableEmployeeSet;
 @property (nonatomic, retain)   NSMutableArray  *mutableCars;
+@property (nonatomic, retain)   TENCar          *processedCar;
 
 - (void)hireStaff;
 - (id)freeEmployeeWithClass:(Class)class;
+- (void)removeObservers;
 
 @end
 
@@ -38,14 +40,7 @@ static  NSString * const kTENWasherName     = @"Washer";
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    NSSet *employees = self.mutableEmployeeSet;
-    for (TENEmployee *employee in employees) {
-        NSSet *observers = employee.observerSet;
-        
-        for (id observer in observers) {
-            [employee removeObserver:observer];
-        }
-    }
+    [self removeObservers];
     
     self.mutableEmployeeSet = nil;
     self.mutableCars = nil;
@@ -105,11 +100,12 @@ static  NSString * const kTENWasherName     = @"Washer";
 #pragma mark Private
 
 - (void)hireStaff {
+    NSMutableSet *employees = self.mutableEmployeeSet;
     TENDirector *director = [TENDirector employeeWithName:kTENDirectorName];
     TENAccountant *accountant = [TENAccountant employeeWithName:kTENAccountantName];
     
-    [self.mutableEmployeeSet addObject:director];
-    [self.mutableEmployeeSet addObject:accountant];
+    [employees addObject:director];
+    [employees addObject:accountant];
     [accountant addObserver:director];
     
     for (NSUInteger iterator = 0; iterator < TENWasherCount; iterator++) {
@@ -119,7 +115,7 @@ static  NSString * const kTENWasherName     = @"Washer";
         TENWasher *washer = [TENWasher employeeWithName:nameWasher];
         [washer addObserver:accountant];
         [washer addObserver:self];
-        [self.mutableEmployeeSet addObject:washer];
+        [employees addObject:washer];
     }
 }
 
@@ -143,14 +139,42 @@ static  NSString * const kTENWasherName     = @"Washer";
         }
     }
     
-    NSUInteger randomIndex = arc4random_uniform([mutableEmployees count]);
+    uint32_t randomIndex = arc4random_uniform((uint32_t)[mutableEmployees count]);
     return mutableEmployees[randomIndex];
 }
+
+- (void)removeObservers {
+    NSSet *employees = self.mutableEmployeeSet;
+    
+    TENDirector *director = nil;
+    TENAccountant *accountant = nil;
+    NSMutableArray *washers = [NSMutableArray arrayWithCapacity:[employees count] - 2];
+    
+    for (id employee in employees) {
+        if ([employee isMemberOfClass:[TENWasher class]]) {
+            [washers addObject:employee];
+        } else if ([employee isMemberOfClass:[TENDirector class]]) {
+            director = employee;
+        } else if ([employee isMemberOfClass:[TENAccountant class]]) {
+            accountant = employee;
+        }
+    }
+    
+    [accountant removeObserver:director];
+    
+    for (TENWasher *washer in washers) {
+        [washer removeObserver:accountant];
+        [washer removeObserver:self];
+    }
+}
+
 
 #pragma mark -
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeFree:(TENEmployee *)employee {
+    self.processedCar = [self.mutableCars firstObject];
+    
     TENCar *car = [self.mutableCars firstObject];
     
     if (car) {

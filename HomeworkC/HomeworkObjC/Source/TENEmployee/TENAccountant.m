@@ -23,8 +23,6 @@
 - (void)processObject:(id<TENMoneyProtocol>)object {
     [self takeMoneyFromPayer:object];
     [self calculateMoney];
-    
-    [super processObject:object];
 }
 
 @end
