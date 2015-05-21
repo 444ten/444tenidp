@@ -14,6 +14,7 @@
 @interface TENEmployee()
 @property (nonatomic, copy, readwrite)  NSString        *name;
 @property (nonatomic, retain)           NSMutableSet    *mutableObserverSet;
+@property (nonatomic, retain)           id              processedObject;
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector;
 
@@ -38,6 +39,7 @@
 - (void)dealloc {
     self.name = nil;
     self.mutableObserverSet = nil;
+    self.processedObject = nil;
     
     [super dealloc];
 }
@@ -78,10 +80,15 @@
 #pragma mark Public
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
-    self.state = TENEmployeePerformWork;
-    [self processObject:object];
-    
-    self.state = TENEmployeeReadyForMoneyOperation;
+    if (object) {
+        self.processedObject = object;
+        
+        self.state = TENEmployeePerformWork;
+        [self processObject:object];
+        self.processedObject = nil;
+        
+        self.state = TENEmployeeReadyForMoneyOperation;
+    }
 }
 
 - (void)processObject:(id<TENMoneyProtocol>)object {
