@@ -16,8 +16,6 @@
 @property (nonatomic, readonly) NSSet   *employeeSet;
 @property (nonatomic, readonly) NSArray *cars;
 
-- (void)workWithCar:(TENCar *)car;
-
 - (void)addCar:(TENCar *)car;
 - (void)removeCar:(TENCar *)car;
 
