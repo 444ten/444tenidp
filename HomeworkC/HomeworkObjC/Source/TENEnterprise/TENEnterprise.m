@@ -10,50 +10,45 @@
 
 #import "NSObject+TENExtensions.h"
 #import "TENAccountant.h"
-#import "TENBuilding.h"
 #import "TENCar.h"
-#import "TENCarRoom.h"
 #import "TENDirector.h"
-#import "TENRoom.h"
 #import "TENWasher.h"
 
-static const NSUInteger kTENRoomPeopleCapacity      = 2;
-static const NSUInteger kTENCarRoomPeopleCapacity   = 1;
-static const NSUInteger kTENCarCapacity             = 1;
+static const NSUInteger TENWasherCount      = 5;
 
 static  NSString * const kTENDirectorName   = @"Director";
 static  NSString * const kTENAccountantName = @"Accountant";
 static  NSString * const kTENWasherName     = @"Washer";
 
 @interface TENEnterprise()
-@property (nonatomic, retain)   NSMutableArray  *mutableEmployees;
-@property (nonatomic, retain)   TENBuilding     *staffBuilding;
-@property (nonatomic, retain)   TENBuilding     *carwashBuilding;
-@property (nonatomic, retain)   TENDirector     *director;
-@property (nonatomic, retain)   TENAccountant   *accountant;
-@property (nonatomic, retain)   TENWasher       *washer;
+@property (nonatomic, retain)   NSMutableSet    *mutableEmployeeSet;
+@property (nonatomic, retain)   NSMutableArray  *mutableCars;
 
-- (void)prepareBuilding;
+- (void)removeObservers;
 - (void)hireStaff;
-- (void)prepareStaffBuilding;
-- (void)prepareCarwashBuilding;
+
+- (void)work;
+
+- (NSSet *)employeesWithClass:(Class)class;
+- (id)freeEmployeeWithClass:(Class)class;
+
+- (TENCar *)nextCarFromQueue;
 
 @end
 
 @implementation TENEnterprise
 
-@dynamic employees;
+@dynamic employeeSet;
+@dynamic cars;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.staffBuilding = nil;
-    self.carwashBuilding = nil;
-    self.director = nil;
-    self.accountant = nil;
-    self.washer = nil;
-    self.mutableEmployees = nil;
+    [self removeObservers];
+    
+    self.mutableEmployeeSet = nil;
+    self.mutableCars = nil;
     
     [super dealloc];
 }
@@ -61,8 +56,9 @@ static  NSString * const kTENWasherName     = @"Washer";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.mutableEmployees = [NSMutableArray array];
-        [self prepareBuilding];
+        self.mutableEmployeeSet = [NSMutableSet set];
+        self.mutableCars = [NSMutableArray array];
+        
         [self hireStaff];
     }
     
@@ -72,67 +68,118 @@ static  NSString * const kTENWasherName     = @"Washer";
 #pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)employees {
-    return [[self.mutableEmployees copy] autorelease];
+- (NSSet *)employeeSet {
+    return [[self.mutableEmployeeSet copy] autorelease];
 }
 
+- (NSArray *)cars {
+    return [[self.mutableCars copy] autorelease];
+}
 #pragma mark -
 #pragma mark Public
 
-- (void)workWithCar:(TENCar *)car {
-    if (!car.isClean) {
-        [self.washer performWorkWithObject:car];
+- (void)addCar:(TENCar *)car {
+    if (car) {
+        [self.mutableCars addObject:car];
+        [self work];
     }
+}
+
+- (void)removeCar:(TENCar *)car {
+    [self.mutableCars removeObject:car];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)prepareBuilding {
-    [self prepareStaffBuilding];
-    [self prepareCarwashBuilding];
-}
-
-- (void)prepareStaffBuilding {
-    TENRoom *room = [TENRoom object];
-    room.peopleCapacity = kTENRoomPeopleCapacity;
+- (void)removeObservers {
+    TENDirector *director = [[self employeesWithClass:[TENDirector class]] anyObject];
+    TENAccountant *accountant = [[self employeesWithClass:[TENAccountant class]] anyObject];
+    [accountant removeObserver:director];
     
-    self.staffBuilding = [TENBuilding object];
-    [self.staffBuilding addRoom:room];
-}
-
-- (void)prepareCarwashBuilding {
-    TENCarRoom *carRoom = [TENCarRoom object];
-    carRoom.peopleCapacity = kTENCarRoomPeopleCapacity;
-    carRoom.carCapacity = kTENCarCapacity;
-
-    self.carwashBuilding = [TENBuilding object];
-    [self.carwashBuilding addRoom:carRoom];
+    NSSet *washers = [self employeesWithClass:[TENWasher class]];
+    for (TENWasher *washer in washers) {
+        [washer removeObserver:accountant];
+        [washer removeObserver:self];
+    }
 }
 
 - (void)hireStaff {
-    self.director = [TENDirector employeeWithName:kTENDirectorName];
-    self.accountant = [TENAccountant employeeWithName:kTENAccountantName];
-    self.washer = [TENWasher employeeWithName:kTENWasherName];
+    NSMutableSet *employees = self.mutableEmployeeSet;
+    TENDirector *director = [TENDirector employeeWithName:kTENDirectorName];
+    TENAccountant *accountant = [TENAccountant employeeWithName:kTENAccountantName];
     
-    TENDirector *director = self.director;
-    TENAccountant *accountant = self.accountant;
-    TENWasher *washer = self.washer;
-    
-    washer.delegate = accountant;
-    accountant.delegate = director;
-    
-    NSMutableArray *employees = self.mutableEmployees;
     [employees addObject:director];
     [employees addObject:accountant];
-    [employees addObject:washer];
+    [accountant addObserver:director];
     
-    TENRoom *room = self.staffBuilding.rooms[0];
-    [room addEmployee:director];
-    [room addEmployee:accountant];
+    for (NSUInteger iterator = 0; iterator < TENWasherCount; iterator++) {
+        NSMutableString *nameWasher = [NSMutableString stringWithString:kTENWasherName];
+        [nameWasher appendString:[NSString stringWithFormat:@"_%lu", iterator]];
+
+        TENWasher *washer = [TENWasher employeeWithName:nameWasher];
+        [washer addObserver:accountant];
+        [washer addObserver:self];
+        [employees addObject:washer];
+    }
+}
+
+- (void)work {
+    TENWasher *washer = [self freeEmployeeWithClass:[TENWasher class]];
+    if (washer) {
+        [washer performWorkWithObject:[self nextCarFromQueue]];
+    }
+}
+
+- (NSSet *)employeesWithClass:(Class)class {
+    NSSet *employees = self.employeeSet;
+    NSMutableSet *result = [NSMutableSet setWithCapacity:[employees count]];
+    for (id employee in employees) {
+        if ([employee isMemberOfClass:class]) {
+            [result addObject:employee];
+        }
+    }
     
-    TENCarRoom *carRoom = self.carwashBuilding.rooms[0];
-    [carRoom addEmployee:washer];
+    return [[result copy] autorelease];
+}
+
+- (id)freeEmployeeWithClass:(Class)class {
+//    NSSet *employees = [self employeesWithClass:class];
+//    
+//    for (TENEmployee *employee in employees) {
+//        if (TENEmployeeFree == employee.state) {
+//            return employee;
+//        }
+//    }
+//    
+//    return nil;
+    
+    NSSet *employees = [self employeesWithClass:class];
+    NSMutableArray *mutableEmployees = [NSMutableArray array];
+    
+    for (TENEmployee *employee in employees) {
+        if (TENEmployeeFree == employee.state) {
+            [mutableEmployees addObject:employee];
+        }
+    }
+    
+    uint32_t randomIndex = arc4random_uniform((uint32_t)[mutableEmployees count]);
+    return mutableEmployees[randomIndex];
+}
+
+
+- (TENCar *)nextCarFromQueue {
+    TENCar *result = [[[self.mutableCars firstObject] retain] autorelease];
+    [self removeCar:result];
+    
+    return result;
+}
+
+#pragma mark -
+#pragma mark TENEmployeeObserver
+
+- (void)employeeDidBecomeFree:(TENEmployee *)employee {
+    [employee performWorkWithObject:[self nextCarFromQueue]];
 }
 
 @end
