@@ -81,14 +81,32 @@
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
     if (object) {
-        self.processedObject = object;
-        
         self.state = TENEmployeePerformWork;
-        [self processObject:object];
-        self.processedObject = nil;
-        
-        self.state = TENEmployeeReadyForMoneyOperation;
+
+        [self performWorkWithObjectInBackground:object];
     }
+}
+
+- (void)performWorkWithObjectInBackground:(id<TENMoneyProtocol>)object {
+    [self processObject:object];
+
+    if ([NSThread isMainThread]) {
+        [self finalizeWorkWithObjectOnMainThread:object];
+    } else {
+        [self performSelectorOnMainThread:@selector(finalizeWorkWithObjectOnMainThread:)
+                               withObject:nil
+                            waitUntilDone:NO];
+    }
+}
+
+- (void)finalizeWorkWithObjectOnMainThread:(id<TENMoneyProtocol>)object {
+    [self finalizeWorkWithObject:object];
+
+    self.state = TENEmployeeReadyForMoneyOperation;
+}
+
+- (void)finalizeWorkWithObject:(id<TENMoneyProtocol>)object {
+    
 }
 
 - (void)processObject:(id<TENMoneyProtocol>)object {
@@ -111,25 +129,35 @@
 }
 
 - (void)addObserver:(id<TENEmployeeObserver>)observer {
-    [self.mutableObserverSet addObject:[TENAssignReference referenceWithTarget:observer]];
+    @synchronized (self) {
+        [self.mutableObserverSet addObject:[TENAssignReference referenceWithTarget:observer]];
+        
+    }
 }
 
 - (void)removeObserver:(id<TENEmployeeObserver>)observer {
-    [self.mutableObserverSet removeObject:[TENAssignReference referenceWithTarget:observer]];
+    @synchronized (self) {
+        [self.mutableObserverSet removeObject:[TENAssignReference referenceWithTarget:observer]];
+    }
 }
 
 - (BOOL)isObsevedByObserver:(id<TENEmployeeObserver>)observer {
-    return [self.mutableObserverSet containsObject:[TENAssignReference referenceWithTarget:observer]];
+    @synchronized (self) {
+        return [self.mutableObserverSet containsObject:
+                [TENAssignReference referenceWithTarget:observer]];
+    }
 }
 
 #pragma mark -
 #pragma mark Private
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector {
-    NSSet *referenceSet = self.mutableObserverSet;
-    for (TENReference *reference in referenceSet) {
-        if ([reference.target respondsToSelector:selector]) {
-            [reference.target performSelector:selector withObject:self];
+    @synchronized (self) {
+        NSSet *referenceSet = self.mutableObserverSet;
+        for (TENReference *reference in referenceSet) {
+            if ([reference.target respondsToSelector:selector]) {
+                [reference.target performSelector:selector withObject:self];
+            }
         }
     }
 }
@@ -151,10 +179,12 @@
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeReadyForMoneyOperation:(TENEmployee *)employee {
-    NSLog(@"%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-    [self performWorkWithObject:employee];
-    
-    employee.state = TENEmployeeFree;
+    @synchronized (self) {
+        NSLog(@"%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+        [self performWorkWithObject:employee];
+        
+        employee.state = TENEmployeeFree;
+    }
 }
 
 @end

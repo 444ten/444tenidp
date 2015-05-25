@@ -41,6 +41,9 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 - (instancetype)initWithName:(NSString *)name;
 
 - (void)performWorkWithObject:(id<TENMoneyProtocol>)object;
+- (void)performWorkWithObjectInBackground:(id<TENMoneyProtocol>)object;
+- (void)finalizeWorkWithObject:(id<TENMoneyProtocol>)object;
+- (void)finalizeWorkWithObjectOnMainThread:(id<TENMoneyProtocol>)object;
 
 // This method is intended for subclassing
 - (void)processObject:(id<TENMoneyProtocol>)object;

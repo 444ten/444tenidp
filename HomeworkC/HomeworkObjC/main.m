@@ -28,13 +28,31 @@ int main(int argc, const char * argv[]) {
         TENEnterprise *enterprise = [TENEnterprise object];
         
         TENCar *lexus = [TENCar carWithModel:@"Lexus"];
-        lexus.money = 100;
+        lexus.money = 10;
         [enterprise addCar:lexus];
         
         TENCar *honda = [TENCar carWithModel:@"Honda"];
-        honda.money = 75;
+        honda.money = 20;
         [enterprise addCar:honda];
+
+        TENCar *kia = [TENCar carWithModel:@"Kia"];
+        kia.money = 30;
+        [enterprise addCar:kia];
+        
+        TENCar *mers = [TENCar carWithModel:@"Mers"];
+        mers.money = 40;
+        [enterprise addCar:mers];
+        
+        TENCar *opel = [TENCar carWithModel:@"opel"];
+        opel.money = 50;
+        [enterprise addCar:opel];
+        
+        NSRunLoop *runLoop = [NSRunLoop mainRunLoop];
+        [runLoop run];
+        
+        
     }
+    
     
     return 0;
 }

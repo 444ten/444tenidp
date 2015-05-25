@@ -23,6 +23,18 @@
 #pragma mark -
 #pragma mark Overload
 
+- (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
+    if (object) {
+//        @synchronized (self) {
+            self.state = TENEmployeePerformWork;
+
+            [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
+                                   withObject:object];
+//        }
+    }
+}
+
+
 - (void)processObject:(id<TENMoneyProtocol>)object {
     [self washCar:object];
     [self takeMoneyFromPayer:object];

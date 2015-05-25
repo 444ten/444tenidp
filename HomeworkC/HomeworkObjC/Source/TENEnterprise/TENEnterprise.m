@@ -14,7 +14,7 @@
 #import "TENDirector.h"
 #import "TENWasher.h"
 
-static const NSUInteger TENWasherCount      = 5;
+static const NSUInteger TENWasherCount      = 3;
 
 static  NSString * const kTENDirectorName   = @"Director";
 static  NSString * const kTENAccountantName = @"Accountant";
@@ -144,27 +144,15 @@ static  NSString * const kTENWasherName     = @"Washer";
 }
 
 - (id)freeEmployeeWithClass:(Class)class {
-//    NSSet *employees = [self employeesWithClass:class];
-//    
-//    for (TENEmployee *employee in employees) {
-//        if (TENEmployeeFree == employee.state) {
-//            return employee;
-//        }
-//    }
-//    
-//    return nil;
-    
     NSSet *employees = [self employeesWithClass:class];
-    NSMutableArray *mutableEmployees = [NSMutableArray array];
     
     for (TENEmployee *employee in employees) {
         if (TENEmployeeFree == employee.state) {
-            [mutableEmployees addObject:employee];
+            return employee;
         }
     }
     
-    uint32_t randomIndex = arc4random_uniform((uint32_t)[mutableEmployees count]);
-    return mutableEmployees[randomIndex];
+    return nil;    
 }
 
 
