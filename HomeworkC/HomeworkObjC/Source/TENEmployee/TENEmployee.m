@@ -15,8 +15,15 @@
 @property (nonatomic, copy, readwrite)  NSString        *name;
 @property (nonatomic, retain)           NSMutableSet    *mutableObserverSet;
 @property (nonatomic, retain)           id              processedObject;
+@property (nonatomic, retain)           NSMutableArray  *queueObjects;
+
+- (void)performWorkWithObjectInBackground:(id)object;
+- (void)finalizeWorkWithObjectOnMainThread:(id)object;
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector;
+
+- (void)enqueueObject:(id)object;
+- (id)dequeueObject;
 
 @end
 
@@ -25,6 +32,7 @@
 @dynamic observerSet;
 
 @synthesize money = _money;
+@synthesize state = _state;
 
 #pragma mark -
 #pragma mark Class
@@ -40,6 +48,7 @@
     self.name = nil;
     self.mutableObserverSet = nil;
     self.processedObject = nil;
+    self.queueObjects = nil;
     
     [super dealloc];
 }
@@ -50,6 +59,7 @@
         self.name = name;
         self.state = TENEmployeeFree;
         self.mutableObserverSet = [NSMutableSet set];
+        self.queueObjects = [NSMutableArray array];
     }
     
     return self;
@@ -59,10 +69,18 @@
 #pragma mark Accessors
 
 - (void)setState:(TENEmployeeState)state {
-    if (_state != state) {
-        _state = state;
-        
-        [self notifyOfStateChangeWithSelector:[self selectorForState:state]];
+    @synchronized (self) {
+        if (_state != state) {
+            _state = state;
+            
+            [self notifyOfStateChangeWithSelector:[self selectorForState:state]];
+        }
+    }
+}
+
+- (TENEmployeeState)state {
+    @synchronized (self ) {
+        return _state;        
     }
 }
 
@@ -79,37 +97,24 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
+- (void)performWorkWithObject:(id)object {
     if (object) {
-        self.state = TENEmployeePerformWork;
-
-        [self performWorkWithObjectInBackground:object];
+        if (TENEmployeeFree == self.state ) {
+            self.state = TENEmployeePerformWork;
+            
+            [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
+                                   withObject:object];
+        } else {
+            [self enqueueObject:object];
+        }
     }
 }
 
-- (void)performWorkWithObjectInBackground:(id<TENMoneyProtocol>)object {
-    [self processObject:object];
-
-    if ([NSThread isMainThread]) {
-        [self finalizeWorkWithObjectOnMainThread:object];
-    } else {
-        [self performSelectorOnMainThread:@selector(finalizeWorkWithObjectOnMainThread:)
-                               withObject:nil
-                            waitUntilDone:NO];
-    }
+- (void)finalizeWorkWithObject:(id)object {
+    ((TENEmployee *)object).state = TENEmployeeFree;
 }
 
-- (void)finalizeWorkWithObjectOnMainThread:(id<TENMoneyProtocol>)object {
-    [self finalizeWorkWithObject:object];
-
-    self.state = TENEmployeeReadyForMoneyOperation;
-}
-
-- (void)finalizeWorkWithObject:(id<TENMoneyProtocol>)object {
-    
-}
-
-- (void)processObject:(id<TENMoneyProtocol>)object {
+- (void)processObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
 }
 
@@ -131,7 +136,6 @@
 - (void)addObserver:(id<TENEmployeeObserver>)observer {
     @synchronized (self) {
         [self.mutableObserverSet addObject:[TENAssignReference referenceWithTarget:observer]];
-        
     }
 }
 
@@ -151,15 +155,55 @@
 #pragma mark -
 #pragma mark Private
 
+- (void)performWorkWithObjectInBackground:(id)object {
+    [self processObject:object];
+    
+    if ([NSThread isMainThread]) {
+        [self finalizeWorkWithObjectOnMainThread:object];
+    } else {
+        [self performSelectorOnMainThread:@selector(finalizeWorkWithObjectOnMainThread:)
+                               withObject:object
+                            waitUntilDone:NO];
+    }
+}
+
+- (void)finalizeWorkWithObjectOnMainThread:(id)object {
+    
+    id objectFromQueue = [self dequeueObject];
+    if (objectFromQueue) {
+        [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
+                               withObject:objectFromQueue];
+    } else {
+        self.state = TENEmployeeReadyForMoneyOperation;
+    }
+    
+    [self finalizeWorkWithObject:object];
+}
+
+
+
 - (void)notifyOfStateChangeWithSelector:(SEL)selector {
-    @synchronized (self) {
-        NSSet *referenceSet = self.mutableObserverSet;
-        for (TENReference *reference in referenceSet) {
-            if ([reference.target respondsToSelector:selector]) {
-                [reference.target performSelector:selector withObject:self];
-            }
+    NSSet *referenceSet = self.mutableObserverSet;
+    for (TENReference *reference in referenceSet) {
+        if ([reference.target respondsToSelector:selector]) {
+            [reference.target performSelector:selector withObject:self];
         }
     }
+}
+
+- (void)enqueueObject:(id)object {
+    [self.queueObjects addObject:object];
+}
+
+- (id)dequeueObject {
+    NSMutableArray *queue = self.queueObjects;
+    id result = [[[queue firstObject] retain] autorelease];
+    
+    if (result) {
+        [queue removeObject:result];
+    }
+    
+    return result;
 }
 
 #pragma mark -
@@ -170,7 +214,7 @@
                     ? ((TENEmployee *)payer).name
                     : ((TENCar *)payer).model;
     
-    NSLog(@"%@ take %lu from %@", self.name, (unsigned long)payer.money, name);
+    NSLog(@"(m)%@ take %lu from %@", self.name, (unsigned long)payer.money, name);
     self.money += payer.money;
     payer.money = 0;
 }
@@ -179,12 +223,8 @@
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeReadyForMoneyOperation:(TENEmployee *)employee {
-    @synchronized (self) {
-        NSLog(@"%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-        [self performWorkWithObject:employee];
-        
-        employee.state = TENEmployeeFree;
-    }
+    NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+    [self performWorkWithObject:employee];
 }
 
 @end

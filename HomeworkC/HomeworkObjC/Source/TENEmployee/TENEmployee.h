@@ -32,7 +32,7 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 @property (nonatomic, copy, readonly)   NSString            *name;
 @property (nonatomic, assign)           NSUInteger          experience;
 @property (nonatomic, assign)           NSUInteger          salary;
-@property (nonatomic, assign)           TENEmployeeState    state;
+@property (atomic, assign)              TENEmployeeState    state;
 
 @property (nonatomic, readonly) NSSet   *observerSet;
 
@@ -40,13 +40,11 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 
 - (instancetype)initWithName:(NSString *)name;
 
-- (void)performWorkWithObject:(id<TENMoneyProtocol>)object;
-- (void)performWorkWithObjectInBackground:(id<TENMoneyProtocol>)object;
-- (void)finalizeWorkWithObject:(id<TENMoneyProtocol>)object;
-- (void)finalizeWorkWithObjectOnMainThread:(id<TENMoneyProtocol>)object;
+- (void)performWorkWithObject:(id)object;
+- (void)finalizeWorkWithObject:(id)object;
 
 // This method is intended for subclassing
-- (void)processObject:(id<TENMoneyProtocol>)object;
+- (void)processObject:(id)object;
 
 - (SEL)selectorForState:(TENEmployeeState)state;
 

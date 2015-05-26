@@ -14,17 +14,19 @@
 #pragma mark Public Methods
 
 - (void)takeProfit {
-    NSLog(@"Director %@ took profit: %lu", self.name, self.money);
+    NSLog(@"%@ took profit: %lu", self.name, self.money);
 }
 
 #pragma mark -
 #pragma mark Overload
 
-- (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
-    [self processObject:object];
+- (void)finalizeWorkWithObject:(id)object {
+    [super finalizeWorkWithObject:object];
+
+    self.state = TENEmployeeFree;
 }
 
-- (void)processObject:(id<TENMoneyProtocol>)object {
+- (void)processObject:(id)object {
     [self takeMoneyFromPayer:object];
     [self takeProfit];
 }

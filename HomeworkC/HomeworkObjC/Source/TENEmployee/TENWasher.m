@@ -16,26 +16,18 @@
 #pragma mark Public
 
 - (void)washCar:(TENCar *)car {
+    usleep(100000 * arc4random_uniform(10));
     car.state = TENCarCleanAndReady;
-    NSLog(@"washer %@ clear car %@", self.name, car.model);
+    NSLog(@"%@ clear %@", self.name, car.model);
 }
 
 #pragma mark -
 #pragma mark Overload
 
-- (void)performWorkWithObject:(id<TENMoneyProtocol>)object {
-    if (object) {
-//        @synchronized (self) {
-            self.state = TENEmployeePerformWork;
-
-            [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
-                                   withObject:object];
-//        }
-    }
+- (void)finalizeWorkWithObject:(id)object {
 }
 
-
-- (void)processObject:(id<TENMoneyProtocol>)object {
+- (void)processObject:(id)object {
     [self washCar:object];
     [self takeMoneyFromPayer:object];
 }

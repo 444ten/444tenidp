@@ -16,8 +16,8 @@
 
 static const NSUInteger TENWasherCount      = 3;
 
-static  NSString * const kTENDirectorName   = @"Director";
-static  NSString * const kTENAccountantName = @"Accountant";
+static  NSString * const kTENDirectorName   = @"  Director";
+static  NSString * const kTENAccountantName = @" Accountant";
 static  NSString * const kTENWasherName     = @"Washer";
 
 @interface TENEnterprise()
@@ -155,7 +155,6 @@ static  NSString * const kTENWasherName     = @"Washer";
     return nil;    
 }
 
-
 - (TENCar *)nextCarFromQueue {
     TENCar *result = [[[self.mutableCars firstObject] retain] autorelease];
     [self removeCar:result];
@@ -167,6 +166,7 @@ static  NSString * const kTENWasherName     = @"Washer";
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeFree:(TENEmployee *)employee {
+    NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
     [employee performWorkWithObject:[self nextCarFromQueue]];
 }
 

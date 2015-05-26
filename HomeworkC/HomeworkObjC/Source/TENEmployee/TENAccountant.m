@@ -14,13 +14,13 @@
 #pragma mark Public
 
 - (void)calculateMoney {
-    NSLog(@"Accountant %@ calculated money: %lu", self.name, (unsigned long)self.money);
+    NSLog(@"%@ calculated money: %lu", self.name, (unsigned long)self.money);
 }
 
 #pragma mark -
 #pragma mark Overload
 
-- (void)processObject:(id<TENMoneyProtocol>)object {
+- (void)processObject:(id)object {
     [self takeMoneyFromPayer:object];
     [self calculateMoney];
 }
