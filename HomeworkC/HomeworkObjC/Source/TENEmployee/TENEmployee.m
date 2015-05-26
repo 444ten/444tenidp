@@ -98,10 +98,13 @@
 #pragma mark Public
 
 - (void)performWorkWithObject:(id)object {
-    if (object) {
+    if (nil == object) {
+        return;
+    }
+    
+    @synchronized (self) {
         if (TENEmployeeFree == self.state ) {
             self.state = TENEmployeePerformWork;
-            
             [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
                                    withObject:object];
         } else {
@@ -110,8 +113,8 @@
     }
 }
 
-- (void)finalizeWorkWithObject:(id)object {
-    ((TENEmployee *)object).state = TENEmployeeFree;
+- (void)finalizeWorkWithObject:(TENEmployee *)object {
+    object.state = TENEmployeeFree;
 }
 
 - (void)processObject:(id)object {
@@ -157,18 +160,12 @@
 
 - (void)performWorkWithObjectInBackground:(id)object {
     [self processObject:object];
-    
-    if ([NSThread isMainThread]) {
-        [self finalizeWorkWithObjectOnMainThread:object];
-    } else {
-        [self performSelectorOnMainThread:@selector(finalizeWorkWithObjectOnMainThread:)
-                               withObject:object
-                            waitUntilDone:NO];
-    }
+    [self performSelectorOnMainThread:@selector(finalizeWorkWithObjectOnMainThread:)
+                           withObject:object
+                        waitUntilDone:NO];
 }
 
 - (void)finalizeWorkWithObjectOnMainThread:(id)object {
-    
     id objectFromQueue = [self dequeueObject];
     if (objectFromQueue) {
         [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
@@ -179,8 +176,6 @@
     
     [self finalizeWorkWithObject:object];
 }
-
-
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector {
     NSSet *referenceSet = self.mutableObserverSet;

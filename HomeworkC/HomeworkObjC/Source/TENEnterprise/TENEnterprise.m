@@ -125,9 +125,11 @@ static  NSString * const kTENWasherName     = @"Washer";
 }
 
 - (void)work {
-    TENWasher *washer = [self freeEmployeeWithClass:[TENWasher class]];
-    if (washer) {
-        [washer performWorkWithObject:[self nextCarFromQueue]];
+    @synchronized (self) {
+        TENWasher *washer = [self freeEmployeeWithClass:[TENWasher class]];
+        if (washer) {
+            [washer performWorkWithObject:[self nextCarFromQueue]];
+        }
     }
 }
 
@@ -166,8 +168,12 @@ static  NSString * const kTENWasherName     = @"Washer";
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeFree:(TENEmployee *)employee {
-    NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-    [employee performWorkWithObject:[self nextCarFromQueue]];
+    @synchronized (self) {
+        if (TENEmployeeFree == employee.state) {
+            NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+            [employee performWorkWithObject:[self nextCarFromQueue]];
+        }
+    }    
 }
 
 @end

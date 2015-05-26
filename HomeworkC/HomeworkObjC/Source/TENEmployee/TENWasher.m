@@ -16,7 +16,7 @@
 #pragma mark Public
 
 - (void)washCar:(TENCar *)car {
-    usleep(100000 * arc4random_uniform(10));
+    usleep(10000 * arc4random_uniform(10));
     car.state = TENCarCleanAndReady;
     NSLog(@"%@ clear %@", self.name, car.model);
 }
