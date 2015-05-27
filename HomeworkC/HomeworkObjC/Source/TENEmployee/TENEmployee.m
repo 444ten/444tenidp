@@ -14,23 +14,18 @@
 
 @interface TENEmployee()
 @property (nonatomic, copy, readwrite)  NSString        *name;
-@property (nonatomic, retain)           NSMutableSet    *mutableObserverSet;
 @property (nonatomic, retain)           id              processedObject;
 @property (nonatomic, retain)           TENQueue        *queueObjects;
 
 - (void)performWorkWithObjectInBackground:(id)object;
 - (void)finalizeWorkWithObjectOnMainThread:(id)object;
 
-- (void)notifyOfStateChangeWithSelector:(SEL)selector;
-
 @end
 
 @implementation TENEmployee
 
-@dynamic observerSet;
 
 @synthesize money = _money;
-@synthesize state = _state;
 
 #pragma mark -
 #pragma mark Class
@@ -44,7 +39,6 @@
 
 - (void)dealloc {
     self.name = nil;
-    self.mutableObserverSet = nil;
     self.processedObject = nil;
     self.queueObjects = nil;
     
@@ -56,40 +50,10 @@
     if (self) {
         self.name = name;
         self.state = TENEmployeeFree;
-        self.mutableObserverSet = [NSMutableSet set];
         self.queueObjects = [[TENQueue new] autorelease];
     }
     
     return self;
-}
-
-#pragma mark -
-#pragma mark Accessors
-
-- (void)setState:(TENEmployeeState)state {
-    @synchronized (self) {
-        if (_state != state) {
-            _state = state;
-            
-            [self notifyOfStateChangeWithSelector:[self selectorForState:state]];
-        }
-    }
-}
-
-- (TENEmployeeState)state {
-    @synchronized (self ) {
-        return _state;        
-    }
-}
-
-- (NSSet *)observerSet {
-    NSSet *referenceSet = self.mutableObserverSet;
-    NSMutableSet *observers = [NSMutableSet setWithCapacity:[referenceSet count]];
-    for (TENReference *reference in referenceSet) {
-        [observers addObject:reference.target];
-    }
-    
-    return [[observers copy] autorelease];
 }
 
 #pragma mark -
@@ -119,7 +83,7 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
-- (SEL)selectorForState:(TENEmployeeState)state {
+- (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case TENEmployeeFree:
             return @selector(employeeDidBecomeFree:);
@@ -132,25 +96,6 @@
     }
     
     return NULL;
-}
-
-- (void)addObserver:(id<TENEmployeeObserver>)observer {
-    @synchronized (self) {
-        [self.mutableObserverSet addObject:[TENAssignReference referenceWithTarget:observer]];
-    }
-}
-
-- (void)removeObserver:(id<TENEmployeeObserver>)observer {
-    @synchronized (self) {
-        [self.mutableObserverSet removeObject:[TENAssignReference referenceWithTarget:observer]];
-    }
-}
-
-- (BOOL)isObsevedByObserver:(id<TENEmployeeObserver>)observer {
-    @synchronized (self) {
-        return [self.mutableObserverSet containsObject:
-                [TENAssignReference referenceWithTarget:observer]];
-    }
 }
 
 #pragma mark -
@@ -175,15 +120,6 @@
     [self finalizeWorkWithObject:object];
     }
 
-}
-
-- (void)notifyOfStateChangeWithSelector:(SEL)selector {
-    NSSet *referenceSet = self.mutableObserverSet;
-    for (TENReference *reference in referenceSet) {
-        if ([reference.target respondsToSelector:selector]) {
-            [reference.target performSelector:selector withObject:self];
-        }
-    }
 }
 
 #pragma mark -

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TENObservableObject.h"
 #import "TENMoneyProtocol.h"
 
 typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
@@ -28,13 +29,10 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 
 @end
 
-@interface TENEmployee : NSObject <TENMoneyProtocol, TENEmployeeObserver>
+@interface TENEmployee : TENObservableObject <TENMoneyProtocol, TENEmployeeObserver>
 @property (nonatomic, copy, readonly)   NSString            *name;
 @property (nonatomic, assign)           NSUInteger          experience;
 @property (nonatomic, assign)           NSUInteger          salary;
-@property (atomic, assign)              TENEmployeeState    state;
-
-@property (nonatomic, readonly) NSSet   *observerSet;
 
 + (instancetype)employeeWithName:(NSString *)name;
 
@@ -45,11 +43,5 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 
 // This method is intended for subclassing
 - (void)processObject:(id)object;
-
-- (SEL)selectorForState:(TENEmployeeState)state;
-
-- (void)addObserver:(id<TENEmployeeObserver>)observer;
-- (void)removeObserver:(id<TENEmployeeObserver>)observer;
-- (BOOL)isObsevedByObserver:(id<TENEmployeeObserver>)observer;
 
 @end

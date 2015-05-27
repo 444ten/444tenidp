@@ -27,6 +27,8 @@
 		6CD2B4031AF11AAF0030516B /* TENClusterAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2B4011AF11AA90030516B /* TENClusterAlphabet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6CF8C6421B1501E3003E1EF8 /* TENQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8C6411B1501E3003E1EF8 /* TENQueue.m */; };
 		6CF8C6431B1501E3003E1EF8 /* TENQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8C6411B1501E3003E1EF8 /* TENQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6CF8C6471B15E10B003E1EF8 /* TENObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8C6461B15E10B003E1EF8 /* TENObservableObject.m */; };
+		6CF8C6481B15E10B003E1EF8 /* TENObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8C6461B15E10B003E1EF8 /* TENObservableObject.m */; };
 		7603A0991ADFBDA700EC0867 /* TENEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0981ADFBDA700EC0867 /* TENEmployee.m */; };
 		7603A09F1ADFF59900EC0867 /* TENDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A09E1ADFF59900EC0867 /* TENDirector.m */; };
 		7603A0A21ADFF5E300EC0867 /* TENAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0A11ADFF5E300EC0867 /* TENAccountant.m */; };
@@ -127,6 +129,8 @@
 		6CD2B4011AF11AA90030516B /* TENClusterAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENClusterAlphabet.m; path = "Source/NSSring+TENExtensions/Private/TENClusterAlphabet.m"; sourceTree = "<group>"; };
 		6CF8C6401B1501E3003E1EF8 /* TENQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENQueue.h; sourceTree = "<group>"; };
 		6CF8C6411B1501E3003E1EF8 /* TENQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENQueue.m; sourceTree = "<group>"; };
+		6CF8C6451B15E10B003E1EF8 /* TENObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENObservableObject.h; sourceTree = "<group>"; };
+		6CF8C6461B15E10B003E1EF8 /* TENObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENObservableObject.m; sourceTree = "<group>"; };
 		6FDEEBB680E31291DC2D47B5 /* Pods-ObjCTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ObjCTest/Pods-ObjCTest.release.xcconfig"; sourceTree = "<group>"; };
 		7603A0971ADFBDA700EC0867 /* TENEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENEmployee.h; path = Source/TENEmployee/TENEmployee.h; sourceTree = "<group>"; };
 		7603A0981ADFBDA700EC0867 /* TENEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEmployee.m; path = Source/TENEmployee/TENEmployee.m; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 		6CCD3EC91B0381740059D126 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6CF8C6441B15E0FE003E1EF8 /* TENObservableObject */,
 				6CF8C63F1B1501CF003E1EF8 /* TENQueue */,
 				6CCD3ECA1B0381740059D126 /* TENReference */,
 			);
@@ -341,6 +346,15 @@
 				6CF8C6411B1501E3003E1EF8 /* TENQueue.m */,
 			);
 			path = TENQueue;
+			sourceTree = "<group>";
+		};
+		6CF8C6441B15E0FE003E1EF8 /* TENObservableObject */ = {
+			isa = PBXGroup;
+			children = (
+				6CF8C6451B15E10B003E1EF8 /* TENObservableObject.h */,
+				6CF8C6461B15E10B003E1EF8 /* TENObservableObject.m */,
+			);
+			path = TENObservableObject;
 			sourceTree = "<group>";
 		};
 		7603A0961ADFBD5F00EC0867 /* TENEmployee */ = {
@@ -1033,6 +1047,7 @@
 				6CD2B3F61AEE39710030516B /* TENAlphabet.m in Sources */,
 				6CD2B4031AF11AAF0030516B /* TENClusterAlphabet.m in Sources */,
 				6CCD3ED21B0387990059D126 /* TENAssignReference.m in Sources */,
+				6CF8C6481B15E10B003E1EF8 /* TENObservableObject.m in Sources */,
 				6CCD3ECE1B0381A20059D126 /* TENReference.m in Sources */,
 				6CCD3EDE1B0388DC0059D126 /* TENCopyReference.m in Sources */,
 				6CD2B3FF1AF1169D0030516B /* TENRangeAlphabet.m in Sources */,
@@ -1067,6 +1082,7 @@
 				767A375E1ADC33C4008C29D3 /* TENEntityTests.m in Sources */,
 				7603A0991ADFBDA700EC0867 /* TENEmployee.m in Sources */,
 				767A374B1AD6A2E7008C29D3 /* TENObjCSyntax.m in Sources */,
+				6CF8C6471B15E10B003E1EF8 /* TENObservableObject.m in Sources */,
 				767A376D1ADD3962008C29D3 /* TENEntityFemale.m in Sources */,
 				767A37511ADBBB0D008C29D3 /* TENEntity.m in Sources */,
 				765FF7A41AE0557300EDE4BC /* TENCopy.m in Sources */,
