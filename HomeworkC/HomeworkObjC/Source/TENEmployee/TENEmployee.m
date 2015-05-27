@@ -10,20 +10,18 @@
 
 #import "TENAssignReference.h"
 #import "TENCar.h"
+#import "TENQueue.h"
 
 @interface TENEmployee()
 @property (nonatomic, copy, readwrite)  NSString        *name;
 @property (nonatomic, retain)           NSMutableSet    *mutableObserverSet;
 @property (nonatomic, retain)           id              processedObject;
-@property (nonatomic, retain)           NSMutableArray  *queueObjects;
+@property (nonatomic, retain)           TENQueue        *queueObjects;
 
 - (void)performWorkWithObjectInBackground:(id)object;
 - (void)finalizeWorkWithObjectOnMainThread:(id)object;
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector;
-
-- (void)enqueueObject:(id)object;
-- (id)dequeueObject;
 
 @end
 
@@ -59,7 +57,7 @@
         self.name = name;
         self.state = TENEmployeeFree;
         self.mutableObserverSet = [NSMutableSet set];
-        self.queueObjects = [NSMutableArray array];
+        self.queueObjects = [[TENQueue new] autorelease];
     }
     
     return self;
@@ -108,7 +106,7 @@
             [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
                                    withObject:object];
         } else {
-            [self enqueueObject:object];
+            [self.queueObjects enqueueObject:object];
         }
     }
 }
@@ -166,7 +164,7 @@
 }
 
 - (void)finalizeWorkWithObjectOnMainThread:(id)object {
-    id objectFromQueue = [self dequeueObject];
+    id objectFromQueue = [self.queueObjects dequeueObject];
     if (objectFromQueue) {
         [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
                                withObject:objectFromQueue];
@@ -184,21 +182,6 @@
             [reference.target performSelector:selector withObject:self];
         }
     }
-}
-
-- (void)enqueueObject:(id)object {
-    [self.queueObjects addObject:object];
-}
-
-- (id)dequeueObject {
-    NSMutableArray *queue = self.queueObjects;
-    id result = [[[queue firstObject] retain] autorelease];
-    
-    if (result) {
-        [queue removeObject:result];
-    }
-    
-    return result;
 }
 
 #pragma mark -
