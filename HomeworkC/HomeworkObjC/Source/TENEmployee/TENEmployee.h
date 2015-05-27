@@ -30,9 +30,9 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 @end
 
 @interface TENEmployee : TENObservableObject <TENMoneyProtocol, TENEmployeeObserver>
-@property (nonatomic, copy, readonly)   NSString            *name;
-@property (nonatomic, assign)           NSUInteger          experience;
-@property (nonatomic, assign)           NSUInteger          salary;
+@property (nonatomic, copy, readonly)   NSString    *name;
+@property (nonatomic, assign)           NSUInteger  experience;
+@property (nonatomic, assign)           NSUInteger  salary;
 
 + (instancetype)employeeWithName:(NSString *)name;
 
@@ -41,7 +41,7 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 - (void)performWorkWithObject:(id)object;
 - (void)finalizeWorkWithObject:(id)object;
 
-// This method is intended for subclassing
+// This method is intended for subclassing. Never call it directly.
 - (void)processObject:(id)object;
 
 @end

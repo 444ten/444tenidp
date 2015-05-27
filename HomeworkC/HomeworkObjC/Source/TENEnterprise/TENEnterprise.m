@@ -12,7 +12,9 @@
 #import "TENAccountant.h"
 #import "TENCar.h"
 #import "TENDirector.h"
+#import "TENQueue.h"
 #import "TENWasher.h"
+#import "TENDispatcher.h"
 
 static const NSUInteger TENWasherCount      = 3;
 
@@ -22,24 +24,20 @@ static  NSString * const kTENWasherName     = @"Washer";
 
 @interface TENEnterprise()
 @property (nonatomic, retain)   NSMutableSet    *mutableEmployeeSet;
-@property (nonatomic, retain)   NSMutableArray  *mutableCars;
+@property (nonatomic, retain)   TENQueue        *queueCars;
 
 - (void)removeObservers;
 - (void)hireStaff;
 
-- (void)work;
 
 - (NSSet *)employeesWithClass:(Class)class;
 - (id)freeEmployeeWithClass:(Class)class;
-
-- (TENCar *)nextCarFromQueue;
 
 @end
 
 @implementation TENEnterprise
 
 @dynamic employeeSet;
-@dynamic cars;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -48,7 +46,7 @@ static  NSString * const kTENWasherName     = @"Washer";
     [self removeObservers];
     
     self.mutableEmployeeSet = nil;
-    self.mutableCars = nil;
+    self.queueCars = nil;
     
     [super dealloc];
 }
@@ -57,7 +55,7 @@ static  NSString * const kTENWasherName     = @"Washer";
     self = [super init];
     if (self) {
         self.mutableEmployeeSet = [NSMutableSet set];
-        self.mutableCars = [NSMutableArray array];
+        self.queueCars = [[TENQueue new] autorelease];
         
         [self hireStaff];
     }
@@ -72,21 +70,20 @@ static  NSString * const kTENWasherName     = @"Washer";
     return [[self.mutableEmployeeSet copy] autorelease];
 }
 
-- (NSArray *)cars {
-    return [[self.mutableCars copy] autorelease];
-}
 #pragma mark -
 #pragma mark Public
 
-- (void)addCar:(TENCar *)car {
-    if (car) {
-        [self.mutableCars addObject:car];
-        [self work];
+- (void)work {
+    TENDispatcher *dispatcher = [TENDispatcher dispatcherWithQueueCars:self.queueCars];
+    [dispatcher work];
+    sleep(3);
+    
+    @synchronized (self) {
+        TENWasher *washer = [self freeEmployeeWithClass:[TENWasher class]];
+        if (washer) {
+            [washer performWorkWithObject:[self.queueCars dequeueObject]];
+        }
     }
-}
-
-- (void)removeCar:(TENCar *)car {
-    [self.mutableCars removeObject:car];
 }
 
 #pragma mark -
@@ -125,15 +122,6 @@ static  NSString * const kTENWasherName     = @"Washer";
     }
 }
 
-- (void)work {
-    @synchronized (self) {
-        TENWasher *washer = [self freeEmployeeWithClass:[TENWasher class]];
-        if (washer) {
-            [washer performWorkWithObject:[self nextCarFromQueue]];
-        }
-    }
-}
-
 - (NSSet *)employeesWithClass:(Class)class {
     NSSet *employees = self.employeeSet;
     NSMutableSet *result = [NSMutableSet setWithCapacity:[employees count]];
@@ -158,13 +146,6 @@ static  NSString * const kTENWasherName     = @"Washer";
     return nil;    
 }
 
-- (TENCar *)nextCarFromQueue {
-    TENCar *result = [[[self.mutableCars firstObject] retain] autorelease];
-    [self removeCar:result];
-    
-    return result;
-}
-
 #pragma mark -
 #pragma mark TENEmployeeObserver
 
@@ -172,7 +153,7 @@ static  NSString * const kTENWasherName     = @"Washer";
     @synchronized (self) {
         if (TENEmployeeFree == employee.state) {
             NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-            [employee performWorkWithObject:[self nextCarFromQueue]];
+            [employee performWorkWithObject:[self.queueCars dequeueObject]];
         }
     }    
 }

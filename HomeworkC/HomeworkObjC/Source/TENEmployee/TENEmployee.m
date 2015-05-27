@@ -8,14 +8,13 @@
 
 #import "TENEmployee.h"
 
-#import "TENAssignReference.h"
 #import "TENCar.h"
 #import "TENQueue.h"
 
 @interface TENEmployee()
-@property (nonatomic, copy, readwrite)  NSString        *name;
-@property (nonatomic, retain)           id              processedObject;
-@property (nonatomic, retain)           TENQueue        *queueObjects;
+@property (nonatomic, copy, readwrite)  NSString    *name;
+@property (nonatomic, retain)           id          processedObject;
+@property (nonatomic, retain)           TENQueue    *queueObjects;
 
 - (void)performWorkWithObjectInBackground:(id)object;
 - (void)finalizeWorkWithObjectOnMainThread:(id)object;
@@ -23,7 +22,6 @@
 @end
 
 @implementation TENEmployee
-
 
 @synthesize money = _money;
 
@@ -83,6 +81,9 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+#pragma mark -
+#pragma mark Overload
+
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case TENEmployeeFree:
@@ -119,7 +120,6 @@
     
     [self finalizeWorkWithObject:object];
     }
-
 }
 
 #pragma mark -

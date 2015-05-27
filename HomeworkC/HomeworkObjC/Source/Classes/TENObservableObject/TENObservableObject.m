@@ -61,13 +61,15 @@
 }
 
 - (NSSet *)observerSet {
-    NSSet *referenceSet = self.mutableObserverSet;
-    NSMutableSet *observers = [NSMutableSet setWithCapacity:[referenceSet count]];
-    for (TENReference *reference in referenceSet) {
-        [observers addObject:reference.target];
+    @synchronized (self ) {
+        NSSet *referenceSet = self.mutableObserverSet;
+        NSMutableSet *observers = [NSMutableSet setWithCapacity:[referenceSet count]];
+        for (TENReference *reference in referenceSet) {
+            [observers addObject:reference.target];
+        }
+        
+        return [[observers copy] autorelease];
     }
-    
-    return [[observers copy] autorelease];
 }
 
 #pragma mark -
@@ -101,13 +103,14 @@
 #pragma mark Private
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector {
-    NSSet *referenceSet = self.mutableObserverSet;
-    for (TENReference *reference in referenceSet) {
-        if ([reference.target respondsToSelector:selector]) {
-            [reference.target performSelector:selector withObject:self];
+    @synchronized (self) {
+        NSSet *referenceSet = self.mutableObserverSet;
+        for (TENReference *reference in referenceSet) {
+            if ([reference.target respondsToSelector:selector]) {
+                [reference.target performSelector:selector withObject:self];
+            }
         }
     }
 }
-
 
 @end
