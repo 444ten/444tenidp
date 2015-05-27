@@ -111,11 +111,13 @@
 
 - (void)finalizeWorkWithObjectOnMainThread:(id)object {
     @synchronized (self) {
-        if ([self.queueObjects isEmpty]) {
-            self.state = TENEmployeeReadyForMoneyOperation;
-        } else {
+        id queueObject = [self.queueObjects dequeueObject];
+        
+        if (queueObject) {
             [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
-                                   withObject:[self.queueObjects dequeueObject]];
+                                   withObject:queueObject];
+        } else {
+            self.state = TENEmployeeReadyForMoneyOperation;
         }
     
     [self finalizeWorkWithObject:object];
@@ -126,13 +128,15 @@
 #pragma mark TENMoneyProtocol
 
 - (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer {
-    NSString *name  = ([payer isKindOfClass:[TENEmployee class]])
-                    ? ((TENEmployee *)payer).name
-                    : ((TENCar *)payer).model;
-    
-    NSLog(@"(m)%@ take %lu from %@", self.name, (unsigned long)payer.money, name);
-    self.money += payer.money;
-    payer.money = 0;
+    @synchronized (self) {
+        NSString *name  = ([payer isKindOfClass:[TENEmployee class]])
+        ? ((TENEmployee *)payer).name
+        : ((TENCar *)payer).model;
+        
+        NSLog(@"(m)%@ take %lu from %@", self.name, (unsigned long)payer.money, name);
+        self.money += payer.money;
+        payer.money = 0;
+    }
 }
 
 #pragma mark -
@@ -143,12 +147,7 @@
         return;
     }
     
-    @synchronized (self) {
-        if (TENEmployeeFree == employee.state && [self.queueObjects isNonEmpty]) {
-            [self performWorkWithObject:[self.queueObjects dequeueObject]];
-        }
-        
-    }
+    [self performWorkWithObject:[self.queueObjects dequeueObject]];
 }
 
 - (void)employeeDidBecomeReadyForMoneyOperation:(TENEmployee *)employee {
@@ -156,12 +155,8 @@
         return;
     }
 
-    @synchronized (self) {
-        if (TENEmployeeReadyForMoneyOperation == employee.state) {
-            NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-            [self performWorkWithObject:employee];
-        }
-    }
+    NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+    [self performWorkWithObject:employee];
 }
 
 @end
