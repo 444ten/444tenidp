@@ -112,6 +112,7 @@ static  NSString * const kTENWasherName     = @"Washer";
     [employees addObject:director];
     [employees addObject:accountant];
     [accountant addObserver:director];
+    [accountant addObserver:accountant];
     
     for (NSUInteger iterator = 0; iterator < TENWasherCount; iterator++) {
         NSMutableString *nameWasher = [NSMutableString stringWithString:kTENWasherName];

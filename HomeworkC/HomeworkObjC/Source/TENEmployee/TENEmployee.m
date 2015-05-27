@@ -164,15 +164,17 @@
 }
 
 - (void)finalizeWorkWithObjectOnMainThread:(id)object {
-    id objectFromQueue = [self.queueObjects dequeueObject];
-    if (objectFromQueue) {
-        [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
-                               withObject:objectFromQueue];
-    } else {
-        self.state = TENEmployeeReadyForMoneyOperation;
-    }
+    @synchronized (self) {
+        if ([self.queueObjects isEmpty]) {
+            self.state = TENEmployeeReadyForMoneyOperation;
+        } else {
+            [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
+                                   withObject:[self.queueObjects dequeueObject]];
+        }
     
     [self finalizeWorkWithObject:object];
+    }
+
 }
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector {
@@ -200,9 +202,30 @@
 #pragma mark -
 #pragma mark TENEmployeeObserver
 
+- (void)employeeDidBecomeFree:(TENEmployee *)employee {
+    if (self != employee) {
+        return;
+    }
+    
+    @synchronized (self) {
+        if (TENEmployeeFree == employee.state && [self.queueObjects isNonEmpty]) {
+            [self performWorkWithObject:[self.queueObjects dequeueObject]];
+        }
+        
+    }
+}
+
 - (void)employeeDidBecomeReadyForMoneyOperation:(TENEmployee *)employee {
-    NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-    [self performWorkWithObject:employee];
+    if (self == employee) {
+        return;
+    }
+
+    @synchronized (self) {
+        if (TENEmployeeReadyForMoneyOperation == employee.state) {
+            NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+            [self performWorkWithObject:employee];
+        }
+    }
 }
 
 @end

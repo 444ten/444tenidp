@@ -9,19 +9,19 @@
 #import "TENQueue.h"
 
 @interface TENQueue ()
-@property (nonatomic, retain)   NSMutableArray  *queue;
-
+@property (nonatomic, retain)   NSMutableArray  *mutableQueue;
 
 @end
 
-
 @implementation TENQueue
+
+@dynamic queue;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.queue = nil;
+    self.mutableQueue = nil;
     
     [super dealloc];
 }
@@ -29,27 +29,50 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.queue = [NSMutableArray array];
+        self.mutableQueue = [NSMutableArray array];
     }
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSArray *)queue {
+    @synchronized (self) {
+        return [[self.mutableQueue copy] autorelease];
+    }
 }
 
 #pragma mark - 
 #pragma mark Public
 
+- (BOOL)isEmpty {
+    @synchronized (self) {
+        return 0 == [self.mutableQueue count];
+    }
+}
+
+- (BOOL)isNonEmpty {
+    return ![self isEmpty];
+}
+
 - (void)enqueueObject:(id)object {
-    [self.queue addObject:object];
+    @synchronized (self) {
+        [self.mutableQueue addObject:object];
+    }
 }
     
 - (id)dequeueObject {
-    NSMutableArray *queue = self.queue;
-    id result = [[[queue firstObject] retain] autorelease];
-    
-    if (result) {
-        [queue removeObject:result];
+    @synchronized (self) {
+        NSMutableArray *aQueue = self.mutableQueue;
+        id result = [[[aQueue firstObject] retain] autorelease];
+        
+        if (result) {
+            [aQueue removeObject:result];
+        }
+        
+        return result;
     }
-    
-    return result;
 }
 
 @end

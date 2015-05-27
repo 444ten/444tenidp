@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface TENQueue : NSObject
+@property (nonatomic, readonly) NSArray *queue;
+
+- (BOOL)isEmpty;
+- (BOOL)isNonEmpty;
 
 - (void)enqueueObject:(id)object;
 - (id)dequeueObject;
