@@ -11,7 +11,7 @@
 #import "TENCar.h"
 #import "TENQueue.h"
 
-static const NSUInteger TENTotalCars = 50;
+static const NSUInteger TENTotalCars = 20;
 
 @interface TENDispatcher ()
 @property (nonatomic, retain)   TENQueue    *queueCars;

@@ -64,7 +64,7 @@
     
     @synchronized (self) {
         if (TENEmployeeFree == self.state ) {
-            self.state = TENEmployeePerformWork;
+            self.state = TENEmployeePerformingWork;
             [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
                                    withObject:object];
         } else {
@@ -89,11 +89,14 @@
         case TENEmployeeFree:
             return @selector(employeeDidBecomeFree:);
             
-        case TENEmployeePerformWork:
+        case TENEmployeePerformingWork:
             return @selector(employeeDidBecomePerformWork:);
             
         case TENEmployeeReadyForMoneyOperation:
             return @selector(employeeDidBecomeReadyForMoneyOperation:);
+            
+        default:
+            [super selectorForState:state];
     }
     
     return NULL;
@@ -120,22 +123,27 @@
             self.state = TENEmployeeReadyForMoneyOperation;
         }
     
-    [self finalizeWorkWithObject:object];
+        [self finalizeWorkWithObject:object];
     }
 }
 
 #pragma mark -
 #pragma mark TENMoneyProtocol
 
-- (void)takeMoneyFromPayer:(id<TENMoneyProtocol>)payer {
+- (NSUInteger)giveMoney {
     @synchronized (self) {
-        NSString *name  = ([payer isKindOfClass:[TENEmployee class]])
-        ? ((TENEmployee *)payer).name
-        : ((TENCar *)payer).model;
+        NSUInteger result = self.money;
+        self.money = 0;
+        NSLog(@"( - ) %@ give money: %lu", self.name, result);
         
-        NSLog(@"(m)%@ take %lu from %@", self.name, (unsigned long)payer.money, name);
-        self.money += payer.money;
-        payer.money = 0;
+        return result;
+    }
+}
+
+- (void)takeMoney:(NSUInteger)money {
+    @synchronized (self) {
+        self.money += money;
+        NSLog(@"( + ) %@ take money: %lu", self.name, money);
     }
 }
 
@@ -146,8 +154,12 @@
     if (self != employee) {
         return;
     }
-    
-    [self performWorkWithObject:[self.queueObjects dequeueObject]];
+
+    @synchronized (self) {
+        if (TENEmployeeFree == self.state) {
+            [self performWorkWithObject:[self.queueObjects dequeueObject]];
+        }
+    }
 }
 
 - (void)employeeDidBecomeReadyForMoneyOperation:(TENEmployee *)employee {

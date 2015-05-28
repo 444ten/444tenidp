@@ -23,7 +23,7 @@
 #pragma mark Overload
 
 - (void)processObject:(id)object {
-    [self takeMoneyFromPayer:object];
+    [self takeMoney:[object giveMoney]];
     [self calculateMoney];
 }
 

@@ -95,7 +95,6 @@
 }
 
 - (SEL)selectorForState:(NSUInteger)state {
-    [self doesNotRecognizeSelector:_cmd];
     return NULL;
 }
 
