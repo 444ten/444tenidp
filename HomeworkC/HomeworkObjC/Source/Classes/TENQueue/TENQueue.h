@@ -12,7 +12,6 @@
 @property (nonatomic, readonly) NSArray *queue;
 
 - (BOOL)isEmpty;
-- (BOOL)isNonEmpty;
 
 - (void)enqueueObject:(id)object;
 - (id)dequeueObject;

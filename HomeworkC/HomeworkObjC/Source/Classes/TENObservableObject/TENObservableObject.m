@@ -13,7 +13,8 @@
 @interface TENObservableObject ()
 @property (nonatomic, retain)   NSMutableSet    *mutableObserverSet;
 
-- (void)notifyOfStateChangeWithSelector:(SEL)selector;
+- (void)notifyOfStateChange;
+- (void)notifyOnMainThread;
 
 @end
 
@@ -49,7 +50,7 @@
         if (_state != state) {
             _state = state;
             
-            [self notifyOfStateChangeWithSelector:[self selectorForState:state]];
+            [self notifyOfStateChange];
         }
     }
 }
@@ -101,9 +102,21 @@
 #pragma mark -
 #pragma mark Private
 
-- (void)notifyOfStateChangeWithSelector:(SEL)selector {
+- (void)notifyOfStateChange {
+    if ([NSThread isMainThread]) {
+        [self notifyOnMainThread];
+    } else {
+        [self performSelectorOnMainThread:@selector(notifyOnMainThread)
+                               withObject:nil
+                            waitUntilDone:YES];
+    }
+}
+
+- (void)notifyOnMainThread {
     @synchronized (self) {
+        SEL selector = [self selectorForState:self.state];
         NSSet *referenceSet = self.mutableObserverSet;
+        
         for (TENReference *reference in referenceSet) {
             if ([reference.target respondsToSelector:selector]) {
                 [reference.target performSelector:selector withObject:self];

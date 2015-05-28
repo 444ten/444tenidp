@@ -52,10 +52,6 @@
     }
 }
 
-- (BOOL)isNonEmpty {
-    return ![self isEmpty];
-}
-
 - (void)enqueueObject:(id)object {
     @synchronized (self) {
         [self.mutableQueue addObject:object];
