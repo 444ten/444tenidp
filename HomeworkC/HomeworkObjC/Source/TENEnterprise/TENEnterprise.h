@@ -15,6 +15,6 @@
 @interface TENEnterprise : NSObject <TENEmployeeObserver>
 @property (nonatomic, readonly) NSSet   *employeeSet;
 
-- (void)work;
+- (void)start;
 
 @end

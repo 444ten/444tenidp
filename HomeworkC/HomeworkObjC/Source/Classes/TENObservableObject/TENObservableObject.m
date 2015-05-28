@@ -108,7 +108,7 @@
     } else {
         [self performSelectorOnMainThread:@selector(notifyOnMainThread)
                                withObject:nil
-                            waitUntilDone:YES];
+                            waitUntilDone:NO];
     }
 }
 
