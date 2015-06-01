@@ -13,8 +13,6 @@
 
 @interface TENDispatcherEmployee()
 @property (nonatomic, copy, readwrite)  NSString    *name;
-@property (nonatomic, retain)           id          processedObject;
-@property (nonatomic, retain)           TENQueue    *queueObjects;
 
 - (void)performWorkWithObjectInBackground:(id)object;
 - (void)finalizeWorkWithObjectOnMainThread:(id)object;
@@ -37,9 +35,7 @@
 
 - (void)dealloc {
     self.name = nil;
-    self.processedObject = nil;
-    self.queueObjects = nil;
-    
+
     [super dealloc];
 }
 
@@ -48,7 +44,6 @@
     if (self) {
         self.name = name;
         self.state = TENEmployeeFree;
-        self.queueObjects = [[TENQueue new] autorelease];
     }
     
     return self;
@@ -63,13 +58,9 @@
     }
     
     @synchronized (self) {
-        if (TENEmployeeFree == self.state ) {
-            self.state = TENEmployeePerformingWork;
-            [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
-                                   withObject:object];
-        } else {
-            [self.queueObjects enqueueObject:object];
-        }
+    self.state = TENEmployeePerformingWork;
+    [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
+                           withObject:object];
     }
 }
 
@@ -114,14 +105,8 @@
 
 - (void)finalizeWorkWithObjectOnMainThread:(id)object {
     @synchronized (self) {
-        id queueObject = [self.queueObjects dequeueObject];
         
-        if (queueObject) {
-            [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
-                                   withObject:queueObject];
-        } else {
-            self.state = TENEmployeeReadyForMoneyOperation;
-        }
+        self.state = TENEmployeeReadyForMoneyOperation;
     
         [self finalizeWorkWithObject:object];
     }
@@ -145,30 +130,6 @@
         self.money += money;
         NSLog(@"( + ) %@ take money: %lu", self.name, money);
     }
-}
-
-#pragma mark -
-#pragma mark TENEmployeeObserver
-
-- (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
-    if (self != employee) {
-        return;
-    }
-
-    @synchronized (self) {
-        if (TENEmployeeFree == self.state) {
-            [self performWorkWithObject:[self.queueObjects dequeueObject]];
-        }
-    }
-}
-
-- (void)employeeDidBecomeReadyForMoneyOperation:(TENDispatcherEmployee *)employee {
-    if (self == employee) {
-        return;
-    }
-
-    NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-    [self performWorkWithObject:employee];
 }
 
 @end

@@ -29,7 +29,7 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 
 @end
 
-@interface TENDispatcherEmployee : TENObservableObject <TENMoneyProtocol, TENEmployeeObserver>
+@interface TENDispatcherEmployee : TENObservableObject <TENMoneyProtocol>
 @property (nonatomic, copy, readonly)   NSString    *name;
 @property (nonatomic, assign)           NSUInteger  experience;
 @property (nonatomic, assign)           NSUInteger  salary;

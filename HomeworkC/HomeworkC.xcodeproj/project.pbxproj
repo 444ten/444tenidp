@@ -460,12 +460,12 @@
 		761989FA1B1D02CF00BCB475 /* TENDispatcherEmployee */ = {
 			isa = PBXGroup;
 			children = (
-				761989FB1B1D02CF00BCB475 /* TENDispatcherAccountant.h */,
-				761989FC1B1D02CF00BCB475 /* TENDispatcherAccountant.m */,
-				761989FD1B1D02CF00BCB475 /* TENDispatcherDirector.h */,
-				761989FE1B1D02CF00BCB475 /* TENDispatcherDirector.m */,
 				761989FF1B1D02CF00BCB475 /* TENDispatcherEmployee.h */,
 				76198A001B1D02CF00BCB475 /* TENDispatcherEmployee.m */,
+				761989FD1B1D02CF00BCB475 /* TENDispatcherDirector.h */,
+				761989FE1B1D02CF00BCB475 /* TENDispatcherDirector.m */,
+				761989FB1B1D02CF00BCB475 /* TENDispatcherAccountant.h */,
+				761989FC1B1D02CF00BCB475 /* TENDispatcherAccountant.m */,
 				76198A011B1D02CF00BCB475 /* TENDispatcherWasher.h */,
 				76198A021B1D02CF00BCB475 /* TENDispatcherWasher.m */,
 			);

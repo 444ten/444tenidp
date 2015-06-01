@@ -116,9 +116,30 @@
 }
 
 
+//#pragma mark -
+//#pragma mark TENEmployeeObserver
+//
+//- (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
+//    if (self != employee) {
+//        return;
+//    }
+//
+//    @synchronized (self) {
+//        if (TENEmployeeFree == self.state) {
+//            [self performWorkWithObject:[self.queueObjects dequeueObject]];
+//        }
+//    }
+//}
+//
+//- (void)employeeDidBecomeReadyForMoneyOperation:(TENDispatcherEmployee *)employee {
+//    if (self == employee) {
+//        return;
+//    }
+//
+//    NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+//    [self performWorkWithObject:employee];
+//}
 
-//- (void)employeeDidBecomePerformWork:(TENEmployee *)employee;
-//- (void)employeeDidBecomeReadyForMoneyOperation:(TENEmployee *)employee;
 
 
 @end
