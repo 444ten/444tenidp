@@ -8,15 +8,13 @@
 
 #import "TENObservableObject.h"
 
-#import "TENStateProtocol.h"
-
 @class TENQueue;
-@class TENObservableObject;
+@class TENDispatcherEmployee;
 
-@interface TENDispatcher : TENObservableObject <TENStateProtocol>
+@interface TENDispatcher : TENObservableObject
 
-- (void)addHandler:(TENObservableObject *)handler;
-- (void)removeHandler:(TENObservableObject *)handler;
+- (void)addHandler:(TENDispatcherEmployee *)handler;
+- (void)removeHandler:(TENDispatcherEmployee *)handler;
 
 - (void)addObjectToProcess:(id)object;
 

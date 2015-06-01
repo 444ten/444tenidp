@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+TENExtensions.h"
+
 #import "NSStringTests.h"
 #import "TENBuildingTests.h"
 #import "TENCar.h"
@@ -17,6 +18,8 @@
 #import "TENObjCSyntax.h"
 #import "TENWasher.h"
 
+//#import "TENDispatcherEnterprise.h"
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 //        TENObjCSyntax();
@@ -26,6 +29,7 @@ int main(int argc, const char * argv[]) {
 //        [[NSStringTests object] performTests];
         
         [[TENEnterprise object] start];
+//        [[TENDispatcherEnterprise object] start];
         
         NSRunLoop *runLoop = [NSRunLoop mainRunLoop];
         [runLoop run];

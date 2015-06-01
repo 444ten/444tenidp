@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Dispatcher.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>HomeworkC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -14,10 +19,30 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>ObjCTest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>TENDispatcher.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>6CD2B3E11AEE1DB60030516B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>761989C11B1CF53400BCB475</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>761989F01B1D022400BCB475</key>
 		<dict>
 			<key>primary</key>
 			<true/>

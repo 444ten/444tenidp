@@ -8,8 +8,9 @@
 
 #import "TENDispatcher.h"
 
+#import "NSObject+TENExtensions.h"
 #import "TENQueue.h"
-#import "TENObservableObject.h"
+#import "TENDispatcherEmployee.h"
 
 //static const NSUInteger TENTotalCars = 20;
 
@@ -19,7 +20,7 @@
 
 - (void)removeObservers;
 
-- (id)nextHandlerWithState:(TENState)state;
+- (id)nextHandlerWithState:(TENEmployeeState)state;
 
 @end
 
@@ -41,7 +42,7 @@
     self = [super init];
     if (self) {
         self.handlers = [NSMutableArray array];
-        self.queue = [[TENQueue new] autorelease];
+        self.queue = [TENQueue object];
     }
     
     return self;
@@ -50,22 +51,22 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)addHandler:(TENObservableObject *)handler {
+- (void)addHandler:(TENDispatcherEmployee *)handler {
     [handler addObserver:self];
     [self.handlers addObject:handler];
 }
 
-- (void)removeHandler:(TENObservableObject *)handler {
+- (void)removeHandler:(TENDispatcherEmployee *)handler {
     [handler removeObserver:self];
     [self.handlers removeObject:handler];
 }
 
 - (void)addObjectToProcess:(id)object {
-    TENObservableObject *aHandler = [self nextHandlerWithState:TENStateFree];
+    TENDispatcherEmployee *aHandler = [self nextHandlerWithState:TENEmployeeFree];
     
     if (aHandler) {
-        aHandler.state = TENStateBusy;
-//        [aHandler performWorkWithObject:object];
+        aHandler.state = TENEmployeePerformingWork;
+        [aHandler performWorkWithObject:object];
     } else {
         [self.queue enqueueObject:object];
     }
@@ -85,9 +86,9 @@
     }
 }
 
-- (id)nextHandlerWithState:(TENState)state {
+- (id)nextHandlerWithState:(TENEmployeeState)state {
     NSArray *aHandlers = [[self.handlers copy] autorelease];
-    for (TENObservableObject *handler in aHandlers) {
+    for (TENDispatcherEmployee *handler in aHandlers) {
         if (state == handler.state) {
             
             NSMutableArray *array = self.handlers;
@@ -102,14 +103,22 @@
 }
 
 #pragma mark -
-#pragma mark TENStateProtocol
+#pragma mark TENEmployeeObserver
 
-- (void)handlerDidBecomeFree:(TENObservableObject *)handler {
+//- (void)employeeDidBecomeFree:(TENEmployee *)employee;
+
+- (void)handlerDidBecomeFree:(TENDispatcherEmployee *)handler {
     @synchronized (self) {
-        if (TENStateFree == handler.state) {
+        if (TENEmployeeFree == handler.state) {
             [self addObjectToProcess:[self.queue dequeueObject]];
         }
     }
 }
+
+
+
+//- (void)employeeDidBecomePerformWork:(TENEmployee *)employee;
+//- (void)employeeDidBecomeReadyForMoneyOperation:(TENEmployee *)employee;
+
 
 @end

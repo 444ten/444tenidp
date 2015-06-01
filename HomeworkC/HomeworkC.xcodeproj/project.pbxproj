@@ -29,13 +29,27 @@
 		6CF8C6431B1501E3003E1EF8 /* TENQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8C6411B1501E3003E1EF8 /* TENQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6CF8C6471B15E10B003E1EF8 /* TENObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8C6461B15E10B003E1EF8 /* TENObservableObject.m */; };
 		6CF8C6481B15E10B003E1EF8 /* TENObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8C6461B15E10B003E1EF8 /* TENObservableObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		6CF8C6501B174A21003E1EF8 /* TENDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8C64F1B174A21003E1EF8 /* TENDispatcher.m */; };
-		6CF8C6511B174A21003E1EF8 /* TENDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8C64F1B174A21003E1EF8 /* TENDispatcher.m */; };
 		7603A0991ADFBDA700EC0867 /* TENEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0981ADFBDA700EC0867 /* TENEmployee.m */; };
 		7603A09F1ADFF59900EC0867 /* TENDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A09E1ADFF59900EC0867 /* TENDirector.m */; };
 		7603A0A21ADFF5E300EC0867 /* TENAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0A11ADFF5E300EC0867 /* TENAccountant.m */; };
 		7603A0A51ADFF64400EC0867 /* TENWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0A41ADFF64400EC0867 /* TENWasher.m */; };
 		7603A0B41AE052EF00EC0867 /* TENCopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7603A0B31AE052EF00EC0867 /* TENCopyTests.m */; };
+		761989EB1B1CFCF900BCB475 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 769DFBDA1AD6895600D0919A /* main.m */; };
+		761989F41B1D022400BCB475 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 761989F31B1D022400BCB475 /* main.m */; };
+		76198A061B1D02CF00BCB475 /* TENDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 761989F91B1D02CF00BCB475 /* TENDispatcher.m */; };
+		76198A071B1D02CF00BCB475 /* TENDispatcherAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 761989FC1B1D02CF00BCB475 /* TENDispatcherAccountant.m */; };
+		76198A081B1D02CF00BCB475 /* TENDispatcherDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 761989FE1B1D02CF00BCB475 /* TENDispatcherDirector.m */; };
+		76198A091B1D02CF00BCB475 /* TENDispatcherEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 76198A001B1D02CF00BCB475 /* TENDispatcherEmployee.m */; };
+		76198A0A1B1D02CF00BCB475 /* TENDispatcherWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 76198A021B1D02CF00BCB475 /* TENDispatcherWasher.m */; };
+		76198A0B1B1D02CF00BCB475 /* TENDispatcherEnterprise.m in Sources */ = {isa = PBXBuildFile; fileRef = 76198A051B1D02CF00BCB475 /* TENDispatcherEnterprise.m */; };
+		76198A0C1B1D02F200BCB475 /* TENCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AEE1EC1AE9246400E7D1E5 /* TENCar.m */; };
+		76198A0D1B1D030000BCB475 /* TENReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3ECC1B0381A20059D126 /* TENReference.m */; };
+		76198A0E1B1D030000BCB475 /* TENAssignReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3ED01B0387990059D126 /* TENAssignReference.m */; };
+		76198A0F1B1D030000BCB475 /* TENRetainReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3ED41B0388790059D126 /* TENRetainReference.m */; };
+		76198A101B1D030000BCB475 /* TENCopyReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3EDC1B0388DC0059D126 /* TENCopyReference.m */; };
+		76198A111B1D030E00BCB475 /* TENQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8C6411B1501E3003E1EF8 /* TENQueue.m */; };
+		76198A121B1D031300BCB475 /* TENObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8C6461B15E10B003E1EF8 /* TENObservableObject.m */; };
+		76198A131B1D032C00BCB475 /* NSObject+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277D941AE53BC500CEC9AB /* NSObject+TENExtensions.m */; };
 		76277D8D1AE4E3B700CEC9AB /* NSString+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277D8C1AE4E3B700CEC9AB /* NSString+TENExtensions.m */; };
 		76277D911AE4E46B00CEC9AB /* NSStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277D901AE4E46B00CEC9AB /* NSStringTests.m */; };
 		76277D951AE53BC500CEC9AB /* NSObject+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277D941AE53BC500CEC9AB /* NSObject+TENExtensions.m */; };
@@ -80,13 +94,21 @@
 		769C9FBB1AD551DF008B1F73 /* TENStringTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F991AD551DF008B1F73 /* TENStringTests.c */; };
 		769C9FBC1AD551DF008B1F73 /* TENStructTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F9C1AD551DF008B1F73 /* TENStructTest.c */; };
 		769C9FBD1AD551DF008B1F73 /* TENValueBitOutputTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F9F1AD551DF008B1F73 /* TENValueBitOutputTest.c */; };
-		769DFBDB1AD6895600D0919A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 769DFBDA1AD6895600D0919A /* main.m */; };
 		76AEE1ED1AE9246400E7D1E5 /* TENCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AEE1EC1AE9246400E7D1E5 /* TENCar.m */; };
 		76F255D31A8E40A500135F2A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 76F255D21A8E40A500135F2A /* main.c */; };
 		AC504507AD87D656F8122947 /* libPods-ObjCTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 630CFA7CA131387662FB0001 /* libPods-ObjCTest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		761989EF1B1D022400BCB475 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		769DFBD61AD6895600D0919A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -133,9 +155,6 @@
 		6CF8C6411B1501E3003E1EF8 /* TENQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENQueue.m; sourceTree = "<group>"; };
 		6CF8C6451B15E10B003E1EF8 /* TENObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENObservableObject.h; sourceTree = "<group>"; };
 		6CF8C6461B15E10B003E1EF8 /* TENObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENObservableObject.m; sourceTree = "<group>"; };
-		6CF8C64E1B174A21003E1EF8 /* TENDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENDispatcher.h; sourceTree = "<group>"; };
-		6CF8C64F1B174A21003E1EF8 /* TENDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENDispatcher.m; sourceTree = "<group>"; };
-		6CF8C6521B174AAA003E1EF8 /* TENStateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENStateProtocol.h; sourceTree = "<group>"; };
 		6FDEEBB680E31291DC2D47B5 /* Pods-ObjCTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ObjCTest/Pods-ObjCTest.release.xcconfig"; sourceTree = "<group>"; };
 		7603A0971ADFBDA700EC0867 /* TENEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENEmployee.h; path = Source/TENEmployee/TENEmployee.h; sourceTree = "<group>"; };
 		7603A0981ADFBDA700EC0867 /* TENEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENEmployee.m; path = Source/TENEmployee/TENEmployee.m; sourceTree = "<group>"; };
@@ -148,6 +167,20 @@
 		7603A0A71ADFF82A00EC0867 /* TENCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENCar.h; path = Source/TENCar/TENCar.h; sourceTree = "<group>"; };
 		7603A0B21AE052EF00EC0867 /* TENCopyTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TENCopyTests.h; path = Tests/TENCopyTests/TENCopyTests.h; sourceTree = "<group>"; };
 		7603A0B31AE052EF00EC0867 /* TENCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TENCopyTests.m; path = Tests/TENCopyTests/TENCopyTests.m; sourceTree = "<group>"; };
+		761989F11B1D022400BCB475 /* Dispatcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Dispatcher; sourceTree = BUILT_PRODUCTS_DIR; };
+		761989F31B1D022400BCB475 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		761989F81B1D02CF00BCB475 /* TENDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENDispatcher.h; sourceTree = "<group>"; };
+		761989F91B1D02CF00BCB475 /* TENDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENDispatcher.m; sourceTree = "<group>"; };
+		761989FB1B1D02CF00BCB475 /* TENDispatcherAccountant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENDispatcherAccountant.h; sourceTree = "<group>"; };
+		761989FC1B1D02CF00BCB475 /* TENDispatcherAccountant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENDispatcherAccountant.m; sourceTree = "<group>"; };
+		761989FD1B1D02CF00BCB475 /* TENDispatcherDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENDispatcherDirector.h; sourceTree = "<group>"; };
+		761989FE1B1D02CF00BCB475 /* TENDispatcherDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENDispatcherDirector.m; sourceTree = "<group>"; };
+		761989FF1B1D02CF00BCB475 /* TENDispatcherEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENDispatcherEmployee.h; sourceTree = "<group>"; };
+		76198A001B1D02CF00BCB475 /* TENDispatcherEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENDispatcherEmployee.m; sourceTree = "<group>"; };
+		76198A011B1D02CF00BCB475 /* TENDispatcherWasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENDispatcherWasher.h; sourceTree = "<group>"; };
+		76198A021B1D02CF00BCB475 /* TENDispatcherWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENDispatcherWasher.m; sourceTree = "<group>"; };
+		76198A041B1D02CF00BCB475 /* TENDispatcherEnterprise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENDispatcherEnterprise.h; sourceTree = "<group>"; };
+		76198A051B1D02CF00BCB475 /* TENDispatcherEnterprise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENDispatcherEnterprise.m; sourceTree = "<group>"; };
 		76277D8B1AE4E3B700CEC9AB /* NSString+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TENExtensions.h"; path = "Source/NSSring+TENExtensions/NSString+TENExtensions.h"; sourceTree = "<group>"; };
 		76277D8C1AE4E3B700CEC9AB /* NSString+TENExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TENExtensions.m"; path = "Source/NSSring+TENExtensions/NSString+TENExtensions.m"; sourceTree = "<group>"; };
 		76277D8F1AE4E46B00CEC9AB /* NSStringTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSStringTests.h; path = Tests/NSStringTests/NSStringTests.h; sourceTree = "<group>"; };
@@ -255,6 +288,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		761989EE1B1D022400BCB475 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		769DFBD51AD6895600D0919A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -283,7 +323,6 @@
 		6CCD3EC91B0381740059D126 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				6CF8C64D1B1749EC003E1EF8 /* TENDispatcher */,
 				6CF8C6441B15E0FE003E1EF8 /* TENObservableObject */,
 				6CF8C63F1B1501CF003E1EF8 /* TENQueue */,
 				6CCD3ECA1B0381740059D126 /* TENReference */,
@@ -363,16 +402,6 @@
 			path = TENObservableObject;
 			sourceTree = "<group>";
 		};
-		6CF8C64D1B1749EC003E1EF8 /* TENDispatcher */ = {
-			isa = PBXGroup;
-			children = (
-				6CF8C64E1B174A21003E1EF8 /* TENDispatcher.h */,
-				6CF8C64F1B174A21003E1EF8 /* TENDispatcher.m */,
-				6CF8C6521B174AAA003E1EF8 /* TENStateProtocol.h */,
-			);
-			path = TENDispatcher;
-			sourceTree = "<group>";
-		};
 		7603A0961ADFBD5F00EC0867 /* TENEmployee */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +443,42 @@
 				7603A0B31AE052EF00EC0867 /* TENCopyTests.m */,
 			);
 			name = TENCopyTests;
+			sourceTree = "<group>";
+		};
+		761989F21B1D022400BCB475 /* Dispatcher */ = {
+			isa = PBXGroup;
+			children = (
+				761989F81B1D02CF00BCB475 /* TENDispatcher.h */,
+				761989F91B1D02CF00BCB475 /* TENDispatcher.m */,
+				761989FA1B1D02CF00BCB475 /* TENDispatcherEmployee */,
+				76198A031B1D02CF00BCB475 /* TENDispatcherEnterprise */,
+				761989F31B1D022400BCB475 /* main.m */,
+			);
+			path = Dispatcher;
+			sourceTree = "<group>";
+		};
+		761989FA1B1D02CF00BCB475 /* TENDispatcherEmployee */ = {
+			isa = PBXGroup;
+			children = (
+				761989FB1B1D02CF00BCB475 /* TENDispatcherAccountant.h */,
+				761989FC1B1D02CF00BCB475 /* TENDispatcherAccountant.m */,
+				761989FD1B1D02CF00BCB475 /* TENDispatcherDirector.h */,
+				761989FE1B1D02CF00BCB475 /* TENDispatcherDirector.m */,
+				761989FF1B1D02CF00BCB475 /* TENDispatcherEmployee.h */,
+				76198A001B1D02CF00BCB475 /* TENDispatcherEmployee.m */,
+				76198A011B1D02CF00BCB475 /* TENDispatcherWasher.h */,
+				76198A021B1D02CF00BCB475 /* TENDispatcherWasher.m */,
+			);
+			path = TENDispatcherEmployee;
+			sourceTree = "<group>";
+		};
+		76198A031B1D02CF00BCB475 /* TENDispatcherEnterprise */ = {
+			isa = PBXGroup;
+			children = (
+				76198A041B1D02CF00BCB475 /* TENDispatcherEnterprise.h */,
+				76198A051B1D02CF00BCB475 /* TENDispatcherEnterprise.m */,
+			);
+			path = TENDispatcherEnterprise;
 			sourceTree = "<group>";
 		};
 		76277D8E1AE4E3D200CEC9AB /* NSString+TENExtensions */ = {
@@ -881,6 +946,7 @@
 			children = (
 				76F255AB1A8E2B9200135F2A /* HomeworkC */,
 				769DFBD91AD6895600D0919A /* HomeworkObjC */,
+				761989F21B1D022400BCB475 /* Dispatcher */,
 				6CD2B3E31AEE1DB60030516B /* ObjCTest */,
 				76F255AA1A8E2B9200135F2A /* Products */,
 				9DB0ADBD5B7122033FA7310F /* Pods */,
@@ -894,6 +960,7 @@
 				76F255A91A8E2B9200135F2A /* HomeworkC */,
 				769DFBD81AD6895600D0919A /* HomeworkObjC */,
 				6CD2B3E21AEE1DB60030516B /* ObjCTest.xctest */,
+				761989F11B1D022400BCB475 /* Dispatcher */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -938,6 +1005,23 @@
 			productName = ObjCTest;
 			productReference = 6CD2B3E21AEE1DB60030516B /* ObjCTest.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		761989F01B1D022400BCB475 /* Dispatcher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 761989F51B1D022400BCB475 /* Build configuration list for PBXNativeTarget "Dispatcher" */;
+			buildPhases = (
+				761989ED1B1D022400BCB475 /* Sources */,
+				761989EE1B1D022400BCB475 /* Frameworks */,
+				761989EF1B1D022400BCB475 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Dispatcher;
+			productName = Dispatcher;
+			productReference = 761989F11B1D022400BCB475 /* Dispatcher */;
+			productType = "com.apple.product-type.tool";
 		};
 		769DFBD71AD6895600D0919A /* HomeworkObjC */ = {
 			isa = PBXNativeTarget;
@@ -985,6 +1069,9 @@
 					6CD2B3E11AEE1DB60030516B = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
+					761989F01B1D022400BCB475 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
 					769DFBD71AD6895600D0919A = {
 						CreatedOnToolsVersion = 6.2;
 					};
@@ -1008,6 +1095,7 @@
 				76F255A81A8E2B9200135F2A /* HomeworkC */,
 				769DFBD71AD6895600D0919A /* HomeworkObjC */,
 				6CD2B3E11AEE1DB60030516B /* ObjCTest */,
+				761989F01B1D022400BCB475 /* Dispatcher */,
 			);
 		};
 /* End PBXProject section */
@@ -1063,7 +1151,6 @@
 				6CD2B3F61AEE39710030516B /* TENAlphabet.m in Sources */,
 				6CD2B4031AF11AAF0030516B /* TENClusterAlphabet.m in Sources */,
 				6CCD3ED21B0387990059D126 /* TENAssignReference.m in Sources */,
-				6CF8C6511B174A21003E1EF8 /* TENDispatcher.m in Sources */,
 				6CF8C6481B15E10B003E1EF8 /* TENObservableObject.m in Sources */,
 				6CCD3ECE1B0381A20059D126 /* TENReference.m in Sources */,
 				6CCD3EDE1B0388DC0059D126 /* TENCopyReference.m in Sources */,
@@ -1073,6 +1160,28 @@
 				6CF8C6431B1501E3003E1EF8 /* TENQueue.m in Sources */,
 				6CD2B3F21AEE28180030516B /* TENEntity.m in Sources */,
 				6CD2B3EF1AEE206C0030516B /* TENAlphabetSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		761989ED1B1D022400BCB475 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76198A0C1B1D02F200BCB475 /* TENCar.m in Sources */,
+				76198A0D1B1D030000BCB475 /* TENReference.m in Sources */,
+				76198A0F1B1D030000BCB475 /* TENRetainReference.m in Sources */,
+				76198A0E1B1D030000BCB475 /* TENAssignReference.m in Sources */,
+				76198A131B1D032C00BCB475 /* NSObject+TENExtensions.m in Sources */,
+				76198A081B1D02CF00BCB475 /* TENDispatcherDirector.m in Sources */,
+				76198A091B1D02CF00BCB475 /* TENDispatcherEmployee.m in Sources */,
+				76198A101B1D030000BCB475 /* TENCopyReference.m in Sources */,
+				76198A121B1D031300BCB475 /* TENObservableObject.m in Sources */,
+				76198A061B1D02CF00BCB475 /* TENDispatcher.m in Sources */,
+				76198A071B1D02CF00BCB475 /* TENDispatcherAccountant.m in Sources */,
+				76198A0B1B1D02CF00BCB475 /* TENDispatcherEnterprise.m in Sources */,
+				76198A0A1B1D02CF00BCB475 /* TENDispatcherWasher.m in Sources */,
+				76198A111B1D030E00BCB475 /* TENQueue.m in Sources */,
+				761989F41B1D022400BCB475 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,6 +1195,7 @@
 				6CD2B3FE1AF116950030516B /* TENRangeAlphabet.m in Sources */,
 				6CD2B3FA1AEE78DC0030516B /* TENStringsAlphabet.m in Sources */,
 				7653DB8A1ADEA30C0011EDF0 /* TENBuildingTests.m in Sources */,
+				761989EB1B1CFCF900BCB475 /* main.m in Sources */,
 				6CD2B3F51AEE39710030516B /* TENAlphabet.m in Sources */,
 				7603A0B41AE052EF00EC0867 /* TENCopyTests.m in Sources */,
 				767A37701ADD39C7008C29D3 /* TENEntityMale.m in Sources */,
@@ -1097,7 +1207,6 @@
 				76AEE1ED1AE9246400E7D1E5 /* TENCar.m in Sources */,
 				6CCD3ED11B0387990059D126 /* TENAssignReference.m in Sources */,
 				767A375E1ADC33C4008C29D3 /* TENEntityTests.m in Sources */,
-				6CF8C6501B174A21003E1EF8 /* TENDispatcher.m in Sources */,
 				7603A0991ADFBDA700EC0867 /* TENEmployee.m in Sources */,
 				767A374B1AD6A2E7008C29D3 /* TENObjCSyntax.m in Sources */,
 				6CF8C6471B15E10B003E1EF8 /* TENObservableObject.m in Sources */,
@@ -1111,7 +1220,6 @@
 				6CCD3ED51B0388790059D126 /* TENRetainReference.m in Sources */,
 				7603A0A21ADFF5E300EC0867 /* TENAccountant.m in Sources */,
 				7653DB961ADEA3320011EDF0 /* TENBuilding.m in Sources */,
-				769DFBDB1AD6895600D0919A /* main.m in Sources */,
 				6CD2B4021AF11AA90030516B /* TENClusterAlphabet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1190,6 +1298,30 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = ObjCTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		761989F61B1D022400BCB475 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		761989F71B1D022400BCB475 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1314,6 +1446,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		761989F51B1D022400BCB475 /* Build configuration list for PBXNativeTarget "Dispatcher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				761989F61B1D022400BCB475 /* Debug */,
+				761989F71B1D022400BCB475 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		769DFBDE1AD6895600D0919A /* Build configuration list for PBXNativeTarget "HomeworkObjC" */ = {
 			isa = XCConfigurationList;
