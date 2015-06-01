@@ -103,24 +103,18 @@
 #pragma mark Private
 
 - (void)notifyOfStateChange {
-    if ([NSThread isMainThread]) {
-        [self notifyOnMainThread];
-    } else {
-        [self performSelectorOnMainThread:@selector(notifyOnMainThread)
-                               withObject:nil
-                            waitUntilDone:NO];
-    }
+    [self performSelectorOnMainThread:@selector(notifyOnMainThread)
+                           withObject:nil
+                        waitUntilDone:YES];
 }
 
 - (void)notifyOnMainThread {
-    @synchronized (self) {
-        SEL selector = [self selectorForState:self.state];
-        NSSet *referenceSet = self.mutableObserverSet;
-        
-        for (TENReference *reference in referenceSet) {
-            if ([reference.target respondsToSelector:selector]) {
-                [reference.target performSelector:selector withObject:self];
-            }
+    SEL selector = [self selectorForState:_state];
+    NSSet *referenceSet = self.mutableObserverSet;
+
+    for (TENReference *reference in referenceSet) {
+        if ([reference.target respondsToSelector:selector]) {
+            [reference.target performSelector:selector withObject:self];
         }
     }
 }

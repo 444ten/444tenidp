@@ -11,7 +11,7 @@
 #import "TENQueue.h"
 #import "TENObservableObject.h"
 
-static const NSUInteger TENTotalCars = 20;
+//static const NSUInteger TENTotalCars = 20;
 
 @interface TENDispatcher ()
 @property (nonatomic, retain)   NSMutableArray  *handlers;

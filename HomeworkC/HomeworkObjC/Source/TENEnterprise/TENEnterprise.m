@@ -15,8 +15,9 @@
 #import "TENQueue.h"
 #import "TENWasher.h"
 
-static const NSUInteger TENWasherCount  = 4;
-static const NSUInteger TENTotalCars    = 20;
+static const NSUInteger TENWasherCount          = 4;
+static const NSUInteger TENNumberOfCarsInSeries  = 5;
+static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
 
 static  NSString * const kTENDirectorName   = @"  Director";
 static  NSString * const kTENAccountantName = @" Accountant";
@@ -86,7 +87,7 @@ static  NSString * const kTENWasherName     = @"Washer";
     NSUInteger carsCount = 0;
     
     while (carsCount < TENTotalCars) {
-        for (NSUInteger iterator = 0; iterator < 5; iterator++) {
+        for (NSUInteger iterator = 0; iterator < TENNumberOfCarsInSeries; iterator++) {
             carsCount += 1;
             
             NSMutableString *model = [NSMutableString stringWithString:@"car_"];
