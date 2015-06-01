@@ -16,16 +16,20 @@
 #pragma mark Public
 
 - (void)washCar:(TENCar *)car {
-    car.state = TENCarCleanAndReady;
-    NSLog(@"washer %@ clear car %@", self.name, car.model);
+    usleep(1000 * arc4random_uniform(10));
+    NSLog(@"%@ clear %@", self.name, car.model);
 }
 
 #pragma mark -
 #pragma mark Overload
 
-- (void)processObject:(id<TENMoneyProtocol>)object {
+- (void)finalizeWorkWithObject:(id)object {
+    
+}
+
+- (void)processObject:(id)object {
     [self washCar:object];
-    [self takeMoneyFromPayer:object];
+    [self takeMoney:[object giveMoney]];
 }
 
 @end

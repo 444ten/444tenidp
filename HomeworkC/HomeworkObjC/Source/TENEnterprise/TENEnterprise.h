@@ -14,9 +14,7 @@
 
 @interface TENEnterprise : NSObject <TENEmployeeObserver>
 @property (nonatomic, readonly) NSSet   *employeeSet;
-@property (nonatomic, readonly) NSArray *cars;
 
-- (void)addCar:(TENCar *)car;
-- (void)removeCar:(TENCar *)car;
+- (void)start;
 
 @end

@@ -25,15 +25,10 @@ int main(int argc, const char * argv[]) {
 //        TENCopyPerformTests();
 //        [[NSStringTests object] performTests];
         
-        TENEnterprise *enterprise = [TENEnterprise object];
+        [[TENEnterprise object] start];
         
-        TENCar *lexus = [TENCar carWithModel:@"Lexus"];
-        lexus.money = 100;
-        [enterprise addCar:lexus];
-        
-        TENCar *honda = [TENCar carWithModel:@"Honda"];
-        honda.money = 75;
-        [enterprise addCar:honda];
+        NSRunLoop *runLoop = [NSRunLoop mainRunLoop];
+        [runLoop run];
     }
     
     return 0;

@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TENObservableObject.h"
 #import "TENMoneyProtocol.h"
 
 typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
     TENEmployeeFree,
-    TENEmployeePerformWork,
+    TENEmployeePerformingWork,
     TENEmployeeReadyForMoneyOperation
 };
 
@@ -28,27 +29,19 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 
 @end
 
-@interface TENEmployee : NSObject <TENMoneyProtocol, TENEmployeeObserver>
-@property (nonatomic, copy, readonly)   NSString            *name;
-@property (nonatomic, assign)           NSUInteger          experience;
-@property (nonatomic, assign)           NSUInteger          salary;
-@property (nonatomic, assign)           TENEmployeeState    state;
-
-@property (nonatomic, readonly) NSSet   *observerSet;
+@interface TENEmployee : TENObservableObject <TENMoneyProtocol, TENEmployeeObserver>
+@property (nonatomic, copy, readonly)   NSString    *name;
+@property (nonatomic, assign)           NSUInteger  experience;
+@property (nonatomic, assign)           NSUInteger  salary;
 
 + (instancetype)employeeWithName:(NSString *)name;
 
 - (instancetype)initWithName:(NSString *)name;
 
-- (void)performWorkWithObject:(id<TENMoneyProtocol>)object;
+- (void)performWorkWithObject:(id)object;
+- (void)finalizeWorkWithObject:(id)object;
 
-// This method is intended for subclassing
-- (void)processObject:(id<TENMoneyProtocol>)object;
-
-- (SEL)selectorForState:(TENEmployeeState)state;
-
-- (void)addObserver:(id<TENEmployeeObserver>)observer;
-- (void)removeObserver:(id<TENEmployeeObserver>)observer;
-- (BOOL)isObsevedByObserver:(id<TENEmployeeObserver>)observer;
+// This method is intended for subclassing. Never call it directly.
+- (void)processObject:(id)object;
 
 @end
