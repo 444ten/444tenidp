@@ -107,9 +107,9 @@ static  NSString * const kTENWasherName     = @"Washer";
         return;
     }
     
-    @synchronized (self) {
+//    @synchronized (self) {
         [self.washersDispatcher addObjectToProcess:car];
-    }
+//    }
 }
 
 - (void)removeObservers {

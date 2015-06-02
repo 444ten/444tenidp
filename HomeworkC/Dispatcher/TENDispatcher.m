@@ -68,14 +68,12 @@
         return;
     }
     
-    @synchronized (self) {
-        TENDispatcherEmployee *aHandler = [self nextHandlerWithState:TENEmployeeFree];
-        if (aHandler) {
-            aHandler.state = TENEmployeePerformingWork;
-            [aHandler performWorkWithObject:object];
-        } else {
-            [self.queue enqueueObject:object];
-        }
+    TENDispatcherEmployee *aHandler = [self nextHandlerWithState:TENEmployeeFree];
+    if (aHandler) {
+        aHandler.state = TENEmployeePerformingWork;
+        [aHandler performWorkWithObject:object];
+    } else {
+        [self.queue enqueueObject:object];
     }
 }
 
@@ -100,8 +98,8 @@
             if (state == handler.state) {
                 
                 NSMutableArray *array = self.handlers;
+                [array removeObject:handler];                
                 [array addObject:handler];
-                [array removeObject:handler];
                 
                 return handler;
             }
