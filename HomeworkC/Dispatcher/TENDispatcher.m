@@ -12,8 +12,6 @@
 #import "TENQueue.h"
 #import "TENDispatcherEmployee.h"
 
-//static const NSUInteger TENTotalCars = 20;
-
 @interface TENDispatcher ()
 @property (nonatomic, retain)   NSMutableArray  *handlers;
 @property (nonatomic, retain)   TENQueue        *queue;
@@ -52,23 +50,32 @@
 #pragma mark Public
 
 - (void)addHandler:(TENDispatcherEmployee *)handler {
-    [handler addObserver:self];
-    [self.handlers addObject:handler];
+    @synchronized (self) {
+        [handler addObserver:self];
+        [self.handlers addObject:handler];
+    }
 }
 
 - (void)removeHandler:(TENDispatcherEmployee *)handler {
-    [handler removeObserver:self];
-    [self.handlers removeObject:handler];
+    @synchronized (self) {
+        [handler removeObserver:self];
+        [self.handlers removeObject:handler];
+    }
 }
 
 - (void)addObjectToProcess:(id)object {
-    TENDispatcherEmployee *aHandler = [self nextHandlerWithState:TENEmployeeFree];
+    if (nil == object) {
+        return;
+    }
     
-    if (aHandler) {
-        aHandler.state = TENEmployeePerformingWork;
-        [aHandler performWorkWithObject:object];
-    } else {
-        [self.queue enqueueObject:object];
+    @synchronized (self) {
+        TENDispatcherEmployee *aHandler = [self nextHandlerWithState:TENEmployeeFree];
+        if (aHandler) {
+            aHandler.state = TENEmployeePerformingWork;
+            [aHandler performWorkWithObject:object];
+        } else {
+            [self.queue enqueueObject:object];
+        }
     }
 }
 
@@ -87,59 +94,34 @@
 }
 
 - (id)nextHandlerWithState:(TENEmployeeState)state {
-    NSArray *aHandlers = [[self.handlers copy] autorelease];
-    for (TENDispatcherEmployee *handler in aHandlers) {
-        if (state == handler.state) {
-            
-            NSMutableArray *array = self.handlers;
-            [array addObject:handler];
-            [array removeObject:handler];
-            
-            return handler;
+    @synchronized (self) {
+        NSArray *aHandlers = [[self.handlers copy] autorelease];
+        for (TENDispatcherEmployee *handler in aHandlers) {
+            if (state == handler.state) {
+                
+                NSMutableArray *array = self.handlers;
+                [array addObject:handler];
+                [array removeObject:handler];
+                
+                return handler;
+            }
         }
+        
+        return nil;
     }
-    
-    return nil;
 }
 
 #pragma mark -
 #pragma mark TENEmployeeObserver
 
-//- (void)employeeDidBecomeFree:(TENEmployee *)employee;
-
-- (void)handlerDidBecomeFree:(TENDispatcherEmployee *)handler {
+- (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
+    NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+    
     @synchronized (self) {
-        if (TENEmployeeFree == handler.state) {
+        if (TENEmployeeFree == employee.state) {
             [self addObjectToProcess:[self.queue dequeueObject]];
         }
     }
 }
-
-
-//#pragma mark -
-//#pragma mark TENEmployeeObserver
-//
-//- (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
-//    if (self != employee) {
-//        return;
-//    }
-//
-//    @synchronized (self) {
-//        if (TENEmployeeFree == self.state) {
-//            [self performWorkWithObject:[self.queueObjects dequeueObject]];
-//        }
-//    }
-//}
-//
-//- (void)employeeDidBecomeReadyForMoneyOperation:(TENDispatcherEmployee *)employee {
-//    if (self == employee) {
-//        return;
-//    }
-//
-//    NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-//    [self performWorkWithObject:employee];
-//}
-
-
 
 @end

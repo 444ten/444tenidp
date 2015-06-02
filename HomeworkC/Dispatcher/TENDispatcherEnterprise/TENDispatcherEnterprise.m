@@ -9,11 +9,12 @@
 #import "TENDispatcherEnterprise.h"
 
 #import "NSObject+TENExtensions.h"
-#import "TENDispatcherAccountant.h"
 #import "TENCar.h"
+#import "TENDispatcher.h"
+#import "TENDispatcherAccountant.h"
 #import "TENDispatcherDirector.h"
-#import "TENQueue.h"
 #import "TENDispatcherWasher.h"
+#import "TENQueue.h"
 
 static const NSUInteger TENWasherCount          = 4;
 static const NSUInteger TENNumberOfCarsInSeries  = 5;
@@ -25,16 +26,14 @@ static  NSString * const kTENWasherName     = @"Washer";
 
 @interface TENDispatcherEnterprise()
 @property (nonatomic, retain)   NSMutableSet    *mutableEmployeeSet;
-@property (nonatomic, retain)   TENQueue        *carQueue;
+
+@property (nonatomic, retain)   TENDispatcher   *washersDispatcher;
 
 - (void)addCarInBackground;
 - (void)workWithCarInBackground:(TENCar *)car;
 
 - (void)removeObservers;
 - (void)hireStaff;
-
-- (NSSet *)employeesWithClass:(Class)class;
-- (id)freeEmployeeWithClass:(Class)class;
 
 @end
 
@@ -49,7 +48,7 @@ static  NSString * const kTENWasherName     = @"Washer";
     [self removeObservers];
     
     self.mutableEmployeeSet = nil;
-    self.carQueue = nil;
+    self.washersDispatcher = nil;
     
     [super dealloc];
 }
@@ -58,7 +57,7 @@ static  NSString * const kTENWasherName     = @"Washer";
     self = [super init];
     if (self) {
         self.mutableEmployeeSet = [NSMutableSet set];
-        self.carQueue = [[TENQueue new] autorelease];
+        self.washersDispatcher = [TENDispatcher object];
 
         [self hireStaff];
     }
@@ -109,24 +108,14 @@ static  NSString * const kTENWasherName     = @"Washer";
     }
     
     @synchronized (self) {
-        [self.carQueue enqueueObject:car];
-        
-        TENDispatcherWasher *washer = [self freeEmployeeWithClass:[TENDispatcherWasher class]];
-        if (washer) {
-            [washer performWorkWithObject:[self.carQueue dequeueObject]];
-        }
+        [self.washersDispatcher addObjectToProcess:car];
     }
 }
 
 - (void)removeObservers {
-    TENDispatcherDirector *director = [[self employeesWithClass:[TENDispatcherDirector class]] anyObject];
-    TENDispatcherAccountant *accountant = [[self employeesWithClass:[TENDispatcherAccountant class]] anyObject];
-    [accountant removeObserver:director];
-    
-    NSSet *washers = [self employeesWithClass:[TENDispatcherWasher class]];
-    for (TENDispatcherWasher *washer in washers) {
-        [washer removeObserver:accountant];
-        [washer removeObserver:self];
+    NSSet *employees = self.employeeSet;
+    for (TENDispatcherEmployee *employee in employees) {
+        [employee removeObserver:self];
     }
 }
 
@@ -137,55 +126,37 @@ static  NSString * const kTENWasherName     = @"Washer";
     
     [employees addObject:director];
     [employees addObject:accountant];
-    [accountant addObserver:director];
-    [accountant addObserver:accountant];
+//    [accountant addObserver:director];
+//    [accountant addObserver:accountant];
     
     for (NSUInteger iterator = 0; iterator < TENWasherCount; iterator++) {
         NSMutableString *nameWasher = [NSMutableString stringWithString:kTENWasherName];
         [nameWasher appendString:[NSString stringWithFormat:@"_%lu", iterator]];
 
         TENDispatcherWasher *washer = [TENDispatcherWasher employeeWithName:nameWasher];
-        [washer addObserver:accountant];
         [washer addObserver:self];
+        [self.washersDispatcher addHandler:washer];
         [employees addObject:washer];
     }
 }
 
 
-- (NSSet *)employeesWithClass:(Class)class {
-    NSSet *employees = self.employeeSet;
-    NSMutableSet *result = [NSMutableSet setWithCapacity:[employees count]];
-    for (id employee in employees) {
-        if ([employee isMemberOfClass:class]) {
-            [result addObject:employee];
-        }
-    }
-    
-    return [[result copy] autorelease];
-}
-
-- (id)freeEmployeeWithClass:(Class)class {
-    NSSet *employees = [self employeesWithClass:class];
-    
-    for (TENDispatcherEmployee *employee in employees) {
-        if (TENEmployeeFree == employee.state) {
-            return employee;
-        }
-    }
-    
-    return nil;    
-}
-
 #pragma mark -
 #pragma mark TENEmployeeObserver
 
-- (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
+- (void)employeeDidBecomeReadyForMoneyOperation:(TENDispatcherEmployee *)employee {
     @synchronized (self) {
-        if (TENEmployeeFree == employee.state) {
-            NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-            [employee performWorkWithObject:[self.carQueue dequeueObject]];
-        }
-    }    
+        employee.state = TENEmployeeFree;
+    }
 }
+
+//- (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
+//    @synchronized (self) {
+//        if (TENEmployeeFree == employee.state) {
+//            NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+////            [employee performWorkWithObject:[self.carQueue dequeueObject]];
+//        }
+//    }    
+//}
 
 @end
