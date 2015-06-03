@@ -107,9 +107,7 @@ static  NSString * const kTENWasherName     = @"Washer";
         return;
     }
     
-//    @synchronized (self) {
-        [self.washersDispatcher addObjectToProcess:car];
-//    }
+    [self.washersDispatcher processObject:car];
 }
 
 - (void)removeObservers {
@@ -149,14 +147,5 @@ static  NSString * const kTENWasherName     = @"Washer";
         employee.state = TENEmployeeFree;
     }
 }
-
-//- (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
-//    @synchronized (self) {
-//        if (TENEmployeeFree == employee.state) {
-//            NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-////            [employee performWorkWithObject:[self.carQueue dequeueObject]];
-//        }
-//    }    
-//}
 
 @end

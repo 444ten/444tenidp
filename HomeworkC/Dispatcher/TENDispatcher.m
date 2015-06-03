@@ -63,17 +63,18 @@
     }
 }
 
-- (void)addObjectToProcess:(id)object {
+- (void)processObject:(id)object {
     if (nil == object) {
         return;
     }
     
+    TENQueue *queue = self.queue;
+    [queue enqueueObject:object];
+    
     TENDispatcherEmployee *aHandler = [self nextHandlerWithState:TENEmployeeFree];
     if (aHandler) {
         aHandler.state = TENEmployeePerformingWork;
-        [aHandler performWorkWithObject:object];
-    } else {
-        [self.queue enqueueObject:object];
+        [aHandler performWorkWithObject:[queue dequeueObject]];
     }
 }
 
@@ -93,10 +94,9 @@
 
 - (id)nextHandlerWithState:(TENEmployeeState)state {
     @synchronized (self) {
-        NSArray *aHandlers = [[self.handlers copy] autorelease];
-        for (TENDispatcherEmployee *handler in aHandlers) {
+        NSArray *handlers = [[self.handlers copy] autorelease];
+        for (TENDispatcherEmployee *handler in handlers) {
             if (state == handler.state) {
-                
                 NSMutableArray *array = self.handlers;
                 [array removeObject:handler];                
                 [array addObject:handler];
@@ -117,7 +117,7 @@
     
     @synchronized (self) {
         if (TENEmployeeFree == employee.state) {
-            [self addObjectToProcess:[self.queue dequeueObject]];
+            [self processObject:[self.queue dequeueObject]];
         }
     }
 }

@@ -16,6 +16,6 @@
 - (void)addHandler:(TENDispatcherEmployee *)handler;
 - (void)removeHandler:(TENDispatcherEmployee *)handler;
 
-- (void)addObjectToProcess:(id)object;
+- (void)processObject:(id)object;
 
 @end

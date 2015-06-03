@@ -58,9 +58,9 @@
     }
     
     @synchronized (self) {
-    self.state = TENEmployeePerformingWork;
-    [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
-                           withObject:object];
+        self.state = TENEmployeePerformingWork;
+        [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
+                               withObject:object];
     }
 }
 
