@@ -122,8 +122,15 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
 
 - (void)hireStaff {
     NSMutableSet *employees = self.mutableEmployeeSet;
-    TENDispatcherDirector *director = [TENDispatcherDirector employeeWithIndex:100];
-    [employees addObject:director];
+    
+    
+    for (NSUInteger iterator = 0; iterator < TENDirectorCount; iterator++) {
+        
+        TENDispatcherDirector *director = [TENDispatcherDirector employeeWithIndex:iterator];
+        [director addObserver:self];
+        [self.directorsDispatcher addHandler:director];
+        [employees addObject:director];
+    }
 
     for (NSUInteger iterator = 0; iterator < TENAccountantCount; iterator++) {
         
@@ -148,6 +155,8 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
 - (void)employeeDidBecomeReadyForMoneyOperation:(TENDispatcherEmployee *)employee {
     if ([employee isMemberOfClass:[TENDispatcherWasher class]]) {
         [self.accountantsDispatcher processObject:employee];
+    } else if ([employee isMemberOfClass:[TENDispatcherAccountant class]]) {
+        [self.directorsDispatcher processObject:employee];
     } else {
         employee.state = TENEmployeeFree;
     }

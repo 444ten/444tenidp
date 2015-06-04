@@ -21,12 +21,6 @@
 #pragma mark -
 #pragma mark Overload
 
-- (void)finalizeWorkWithObject:(id)object {
-    [super finalizeWorkWithObject:object];
-
-    self.state = TENEmployeeFree;
-}
-
 - (void)processObject:(id)object {
     [self takeMoney:[object giveMoney]];
     [self takeProfit];
