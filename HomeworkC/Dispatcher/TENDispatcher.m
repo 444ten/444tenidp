@@ -121,14 +121,18 @@
     return nil;
 }
 
-
 #pragma mark -
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
-    NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-    
-    [self processObject:[self.queue dequeueObject]];
+    @synchronized (self) {
+        if (TENEmployeeFree == employee.state) {
+            NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
+            
+            [employee performWorkWithObject:[self.queue dequeueObject]];
+        }
+    }
+
 }
 
 @end

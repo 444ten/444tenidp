@@ -17,7 +17,7 @@
 #import "TENQueue.h"
 
 static const NSUInteger TENWasherCount          = 4;
-static const NSUInteger TENNumberOfCarsInSeries  = 5;
+static const NSUInteger TENNumberOfCarsInSeries = 5;
 static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
 
 static  NSString * const kTENDirectorName   = @"  Director";
@@ -138,14 +138,11 @@ static  NSString * const kTENWasherName     = @"Washer";
     }
 }
 
-
 #pragma mark -
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeReadyForMoneyOperation:(TENDispatcherEmployee *)employee {
-    @synchronized (self) {
         employee.state = TENEmployeeFree;
-    }
 }
 
 @end
