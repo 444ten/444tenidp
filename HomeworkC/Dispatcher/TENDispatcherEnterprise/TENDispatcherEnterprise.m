@@ -16,13 +16,18 @@
 #import "TENDispatcherWasher.h"
 #import "TENQueue.h"
 
+static const NSUInteger TENDirectorCount        = 1;
+static const NSUInteger TENAccountantCount      = 3;
 static const NSUInteger TENWasherCount          = 4;
+
 static const NSUInteger TENNumberOfCarsInSeries = 5;
 static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
 
 @interface TENDispatcherEnterprise()
 @property (nonatomic, retain)   NSMutableSet    *mutableEmployeeSet;
 
+@property (nonatomic, retain)   TENDispatcher   *directorsDispatcher;
+@property (nonatomic, retain)   TENDispatcher   *accountantsDispatcher;
 @property (nonatomic, retain)   TENDispatcher   *washersDispatcher;
 
 - (void)addCarInBackground;
@@ -44,6 +49,9 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
     [self removeObservers];
     
     self.mutableEmployeeSet = nil;
+    
+    self.directorsDispatcher = nil;
+    self.accountantsDispatcher = nil;
     self.washersDispatcher = nil;
     
     [super dealloc];
@@ -53,6 +61,9 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
     self = [super init];
     if (self) {
         self.mutableEmployeeSet = [NSMutableSet set];
+        
+        self.directorsDispatcher  = [TENDispatcher object];
+        self.accountantsDispatcher  = [TENDispatcher object];
         self.washersDispatcher = [TENDispatcher object];
 
         [self hireStaff];
@@ -112,10 +123,15 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
 - (void)hireStaff {
     NSMutableSet *employees = self.mutableEmployeeSet;
     TENDispatcherDirector *director = [TENDispatcherDirector employeeWithIndex:100];
-    TENDispatcherAccountant *accountant = [TENDispatcherAccountant employeeWithIndex:50];
-    
     [employees addObject:director];
-    [employees addObject:accountant];
+
+    for (NSUInteger iterator = 0; iterator < TENAccountantCount; iterator++) {
+        
+        TENDispatcherAccountant *accountant = [TENDispatcherAccountant employeeWithIndex:iterator];
+        [accountant addObserver:self];
+        [self.accountantsDispatcher addHandler:accountant];
+        [employees addObject:accountant];
+    }
     
     for (NSUInteger iterator = 0; iterator < TENWasherCount; iterator++) {
 
@@ -130,7 +146,11 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeReadyForMoneyOperation:(TENDispatcherEmployee *)employee {
+    if ([employee isMemberOfClass:[TENDispatcherWasher class]]) {
+        [self.accountantsDispatcher processObject:employee];
+    } else {
         employee.state = TENEmployeeFree;
+    }
 }
 
 @end
