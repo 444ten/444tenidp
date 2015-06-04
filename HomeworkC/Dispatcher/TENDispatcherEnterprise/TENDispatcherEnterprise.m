@@ -20,10 +20,6 @@ static const NSUInteger TENWasherCount          = 4;
 static const NSUInteger TENNumberOfCarsInSeries = 5;
 static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
 
-static  NSString * const kTENDirectorName   = @"  Director";
-static  NSString * const kTENAccountantName = @" Accountant";
-static  NSString * const kTENWasherName     = @"Washer";
-
 @interface TENDispatcherEnterprise()
 @property (nonatomic, retain)   NSMutableSet    *mutableEmployeeSet;
 
@@ -88,11 +84,7 @@ static  NSString * const kTENWasherName     = @"Washer";
     while (carsCount < TENTotalCars) {
         for (NSUInteger iterator = 0; iterator < TENNumberOfCarsInSeries; iterator++) {
             carsCount += 1;
-            
-            NSMutableString *model = [NSMutableString stringWithString:@"car_"];
-            [model appendString:[NSString stringWithFormat:@"_%lu", carsCount]];
-            
-            TENCar *car = [TENCar carWithModel:model];
+            TENCar *car = [TENCar carWithIndex:carsCount];
             car.money = carsCount;
             
             [self performSelectorInBackground:@selector(workWithCarInBackground:) withObject:car];
@@ -119,19 +111,15 @@ static  NSString * const kTENWasherName     = @"Washer";
 
 - (void)hireStaff {
     NSMutableSet *employees = self.mutableEmployeeSet;
-    TENDispatcherDirector *director = [TENDispatcherDirector employeeWithName:kTENDirectorName];
-    TENDispatcherAccountant *accountant = [TENDispatcherAccountant employeeWithName:kTENAccountantName];
+    TENDispatcherDirector *director = [TENDispatcherDirector employeeWithIndex:100];
+    TENDispatcherAccountant *accountant = [TENDispatcherAccountant employeeWithIndex:50];
     
     [employees addObject:director];
     [employees addObject:accountant];
-//    [accountant addObserver:director];
-//    [accountant addObserver:accountant];
     
     for (NSUInteger iterator = 0; iterator < TENWasherCount; iterator++) {
-        NSMutableString *nameWasher = [NSMutableString stringWithString:kTENWasherName];
-        [nameWasher appendString:[NSString stringWithFormat:@"_%lu", iterator]];
 
-        TENDispatcherWasher *washer = [TENDispatcherWasher employeeWithName:nameWasher];
+        TENDispatcherWasher *washer = [TENDispatcherWasher employeeWithIndex:iterator];
         [washer addObserver:self];
         [self.washersDispatcher addHandler:washer];
         [employees addObject:washer];

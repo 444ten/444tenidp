@@ -30,6 +30,12 @@
     return [[[self alloc] initWithName:name] autorelease];
 }
 
++ (instancetype)employeeWithIndex:(NSUInteger)index {
+    NSString *name = [NSString stringWithFormat:@"%@_%lu", self.className, index];
+
+    return [self employeeWithName:name];
+}
+
 #pragma mark -
 #pragma mark Initializations and Deallocations
 

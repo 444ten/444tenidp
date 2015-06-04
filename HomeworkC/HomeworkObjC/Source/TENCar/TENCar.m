@@ -26,6 +26,12 @@
     return [[[self alloc] initWithModel:model] autorelease];
 }
 
++ (instancetype)carWithIndex:(NSUInteger)index {
+    NSString *model = [NSString stringWithFormat:@"%@_%lu", self.className, index];
+    
+    return [self carWithModel:model];
+}
+
 #pragma mark -
 #pragma mark Initializations and Deallocations
 

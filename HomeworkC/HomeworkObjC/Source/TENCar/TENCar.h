@@ -14,6 +14,7 @@
 @property (nonatomic, copy, readonly)   NSString    *model;
 
 + (instancetype)carWithModel:(NSString *)model;
++ (instancetype)carWithIndex:(NSUInteger)index;
 
 - (instancetype)initWithModel:(NSString *)model;
 

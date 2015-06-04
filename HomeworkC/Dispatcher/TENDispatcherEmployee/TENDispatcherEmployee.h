@@ -35,6 +35,7 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
 @property (nonatomic, assign)           NSUInteger  salary;
 
 + (instancetype)employeeWithName:(NSString *)name;
++ (instancetype)employeeWithIndex:(NSUInteger)index;
 
 - (instancetype)initWithName:(NSString *)name;
 
