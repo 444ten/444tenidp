@@ -20,6 +20,8 @@
 
 - (id)nextHandlerWithState:(TENEmployeeState)state;
 
+- (TENDispatcherEmployee *)bookedHanler;
+
 @end
 
 @implementation TENDispatcher
@@ -71,16 +73,11 @@
     TENQueue *queue = self.queue;
     [queue enqueueObject:object];
     
-    TENDispatcherEmployee *aHandler = [self nextHandlerWithState:TENEmployeeFree];
-    if (aHandler) {
-        aHandler.state = TENEmployeePerformingWork;
-        [aHandler performWorkWithObject:[queue dequeueObject]];
+    TENDispatcherEmployee *handler = [self bookedHanler];
+    if (handler) {
+        [handler performWorkWithObject:[queue dequeueObject]];
     }
 }
-
-#pragma mark -
-#pragma mark Overload
-
 
 #pragma mark -
 #pragma mark Private
@@ -109,17 +106,29 @@
     }
 }
 
+- (TENDispatcherEmployee *)bookedHanler {
+    TENDispatcherEmployee *handler = nil;
+    while ((handler = [self nextHandlerWithState:TENEmployeeFree])) {
+        @synchronized (self) {
+            if (TENEmployeeFree == handler.state) {
+                handler.state = TENEmployeePerformingWork;
+                
+                return handler;
+            }
+        }
+    }
+    
+    return nil;
+}
+
+
 #pragma mark -
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
     NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
     
-    @synchronized (self) {
-        if (TENEmployeeFree == employee.state) {
-            [self processObject:[self.queue dequeueObject]];
-        }
-    }
+    [self processObject:[self.queue dequeueObject]];
 }
 
 @end

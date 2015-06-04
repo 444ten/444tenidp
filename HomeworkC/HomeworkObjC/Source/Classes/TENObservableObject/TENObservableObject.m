@@ -56,7 +56,7 @@
 }
 
 - (NSUInteger)state {
-    @synchronized (self ) {
+    @synchronized (self) {
         return _state;
     }
 }
