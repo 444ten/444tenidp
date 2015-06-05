@@ -57,7 +57,7 @@
     @synchronized (self) {
         NSUInteger result = self.money;
         self.money = 0;
-        NSLog(@"( - ) %@ give money: %lu", self.model, result);
+//        NSLog(@"( - ) %@ give money: %lu", self.model, result);
         
         return result;
     }

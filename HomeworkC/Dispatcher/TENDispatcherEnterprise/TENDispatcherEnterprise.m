@@ -18,10 +18,10 @@
 
 static const NSUInteger TENDirectorCount        = 1;
 static const NSUInteger TENAccountantCount      = 3;
-static const NSUInteger TENWasherCount          = 4;
+static const NSUInteger TENWasherCount          = 3;
 
-static const NSUInteger TENNumberOfCarsInSeries = 5;
-static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
+static const NSUInteger TENNumberOfCarsInSeries = 1;
+static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 100;
 
 @interface TENDispatcherEnterprise()
 @property (nonatomic, retain)   NSMutableSet    *mutableEmployeeSet;
@@ -101,7 +101,8 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 4;
             [self performSelectorInBackground:@selector(workWithCarInBackground:) withObject:car];
         }
         NSLog(@"%lu car enqueued", carsCount);
-        sleep(1);
+        
+        usleep(1000 * 100);
     }
 }
 

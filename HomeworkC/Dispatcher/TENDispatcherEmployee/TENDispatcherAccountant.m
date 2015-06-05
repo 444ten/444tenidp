@@ -16,7 +16,7 @@
 - (void)calculateMoney {
     usleep(1000 * arc4random_uniform(10));
 
-    NSLog(@"%@ calculated money: %lu", self.name, (unsigned long)self.money);
+//    NSLog(@"%@ calculated money: %lu", self.name, (unsigned long)self.money);
 }
 
 #pragma mark -

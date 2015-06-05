@@ -60,14 +60,13 @@
 
 - (void)performWorkWithObject:(id)object {
     if (nil == object) {
+        self.state = TENEmployeeFree;
         return;
     }
     
-    @synchronized (self) {
-        self.state = TENEmployeePerformingWork;
-        [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
+    self.state = TENEmployeePerformingWork;
+    [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
                                withObject:object];
-    }
 }
 
 - (void)finalizeWorkWithObject:(TENDispatcherEmployee *)object {
@@ -110,12 +109,8 @@
 }
 
 - (void)finalizeWorkWithObjectOnMainThread:(id)object {
-    @synchronized (self) {
-        
-        self.state = TENEmployeeReadyForMoneyOperation;
-    
-        [self finalizeWorkWithObject:object];
-    }
+    self.state = TENEmployeeReadyForMoneyOperation;
+    [self finalizeWorkWithObject:object];
 }
 
 #pragma mark -
@@ -125,7 +120,7 @@
     @synchronized (self) {
         NSUInteger result = self.money;
         self.money = 0;
-        NSLog(@"( - ) %@ give money: %lu", self.name, result);
+//        NSLog(@"( - ) %@ give money: %lu", self.name, result);
         
         return result;
     }
@@ -134,7 +129,7 @@
 - (void)takeMoney:(NSUInteger)money {
     @synchronized (self) {
         self.money += money;
-        NSLog(@"( + ) %@ take money: %lu", self.name, money);
+//        NSLog(@"( + ) %@ take money: %lu", self.name, money);
     }
 }
 
