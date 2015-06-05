@@ -67,9 +67,8 @@
 
 - (void)processObject:(id)object {
         TENQueue *queue = self.queue;
-        if (object) {
-            [queue enqueueObject:object];
-        }
+        [queue enqueueObject:object];
+    
         @synchronized (queue) {
             if (![queue isEmpty]) {
                 TENDispatcherEmployee *handler = [self bookedHanler];
@@ -78,7 +77,6 @@
                 }
             }
         }
-
 }
 
 #pragma mark -

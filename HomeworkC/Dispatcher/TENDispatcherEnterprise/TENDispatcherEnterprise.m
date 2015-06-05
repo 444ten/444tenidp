@@ -17,7 +17,7 @@
 #import "TENQueue.h"
 
 static const NSUInteger TENDirectorCount        = 1;
-static const NSUInteger TENAccountantCount      = 3;
+static const NSUInteger TENAccountantCount      = 2;
 static const NSUInteger TENWasherCount          = 3;
 
 static const NSUInteger TENNumberOfCarsInSeries = 5;
