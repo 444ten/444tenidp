@@ -128,7 +128,6 @@
     @synchronized (employee) {
         if (TENEmployeeFree == employee.state) {
 //            NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-            
             [employee performWorkWithObject:[self.queue dequeueObject]];
         }
     }
