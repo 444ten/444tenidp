@@ -155,9 +155,11 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 100;
 
 - (void)employeeDidBecomeReadyForMoneyOperation:(TENDispatcherEmployee *)employee {
     if ([employee isMemberOfClass:[TENDispatcherWasher class]]) {
-        [self.accountantsDispatcher processObject:employee];
+        [self.accountantsDispatcher performSelectorInBackground:@selector(processObject:)
+                                                     withObject:employee];
     } else if ([employee isMemberOfClass:[TENDispatcherAccountant class]]) {
-        [self.directorsDispatcher processObject:employee];
+        [self.directorsDispatcher performSelectorInBackground:@selector(processObject:)
+                                                     withObject:employee];
     } else {
         employee.state = TENEmployeeFree;
     }

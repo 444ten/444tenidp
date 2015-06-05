@@ -20,7 +20,7 @@
 
 - (id)nextHandlerWithState:(TENEmployeeState)state;
 
-- (TENDispatcherEmployee *)bookedHanler;
+- (TENDispatcherEmployee *)bookedHandler;
 
 @end
 
@@ -71,7 +71,7 @@
     
         @synchronized (queue) {
             if (![queue isEmpty]) {
-                TENDispatcherEmployee *handler = [self bookedHanler];
+                TENDispatcherEmployee *handler = [self bookedHandler];
                 if (handler) {
                     [handler performWorkWithObject:[queue dequeueObject]];
                 }
@@ -106,7 +106,7 @@
     }
 }
 
-- (TENDispatcherEmployee *)bookedHanler {
+- (TENDispatcherEmployee *)bookedHandler {
     TENDispatcherEmployee *handler = nil;
     while ((handler = [self nextHandlerWithState:TENEmployeeFree])) {
         @synchronized (self) {
@@ -125,7 +125,7 @@
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
-    [self processObject:nil];
+    [self performSelectorInBackground:@selector(processObject:) withObject:nil];
 }
 
 @end
