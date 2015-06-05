@@ -66,17 +66,19 @@
 }
 
 - (void)processObject:(id)object {
-    if (nil == object) {
-        return;
-    }
-    
-    TENQueue *queue = self.queue;
-    [queue enqueueObject:object];
-    
-    TENDispatcherEmployee *handler = [self bookedHanler];
-    if (handler) {
-        [handler performWorkWithObject:[queue dequeueObject]];
-    }
+        TENQueue *queue = self.queue;
+        if (object) {
+            [queue enqueueObject:object];
+        }
+        @synchronized (queue) {
+            if (![queue isEmpty]) {
+                TENDispatcherEmployee *handler = [self bookedHanler];
+                if (handler) {
+                    [handler performWorkWithObject:[queue dequeueObject]];
+                }
+            }
+        }
+
 }
 
 #pragma mark -
@@ -125,13 +127,7 @@
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
-    @synchronized (employee) {
-        if (TENEmployeeFree == employee.state) {
-//            NSLog(@"(s)%@ -> %@", employee.name, NSStringFromSelector(_cmd));
-            [employee performWorkWithObject:[self.queue dequeueObject]];
-        }
-    }
-
+    [self processObject:nil];
 }
 
 @end

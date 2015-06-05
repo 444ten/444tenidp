@@ -20,7 +20,7 @@ static const NSUInteger TENDirectorCount        = 1;
 static const NSUInteger TENAccountantCount      = 3;
 static const NSUInteger TENWasherCount          = 3;
 
-static const NSUInteger TENNumberOfCarsInSeries = 1;
+static const NSUInteger TENNumberOfCarsInSeries = 5;
 static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 100;
 
 @interface TENDispatcherEnterprise()
@@ -62,7 +62,7 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 100;
     if (self) {
         self.mutableEmployeeSet = [NSMutableSet set];
         
-        self.directorsDispatcher  = [TENDispatcher object];
+        self.directorsDispatcher  = [[[TENDispatcher alloc] init] autorelease];;
         self.accountantsDispatcher  = [TENDispatcher object];
         self.washersDispatcher = [TENDispatcher object];
 

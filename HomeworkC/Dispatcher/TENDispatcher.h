@@ -11,7 +11,7 @@
 @class TENQueue;
 @class TENDispatcherEmployee;
 
-@interface TENDispatcher : TENObservableObject
+@interface TENDispatcher : NSObject
 
 - (void)addHandler:(TENDispatcherEmployee *)handler;
 - (void)removeHandler:(TENDispatcherEmployee *)handler;

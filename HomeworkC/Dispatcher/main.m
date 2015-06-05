@@ -8,16 +8,6 @@
 
 #import "NSObject+TENExtensions.h"
 
-//#import "NSStringTests.h"
-//#import "TENBuildingTests.h"
-//#import "TENCar.h"
-//#import "TENCopyTests.h"
-//#import "TENEnterprise.h"
-//#import "TENEntityTests.h"
-//#import "TENObject.h"
-//#import "TENObjCSyntax.h"
-//#import "TENWasher.h"
-
 #import "TENDispatcherEnterprise.h"
 
 int main(int argc, const char * argv[]) {

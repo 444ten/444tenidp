@@ -60,11 +60,9 @@
 
 - (void)performWorkWithObject:(id)object {
     if (nil == object) {
-        self.state = TENEmployeeFree;
         return;
     }
     
-    self.state = TENEmployeePerformingWork;
     [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
                                withObject:object];
 }
