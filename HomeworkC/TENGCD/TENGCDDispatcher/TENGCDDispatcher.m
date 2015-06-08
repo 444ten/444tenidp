@@ -125,11 +125,9 @@
 #pragma mark TENEmployeeObserver
 
 - (void)employeeDidBecomeFree:(TENGCDEmployee *)employee {
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//        [self processObject:nil];
-//    });
-    
-    [self performSelectorInBackground:@selector(processObject:) withObject:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self processObject:nil];
+    });
 }
 
 @end
