@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C4934521B25998800353938 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4934511B25998800353938 /* main.m */; };
+		6C4934621B259B6C00353938 /* TENGCDDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4934581B259B6C00353938 /* TENGCDDispatcher.m */; };
+		6C4934631B259B6C00353938 /* TENGCDEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C49345B1B259B6C00353938 /* TENGCDEmployee.m */; };
+		6C4934641B259B6C00353938 /* TENGCDEnterprise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C49345E1B259B6C00353938 /* TENGCDEnterprise.m */; };
+		6C4934651B259B6C00353938 /* TENGCDObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4934611B259B6C00353938 /* TENGCDObservableObject.m */; };
 		6CCD3ECD1B0381A20059D126 /* TENReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3ECC1B0381A20059D126 /* TENReference.m */; };
 		6CCD3ECE1B0381A20059D126 /* TENReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3ECC1B0381A20059D126 /* TENReference.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6CCD3ED11B0387990059D126 /* TENAssignReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3ED01B0387990059D126 /* TENAssignReference.m */; };
@@ -100,6 +105,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		6C49344D1B25998800353938 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		761989EF1B1D022400BCB475 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,6 +146,16 @@
 /* Begin PBXFileReference section */
 		5ABE7605A9FBFC4A8BCA9664 /* Pods-ObjCTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ObjCTest/Pods-ObjCTest.debug.xcconfig"; sourceTree = "<group>"; };
 		630CFA7CA131387662FB0001 /* libPods-ObjCTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ObjCTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C49344F1B25998800353938 /* TENGCD */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TENGCD; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C4934511B25998800353938 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6C4934571B259B6C00353938 /* TENGCDDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENGCDDispatcher.h; sourceTree = "<group>"; };
+		6C4934581B259B6C00353938 /* TENGCDDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENGCDDispatcher.m; sourceTree = "<group>"; };
+		6C49345A1B259B6C00353938 /* TENGCDEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENGCDEmployee.h; sourceTree = "<group>"; };
+		6C49345B1B259B6C00353938 /* TENGCDEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENGCDEmployee.m; sourceTree = "<group>"; };
+		6C49345D1B259B6C00353938 /* TENGCDEnterprise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENGCDEnterprise.h; sourceTree = "<group>"; };
+		6C49345E1B259B6C00353938 /* TENGCDEnterprise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENGCDEnterprise.m; sourceTree = "<group>"; };
+		6C4934601B259B6C00353938 /* TENGCDObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENGCDObservableObject.h; sourceTree = "<group>"; };
+		6C4934611B259B6C00353938 /* TENGCDObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENGCDObservableObject.m; sourceTree = "<group>"; };
 		6CCD3ECB1B0381A20059D126 /* TENReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENReference.h; sourceTree = "<group>"; };
 		6CCD3ECC1B0381A20059D126 /* TENReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENReference.m; sourceTree = "<group>"; };
 		6CCD3ECF1B0387990059D126 /* TENAssignReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENAssignReference.h; sourceTree = "<group>"; };
@@ -280,6 +304,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6C49344C1B25998800353938 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6CD2B3DF1AEE1DB60030516B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,6 +349,54 @@
 				630CFA7CA131387662FB0001 /* libPods-ObjCTest.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6C4934501B25998800353938 /* TENGCD */ = {
+			isa = PBXGroup;
+			children = (
+				6C4934511B25998800353938 /* main.m */,
+				6C4934561B259B6C00353938 /* TENGCDDispatcher */,
+				6C4934591B259B6C00353938 /* TENGCDEmployee */,
+				6C49345C1B259B6C00353938 /* TENGCDEnterprise */,
+				6C49345F1B259B6C00353938 /* TENGCDObservableObject */,
+			);
+			path = TENGCD;
+			sourceTree = "<group>";
+		};
+		6C4934561B259B6C00353938 /* TENGCDDispatcher */ = {
+			isa = PBXGroup;
+			children = (
+				6C4934571B259B6C00353938 /* TENGCDDispatcher.h */,
+				6C4934581B259B6C00353938 /* TENGCDDispatcher.m */,
+			);
+			path = TENGCDDispatcher;
+			sourceTree = "<group>";
+		};
+		6C4934591B259B6C00353938 /* TENGCDEmployee */ = {
+			isa = PBXGroup;
+			children = (
+				6C49345A1B259B6C00353938 /* TENGCDEmployee.h */,
+				6C49345B1B259B6C00353938 /* TENGCDEmployee.m */,
+			);
+			path = TENGCDEmployee;
+			sourceTree = "<group>";
+		};
+		6C49345C1B259B6C00353938 /* TENGCDEnterprise */ = {
+			isa = PBXGroup;
+			children = (
+				6C49345D1B259B6C00353938 /* TENGCDEnterprise.h */,
+				6C49345E1B259B6C00353938 /* TENGCDEnterprise.m */,
+			);
+			path = TENGCDEnterprise;
+			sourceTree = "<group>";
+		};
+		6C49345F1B259B6C00353938 /* TENGCDObservableObject */ = {
+			isa = PBXGroup;
+			children = (
+				6C4934601B259B6C00353938 /* TENGCDObservableObject.h */,
+				6C4934611B259B6C00353938 /* TENGCDObservableObject.m */,
+			);
+			path = TENGCDObservableObject;
 			sourceTree = "<group>";
 		};
 		6CCD3EC91B0381740059D126 /* Classes */ = {
@@ -948,6 +1027,7 @@
 				769DFBD91AD6895600D0919A /* HomeworkObjC */,
 				761989F21B1D022400BCB475 /* Dispatcher */,
 				6CD2B3E31AEE1DB60030516B /* ObjCTest */,
+				6C4934501B25998800353938 /* TENGCD */,
 				76F255AA1A8E2B9200135F2A /* Products */,
 				9DB0ADBD5B7122033FA7310F /* Pods */,
 				685F6190484E8C6E40920D33 /* Frameworks */,
@@ -961,6 +1041,7 @@
 				769DFBD81AD6895600D0919A /* HomeworkObjC */,
 				6CD2B3E21AEE1DB60030516B /* ObjCTest.xctest */,
 				761989F11B1D022400BCB475 /* Dispatcher */,
+				6C49344F1B25998800353938 /* TENGCD */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -987,6 +1068,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6C49344E1B25998800353938 /* TENGCD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C4934551B25998800353938 /* Build configuration list for PBXNativeTarget "TENGCD" */;
+			buildPhases = (
+				6C49344B1B25998800353938 /* Sources */,
+				6C49344C1B25998800353938 /* Frameworks */,
+				6C49344D1B25998800353938 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TENGCD;
+			productName = TENGCD;
+			productReference = 6C49344F1B25998800353938 /* TENGCD */;
+			productType = "com.apple.product-type.tool";
+		};
 		6CD2B3E11AEE1DB60030516B /* ObjCTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CD2B3EA1AEE1DB60030516B /* Build configuration list for PBXNativeTarget "ObjCTest" */;
@@ -1066,6 +1164,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = 444ten;
 				TargetAttributes = {
+					6C49344E1B25998800353938 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
 					6CD2B3E11AEE1DB60030516B = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
@@ -1096,6 +1197,7 @@
 				769DFBD71AD6895600D0919A /* HomeworkObjC */,
 				6CD2B3E11AEE1DB60030516B /* ObjCTest */,
 				761989F01B1D022400BCB475 /* Dispatcher */,
+				6C49344E1B25998800353938 /* TENGCD */,
 			);
 		};
 /* End PBXProject section */
@@ -1144,6 +1246,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6C49344B1B25998800353938 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C4934651B259B6C00353938 /* TENGCDObservableObject.m in Sources */,
+				6C4934631B259B6C00353938 /* TENGCDEmployee.m in Sources */,
+				6C4934521B25998800353938 /* main.m in Sources */,
+				6C4934621B259B6C00353938 /* TENGCDDispatcher.m in Sources */,
+				6C4934641B259B6C00353938 /* TENGCDEnterprise.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6CD2B3DE1AEE1DB60030516B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1264,6 +1378,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		6C4934531B25998800353938 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6C4934541B25998800353938 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		6CD2B3E81AEE1DB60030516B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5ABE7605A9FBFC4A8BCA9664 /* Pods-ObjCTest.debug.xcconfig */;
@@ -1438,6 +1576,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6C4934551B25998800353938 /* Build configuration list for PBXNativeTarget "TENGCD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C4934531B25998800353938 /* Debug */,
+				6C4934541B25998800353938 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		6CD2B3EA1AEE1DB60030516B /* Build configuration list for PBXNativeTarget "ObjCTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
