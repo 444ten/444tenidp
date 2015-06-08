@@ -21,7 +21,7 @@ static const NSUInteger TENAccountantCount      = 2;
 static const NSUInteger TENWasherCount          = 3;
 
 static const NSUInteger TENNumberOfCarsInSeries = 5;
-static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 5;
+static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
 
 @interface TENGCDEnterprise()
 @property (nonatomic, retain)   NSMutableSet    *mutableEmployeeSet;
@@ -83,23 +83,33 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 5;
 #pragma mark Public
 
 - (void)start {
-    [self performSelectorInBackground:@selector(addCarInBackground) withObject:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self addCarInBackground];
+    });
+    
 }
 
 #pragma mark -
 #pragma mark Private
 
 - (void)addCarInBackground {
-    NSUInteger carsCount = 0;
+    __block NSUInteger carsCount = 0;
     
     while (carsCount < TENTotalCars) {
-        for (NSUInteger iterator = 0; iterator < TENNumberOfCarsInSeries; iterator++) {
+        dispatch_apply(TENNumberOfCarsInSeries,
+                       dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
+                       ^(size_t index)
+        {
             carsCount += 1;
             TENCar *car = [TENCar carWithIndex:carsCount];
             car.money = carsCount;
             
-            [self performSelectorInBackground:@selector(workWithCarInBackground:) withObject:car];
-        }
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                [self workWithCarInBackground:car];
+            });
+            
+        });
+        
         NSLog(@"%lu car enqueued", carsCount);
         
         usleep(1000 * 1000);
@@ -159,7 +169,9 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 5;
     TENGCDDispatcher *dispatcher   = [employee isMemberOfClass:[TENGCDWasher class]]
                                 ? self.accountantsDispatcher
                                 : self.directorsDispatcher;
-    [dispatcher performSelectorInBackground:@selector(processObject:) withObject:employee];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [dispatcher processObject:employee];
+    });
 }
 
 @end

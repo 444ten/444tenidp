@@ -14,7 +14,7 @@
 #pragma mark Public
 
 - (void)calculateMoney {
-    NSLog(@"%@ calculated money: %lu", self.name, (unsigned long)self.money);
+//    NSLog(@"%@ calculated money: %lu", self.name, (unsigned long)self.money);
 }
 
 #pragma mark -
