@@ -14,7 +14,7 @@
 #pragma mark Public Methods
 
 - (void)takeProfit {
-//    NSLog(@"%@ took profit: %lu", self.name, self.money);
+    NSLog(@"%@ took profit: %lu", self.name, self.money);
 }
 
 #pragma mark -

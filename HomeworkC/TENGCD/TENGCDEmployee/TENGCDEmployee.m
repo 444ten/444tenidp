@@ -120,7 +120,7 @@
     @synchronized (self) {
         NSUInteger result = self.money;
         self.money = 0;
-//        NSLog(@"( - ) %@ give money: %lu", self.name, result);
+        NSLog(@"( - ) %@ give money: %lu", self.name, result);
         
         return result;
     }
@@ -129,7 +129,7 @@
 - (void)takeMoney:(NSUInteger)money {
     @synchronized (self) {
         self.money += money;
-//        NSLog(@"( + ) %@ take money: %lu", self.name, money);
+        NSLog(@"( + ) %@ take money: %lu", self.name, money);
     }
 }
 

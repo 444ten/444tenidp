@@ -93,23 +93,17 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
 #pragma mark Private
 
 - (void)addCarInBackground {
-    __block NSUInteger carsCount = 0;
-    
+    NSUInteger carsCount = 0;
     while (carsCount < TENTotalCars) {
-        dispatch_apply(TENNumberOfCarsInSeries,
-                       dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
-                       ^(size_t index)
-        {
+        for (NSUInteger iterator = 0; iterator < TENNumberOfCarsInSeries; iterator++) {
             carsCount += 1;
             TENCar *car = [TENCar carWithIndex:carsCount];
             car.money = carsCount;
-            
+
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [self workWithCarInBackground:car];
             });
-            
-        });
-        
+        }
         NSLog(@"%lu car enqueued", carsCount);
         
         usleep(1000 * 1000);
@@ -169,6 +163,7 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
     TENGCDDispatcher *dispatcher   = [employee isMemberOfClass:[TENGCDWasher class]]
                                 ? self.accountantsDispatcher
                                 : self.directorsDispatcher;
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [dispatcher processObject:employee];
     });
