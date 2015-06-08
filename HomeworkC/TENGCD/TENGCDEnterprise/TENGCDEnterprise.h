@@ -1,5 +1,5 @@
 //
-//  TENDispatcherEnterprise.h
+//  TENGCDEnterprise.h
 //  HomeworkC
 //
 //  Created by 444ten on 4/22/15.
@@ -8,11 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "TENDispatcherEmployee.h"
+#import "TENGCDEmployee.h"
 
-@class TENCar;
-
-@interface TENDispatcherEnterprise : NSObject <TENEmployeeObserver>
+@interface TENGCDEnterprise : NSObject <TENEmployeeObserver>
 @property (nonatomic, readonly) NSSet   *employeeSet;
 
 - (void)start;

@@ -1,20 +1,20 @@
 //
-//  TENDispatcher.h
+//  TENGCDDispatcher.h
 //  HomeworkC
 //
 //  Created by Andrey Ten on 5/27/15.
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#import "TENObservableObject.h"
+#import "TENGCDObservableObject.h"
 
 @class TENQueue;
-@class TENDispatcherEmployee;
+@class TENGCDEmployee;
 
-@interface TENDispatcher : NSObject
+@interface TENGCDDispatcher : NSObject
 
-- (void)addHandler:(TENDispatcherEmployee *)handler;
-- (void)removeHandler:(TENDispatcherEmployee *)handler;
+- (void)addHandler:(TENGCDEmployee *)handler;
+- (void)removeHandler:(TENGCDEmployee *)handler;
 
 - (void)processObject:(id)object;
 

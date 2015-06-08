@@ -1,16 +1,16 @@
 //
-//  TENObservableObject.m
+//  TENGCDObservableObject.m
 //  HomeworkC
 //
 //  Created by Andrey Ten on 5/27/15.
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#import "TENObservableObject.h"
+#import "TENGCDObservableObject.h"
 
 #import "TENAssignReference.h"
 
-@interface TENObservableObject ()
+@interface TENGCDObservableObject ()
 @property (nonatomic, retain)   NSMutableSet    *mutableObserverSet;
 
 - (void)notifyOfStateChange;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation TENObservableObject
+@implementation TENGCDObservableObject
 
 @dynamic observerSet;
 

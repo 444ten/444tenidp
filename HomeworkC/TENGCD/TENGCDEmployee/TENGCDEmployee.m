@@ -1,17 +1,17 @@
 //
-//  TENEDispatchermployee.m
+//  TENGCDEmployee.m
 //  HomeworkC
 //
 //  Created by 444ten on 4/16/15.
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#import "TENDispatcherEmployee.h"
+#import "TENGCDEmployee.h"
 
 #import "TENCar.h"
 #import "TENQueue.h"
 
-@interface TENDispatcherEmployee()
+@interface TENGCDEmployee()
 @property (nonatomic, copy, readwrite)  NSString    *name;
 
 - (void)performWorkWithObjectInBackground:(id)object;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation TENDispatcherEmployee
+@implementation TENGCDEmployee
 
 @synthesize money = _money;
 
@@ -67,7 +67,7 @@
                                withObject:object];
 }
 
-- (void)finalizeWorkWithObject:(TENDispatcherEmployee *)object {
+- (void)finalizeWorkWithObject:(TENGCDEmployee *)object {
     object.state = TENEmployeeFree;
 }
 

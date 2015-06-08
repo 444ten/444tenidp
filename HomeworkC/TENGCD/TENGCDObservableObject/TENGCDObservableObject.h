@@ -1,5 +1,5 @@
 //
-//  TENObservableObject.h
+//  TENGCDObservableObject.h
 //  HomeworkC
 //
 //  Created by Andrey Ten on 5/27/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TENObservableObject : NSObject
+@interface TENGCDObservableObject : NSObject
 @property (atomic, assign)      NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observerSet;
 

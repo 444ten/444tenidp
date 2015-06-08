@@ -1,5 +1,5 @@
 //
-//  TENDispatcherEmployee.h
+//  TENGCDEmployee.h
 //  HomeworkC
 //
 //  Created by 444ten on 4/16/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "TENObservableObject.h"
+#import "TENGCDObservableObject.h"
 #import "TENMoneyProtocol.h"
 
 typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
@@ -17,19 +17,19 @@ typedef  NS_ENUM(NSUInteger, TENEmployeeState) {
     TENEmployeeReadyForMoneyOperation
 };
 
-@class TENDispatcherEmployee;
+@class TENGCDEmployee;
 
 @protocol TENEmployeeObserver <NSObject>
 
 @optional
 
-- (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee;
-- (void)employeeDidBecomePerformWork:(TENDispatcherEmployee *)employee;
-- (void)employeeDidBecomeReadyForMoneyOperation:(TENDispatcherEmployee *)employee;
+- (void)employeeDidBecomeFree:(TENGCDEmployee *)employee;
+- (void)employeeDidBecomePerformWork:(TENGCDEmployee *)employee;
+- (void)employeeDidBecomeReadyForMoneyOperation:(TENGCDEmployee *)employee;
 
 @end
 
-@interface TENDispatcherEmployee : TENObservableObject <TENMoneyProtocol>
+@interface TENGCDEmployee : TENGCDObservableObject <TENMoneyProtocol>
 @property (nonatomic, copy, readonly)   NSString    *name;
 @property (nonatomic, assign)           NSUInteger  experience;
 @property (nonatomic, assign)           NSUInteger  salary;

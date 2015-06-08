@@ -12,7 +12,7 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        [[ object] start];
+        [[TENGCDEnterprise object] start];
         
         NSRunLoop *runLoop = [NSRunLoop mainRunLoop];
         [runLoop run];

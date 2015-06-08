@@ -1,18 +1,18 @@
 //
-//  TENDispatcher.m
+//  TENGCDDispatcher.m
 //  HomeworkC
 //
 //  Created by Andrey Ten on 5/27/15.
 //  Copyright (c) 2015 444ten. All rights reserved.
 //
 
-#import "TENDispatcher.h"
+#import "TENGCDDispatcher.h"
 
 #import "NSObject+TENExtensions.h"
 #import "TENQueue.h"
-#import "TENDispatcherEmployee.h"
+#import "TENGCDEmployee.h"
 
-@interface TENDispatcher ()
+@interface TENGCDDispatcher ()
 @property (nonatomic, retain)   NSMutableArray  *handlers;
 @property (nonatomic, retain)   TENQueue        *queue;
 
@@ -20,11 +20,11 @@
 
 - (id)nextHandlerWithState:(TENEmployeeState)state;
 
-- (TENDispatcherEmployee *)bookedHandler;
+- (TENGCDEmployee *)bookedHandler;
 
 @end
 
-@implementation TENDispatcher
+@implementation TENGCDDispatcher
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -51,14 +51,14 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)addHandler:(TENDispatcherEmployee *)handler {
+- (void)addHandler:(TENGCDEmployee *)handler {
     @synchronized (self) {
         [handler addObserver:self];
         [self.handlers addObject:handler];
     }
 }
 
-- (void)removeHandler:(TENDispatcherEmployee *)handler {
+- (void)removeHandler:(TENGCDEmployee *)handler {
     @synchronized (self) {
         [handler removeObserver:self];
         [self.handlers removeObject:handler];
@@ -71,7 +71,7 @@
     
         @synchronized (queue) {
             if (![queue isEmpty]) {
-                TENDispatcherEmployee *handler = [self bookedHandler];
+                TENGCDEmployee *handler = [self bookedHandler];
                 if (handler) {
                     [handler performWorkWithObject:[queue dequeueObject]];
                 }
@@ -92,7 +92,7 @@
 - (id)nextHandlerWithState:(TENEmployeeState)state {
     @synchronized (self) {
         NSArray *handlers = [[self.handlers copy] autorelease];
-        for (TENDispatcherEmployee *handler in handlers) {
+        for (TENGCDEmployee *handler in handlers) {
             if (state == handler.state) {
                 NSMutableArray *array = self.handlers;
                 [array removeObject:handler];                
@@ -106,8 +106,8 @@
     }
 }
 
-- (TENDispatcherEmployee *)bookedHandler {
-    TENDispatcherEmployee *handler = nil;
+- (TENGCDEmployee *)bookedHandler {
+    TENGCDEmployee *handler = nil;
     while ((handler = [self nextHandlerWithState:TENEmployeeFree])) {
         @synchronized (self) {
             if (TENEmployeeFree == handler.state) {
@@ -124,7 +124,7 @@
 #pragma mark -
 #pragma mark TENEmployeeObserver
 
-- (void)employeeDidBecomeFree:(TENDispatcherEmployee *)employee {
+- (void)employeeDidBecomeFree:(TENGCDEmployee *)employee {
     [self performSelectorInBackground:@selector(processObject:) withObject:nil];
 }
 
