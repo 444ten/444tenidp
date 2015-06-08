@@ -26,6 +26,12 @@
     return [[[self alloc] initWithModel:model] autorelease];
 }
 
++ (instancetype)carWithIndex:(NSUInteger)index {
+    NSString *model = [NSString stringWithFormat:@"%@_%lu", self.className, index];
+    
+    return [self carWithModel:model];
+}
+
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
@@ -51,7 +57,7 @@
     @synchronized (self) {
         NSUInteger result = self.money;
         self.money = 0;
-        NSLog(@"( - ) %@ give money: %lu", self.model, result);
+//        NSLog(@"( - ) %@ give money: %lu", self.model, result);
         
         return result;
     }

@@ -53,9 +53,11 @@
 }
 
 - (void)enqueueObject:(id)object {
-    @synchronized (self) {
-        [self.mutableQueue addObject:object];
-    }
+    if (object) {
+        @synchronized (self) {
+            [self.mutableQueue addObject:object];
+        }
+    }    
 }
     
 - (id)dequeueObject {

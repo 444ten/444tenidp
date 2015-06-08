@@ -56,13 +56,13 @@
 }
 
 - (NSUInteger)state {
-    @synchronized (self ) {
+    @synchronized (self) {
         return _state;
     }
 }
 
 - (NSSet *)observerSet {
-    @synchronized (self ) {
+    @synchronized (self) {
         NSSet *referenceSet = self.mutableObserverSet;
         NSMutableSet *observers = [NSMutableSet setWithCapacity:[referenceSet count]];
         for (TENReference *reference in referenceSet) {
