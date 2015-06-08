@@ -448,11 +448,11 @@
 		761989F21B1D022400BCB475 /* Dispatcher */ = {
 			isa = PBXGroup;
 			children = (
+				761989F31B1D022400BCB475 /* main.m */,
 				761989F81B1D02CF00BCB475 /* TENDispatcher.h */,
 				761989F91B1D02CF00BCB475 /* TENDispatcher.m */,
 				761989FA1B1D02CF00BCB475 /* TENDispatcherEmployee */,
 				76198A031B1D02CF00BCB475 /* TENDispatcherEnterprise */,
-				761989F31B1D022400BCB475 /* main.m */,
 			);
 			path = Dispatcher;
 			sourceTree = "<group>";
@@ -1454,6 +1454,7 @@
 				761989F71B1D022400BCB475 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		769DFBDE1AD6895600D0919A /* Build configuration list for PBXNativeTarget "HomeworkObjC" */ = {
 			isa = XCConfigurationList;
