@@ -106,7 +106,7 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
         }
         NSLog(@"%lu car enqueued", carsCount);
         
-        usleep(10 * 1000);
+        usleep(100 * 1000);
     }
 }
 

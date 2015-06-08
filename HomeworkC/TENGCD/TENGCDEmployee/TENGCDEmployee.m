@@ -63,7 +63,7 @@
         return;
     }
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self performWorkWithObjectInBackground:object];
     });
 }
@@ -106,7 +106,7 @@
     [self processObject:object];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self   finalizeWorkWithObjectOnMainThread:object];
+        [self finalizeWorkWithObjectOnMainThread:object];
     });
 }
 

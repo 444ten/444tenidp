@@ -69,7 +69,7 @@
         TENQueue *queue = self.queue;
         [queue enqueueObject:object];
     
-        @synchronized (queue) {
+        @synchronized (self) {
             if (![queue isEmpty]) {
                 TENDispatcherEmployee *handler = [self bookedHandler];
                 if (handler) {

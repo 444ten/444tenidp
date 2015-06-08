@@ -103,13 +103,13 @@
 #pragma mark Private
 
 - (void)notifyOfStateChange {
-//    dispatch_sync(dispatch_get_main_queue(), ^{
-//        [self notifyOnMainThread];
-//    });
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self notifyOnMainThread];
+    });
     
-    [self performSelectorOnMainThread:@selector(notifyOnMainThread)
-                           withObject:nil
-                        waitUntilDone:YES];
+//    [self performSelectorOnMainThread:@selector(notifyOnMainThread)
+//                           withObject:nil
+//                        waitUntilDone:YES];
 }
 
 - (void)notifyOnMainThread {
