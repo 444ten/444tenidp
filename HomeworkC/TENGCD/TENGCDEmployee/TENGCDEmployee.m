@@ -63,8 +63,9 @@
         return;
     }
     
-    [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
-                               withObject:object];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self performWorkWithObjectInBackground:object];
+    });
 }
 
 - (void)finalizeWorkWithObject:(TENGCDEmployee *)object {
@@ -103,9 +104,10 @@
     usleep(100 * arc4random_uniform(1000));
 
     [self processObject:object];
-    [self performSelectorOnMainThread:@selector(finalizeWorkWithObjectOnMainThread:)
-                           withObject:object
-                        waitUntilDone:NO];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self   finalizeWorkWithObjectOnMainThread:object];
+    });
 }
 
 - (void)finalizeWorkWithObjectOnMainThread:(id)object {
