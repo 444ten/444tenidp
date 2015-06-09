@@ -82,10 +82,9 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
 #pragma mark Public
 
 - (void)start {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
         [self addCarInBackground];
     });
-    
 }
 
 #pragma mark -
@@ -99,7 +98,7 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
             TENCar *car = [TENCar carWithIndex:carsCount];
             car.money = carsCount;
 
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
                 [self.washersDispatcher processObject:car];
             });
         }
@@ -155,7 +154,7 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
                                 ? self.accountantsDispatcher
                                 : self.directorsDispatcher;
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
         [dispatcher processObject:employee];
     });
 }
