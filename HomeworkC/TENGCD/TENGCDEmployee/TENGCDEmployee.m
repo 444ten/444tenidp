@@ -14,9 +14,6 @@
 @interface TENGCDEmployee()
 @property (nonatomic, copy, readwrite)  NSString    *name;
 
-- (void)performWorkWithObjectInBackground:(id)object;
-- (void)finalizeWorkWithObjectOnMainThread:(id)object;
-
 @end
 
 @implementation TENGCDEmployee
@@ -64,7 +61,15 @@
     }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self performWorkWithObjectInBackground:object];
+
+        usleep(100 * arc4random_uniform(1000));
+        
+        [self processObject:object];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.state = TENEmployeeReadyForMoneyOperation;
+            [self finalizeWorkWithObject:object];
+        });
     });
 }
 
@@ -95,24 +100,6 @@
     }
     
     return NULL;
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (void)performWorkWithObjectInBackground:(id)object {
-    usleep(100 * arc4random_uniform(1000));
-
-    [self processObject:object];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self finalizeWorkWithObjectOnMainThread:object];
-    });
-}
-
-- (void)finalizeWorkWithObjectOnMainThread:(id)object {
-    self.state = TENEmployeeReadyForMoneyOperation;
-    [self finalizeWorkWithObject:object];
 }
 
 #pragma mark -

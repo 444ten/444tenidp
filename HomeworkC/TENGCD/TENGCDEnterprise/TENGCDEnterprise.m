@@ -31,7 +31,6 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
 @property (nonatomic, retain)   TENGCDDispatcher   *washersDispatcher;
 
 - (void)addCarInBackground;
-- (void)workWithCarInBackground:(TENCar *)car;
 
 - (void)removeObservers;
 - (void)hireStaff;
@@ -101,21 +100,13 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
             car.money = carsCount;
 
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                [self workWithCarInBackground:car];
+                [self.washersDispatcher processObject:car];
             });
         }
         NSLog(@"%lu car enqueued", carsCount);
         
         usleep(100 * 1000);
     }
-}
-
-- (void)workWithCarInBackground:(TENCar *)car {
-    if (nil == car) {
-        return;
-    }
-    
-    [self.washersDispatcher processObject:car];
 }
 
 - (void)removeObservers {
@@ -160,7 +151,7 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
         return;
     }
     
-    TENGCDDispatcher *dispatcher   = [employee isMemberOfClass:[TENGCDWasher class]]
+    TENGCDDispatcher *dispatcher = [employee isMemberOfClass:[TENGCDWasher class]]
                                 ? self.accountantsDispatcher
                                 : self.directorsDispatcher;
 

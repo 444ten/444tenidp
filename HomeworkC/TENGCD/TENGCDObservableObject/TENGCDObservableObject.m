@@ -13,7 +13,6 @@
 @interface TENGCDObservableObject ()
 @property (nonatomic, retain)   NSMutableSet    *mutableObserverSet;
 
-- (void)notifyOfStateChange;
 - (void)notifyOnMainThread;
 
 @end
@@ -50,7 +49,14 @@
         if (_state != state) {
             _state = state;
             
-            [self notifyOfStateChange];
+            
+            void(^block)() = ^{ [self notifyOnMainThread]; };
+            
+            if ([NSThread isMainThread]) {
+                block();
+            } else {
+                dispatch_sync(dispatch_get_main_queue(), block);
+            }
         }
     }
 }
@@ -101,16 +107,6 @@
 
 #pragma mark -
 #pragma mark Private
-
-- (void)notifyOfStateChange {
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        [self notifyOnMainThread];
-    });
-    
-//    [self performSelectorOnMainThread:@selector(notifyOnMainThread)
-//                           withObject:nil
-//                        waitUntilDone:YES];
-}
 
 - (void)notifyOnMainThread {
     SEL selector = [self selectorForState:_state];
