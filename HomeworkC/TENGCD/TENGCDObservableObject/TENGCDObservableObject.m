@@ -14,6 +14,7 @@
 @property (nonatomic, retain)   NSMutableSet    *mutableObserverSet;
 
 - (void)notifyOnMainThread;
+- (void)performOnMainThreadWithBlock:(void(^)())block;
 
 @end
 
@@ -49,14 +50,7 @@
         if (_state != state) {
             _state = state;
             
-            
-            void(^block)() = ^{ [self notifyOnMainThread]; };
-            
-            if ([NSThread isMainThread]) {
-                block();
-            } else {
-                dispatch_sync(dispatch_get_main_queue(), block);
-            }
+            [self performOnMainThreadWithBlock:^{ [self notifyOnMainThread]; }];
         }
     }
 }
@@ -118,5 +112,14 @@
         }
     }
 }
+
+- (void)performOnMainThreadWithBlock:(void(^)())block {
+    if ([NSThread isMainThread]) {
+        block();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
+}
+
 
 @end
