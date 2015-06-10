@@ -11,6 +11,9 @@
 #import "TENCar.h"
 #import "TENQueue.h"
 
+static const NSUInteger TENSleepDelayConst      = 100;
+static const NSUInteger TENSleepDelayVariable   = 1000;
+
 @interface TENGCDEmployee()
 @property (nonatomic, copy, readwrite)  NSString    *name;
 
@@ -62,7 +65,7 @@
     
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
 
-        usleep(100 * arc4random_uniform(1000));
+        usleep(TENSleepDelayConst * arc4random_uniform(TENSleepDelayVariable));
         
         [self processObject:object];
         

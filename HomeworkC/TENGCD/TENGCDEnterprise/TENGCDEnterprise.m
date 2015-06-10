@@ -23,6 +23,9 @@ static const NSUInteger TENWasherCount          = 3;
 static const NSUInteger TENNumberOfCarsInSeries = 5;
 static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
 
+static const NSUInteger TENSleepDelay           = 100 * 1000;
+
+
 @interface TENGCDEnterprise()
 @property (nonatomic, retain)   NSMutableSet    *mutableEmployeeSet;
 
@@ -104,7 +107,7 @@ static const NSUInteger TENTotalCars            = TENNumberOfCarsInSeries * 10;
         }
         NSLog(@"%lu car enqueued", carsCount);
         
-        usleep(100 * 1000);
+        usleep(TENSleepDelay);
     }
 }
 
