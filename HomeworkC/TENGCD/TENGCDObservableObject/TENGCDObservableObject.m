@@ -9,12 +9,12 @@
 #import "TENGCDObservableObject.h"
 
 #import "TENAssignReference.h"
+#import "TENThread.h"
 
 @interface TENGCDObservableObject ()
 @property (nonatomic, retain)   NSMutableSet    *mutableObserverSet;
 
 - (void)notifyOnMainThread;
-- (void)performOnMainThreadWithBlock:(void(^)())block;
 
 @end
 
@@ -50,7 +50,7 @@
         if (_state != state) {
             _state = state;
             
-            [self performOnMainThreadWithBlock:^{ [self notifyOnMainThread]; }];
+            TENPerformOnMainThreadWithBlock(^{[self notifyOnMainThread];});
         }
     }
 }
@@ -112,14 +112,5 @@
         }
     }
 }
-
-- (void)performOnMainThreadWithBlock:(void(^)())block {
-    if ([NSThread isMainThread]) {
-        block();
-    } else {
-        dispatch_sync(dispatch_get_main_queue(), block);
-    }
-}
-
 
 @end

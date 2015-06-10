@@ -22,6 +22,7 @@
 		6C4934851B25A30200353938 /* TENReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3ECC1B0381A20059D126 /* TENReference.m */; };
 		6C4934861B25A30F00353938 /* TENRetainReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3ED41B0388790059D126 /* TENRetainReference.m */; };
 		6C4934871B25A31200353938 /* TENCopyReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3EDC1B0388DC0059D126 /* TENCopyReference.m */; };
+		6C5A868B1B2868D4009D8896 /* TENThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5A868A1B2868D4009D8896 /* TENThread.m */; };
 		6CCD3ECD1B0381A20059D126 /* TENReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3ECC1B0381A20059D126 /* TENReference.m */; };
 		6CCD3ECE1B0381A20059D126 /* TENReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3ECC1B0381A20059D126 /* TENReference.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6CCD3ED11B0387990059D126 /* TENAssignReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD3ED01B0387990059D126 /* TENAssignReference.m */; };
@@ -172,6 +173,8 @@
 		6C49347E1B25A14800353938 /* TENGCDDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENGCDDirector.m; sourceTree = "<group>"; };
 		6C4934811B25A15300353938 /* TENGCDWasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENGCDWasher.h; sourceTree = "<group>"; };
 		6C4934821B25A15300353938 /* TENGCDWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENGCDWasher.m; sourceTree = "<group>"; };
+		6C5A86891B2868D4009D8896 /* TENThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENThread.h; sourceTree = "<group>"; };
+		6C5A868A1B2868D4009D8896 /* TENThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENThread.m; sourceTree = "<group>"; };
 		6CCD3ECB1B0381A20059D126 /* TENReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENReference.h; sourceTree = "<group>"; };
 		6CCD3ECC1B0381A20059D126 /* TENReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENReference.m; sourceTree = "<group>"; };
 		6CCD3ECF1B0387990059D126 /* TENAssignReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENAssignReference.h; sourceTree = "<group>"; };
@@ -421,12 +424,22 @@
 			path = TENGCDObservableObject;
 			sourceTree = "<group>";
 		};
+		6C5A86881B2868B9009D8896 /* TENThread */ = {
+			isa = PBXGroup;
+			children = (
+				6C5A86891B2868D4009D8896 /* TENThread.h */,
+				6C5A868A1B2868D4009D8896 /* TENThread.m */,
+			);
+			path = TENThread;
+			sourceTree = "<group>";
+		};
 		6CCD3EC91B0381740059D126 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				6CF8C6441B15E0FE003E1EF8 /* TENObservableObject */,
 				6CF8C63F1B1501CF003E1EF8 /* TENQueue */,
 				6CCD3ECA1B0381740059D126 /* TENReference */,
+				6C5A86881B2868B9009D8896 /* TENThread */,
 			);
 			name = Classes;
 			path = Source/Classes;
@@ -1277,6 +1290,7 @@
 				6C4934851B25A30200353938 /* TENReference.m in Sources */,
 				6C4934631B259B6C00353938 /* TENGCDEmployee.m in Sources */,
 				6C4934861B25A30F00353938 /* TENRetainReference.m in Sources */,
+				6C5A868B1B2868D4009D8896 /* TENThread.m in Sources */,
 				6C4934671B259C4800353938 /* NSObject+TENExtensions.m in Sources */,
 				6C4934801B25A14800353938 /* TENGCDDirector.m in Sources */,
 				6C4934521B25998800353938 /* main.m in Sources */,
@@ -1615,6 +1629,7 @@
 				6C4934541B25998800353938 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6CD2B3EA1AEE1DB60030516B /* Build configuration list for PBXNativeTarget "ObjCTest" */ = {
 			isa = XCConfigurationList;
